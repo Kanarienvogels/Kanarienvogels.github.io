@@ -58,7 +58,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%B1%BB%E5%9E%8B%E6%93%A6%E9%99%A4%E7%9A%84%E4%BE%8B%E5%AD%902.JPG">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E8%AE%A1%E6%95%B0%E5%99%A8%E8%A7%A6%E5%8F%91%E5%8D%B3%E6%97%B6%E7%BC%96%E8%AF%91.JPG">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Client%20Compiler%E7%9A%84%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B.JPG">
-<meta property="og:updated_time" content="2018-07-22T12:54:24.717Z">
+<meta property="og:updated_time" content="2018-07-22T13:40:43.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java虚拟机——学习笔记">
 <meta name="twitter:description" content="0. 前言Java 作为一门面向对象的语言被广泛的使用，知名企业中大量使用Java的有Amazon，Linkedin，阿里，美团，搜狐；用的比较少的知名企业有百度，腾讯等，可以说凡是大企业都或多或少的有用到Java。一些被广泛使用的开源系统、框架也完全使用Java进行编写，比如Android操作系统和Hadoop分布式系统基础框架。为什么Java会收到欢迎？除了其本身面向对象的特性极大的加快了开发">
@@ -344,69 +344,6 @@
 <li><a href="http://blog.csdn.net/plgy_Y/article/details/72791483" target="_blank" rel="noopener">图解Java 垃圾回收机制 - CSDN博客</a></li>
 </ul>
 <p>该文章也借阅了书籍《深入理解Java虚拟机》，这里提供个人的pdf下载地址：<a href="http://myftp-1254133416.cosgz.myqcloud.com/pdf/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%9AJVM%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%EF%BC%88%E6%9C%80%E6%96%B0%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89.pdf" target="_blank" rel="noopener">《深入理解Java虚拟机》</a></p>
-<hr>
-<p><strong>目录</strong></p>
-<!-- toc -->
-<ul>
-<li><a href="#1-java-虚拟机概述">1. Java 虚拟机概述</a><ul>
-<li><a href="#11-任务概述">1.1 任务概述</a></li>
-<li><a href="#12-功能概述">1.2 功能概述</a></li>
-<li><a href="#13-java-虚拟机的生命周期">1.3 Java 虚拟机的生命周期</a></li>
-<li><a href="#14-java-虚拟机与java-程序">1.4 Java 虚拟机与Java 程序</a></li>
-<li><a href="#15-虚拟机与物理机">1.5 虚拟机与物理机</a></li>
-</ul>
-</li>
-<li><a href="#2-jvm内存结构与对象">2. JVM内存结构与对象</a><ul>
-<li><a href="#21-数据运行时区域">2.1 数据运行时区域</a></li>
-<li><a href="#22-对象的创建">2.2 对象的创建</a></li>
-<li><a href="#23-对象的内存布局">2.3 对象的内存布局</a></li>
-<li><a href="#24-对象的访问">2.4 对象的访问</a></li>
-</ul>
-</li>
-<li><a href="#3-类加载相关">3. 类加载相关</a><ul>
-<li><a href="#31-类装载器子系统">3.1 类装载器子系统</a></li>
-<li><a href="#32-类加载机制">3.2 类加载机制</a></li>
-</ul>
-</li>
-<li><a href="#4-垃圾回收机制">4. 垃圾回收机制</a><ul>
-<li><a href="#41-垃圾回收概述">4.1 垃圾回收概述</a></li>
-<li><a href="#42-垃圾回收意义">4.2 垃圾回收意义</a></li>
-<li><a href="#43-垃圾回收区域">4.3 垃圾回收区域</a></li>
-<li><a href="#44-垃圾回收种类">4.4 垃圾回收种类</a></li>
-<li><a href="#45-垃圾回收时机">4.5 垃圾回收时机</a></li>
-<li><a href="#46-垃圾回收对象">4.6 垃圾回收对象</a></li>
-<li><a href="#47-垃圾回收算法">4.7 垃圾回收算法</a></li>
-<li><a href="#48-垃圾回收器">4.8 垃圾回收器</a></li>
-</ul>
-</li>
-<li><a href="#5-class文件">5. Class文件</a><ul>
-<li><a href="#51-无关性">5.1 无关性</a></li>
-<li><a href="#52-class文件内容解析">5.2 Class文件内容解析</a></li>
-<li><a href="#53-字节码指令">5.3 字节码指令</a></li>
-<li><a href="#54-java虚拟机的实现方式">5.4 Java虚拟机的实现方式</a></li>
-</ul>
-</li>
-<li><a href="#6-字节码执行引擎">6. 字节码执行引擎</a><ul>
-<li><a href="#61-栈帧">6.1 栈帧</a></li>
-<li><a href="#62-方法调用">6.2 方法调用</a></li>
-<li><a href="#63-解释执行">6.3 解释执行</a></li>
-</ul>
-</li>
-<li><a href="#7-编译期优化">7. 编译期优化</a><ul>
-<li><a href="#71-sun-javac-编译过程">7.1 Sun Javac 编译过程</a></li>
-<li><a href="#72-java语法糖糖衣背后的真实">7.2 Java语法糖——糖衣背后的真实</a></li>
-</ul>
-</li>
-<li><a href="#8-运行期优化">8. 运行期优化</a><ul>
-<li><a href="#81-jit编译器">8.1 JIT编译器</a></li>
-<li><a href="#82-解释器与编译器">8.2 解释器与编译器</a></li>
-<li><a href="#83-编译对象与触发条件">8.3 编译对象与触发条件</a></li>
-<li><a href="#84-编译过程">8.4 编译过程</a></li>
-<li><a href="#85-编译技术">8.5 编译技术</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
 <h2><span id="1-java-虚拟机概述">1. Java 虚拟机概述</span></h2><h3><span id="11-任务概述">1.1 任务概述</span></h3><p><strong>Java 虚拟机的主要任务是装载class文件并且执行其中的字节码</strong>。由下图可以看出，Java虚拟机包含一个类装载器（class loader），它可以从程序和API中装载class文件，Java API中只有程序执行时需要的类才会被装载，字节码由执行引擎来执行。</p>
 <p><img src="http://images2015.cnblogs.com/blog/316892/201601/316892-20160107185655528-480221492.png" alt="Java 虚拟机的主要任务"></p>
 <p>当Java虚拟机由主机操作系统上的软件实现时，Java程序通过调用本地方法和主机进行交互。<strong>Java方法由Java语言编写，编译成字节码，存储在class文件中</strong>。<strong>本地方法由C/C++/汇编语言编写</strong>，编译成和处理器相关的机器代码，存储在动态链接库中，格式是各个平台专有。所以<strong>本地方法是联系Java程序和底层主机操作系统的连接方式</strong>。</p>
@@ -877,7 +814,7 @@
         <p><span>本文标题:</span><a href="/2018/07/22/Java虚拟机——学习笔记/">Java虚拟机——学习笔记</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Kanarien</a></p>
         <p><span>发布时间:</span>2018-07-22, 20:49:43</p>
-        <p><span>最后更新:</span>2018-07-22, 20:54:24</p>
+        <p><span>最后更新:</span>2018-07-22, 21:40:43</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/22/Java虚拟机——学习笔记/" title="Java虚拟机——学习笔记">http://Kanarienvogels.github.io/2018/07/22/Java虚拟机——学习笔记/</a>
             <span class="copy-path" data-clipboard-text="原文: http://Kanarienvogels.github.io/2018/07/22/Java虚拟机——学习笔记/　　作者: Kanarien" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

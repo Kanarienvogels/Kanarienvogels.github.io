@@ -353,7 +353,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。<br>
+              <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-001.jpg" alt="动漫美图"></p>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。</p>
+<hr>
+<h2 id="1-数据的导出"><a href="#1-数据的导出" class="headerlink" title="1. 数据的导出"></a>1. 数据的导出</h2><h3 id="1-1-准备操作"><a href="#1-1-准备操作" class="headerlink" title="1.1 准备操作"></a>1.1 准备操作</h3><p>打开windows命令窗口（或登录服务器用Unix命令行），转到mongo的<strong>bin</strong>文件夹下(如果直接配置好环境变量，可直接敲命令)使用<strong>mongodump</strong>命令(别急着按回车)<br>
           
       
     </div>
@@ -421,7 +424,14 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。<br>
+              <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-002.jpg" alt="动漫美图"></p>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。</p>
+<h2 id="1-CPU相关信息"><a href="#1-CPU相关信息" class="headerlink" title="1. CPU相关信息"></a>1. CPU相关信息</h2><ol>
+<li>查看CPU个数<br><code>cat /proc/cpuinfo | grep &quot;physical id&quot; | uniq | wc -l</code></li>
+</ol>
+<ul>
+<li>示例输出：<code>1</code><blockquote>
+<p>说明:<br>这是查看记录CPU相关的文件(/proc/cpuinfo)的详细信息。cat 命令：查看文件内容；grep 命令：字符串拼接；uniq 命令：删除重复行；wc -l 命令：统计行数。通过查看cpu信息文件，根据物理核id（重复的不计）的个数获取物理核个数。</p>
           
       
     </div>

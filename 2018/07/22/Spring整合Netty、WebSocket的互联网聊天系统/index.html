@@ -16,7 +16,7 @@
 
 
 <meta name="description" content="0.前言最近一段时间在学习Netty网络框架，又趁着计算机网络的课程设计，决定以Netty为核心，以WebSocket为应用层通信协议做一个互联网聊天系统，整体而言就像微信网页版一样，但考虑到这个聊天系统的功能非常多，因此只打算实现核心的聊天功能，包括单发、群发、文件发送，然后把项目与Spring整合做成开源、可拓展的方式，给大家参考、讨论、使用，欢迎大家的指点。">
-<meta name="keywords" content="Spring,Tomcat,Netty,WebSocket">
+<meta name="keywords" content="Tomcat,Spring,Netty,WebSocket">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring整合Netty、WebSocket的互联网聊天系统">
 <meta property="og:url" content="http://Kanarienvogels.github.io/2018/07/22/Spring整合Netty、WebSocket的互联网聊天系统/index.html">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E8%81%8A%E5%A4%A9%E5%AE%A4%E7%99%BB%E5%BD%95%E5%85%A5%E5%8F%A3.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E8%81%8A%E5%A4%A9%E6%BC%94%E7%A4%BA.gif">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%94%E7%A4%BA.gif">
-<meta property="og:updated_time" content="2018-07-22T12:12:39.670Z">
+<meta property="og:updated_time" content="2018-07-22T13:41:12.934Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring整合Netty、WebSocket的互联网聊天系统">
 <meta name="twitter:description" content="0.前言最近一段时间在学习Netty网络框架，又趁着计算机网络的课程设计，决定以Netty为核心，以WebSocket为应用层通信协议做一个互联网聊天系统，整体而言就像微信网页版一样，但考虑到这个聊天系统的功能非常多，因此只打算实现核心的聊天功能，包括单发、群发、文件发送，然后把项目与Spring整合做成开源、可拓展的方式，给大家参考、讨论、使用，欢迎大家的指点。">
@@ -323,33 +323,6 @@
 <li><a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html" target="_blank" rel="noopener">WebSocket 教程 - 阮一峰的网络日志</a></li>
 </ul>
 <hr>
-<p><strong>目录</strong></p>
-<!-- toc -->
-<ul>
-<li><a href="#1-技术准备">1. 技术准备</a></li>
-<li><a href="#2-整体说明">2. 整体说明</a><ul>
-<li><a href="#21-设计思想">2.1 设计思想</a></li>
-<li><a href="#22-系统结构">2.2 系统结构</a></li>
-<li><a href="#23-项目结构">2.3 项目结构</a></li>
-<li><a href="#24-系统功能模块">2.4 系统功能模块</a></li>
-<li><a href="#25-用户状态转换图">2.5 用户状态转换图</a></li>
-<li><a href="#26-系统界面">2.6 系统界面</a></li>
-</ul>
-</li>
-<li><a href="#3-核心编码">3. 核心编码</a><ul>
-<li><a href="#31-netty-websocket服务端">3.1 Netty WebSocket服务端</a></li>
-<li><a href="#32-websocket客户端">3.2 WebSocket客户端</a></li>
-</ul>
-</li>
-<li><a href="#4-效果及操作演示">4. 效果及操作演示</a><ul>
-<li><a href="#41-登录操作">4.1 登录操作</a></li>
-<li><a href="#42-聊天演示">4.2 聊天演示</a></li>
-<li><a href="#43-文件上传演示">4.3 文件上传演示</a></li>
-</ul>
-</li>
-<li><a href="#5补充">5.补充</a></li>
-</ul>
-<!-- tocstop -->
 <h2><span id="1-技术准备">1. 技术准备</span></h2><ul>
 <li>操作平台：Windows 7, 64bit 8G</li>
 <li>IDE：MyEclipse 2016</li>
@@ -424,7 +397,7 @@
         <p><span>本文标题:</span><a href="/2018/07/22/Spring整合Netty、WebSocket的互联网聊天系统/">Spring整合Netty、WebSocket的互联网聊天系统</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Kanarien</a></p>
         <p><span>发布时间:</span>2018-07-22, 20:02:36</p>
-        <p><span>最后更新:</span>2018-07-22, 20:12:39</p>
+        <p><span>最后更新:</span>2018-07-22, 21:41:12</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/22/Spring整合Netty、WebSocket的互联网聊天系统/" title="Spring整合Netty、WebSocket的互联网聊天系统">http://Kanarienvogels.github.io/2018/07/22/Spring整合Netty、WebSocket的互联网聊天系统/</a>
             <span class="copy-path" data-clipboard-text="原文: http://Kanarienvogels.github.io/2018/07/22/Spring整合Netty、WebSocket的互联网聊天系统/　　作者: Kanarien" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

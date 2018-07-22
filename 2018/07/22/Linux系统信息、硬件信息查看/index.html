@@ -15,14 +15,15 @@
 
 
 
-<meta name="description" content="0. 前言当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。">
+<meta name="description" content="0. 前言当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。 1. CPU相关信息 查看CPU个数cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | uniq | wc -l   示例输出：1 说明:这是">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux下系统信息、硬件信息的查看">
 <meta property="og:url" content="http://Kanarienvogels.github.io/2018/07/22/Linux系统信息、硬件信息查看/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
-<meta property="og:description" content="0. 前言当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。">
+<meta property="og:description" content="0. 前言当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。 1. CPU相关信息 查看CPU个数cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | uniq | wc -l   示例输出：1 说明:这是">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-002.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/cpuinfo.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/dmidecode%20Memory%20Device.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/meminfo.png">
@@ -32,11 +33,11 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/fdisk.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/df.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/du.png">
-<meta property="og:updated_time" content="2018-07-22T13:02:04.204Z">
+<meta property="og:updated_time" content="2018-07-22T13:40:09.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux下系统信息、硬件信息的查看">
-<meta name="twitter:description" content="0. 前言当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。">
-<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/cpuinfo.png">
+<meta name="twitter:description" content="0. 前言当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。 1. CPU相关信息 查看CPU个数cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | uniq | wc -l   示例输出：1 说明:这是">
+<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-002.jpg">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -307,23 +308,15 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2><span id="0-前言">0. 前言</span></h2><p>当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。<br><a id="more"></a></p>
-<hr>
-<p><strong>目录</strong></p>
-<!-- toc -->
-<ul>
-<li><a href="#1-cpu相关信息">1. CPU相关信息</a></li>
-<li><a href="#2-内存相关信息">2. 内存相关信息</a></li>
-<li><a href="#3-系统相关信息">3. 系统相关信息</a></li>
-<li><a href="#4-硬盘相关信息">4. 硬盘相关信息</a></li>
-</ul>
-<!-- tocstop -->
+        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-002.jpg" alt="动漫美图"></p>
+<h2><span id="0-前言">0. 前言</span></h2><p>当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。</p>
 <h2><span id="1-cpu相关信息">1. CPU相关信息</span></h2><ol>
 <li>查看CPU个数<br><code>cat /proc/cpuinfo | grep &quot;physical id&quot; | uniq | wc -l</code></li>
 </ol>
 <ul>
 <li>示例输出：<code>1</code><blockquote>
 <p>说明:<br>这是查看记录CPU相关的文件(/proc/cpuinfo)的详细信息。cat 命令：查看文件内容；grep 命令：字符串拼接；uniq 命令：删除重复行；wc -l 命令：统计行数。通过查看cpu信息文件，根据物理核id（重复的不计）的个数获取物理核个数。</p>
+<a id="more"></a>
 </blockquote>
 </li>
 </ul>
@@ -494,7 +487,7 @@
         <p><span>本文标题:</span><a href="/2018/07/22/Linux系统信息、硬件信息查看/">Linux下系统信息、硬件信息的查看</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Kanarien</a></p>
         <p><span>发布时间:</span>2018-07-22, 20:53:00</p>
-        <p><span>最后更新:</span>2018-07-22, 21:02:04</p>
+        <p><span>最后更新:</span>2018-07-22, 21:40:09</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/22/Linux系统信息、硬件信息查看/" title="Linux下系统信息、硬件信息的查看">http://Kanarienvogels.github.io/2018/07/22/Linux系统信息、硬件信息查看/</a>
             <span class="copy-path" data-clipboard-text="原文: http://Kanarienvogels.github.io/2018/07/22/Linux系统信息、硬件信息查看/　　作者: Kanarien" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
