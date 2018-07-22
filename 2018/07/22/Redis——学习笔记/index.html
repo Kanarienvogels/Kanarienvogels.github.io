@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Kanarien" />
+
+
+
+<meta name="description" content="0. 前言此笔记用来记录关于Redis的一些基本认识、知识。记录会比较详细，请恰当的使用目录与查找工具（ctrl + f），同时该笔记会随时间的推进而不断补充。具体的使用请参考其他关于Redis使用的笔记。  更新记录 2018.2.14  初次记录 2018 4.21  重新对目录进行了分级，补充了4.Redis执行效率，以及其他章节的细节">
+<meta name="keywords" content="Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis——学习笔记">
+<meta property="og:url" content="http://Kanarienvogels.github.io/2018/07/22/Redis——学习笔记/index.html">
+<meta property="og:site_name" content="无悔的博客小屋">
+<meta property="og:description" content="0. 前言此笔记用来记录关于Redis的一些基本认识、知识。记录会比较详细，请恰当的使用目录与查找工具（ctrl + f），同时该笔记会随时间的推进而不断补充。具体的使用请参考其他关于Redis使用的笔记。  更新记录 2018.2.14  初次记录 2018 4.21  重新对目录进行了分级，补充了4.Redis执行效率，以及其他章节的细节">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/IO%E9%98%BB%E5%A1%9E%E6%A8%A1%E5%9E%8B.jpg">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/IO%E5%A4%8D%E7%94%A8%E6%A8%A1%E5%9E%8B.jpg">
+<meta property="og:updated_time" content="2018-07-22T12:07:33.670Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis——学习笔记">
+<meta name="twitter:description" content="0. 前言此笔记用来记录关于Redis的一些基本认识、知识。记录会比较详细，请恰当的使用目录与查找工具（ctrl + f），同时该笔记会随时间的推进而不断补充。具体的使用请参考其他关于Redis使用的笔记。  更新记录 2018.2.14  初次记录 2018 4.21  重新对目录进行了分级，补充了4.Redis执行效率，以及其他章节的细节">
+<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/IO%E9%98%BB%E5%A1%9E%E6%A8%A1%E5%9E%8B.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Redis——学习笔记 | 无悔的博客小屋</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: false
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Kanarien</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">协同快乐与伤悲</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:&#75;&#97;&#110;&#97;&#114;&#105;&#101;&#110;&#118;&#111;&#103;&#101;&#108;&#115;&#64;&#49;&#50;&#54;&#46;&#99;&#111;&#109;" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/Kanarienvogels" title="GitHub"></a>
+                            
+                                <a class="fa SegmentFault" href="https://segmentfault.com/u/kanarien" title="SegmentFault"></a>
+                            
+                                <a class="fa 网易云音乐" href="https://music.163.com/#/user/home?id=493613324" title="网易云音乐"></a>
+                            
+                                <a class="fa bilibili" href="https://space.bilibili.com/44792275/#/" title="bilibili"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netty/">Netty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">Java后端开发，欢迎大家来讨论Java、Linux、Mysql、Redis等相关的知识</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Kanarien</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Kanarien</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">协同快乐与伤悲</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:&#75;&#97;&#110;&#97;&#114;&#105;&#101;&#110;&#118;&#111;&#103;&#101;&#108;&#115;&#64;&#49;&#50;&#54;&#46;&#99;&#111;&#109;" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/Kanarienvogels" title="GitHub"></a>
+                            
+                                <a class="fa SegmentFault" target="_blank" href="https://segmentfault.com/u/kanarien" title="SegmentFault"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="https://music.163.com/#/user/home?id=493613324" title="网易云音乐"></a>
+                            
+                                <a class="fa bilibili" target="_blank" href="https://space.bilibili.com/44792275/#/" title="bilibili"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Redis——学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/07/22/Redis——学习笔记/" class="article-date">
+      <time datetime="2018-07-22T07:22:46.610Z" itemprop="datePublished">2018-07-22</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Redis——学习笔记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/学习笔记/">学习笔记</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2><span id="0-前言">0. 前言</span></h2><p>此笔记用来记录关于Redis的一些基本认识、知识。记录会比较详细，请恰当的使用目录与查找工具（ctrl + f），同时该笔记会随时间的推进而不断补充。具体的使用请参考其他关于Redis使用的笔记。</p>
+<ul>
+<li>更新记录<ul>
+<li>2018.2.14<br>  初次记录</li>
+<li>2018 4.21<br>  重新对目录进行了分级，补充了4.Redis执行效率，以及其他章节的细节<a id="more"></a>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#1-redis简单介绍">1. Redis简单介绍</a></li>
+<li><a href="#2-redis常用数据结构和操作">2. Redis常用数据结构和操作</a><ul>
+<li><a href="#21-key的命名规则">2.1 Key的命名规则</a></li>
+<li><a href="#22-key的常用命令">2.2 Key的常用命令 *</a></li>
+<li><a href="#23-redis常用数据结构和操作">2.3 Redis常用数据结构和操作</a></li>
+</ul>
+</li>
+<li><a href="#3-redis事务">3. Redis事务</a></li>
+<li><a href="#4-redis执行效率">4. Redis执行效率</a><ul>
+<li><a href="#41-redis架构">4.1 Redis架构</a></li>
+<li><a href="#42-io多路复用">4.2 I/O多路复用</a></li>
+</ul>
+</li>
+<li><a href="#5-redis过期数据清除">5. Redis过期数据清除</a></li>
+<li><a href="#6-redis的持久化机制">6. Redis的持久化机制</a><ul>
+<li><a href="#61-rdb概述">6.1 RDB概述</a></li>
+<li><a href="#62-aof概述">6.2 AOF概述</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<h2><span id="1-redis简单介绍">1. Redis简单介绍</span></h2><p>　Redis 是完全开源免费的，遵守BSD协议，是一个<strong>高性能的key-value数据库</strong>。<br>Redis 与其他 key - value 缓存产品有以下三个特点：</p>
+<ol>
+<li><strong>Redis支持数据的持久化</strong>，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。</li>
+<li>Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等<strong>数据结构</strong>的存储。</li>
+<li>Redis<strong>支持数据的备份</strong>，即master-slave模式的数据备份。</li>
+</ol>
+<p>Redis官方网站：<a href="https://redis.io/" target="_blank" rel="noopener">redis.io</a></p>
+<blockquote>
+<p>名词解析————BSD协议<br>BSD开源协议是一个给于使用者很大自由的协议。可以自由的使用，修改源代码，也可以将修改后的代码作为开源或者专有软件再发布。当你发布使用了BSD协议的代码，或者以BSD协议代码为基础做二次开发自己的产品时，需要满足三个条件：<br>A.如果再发布的产品中包含源代码，则在源代码中必须带有原来代码中的BSD协议。<br>B.如果再发布的只是二进制类库/软件，则需要在类库/软件的文档和版权声明中包含原来代码中的BSD协议。<br>C.不可以用开源代码的作者/机构名字和原来产品的名字做市场推广。</p>
+</blockquote>
+<h2><span id="2-redis常用数据结构和操作">2. Redis常用数据结构和操作</span></h2><p>在介绍数据类型之前，先让我们来看看Redis k-v数据结构中非常重要的key形式。</p>
+<h3><span id="21-key的命名规则">2.1 Key的命名规则</span></h3><ol>
+<li><strong>key不要太长</strong>。在redis中可以的最大容量是512M，但是实际中key超过1024byte就非良好的设计方式了。key值太大不仅浪费内存空间，更是在请求中对于key’的查找需要更多的时间进行比较；</li>
+<li><strong>key值不宜太短</strong>。这个原则貌似与第一条相冲突，实则不然。有时key的变长使得增加空间相对于使得key更具可读性更显次要；</li>
+<li><strong>key的命名中可以使用冒号和破折号加以细分</strong>，使key更具可读性，灵活性。例如：aticle:1000:tags。其中第一位表示类型，第二位表示该类型对象的Id，第三位表示Id为1000的文章中的标记；</li>
+</ol>
+<h3><span id="22-key的常用命令">2.2 Key的常用命令 *</span></h3><table>
+<thead>
+<tr>
+<th>–</th>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:center">EXISTS</td>
+<td style="text-align:center">exists主要是查找指定的键是否存在，如果存在则返回(Integer) 1，否则返回(Integer) 0。</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:center">DEL</td>
+<td style="text-align:center">del主要用来删除Key，并将Key对应的值随之删除。</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:center">EXPIRE</td>
+<td style="text-align:center">expire设置Key的有效期，如果超过设定的存活时间，Key将自动失效并随之删除。</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:center">TTL</td>
+<td style="text-align:center">查看键的过期时间</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align:center">PERSIST</td>
+<td style="text-align:center">取消键的过期时间，即持久化</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align:center">KEYS *</td>
+<td style="text-align:center">匹配键所有的键. 模糊匹配 KEYS my* 取出所有已my开头的键</td>
+</tr>
+<tr>
+<td>7</td>
+<td style="text-align:center">PING</td>
+<td style="text-align:center">检验是否成功连接上客户端，正常则返回PONG</td>
+</tr>
+</tbody>
+</table>
+<p><strong>这些都是redis的常用命令，值得先记住</strong></p>
+<h3><span id="23-redis常用数据结构和操作">2.3 Redis常用数据结构和操作</span></h3><p>命令和参数之间、参数和参数之间用空格分隔</p>
+<h4><span id="231-string">2.3.1 String</span></h4><p>最普通的key-value类型，说是String，其实是任意的byte[]，比如图片，最大512M。 所有常用命令的复杂度都是O(1)，普通的Get/Set方法，可以用来做Cache。</p>
+<p><strong>value参数可以含有双引号也不含有</strong></p>
+<p>常用命令：</p>
+<table>
+<thead>
+<tr>
+<th>–</th>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:center">SET</td>
+<td style="text-align:center">设置键值对，若键值已存在则会覆盖值</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:center">GET</td>
+<td style="text-align:center">通过键获取值</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:center">MSET</td>
+<td style="text-align:center">设置多个键值对 一块存错 全成功,全失败。如MSET name kanarien age 20</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:center">SETNX</td>
+<td style="text-align:center">设置键值对</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align:center">STRLEN</td>
+<td style="text-align:center">返回键对应的值得字符长度</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align:center">APPEND</td>
+<td style="text-align:center">给键对应的值后追加值</td>
+</tr>
+<tr>
+<td>7</td>
+<td style="text-align:center">INCR</td>
+<td style="text-align:center">使键对应的值自增1，前提是值可看作Integer</td>
+</tr>
+<tr>
+<td>8</td>
+<td style="text-align:center">INCRBY</td>
+<td style="text-align:center">使键对应的值增加给定的值，前提是值可看作Integer。如：INCRBY age 3给age对应的值加上3</td>
+</tr>
+</tbody>
+</table>
+<h4><span id="232-lists">2.3.2 Lists</span></h4><p>基于<strong>Linked List链式节点</strong>实现的List数据结构。<br>相对于缓存或者数据库系统而言，在插入或者更新的操作上性能更重要，相对于查询操作，查询所带来的性能损耗更低。平衡性能的确采用Linked List实现更具有优越性。<br>redis中复合类型的基元素都是String类型。Lists也不例外。Lists类型实质就是一串String元素的序列，redis提供了很多丰富命令，用于操作Lists类型。</p>
+<p>常用命令：</p>
+<table>
+<thead>
+<tr>
+<th>–</th>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:center">LPUSH</td>
+<td style="text-align:center">从链表的头部(左)压入</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:center">RPUSH</td>
+<td style="text-align:center">从链表的尾部(右)压入</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:center">LPOP</td>
+<td style="text-align:center">从链表的头部(左)弹出一个元素</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:center">RPOP</td>
+<td style="text-align:center">从链表的尾部(右)弹出一个元素</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align:center">LLEN</td>
+<td style="text-align:center">返回这个链表的元素的长度</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align:center">LRANGE</td>
+<td style="text-align:center">获取List中的范围元素，第二个参数表示要查找元素的起始位，第三个元素表示结束位。如：LRANGE mylist1 0 -1 获取所有元素</td>
+</tr>
+</tbody>
+</table>
+<h4><span id="233-hashes">2.3.3 Hashes</span></h4><p>redis中的Hashes类型类似Java中map，key-value键值对映射型数据结构。redis提供了很多命令用于操作Hashes。<strong>常常利用Hashes来映射一个简单的Java对象</strong>。</p>
+<p>常用命令：</p>
+<table>
+<thead>
+<tr>
+<th>–</th>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:center">HMSET</td>
+<td style="text-align:center">向Hashes中插入元素。如：HMSET usr:001 username kanarien birth 1997 sex male</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:center">HGET</td>
+<td style="text-align:center">获取Hashes中的单个元素。如：HGET usr:001 username</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:center">HMGET</td>
+<td style="text-align:center">获取Hashes中的多个元素。如：HMGET usr:001 username birth sex</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:center">HLEN</td>
+<td style="text-align:center">返回hash表的所有的字段的数目</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align:center">HKEYS</td>
+<td style="text-align:center">返回hash表的所有字段</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align:center">HVALS</td>
+<td style="text-align:center">返回hash表中所有的值</td>
+</tr>
+<tr>
+<td>7</td>
+<td style="text-align:center">HGETALL</td>
+<td style="text-align:center">返回所有的字段和值</td>
+</tr>
+<tr>
+<td>8</td>
+<td style="text-align:center">HDEL</td>
+<td style="text-align:center">对hash的name的值和键删除</td>
+</tr>
+</tbody>
+</table>
+<h4><span id="234-sets">2.3.4 Sets</span></h4><p>Set类型是无序且无重复的String元素的集合。redis也提供了大量对于Sets类型的操作，比如：交集、并集、补集在多个Set之间；测试给定元素是否存在等。</p>
+<p>常用命令：</p>
+<table>
+<thead>
+<tr>
+<th>–</th>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:center">SADD</td>
+<td style="text-align:center">向Set中插入新的元素，如果有则覆盖，其中可以接多个参数作为插入的元素</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:center">SREM</td>
+<td style="text-align:center">删除集合中的一个元素</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:center">SISMEMBER</td>
+<td style="text-align:center">测试指定元素在Set中是否存在</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:center">SMEBERS</td>
+<td style="text-align:center">获取Set中的所有元素，并且是无序的</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align:center">SINTER</td>
+<td style="text-align:center">取多个Set的交集</td>
+</tr>
+</tbody>
+</table>
+<h4><span id="235-sorted-set">2.3.5 Sorted Set</span></h4><p>Sorted Set类型是有序的Set类型，有点像Hashes和Set的混合型数据结构。具有Set的唯一无重复特性，且有序的实现是通过额外的浮点值被称作为score决定，与Hashes的Key有点相似。</p>
+<p>Sorted Set的排序规则，假设有两个元素a、b</p>
+<ol>
+<li>如果a.score &gt; b.score，则a &gt; b;</li>
+<li>如果a.score = b.score，a &gt; b，则a &gt; b;</li>
+</ol>
+<p>常用命令：</p>
+<table>
+<thead>
+<tr>
+<th>–</th>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:center">ZADD</td>
+<td style="text-align:center">向Set中插入新的元素，如果有则覆盖，其中可以接多个参数作为插入的元素</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:center">ZREM</td>
+<td style="text-align:center">删除集合中的一个元素</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:center">ZRANGE</td>
+<td style="text-align:center">获取Sorted Set中的元素</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:center">ZREVRANGE</td>
+<td style="text-align:center">获取Sorted Set中元素并反向输出</td>
+</tr>
+</tbody>
+</table>
+<h2><span id="3-redis事务">3. Redis事务</span></h2><p>用<strong>Multi(Start Transaction)、Exec(Commit)、Discard(Rollback)实现</strong>。</p>
+<p>在事务提交前，不会执行任何指令，只会把它们存到一个队列里，不影响其他客户端的操作。在事务提交时，批量执行所有指令。</p>
+<p>注意，Redis里的事务，与我们平时的事务概念很不一样：</p>
+<ul>
+<li><p><strong>它仅仅是保证事务里的操作会被连续独占的执行</strong>。因为是<strong>单线程架构</strong>，在执行完事务内所有指令前是不可能再去同时执行其他客户端的请求的。</p>
+</li>
+<li><p><strong>它没有隔离级别的概念</strong>，因为事务提交前任何指令都不会被实际执行，也就不存在”事务内的查询要看到事务里的更新，在事务外查询不能看到”这个让人万分头痛的问题。</p>
+</li>
+<li><p><strong>它不保证原子性——所有指令同时成功或同时失败</strong>，只有决定是否开始执行全部指令的能力，没有执行到一半进行回滚的能力。</p>
+</li>
+</ul>
+<p>在redis里失败分两种，一种是明显的指令错误，比如指令名拼错，指令参数个数不对，在2.6版中全部指令都不会执行。</p>
+<p>另一种是隐含的，比如在事务里，第一句是SET foo bar， 第二句是LLEN foo，对第一句产生的String类型的key执行LLEN会失败，但这种错误只有在指令运行后才能发现，这时候第一句成功，第二句失败。</p>
+<p>还有，如果事务执行到一半redis被KILL，已经执行的指令同样也不会被回滚。</p>
+<p>Watch指令，类似乐观锁，事务提交时，如果Key的值已被别的客户端改变，比如某个list已被别的客户端push/pop过了，整个事务队列都不会被执行。</p>
+<h2><span id="4-redis执行效率">4. Redis执行效率</span></h2><p>Redis的运行效率十分之高，官方提供的数据是可以达到100000+的qps，实际应用中上也能轻松达到每秒上万次的读操作，而Redis之所以能迅速的处理，理由有以下三点：</p>
+<ol>
+<li>数据存放在内存中，绝大部分请求是纯粹的内存操作</li>
+<li>单进程单线程架构，避免了不必要的上下文切换和竞争条件</li>
+<li>网络IO中使用了I/O 多路复用（IO multiplexing）</li>
+</ol>
+<p>下面来说明第二点和第三点</p>
+<h3><span id="41-redis架构">4.1 Redis架构</span></h3><blockquote>
+<p>设计是一场与复杂性的战斗</p>
+</blockquote>
+<p>出于Redis作者Salvatore Sanfilippo自身的考量,Redis采用了单线程的架构，使得代码看起来十分的洁简与优美。</p>
+<p>详细的来说，<strong>Redis为单进程单线程模式</strong>，是线程安全的，采用队列模式将<strong>并发访问变为串行访问</strong>。当然，可以通过在服务端开启多个Redis的实例来实现达到多进程并行访问，但若真有这种情况，请考虑是否有此必要。另外，正因为Redis本身是单进程单线程的，利用此特性可以将一些并发的问题转化成串行处理，达到消除并发带来的各种问题的效果。</p>
+<p>单进程单线程好处</p>
+<ul>
+<li>代码更清晰，处理逻辑更简单</li>
+<li>不用去考虑各种锁的问题，不存在加锁释放锁操作，没有因为可能出现死锁而导致的性能消耗</li>
+<li>不存在多进程或者多线程导致的切换而消耗CPU</li>
+</ul>
+<p>单进程单线程弊端</p>
+<ul>
+<li>无法发挥多核CPU性能</li>
+</ul>
+<h3><span id="42-io多路复用">4.2 I/O多路复用</span></h3><p>这里对比传统的阻塞I/O来简单介绍下I/O多路复用</p>
+<h4><span id="421-阻塞io模型">4.2.1 阻塞IO模型</span></h4><p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/IO%E9%98%BB%E5%A1%9E%E6%A8%A1%E5%9E%8B.jpg" alt="IO阻塞模型"><br>进程发起IO系统调用后，进程被阻塞，转到内核空间处理，整个IO处理完毕后返回进程。操作成功则进程获取到数据。</p>
+<p>1、典型应用：阻塞socket、Java BIO；</p>
+<p>2、特点：<br>进程阻塞挂起不消耗CPU资源，及时响应每个操作；<br>实现难度低、开发应用较容易；<br>适用并发量小的网络应用开发；</p>
+<p>不适用并发量大的应用：因为一个请求IO会阻塞进程，所以，得为每请求分配一个处理进程（线程）以及时响应，系统开销大。</p>
+<h4><span id="422-io复用模型">4.2.2 IO复用模型</span></h4><p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/IO%E5%A4%8D%E7%94%A8%E6%A8%A1%E5%9E%8B.jpg" alt="IO复用模型"></p>
+<p>多个的进程的IO可以注册到一个复用器（select）上，然后用一个进程调用该select， select会监听所有注册进来的IO；<br>如果select没有监听的IO在内核缓冲区都没有可读数据，select调用进程会被阻塞；而当任一IO在内核缓冲区中有可数据时，select调用就会返回；<br>而后select调用进程可以自己或通知另外的进程（注册进程）来再次发起读取IO，读取内核中准备好的数据。<br>可以看到，多个进程注册IO后，只有另一个select调用进程被阻塞。</p>
+<p>1、典型应用：select、poll、epoll三种方案，nginx都可以选择使用这三个方案;Java NIO;</p>
+<p>2、特点：<br>专一进程解决多个进程IO的阻塞问题，性能好；Reactor模式;<br>实现、开发应用难度较大；<br>适用高并发服务应用开发：一个进程（线程）响应多个请求；</p>
+<h2><span id="5-redis过期数据清除">5. Redis过期数据清除</span></h2><p>官方文档 与 《Redis设计与实现》中的详述，过期数据的清除从来不容易，为每一条key设置一个timer，到点立刻删除的消耗太大，每秒遍历所有数据消耗也大，Redis使用了一种相对务实的做法：</p>
+<p><strong>当client主动访问key会先对key进行超时判断，过时的key会立刻删除。</strong></p>
+<p>如果client永远都不再get那条key呢？ 它会在Master的后台，<strong>每秒10次的执行如下操作： 随机选取100个key校验是否过期，如果有25个以上的key过期了，立刻额外随机选取下100个key(不计算在10次之内)。</strong></p>
+<p>可见，如果过期的key不多，它最多每秒回收200条左右，如果有超过25%的key过期了，它就会做得更多，但只要key不被主动get，它占用的内存什么时候最终被清理掉只有天知道。</p>
+<h2><span id="6-redis的持久化机制">6. Redis的持久化机制</span></h2><p>对于persistence持久化存储，Redis提供了两种持久化方法：</p>
+<ol>
+<li>Redis DataBase(简称RDB)</li>
+<li>Append-only file (简称AOF)</li>
+</ol>
+<p>除了这两种方法，Redis在早起的版本还存在虚拟内存的方法，现在已经被废弃。</p>
+<h3><span id="61-rdb概述">6.1 RDB概述</span></h3><p>RDB是在<strong>某个时间点将数据写入一个临时文件</strong>，持久化结束后，用这个临时文件替换上次持久化的文件，达到数据恢复。</p>
+<p>优点：使用单独子进程来进行持久化，主进程不会进行任何IO操作，保证了redis的高性能</p>
+<p>缺点：RDB是间隔一段时间进行持久化，如果持久化之间redis发生故障，会发生数据丢失。所以这种方式更适合数据要求不严谨的时候</p>
+<p>这里说的这个执行数据写入到临时文件的时间点是可以通过配置来自己确定的，通过配置redis在n秒内如果超过m个key被修改这执行一次RDB操作。这个操作就类似于在这个时间点来保存一次Redis的所有数据，一次快照数据。所有这个持久化方法也通常叫做snapshots。</p>
+<h3><span id="62-aof概述">6.2 AOF概述</span></h3><p><strong>Append-only file，将“操作 + 数据”以格式化指令的方式追加到操作日志文件的尾部</strong>，在append操作返回后(已经写入到文件或者即将写入)，才进行实际的数据变更，“日志文件”保存了历史所有的操作过程；当server需要数据恢复时，可以直接replay此日志文件，即可还原所有的操作过程。AOF相对可靠，它和mysql中bin.log、apache.log、zookeeper中txn-log简直异曲同工。AOF文件内容是字符串，非常容易阅读和解析。</p>
+<p>优点：可以保持更高的数据完整性，如果设置追加file的时间是1s，如果redis发生故障，最多会丢失1s的数据；且如果日志写入不完整支持redis-check-aof来进行日志修复；AOF文件没被rewrite之前（文件过大时会对命令进行合并重写），可以删除其中的某些命令（比如误操作的flushall）。</p>
+<p>缺点：AOF文件比RDB文件大，且恢复速度慢。</p>
+<p>我们<strong>可以简单的认为AOF就是日志文件</strong>，此文件只会记录“变更操作”(例如：set/del等)，如果server中持续的大量变更操作，将会导致AOF文件非常的庞大，意味着server失效后，数据恢复的过程将会很长；事实上，一条数据经过多次变更，将会产生多条AOF记录，其实只要保存当前的状态，历史的操作记录是可以抛弃的；因为AOF持久化模式还伴生了“AOF rewrite”。</p>
+<p>AOF的特性决定了它相对比较安全，如果你期望数据更少的丢失，那么可以采用AOF模式。如果AOF文件正在被写入时突然server失效，有可能导致文件的最后一次记录是不完整，你可以通过手工或者程序的方式去检测并修正不完整的记录，以便通过aof文件恢复能够正常；同时需要提醒，如果你的redis持久化手段中有aof，那么在server故障失效后再次启动前，需要检测aof文件的完整性。</p>
+<p>AOF默认关闭。</p>
+<p>该笔记参考了以下文章：</p>
+<ul>
+<li><a href="https://blog.csdn.net/liqingtx/article/details/60330555" target="_blank" rel="noopener">超强、超详细Redis入门教程 - CSDN博客</a></li>
+<li><a href="https://www.cnblogs.com/cnmenglang/p/6225987.html" target="_blank" rel="noopener">Redis 5种数据结构使用及注意事项 - 孟凡柱的专栏 - 博客园</a></li>
+<li><a href="http://blog.csdn.net/u013035972/article/details/52506774" target="_blank" rel="noopener">Redis系列—-(二)redis中的数据结构类型 - CSDN博客</a></li>
+<li><a href="https://www.cnblogs.com/whoamme/p/3532129.html" target="_blank" rel="noopener">Redis常用数据结构和操作 - WhoAmMe - 博客园</a></li>
+<li><a href="https://blog.csdn.net/tjiyu/article/details/52959418" target="_blank" rel="noopener">5种IO模型、阻塞IO和非阻塞IO、同步IO和异步IO - CSDN博客</a></li>
+<li><a href="https://www.zhihu.com/question/19764056" target="_blank" rel="noopener">redis是个单线程的程序，为什么会这么快呢？  - 知乎</a></li>
+<li><a href="https://blog.csdn.net/mine_song/article/details/60141646" target="_blank" rel="noopener">Redis为什么使用单进程单线程方式也这么快 - CSDN博客</a></li>
+<li><a href="https://www.linuxidc.com/Linux/2016-10/136352.htm" target="_blank" rel="noopener">Redis持久化存储(AOF与RDB两种模式)_数据库技术_Linux公社-Linux系统门户网站</a></li>
+</ul>
+<p>参考网站：</p>
+<ul>
+<li><a href="http://www.runoob.com/redis/redis-tutorial.html" target="_blank" rel="noopener">Redis 教程 | 菜鸟教程</a></li>
+<li><a href="https://baike.baidu.com/item/Redis/6549233?fr=aladdin" target="_blank" rel="noopener">Redis_百度百科</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>Copyright © 2018, GDUT CSCW back-end Kanarien, All Rights Reserved</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/07/22/Redis——学习笔记/">Redis——学习笔记</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Kanarien</a></p>
+        <p><span>发布时间:</span>2018-07-22, 15:22:46</p>
+        <p><span>最后更新:</span>2018-07-22, 20:07:33</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/07/22/Redis——学习笔记/" title="Redis——学习笔记">http://Kanarienvogels.github.io/2018/07/22/Redis——学习笔记/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Kanarienvogels.github.io/2018/07/22/Redis——学习笔记/　　作者: Kanarien" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/07/22/Spring整合Netty、WebSocket的互联网聊天系统/">
+                    Spring整合Netty、WebSocket的互联网聊天系统
+                </a>
+            </div>
+        
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">1. Redis简单介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">2. Redis常用数据结构和操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">2.1 Key的命名规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">2.2 Key的常用命令 *</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">2.3 Redis常用数据结构和操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">2.3.1 String</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">2.3.2 Lists</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">2.3.3 Hashes</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">2.3.4 Sets</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">2.3.5 Sorted Set</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">3. Redis事务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">4. Redis执行效率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">4.1 Redis架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">4.2 I/O多路复用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">4.2.1 阻塞IO模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">4.2.2 IO复用模型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">5. Redis过期数据清除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">6. Redis的持久化机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">6.1 RDB概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">6.2 AOF概述</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Redis——学习笔记　| 无悔的博客小屋　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://Kanarienvogels.github.io/2018/07/22/Redis——学习笔记/';
+            this.page.identifier = '2018/07/22/Redis——学习笔记/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/07/22/Spring整合Netty、WebSocket的互联网聊天系统/" title="上一篇: Spring整合Netty、WebSocket的互联网聊天系统">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Nginx搭配Tomcat作Web服务器/">Nginx搭配Tomcat作Web服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/MongoDB数据的导出与导入/">MongoDB数据的导出与导入（Unix 命令）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Linux系统信息、硬件信息查看/">Linux下系统信息、硬件信息的查看</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Java虚拟机——学习笔记/">Java虚拟机——学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Spring整合Netty、WebSocket的互联网聊天系统/">Spring整合Netty、WebSocket的互联网聊天系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Redis——学习笔记/">Redis——学习笔记</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2018 Kanarien
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        $("a[target=_blank]").removeAttr("target");
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

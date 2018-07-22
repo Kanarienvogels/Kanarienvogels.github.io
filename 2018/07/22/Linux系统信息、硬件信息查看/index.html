@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Kanarien" />
+
+
+
+<meta name="description" content="0. 前言当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux下系统信息、硬件信息的查看">
+<meta property="og:url" content="http://Kanarienvogels.github.io/2018/07/22/Linux系统信息、硬件信息查看/index.html">
+<meta property="og:site_name" content="无悔的博客小屋">
+<meta property="og:description" content="0. 前言当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/cpuinfo.png">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/dmidecode%20Memory%20Device.png">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/meminfo.png">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/free.png">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/linux%20verson.png">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/os-release.png">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/fdisk.png">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/df.png">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/du.png">
+<meta property="og:updated_time" content="2018-07-22T13:02:04.204Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux下系统信息、硬件信息的查看">
+<meta name="twitter:description" content="0. 前言当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。">
+<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/cpuinfo.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Linux下系统信息、硬件信息的查看 | 无悔的博客小屋</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: false
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Kanarien</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">协同快乐与伤悲</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:&#75;&#97;&#110;&#97;&#114;&#105;&#101;&#110;&#118;&#111;&#103;&#101;&#108;&#115;&#64;&#49;&#50;&#54;&#46;&#99;&#111;&#109;" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/Kanarienvogels" title="GitHub"></a>
+                            
+                                <a class="fa SegmentFault" href="https://segmentfault.com/u/kanarien" title="SegmentFault"></a>
+                            
+                                <a class="fa 网易云音乐" href="https://music.163.com/#/user/home?id=493613324" title="网易云音乐"></a>
+                            
+                                <a class="fa bilibili" href="https://space.bilibili.com/44792275/#/" title="bilibili"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netty/">Netty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebSocket/">WebSocket</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">Java后端开发，欢迎大家来讨论Java、Linux、Mysql、Redis等相关的知识</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Kanarien</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Kanarien</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">协同快乐与伤悲</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:&#75;&#97;&#110;&#97;&#114;&#105;&#101;&#110;&#118;&#111;&#103;&#101;&#108;&#115;&#64;&#49;&#50;&#54;&#46;&#99;&#111;&#109;" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/Kanarienvogels" title="GitHub"></a>
+                            
+                                <a class="fa SegmentFault" target="_blank" href="https://segmentfault.com/u/kanarien" title="SegmentFault"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="https://music.163.com/#/user/home?id=493613324" title="网易云音乐"></a>
+                            
+                                <a class="fa bilibili" target="_blank" href="https://space.bilibili.com/44792275/#/" title="bilibili"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Linux系统信息、硬件信息查看" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/07/22/Linux系统信息、硬件信息查看/" class="article-date">
+      <time datetime="2018-07-22T12:53:00.371Z" itemprop="datePublished">2018-07-22</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux下系统信息、硬件信息的查看
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识漫谈/">知识漫谈</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2><span id="0-前言">0. 前言</span></h2><p>当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。<br><a id="more"></a></p>
+<hr>
+<p><strong>目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#1-cpu相关信息">1. CPU相关信息</a></li>
+<li><a href="#2-内存相关信息">2. 内存相关信息</a></li>
+<li><a href="#3-系统相关信息">3. 系统相关信息</a></li>
+<li><a href="#4-硬盘相关信息">4. 硬盘相关信息</a></li>
+</ul>
+<!-- tocstop -->
+<h2><span id="1-cpu相关信息">1. CPU相关信息</span></h2><ol>
+<li>查看CPU个数<br><code>cat /proc/cpuinfo | grep &quot;physical id&quot; | uniq | wc -l</code></li>
+</ol>
+<ul>
+<li>示例输出：<code>1</code><blockquote>
+<p>说明:<br>这是查看记录CPU相关的文件(/proc/cpuinfo)的详细信息。cat 命令：查看文件内容；grep 命令：字符串拼接；uniq 命令：删除重复行；wc -l 命令：统计行数。通过查看cpu信息文件，根据物理核id（重复的不计）的个数获取物理核个数。</p>
+</blockquote>
+</li>
+</ul>
+<ol start="2">
+<li>查看每个CPU物理核数<br><code>cat /proc/cpuinfo | grep &quot;cpu cores&quot; | uniq</code></li>
+</ol>
+<ul>
+<li>示例输出：<code>cpu cores       : 1</code></li>
+</ul>
+<ol start="3">
+<li>查看每个CPU逻辑核数<br><code>cat /proc/cpuinfo | grep &quot;siblings&quot; | uniq</code></li>
+</ol>
+<ul>
+<li>示例输出：<code>siblings        : 2</code></li>
+</ul>
+<ol start="4">
+<li>查看CPU逻辑核总个数<br><code>cat /proc/cpuinfo | grep &quot;processor&quot; | uniq | wc -l</code></li>
+</ol>
+<ul>
+<li>示例输出：<code>2</code></li>
+</ul>
+<blockquote>
+<p>说明：<br>一般所说的CPU是几核指的是CPU逻辑核总数</p>
+</blockquote>
+<ol start="5">
+<li>查看CPU型号<br><code>cat /proc/cpuinfo | grep &quot;model name&quot; |uniq</code></li>
+</ol>
+<ul>
+<li>示例输出：<code>model name      : Intel(R) Xeon(R) CPU E5-2680 v3 @ 2.50GHz</code></li>
+</ul>
+<p><strong>举个总例子</strong><br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/cpuinfo.png" alt="cpuinfo"></p>
+<p>以上输出表示，该服务器共有1个CPU（physical id 数目），每个CPU有1个物理核（cpu cores），每个物理核模拟2个逻辑核（siblings，使用超线程技术），型号为Intel芯片 E5-2680型，主频为2.50GHz。</p>
+<h2><span id="2-内存相关信息">2. 内存相关信息</span></h2><ol>
+<li>查看内存大小、条数数量<br><code>dmidecode | grep -P -A5 &quot;Memory Device&quot; | grep Size</code></li>
+</ol>
+<ul>
+<li>示例输出：    <code>Size: 4096 MB</code></li>
+</ul>
+<blockquote>
+<p>说明：<br>dmidecode 命令是用来查看服务器硬件信息的，显示的都是结构化数据，但信息量相比其他命令较小，适合用于简单了解服务器基本硬件信息。</p>
+</blockquote>
+<ol start="2">
+<li>查看内存相关硬件信息<br><code>dmidecode | grep -A16 &quot;Memory Device$&quot;</code></li>
+</ol>
+<ul>
+<li>示例输出：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/dmidecode%20Memory%20Device.png" alt="dmidecode | grep -A16 &quot;Memory Device$&quot;"></li>
+</ul>
+<ol start="3">
+<li>查看内存详细使用信息——1<br><code>cat /proc/meminfo</code></li>
+</ol>
+<ul>
+<li>示例输出(部分)：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/meminfo.png" alt="/proc/meminfo"></li>
+</ul>
+<blockquote>
+<p>说明：<br>这是查看记录内存使用相关的文件(/proc/meminfo)的详细信息，由于信息过多，而且数据格式不易阅读，这里不赘述。值得一提的是，很多监控内存使用的命令都与此文件有关，如free 命令，使用这些命令可以跟和谐的查看内存使用情况。</p>
+</blockquote>
+<ol start="4">
+<li>查看内存详细使用信息——2<br><code>free -m</code></li>
+</ol>
+<ul>
+<li><p>示例输出：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/free.png" alt="free -m"></p>
+</li>
+<li><p>Mem参数说明</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>参数名</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>total</td>
+<td>所有<strong>可用的物理内存</strong>大小，总物理内存减去预留位和内核使用。操作系统本身（正文段、数据段等等）就会占用不少内存，此外还有系统各种保留的内存，把这些都去掉就是可用内存,对应 <code>/proc/meminfo</code> 中的MemTotal。另 total = used + free + shared + buff/cache</td>
+</tr>
+<tr>
+<td>2</td>
+<td>used</td>
+<td>表示总计分配给缓存（包含buffers 与cache ）使用的数量，但其中可能部分缓存并未实际使用。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>free</td>
+<td>网上说是未被分配的内存，这样的说法可能不太准确，应该是当前空闲的内存数目，是<strong>系统层面上的空闲</strong>，对应 <code>/proc/meminfo</code> 中的MemFree</td>
+</tr>
+<tr>
+<td>4</td>
+<td>shared</td>
+<td>共享内存，一般系统不会用到</td>
+</tr>
+<tr>
+<td>5</td>
+<td>buff/cache</td>
+<td>buff域描述的是块设备所占用的缓存，cache域描述的就是用于普通文件IO的page cache的数量，对应 <code>/proc/meminfo</code> 中的Buffers + Cached + MemFree</td>
+</tr>
+<tr>
+<td>6</td>
+<td>available</td>
+<td>当前可用的内存总量（可用于分配给应用的，不包含虚拟内存），即<strong>应用层面上的可用</strong>的,CentOS 7 中有显示,对应 <code>/proc/meminfo</code> 中的MemAvailable</td>
+</tr>
+</tbody>
+</table>
+<h2><span id="3-系统相关信息">3. 系统相关信息</span></h2><ol>
+<li>查看Linux内核版本<br><code>cat /proc/version</code></li>
+</ol>
+<ul>
+<li>示例输出：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/linux%20verson.png" alt="cat /proc/version"></li>
+</ul>
+<ol start="2">
+<li>查看发行版信息——1<br><code>cat /etc/issue</code></li>
+</ol>
+<ul>
+<li>示例输出：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CentOS release 6.7 (Final)</span><br><span class="line">Kernel \r on an \m</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="3">
+<li>查看发行版信息——2<br><code>cat /etc/redhat-release</code></li>
+</ol>
+<ul>
+<li>示例输出：<code>CentOS Linux release 7.2.1511 (Core)</code></li>
+</ul>
+<blockquote>
+<p>说明：<br>该命令只适合Redhat系的Linux</p>
+</blockquote>
+<ol start="4">
+<li>查看发行版信息——3<br><code>cat /etc/os-release |grep VERSION</code></li>
+</ol>
+<ul>
+<li>示例输出：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/os-release.png" alt="cat /etc/os-release |grep VERSION"></li>
+</ul>
+<h2><span id="4-硬盘相关信息">4. 硬盘相关信息</span></h2><ol>
+<li>查看硬盘及分区信息<br><code>fdisk -l</code></li>
+</ol>
+<ul>
+<li>示例输出：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/fdisk.png" alt="fdisk -l"></li>
+</ul>
+<ol start="2">
+<li>查看磁盘空间占用情况<br><code>df -h</code></li>
+</ol>
+<ul>
+<li>示例输出：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/df.png" alt="df -h"></li>
+</ul>
+<ol start="3">
+<li>递归查看某路径下文件夹的磁盘空间占用情况<br><code>du -h /usr/local/</code></li>
+</ol>
+<ul>
+<li>示例输出：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/du.png" alt="du -h"></li>
+</ul>
+<blockquote>
+<p>说明：<br>该命令最后的参数是文件夹路径，显示出的路径是文件夹，不包括文件。再添加参数s，即<code>du -sh /usr/local</code>可以查看改路径下的总大小</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Copyright © 2018, CSCW back-end Kanarien, All Rights Reserved</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/07/22/Linux系统信息、硬件信息查看/">Linux下系统信息、硬件信息的查看</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Kanarien</a></p>
+        <p><span>发布时间:</span>2018-07-22, 20:53:00</p>
+        <p><span>最后更新:</span>2018-07-22, 21:02:04</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/07/22/Linux系统信息、硬件信息查看/" title="Linux下系统信息、硬件信息的查看">http://Kanarienvogels.github.io/2018/07/22/Linux系统信息、硬件信息查看/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Kanarienvogels.github.io/2018/07/22/Linux系统信息、硬件信息查看/　　作者: Kanarien" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/07/22/MongoDB数据的导出与导入/">
+                    MongoDB数据的导出与导入（Unix 命令）
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/07/22/Java虚拟机——学习笔记/">
+                    Java虚拟机——学习笔记
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">1. CPU相关信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">2. 内存相关信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">3. 系统相关信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">4. 硬盘相关信息</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Linux下系统信息、硬件信息的查看　| 无悔的博客小屋　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://Kanarienvogels.github.io/2018/07/22/Linux系统信息、硬件信息查看/';
+            this.page.identifier = '2018/07/22/Linux系统信息、硬件信息查看/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/07/22/MongoDB数据的导出与导入/" title="上一篇: MongoDB数据的导出与导入（Unix 命令）">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/07/22/Java虚拟机——学习笔记/" title="下一篇: Java虚拟机——学习笔记">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Nginx搭配Tomcat作Web服务器/">Nginx搭配Tomcat作Web服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/MongoDB数据的导出与导入/">MongoDB数据的导出与导入（Unix 命令）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Linux系统信息、硬件信息查看/">Linux下系统信息、硬件信息的查看</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Java虚拟机——学习笔记/">Java虚拟机——学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Spring整合Netty、WebSocket的互联网聊天系统/">Spring整合Netty、WebSocket的互联网聊天系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Redis——学习笔记/">Redis——学习笔记</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2018 Kanarien
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        $("a[target=_blank]").removeAttr("target");
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

@@ -15,15 +15,21 @@
 
 
 
-<meta name="keywords" content="Kanarien">
-<meta property="og:type" content="website">
-<meta property="og:title" content="search">
-<meta property="og:url" content="http://Kanarienvogels.github.io/search/index.html">
+<meta name="description" content="0. 前言某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。">
+<meta name="keywords" content="Linux,MongoDB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB数据的导出与导入（Unix 命令）">
+<meta property="og:url" content="http://Kanarienvogels.github.io/2018/07/22/MongoDB数据的导出与导入/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
+<meta property="og:description" content="0. 前言某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-22T05:54:31.182Z">
+<meta property="og:image" content="http://note.youdao.com/yws/api/personal/file/54318CC871824676A1552B21FBD61042?method=download&shareKey=a7cca9bf54334ad8a0dc740ad755c3f3">
+<meta property="og:image" content="http://note.youdao.com/yws/api/personal/file/D4313D2F1BD24E258000FF6E78AFC378?method=download&shareKey=609cce0141d45de1d737ec0be6fd03dd">
+<meta property="og:updated_time" content="2018-07-22T13:15:32.723Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="search">
+<meta name="twitter:title" content="MongoDB数据的导出与导入（Unix 命令）">
+<meta name="twitter:description" content="0. 前言某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。">
+<meta name="twitter:image" content="http://note.youdao.com/yws/api/personal/file/54318CC871824676A1552B21FBD61042?method=download&shareKey=a7cca9bf54334ad8a0dc740ad755c3f3">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -55,7 +61,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>search | 无悔的博客小屋</title>
+<title>MongoDB数据的导出与导入（Unix 命令） | 无悔的博客小屋</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -65,7 +71,7 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -250,11 +256,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-MongoDB数据的导出与导入" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/search/index.html" class="article-date">
-      <time datetime="2018-07-22T05:54:31.000Z" itemprop="datePublished">2018-07-22</time>
+      <a href="/2018/07/22/MongoDB数据的导出与导入/" class="article-date">
+      <time datetime="2018-07-22T13:02:54.951Z" itemprop="datePublished">2018-07-22</time>
 </a>
 
 
@@ -269,7 +275,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      search
+      MongoDB数据的导出与导入（Unix 命令）
     </h1>
   
 
@@ -277,8 +283,16 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/实践轨迹/">实践轨迹</a>
+    </div>
+
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/">MongoDB</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -286,36 +300,126 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <style>
-    .article-meta { display: none; }
-    #container .article .article-title { padding-right: 0; }
-    .article-header {
-        padding: 0;
-        padding-top: 26px;
-        border-left: none;
-        text-align: center;
-    }
-    .article-header:hover { border-left: none; }
-    .article-title { font-size: 1.6em }
-    .article-entry hr { margin: 0;}
-    .article-meta,
-    #container .article-info-post.article-info { display: none;}
-    #container .article .article-title { padding: 0; }
-</style>
+        <h2><span id="0-前言">0. 前言</span></h2><p>某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。<br><a id="more"></a></p>
+<hr>
+<p><strong>目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#1-数据的导出">1. 数据的导出</a><ul>
+<li><a href="#11-准备操作">1.1 准备操作</a></li>
+<li><a href="#12-mongodump基本语法">1.2 mongodump基本语法</a></li>
+<li><a href="#13-注意点">1.3 注意点</a></li>
+</ul>
+</li>
+<li><a href="#2-数据的导入">2. 数据的导入</a><ul>
+<li><a href="#21-准备操作">2.1 准备操作</a></li>
+<li><a href="#22-mongorestor基本语法">2.2 mongorestor基本语法</a></li>
+<li><a href="#23-注意点">2.3 注意点</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<h2><span id="1-数据的导出">1. 数据的导出</span></h2><h3><span id="11-准备操作">1.1 准备操作</span></h3><p>打开windows命令窗口（或登录服务器用Unix命令行），转到mongo的<strong>bin</strong>文件夹下(如果直接配置好环境变量，可直接敲命令)使用<strong>mongodump</strong>命令(别急着按回车)</p>
+<h3><span id="12-mongodump基本语法">1.2 mongodump基本语法</span></h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; mongodump -h dbhost -d dbname -o dbdirectory</span><br></pre></td></tr></table></figure>
+<p> <strong>-h：</strong><br> MongDB所在服务器地址，例如：127.0.0.1，当然也可以指定端口号：127.0.0.1:27017<br> <strong>-d：</strong><br> 需要备份的数据库实例，例如：test<br> <strong>-o：</strong><br>备份的数据存放位置，例如：c:\data\dump，当然该目录需要提前建立，在备份完成后，系统自动在dump目录下建立一个test目录，这个目录里面存放该数据库实例的备份数据。</p>
+<p>如果直接输入mongodump命令，客户端会连接到ip为 127.0.0.1 端口号为 27017 的MongoDB服务上，并备份所有数据到 bin/dump/ 目录中。</p>
+<h3><span id="13-注意点">1.3 注意点</span></h3><p>由于数据库往往带有账户密码，所以直接还要加上用户与密码参数。<br>Mongo的参考文档中有：<br><strong>-u [ –username ] arg    username</strong><br>  <strong>-p [ –password ] arg    password</strong></p>
+<p>下面举个例子</p>
+<blockquote>
+<p>mongodump -d mydb -u root -p -o d:\mydb</p>
+</blockquote>
+<p>即使账号密码无误，这样子仍极有可能无法导出，提示中含有Authentication Fail (认证失败)</p>
+<p>原因在于：<strong>仍缺少了一个重要的参数</strong>，没有指定身份权限认证的数据库。<br>方法：补上 –authenticationDataBase admin即可。</p>
+<p>比如：</p>
+<p><img src="http://note.youdao.com/yws/api/personal/file/54318CC871824676A1552B21FBD61042?method=download&amp;shareKey=a7cca9bf54334ad8a0dc740ad755c3f3" alt="dump sample"></p>
+<p>成功的话可以看到目标目录有以数据库名字为名的文件夹以及bson和json文件<br><img src="http://note.youdao.com/yws/api/personal/file/D4313D2F1BD24E258000FF6E78AFC378?method=download&amp;shareKey=609cce0141d45de1d737ec0be6fd03dd" alt="dump success"></p>
+<hr>
+<h2><span id="2-数据的导入">2. 数据的导入</span></h2><h3><span id="21-准备操作">2.1 准备操作</span></h3><ul>
+<li>既然是导入，那就得有导入的数据文件，其实就是<strong>导出的bson和json文件</strong></li>
+<li>安装好的mongo客户端(进入路径{mongoDB}/bin/或配置好环境变量)</li>
+<li>mongorestore命令</li>
+</ul>
+<h3><span id="22-mongorestor基本语法">2.2 mongorestor基本语法</span></h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; mongorestore -h &lt;hostname&gt;&lt;<span class="symbol">:port&gt;</span> -d dbname &lt;path&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>–host &lt;:port&gt;, -h &lt;:port&gt;：</strong><br>MongoDB所在服务器地址，默认为： localhost:27017<br><strong>–db , -d ：</strong><br>需要恢复的数据库实例，例如：test，当然这个名称也可以和备份时候的不一样，比如test2<br><strong>–drop：</strong><br>恢复的时候，先删除当前数据，然后恢复备份的数据。就是说，恢复后，备份后添加修改的数据都会被删除，慎用哦！</p>
+<p><strong><code>&lt;path&gt;</code>：</strong><br>mongorestore 最后的一个参数，设置备份数据所在位置，例如：c:\data\dump\test。<br>你不能同时指定 <code>&lt;path&gt;</code> 和 –dir 选项，–dir也可以设置备份目录。<br><strong>–dir：</strong><br>指定备份的目录<br>你不能同时指定 <code>&lt;path&gt;</code> 和 –dir 选项。</p>
+<h3><span id="23-注意点">2.3 注意点</span></h3><ul>
+<li><p><strong>同导出操作1.3的注意点</strong>。如果设置了账号则要需要指明账号密码参数，并使用–authenticationDataBase admin</p>
+</li>
+<li><p><strong>不需要指明导入到哪里，会自动导入到mongo的数据库中，如果数据(库)已存在则会覆盖</strong></p>
+</li>
+<li><p>该命令<strong>恢复的数据是以数据库为单位</strong>的，即：恢复(导入)一整个数据库的数据</p>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>Copyright © 2018, CSCW back-end Kanarien, All Rights Reserved</p>
+</blockquote>
 
-
-          
-        
       
     </div>
     
   </div>
   
     
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/07/22/MongoDB数据的导出与导入/">MongoDB数据的导出与导入（Unix 命令）</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Kanarien</a></p>
+        <p><span>发布时间:</span>2018-07-22, 21:02:54</p>
+        <p><span>最后更新:</span>2018-07-22, 21:15:32</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/07/22/MongoDB数据的导出与导入/" title="MongoDB数据的导出与导入（Unix 命令）">http://Kanarienvogels.github.io/2018/07/22/MongoDB数据的导出与导入/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Kanarienvogels.github.io/2018/07/22/MongoDB数据的导出与导入/　　作者: Kanarien" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
 
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/07/22/Nginx搭配Tomcat作Web服务器/">
+                    Nginx搭配Tomcat作Web服务器
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/07/22/Linux系统信息、硬件信息查看/">
+                    Linux下系统信息、硬件信息的查看
+                </a>
+            </div>
+        
+    </nav>
 
   
 </article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">1. 数据的导出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">1.1 准备操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">1.2 mongodump基本语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">1.3 注意点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">2. 数据的导入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">2.1 准备操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">2.2 mongorestor基本语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">2.3 注意点</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
 
@@ -333,7 +437,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"search　| 无悔的博客小屋　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"MongoDB数据的导出与导入（Unix 命令）　| 无悔的博客小屋　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -352,8 +456,8 @@
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function(){
-            this.page.url = 'http://Kanarienvogels.github.io/search/index.html';
-            this.page.identifier = 'search/index.html';
+            this.page.url = 'http://Kanarienvogels.github.io/2018/07/22/MongoDB数据的导出与导入/';
+            this.page.identifier = '2018/07/22/MongoDB数据的导出与导入/';
         };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
@@ -370,6 +474,26 @@
 
     
 
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/07/22/Nginx搭配Tomcat作Web服务器/" title="上一篇: Nginx搭配Tomcat作Web服务器">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/07/22/Linux系统信息、硬件信息查看/" title="下一篇: Linux下系统信息、硬件信息的查看">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Nginx搭配Tomcat作Web服务器/">Nginx搭配Tomcat作Web服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/MongoDB数据的导出与导入/">MongoDB数据的导出与导入（Unix 命令）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Linux系统信息、硬件信息查看/">Linux下系统信息、硬件信息的查看</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Java虚拟机——学习笔记/">Java虚拟机——学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Spring整合Netty、WebSocket的互联网聊天系统/">Spring整合Netty、WebSocket的互联网聊天系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Redis——学习笔记/">Redis——学习笔记</a></li></ul>
 
 
 
