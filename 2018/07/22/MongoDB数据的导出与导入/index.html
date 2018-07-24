@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="http://kanarien.cn">
   <title>MongoDB数据的导出与导入（Unix 命令） | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0. 前言某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。  1. 数据的导出1.1 准备操作打开windows命令窗口（或登录服务器用Unix命令行），转到mongo的bin文件夹下(如果直接配置好环境变量，可直接敲命令)使用mongodump命令(别急着按回车)">
-<meta name="keywords" content="Linux,MongoDB">
+  <meta name="description" content="0. 前言　　某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。 1. 数据的导出1.1 准备操作打开windows命令窗口（或登录服务器用Unix命令行），转到mongo的bin文件夹下(如果直接配置好环境变量，可直接敲命令)使用mongodump命令(别急着按回车)">
+<meta name="keywords" content="MongoDB,Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MongoDB数据的导出与导入（Unix 命令）">
 <meta property="og:url" content="http://kanarien.cn/2018/07/22/MongoDB数据的导出与导入/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
-<meta property="og:description" content="0. 前言某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。  1. 数据的导出1.1 准备操作打开windows命令窗口（或登录服务器用Unix命令行），转到mongo的bin文件夹下(如果直接配置好环境变量，可直接敲命令)使用mongodump命令(别急着按回车)">
+<meta property="og:description" content="0. 前言　　某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。 1. 数据的导出1.1 准备操作打开windows命令窗口（或登录服务器用Unix命令行），转到mongo的bin文件夹下(如果直接配置好环境变量，可直接敲命令)使用mongodump命令(别急着按回车)">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-001.jpg">
 <meta property="og:image" content="http://note.youdao.com/yws/api/personal/file/54318CC871824676A1552B21FBD61042?method=download&shareKey=a7cca9bf54334ad8a0dc740ad755c3f3">
 <meta property="og:image" content="http://note.youdao.com/yws/api/personal/file/D4313D2F1BD24E258000FF6E78AFC378?method=download&shareKey=609cce0141d45de1d737ec0be6fd03dd">
-<meta property="og:updated_time" content="2018-07-22T13:37:35.207Z">
+<meta property="og:updated_time" content="2018-07-24T08:11:09.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB数据的导出与导入（Unix 命令）">
-<meta name="twitter:description" content="0. 前言某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。  1. 数据的导出1.1 准备操作打开windows命令窗口（或登录服务器用Unix命令行），转到mongo的bin文件夹下(如果直接配置好环境变量，可直接敲命令)使用mongodump命令(别急着按回车)">
+<meta name="twitter:description" content="0. 前言　　某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。 1. 数据的导出1.1 准备操作打开windows命令窗口（或登录服务器用Unix命令行），转到mongo的bin文件夹下(如果直接配置好环境变量，可直接敲命令)使用mongodump命令(别急着按回车)">
 <meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-001.jpg">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
@@ -180,8 +180,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-001.jpg" alt="动漫美图"></p>
-<h2><span id="0-前言">0. 前言</span></h2><p>某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。</p>
-<hr>
+<h2><span id="0-前言">0. 前言</span></h2><p>　　某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。</p>
 <h2><span id="1-数据的导出">1. 数据的导出</span></h2><h3><span id="11-准备操作">1.1 准备操作</span></h3><p>打开windows命令窗口（或登录服务器用Unix命令行），转到mongo的<strong>bin</strong>文件夹下(如果直接配置好环境变量，可直接敲命令)使用<strong>mongodump</strong>命令(别急着按回车)<br><a id="more"></a></p>
 <h3><span id="12-mongodump基本语法">1.2 mongodump基本语法</span></h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; mongodump -h dbhost -d dbname -o dbdirectory</span><br></pre></td></tr></table></figure>
 <p> <strong>-h：</strong><br> MongDB所在服务器地址，例如：127.0.0.1，当然也可以指定端口号：127.0.0.1:27017<br> <strong>-d：</strong><br> 需要备份的数据库实例，例如：test<br> <strong>-o：</strong><br>备份的数据存放位置，例如：c:\data\dump，当然该目录需要提前建立，在备份完成后，系统自动在dump目录下建立一个test目录，这个目录里面存放该数据库实例的备份数据。</p>
@@ -196,7 +195,6 @@
 <p>比如：</p>
 <p><img src="http://note.youdao.com/yws/api/personal/file/54318CC871824676A1552B21FBD61042?method=download&amp;shareKey=a7cca9bf54334ad8a0dc740ad755c3f3" alt="dump sample"></p>
 <p>成功的话可以看到目标目录有以数据库名字为名的文件夹以及bson和json文件<br><img src="http://note.youdao.com/yws/api/personal/file/D4313D2F1BD24E258000FF6E78AFC378?method=download&amp;shareKey=609cce0141d45de1d737ec0be6fd03dd" alt="dump success"></p>
-<hr>
 <h2><span id="2-数据的导入">2. 数据的导入</span></h2><h3><span id="21-准备操作">2.1 准备操作</span></h3><ul>
 <li>既然是导入，那就得有导入的数据文件，其实就是<strong>导出的bson和json文件</strong></li>
 <li>安装好的mongo客户端(进入路径{mongoDB}/bin/或配置好环境变量)</li>
@@ -213,7 +211,6 @@
 <li><p>该命令<strong>恢复的数据是以数据库为单位</strong>的，即：恢复(导入)一整个数据库的数据</p>
 </li>
 </ul>
-<hr>
 <blockquote>
 <p>Copyright © 2018, CSCW back-end Kanarien, All Rights Reserved</p>
 </blockquote>
@@ -261,11 +258,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MongoDB</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MongoDB</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -431,7 +428,7 @@
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
-		toc_hide_index: true,
+		toc_hide_index: false,
 		root: "/",
 		innerArchive: true,
 		showTags: true
@@ -496,7 +493,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,11 +505,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,6 +530,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
             
             <div class="clearfix"></div>

@@ -8,21 +8,22 @@
   <link rel="dns-prefetch" href="http://kanarien.cn">
   <title>Redis——学习笔记 | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0. 前言此笔记用来记录关于Redis的一些基本认识、知识。记录会比较详细，请恰当的使用目录与查找工具（ctrl + f），同时该笔记会随时间的推进而不断补充。具体的使用请参考其他关于Redis使用的笔记。  更新记录 2018.2.14  初次记录 2018 4.21  重新对目录进行了分级，补充了4.Redis执行效率，以及其他章节的细节">
+  <meta name="description" content="0. 前言　　此笔记用来记录关于Redis的一些基本认识、知识。记录会比较详细，请恰当的使用目录与查找工具（ctrl + f），同时该笔记会随时间的推进而不断补充。具体的使用请参考其他关于Redis使用的笔记。  更新记录 2018.2.14  初次记录 2018 4.21  重新对目录进行了分级，补充了4.Redis执行效率，以及其他章节的细节">
 <meta name="keywords" content="Redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis——学习笔记">
 <meta property="og:url" content="http://kanarien.cn/2018/07/22/Redis——学习笔记/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
-<meta property="og:description" content="0. 前言此笔记用来记录关于Redis的一些基本认识、知识。记录会比较详细，请恰当的使用目录与查找工具（ctrl + f），同时该笔记会随时间的推进而不断补充。具体的使用请参考其他关于Redis使用的笔记。  更新记录 2018.2.14  初次记录 2018 4.21  重新对目录进行了分级，补充了4.Redis执行效率，以及其他章节的细节">
+<meta property="og:description" content="0. 前言　　此笔记用来记录关于Redis的一些基本认识、知识。记录会比较详细，请恰当的使用目录与查找工具（ctrl + f），同时该笔记会随时间的推进而不断补充。具体的使用请参考其他关于Redis使用的笔记。  更新记录 2018.2.14  初次记录 2018 4.21  重新对目录进行了分级，补充了4.Redis执行效率，以及其他章节的细节">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-006.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/IO%E9%98%BB%E5%A1%9E%E6%A8%A1%E5%9E%8B.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/IO%E5%A4%8D%E7%94%A8%E6%A8%A1%E5%9E%8B.jpg">
-<meta property="og:updated_time" content="2018-07-22T13:41:05.243Z">
+<meta property="og:updated_time" content="2018-07-24T08:12:23.999Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis——学习笔记">
-<meta name="twitter:description" content="0. 前言此笔记用来记录关于Redis的一些基本认识、知识。记录会比较详细，请恰当的使用目录与查找工具（ctrl + f），同时该笔记会随时间的推进而不断补充。具体的使用请参考其他关于Redis使用的笔记。  更新记录 2018.2.14  初次记录 2018 4.21  重新对目录进行了分级，补充了4.Redis执行效率，以及其他章节的细节">
-<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/IO%E9%98%BB%E5%A1%9E%E6%A8%A1%E5%9E%8B.jpg">
+<meta name="twitter:description" content="0. 前言　　此笔记用来记录关于Redis的一些基本认识、知识。记录会比较详细，请恰当的使用目录与查找工具（ctrl + f），同时该笔记会随时间的推进而不断补充。具体的使用请参考其他关于Redis使用的笔记。  更新记录 2018.2.14  初次记录 2018 4.21  重新对目录进行了分级，补充了4.Redis执行效率，以及其他章节的细节">
+<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-006.jpg">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
   
@@ -178,7 +179,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2><span id="0-前言">0. 前言</span></h2><p>此笔记用来记录关于Redis的一些基本认识、知识。记录会比较详细，请恰当的使用目录与查找工具（ctrl + f），同时该笔记会随时间的推进而不断补充。具体的使用请参考其他关于Redis使用的笔记。</p>
+        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-006.jpg" alt="动漫美图"></p>
+<h2><span id="0-前言">0. 前言</span></h2><p>　　此笔记用来记录关于Redis的一些基本认识、知识。记录会比较详细，请恰当的使用目录与查找工具（ctrl + f），同时该笔记会随时间的推进而不断补充。具体的使用请参考其他关于Redis使用的笔记。</p>
 <ul>
 <li>更新记录<ul>
 <li>2018.2.14<br>  初次记录</li>
@@ -187,7 +189,6 @@
 </ul>
 </li>
 </ul>
-<hr>
 <h2><span id="1-redis简单介绍">1. Redis简单介绍</span></h2><p>　Redis 是完全开源免费的，遵守BSD协议，是一个<strong>高性能的key-value数据库</strong>。<br>Redis 与其他 key - value 缓存产品有以下三个特点：</p>
 <ol>
 <li><strong>Redis支持数据的持久化</strong>，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。</li>
@@ -349,7 +350,7 @@
 </tr>
 </tbody>
 </table>
-<h4><span id="233-hashes">2.3.3 Hashes</span></h4><p>redis中的Hashes类型类似Java中map，key-value键值对映射型数据结构。redis提供了很多命令用于操作Hashes。<strong>常常利用Hashes来映射一个简单的Java对象</strong>。</p>
+<h4><span id="233-hashes">2.3.3 Hashes</span></h4><p>　　redis中的Hashes类型类似Java中map，key-value键值对映射型数据结构。redis提供了很多命令用于操作Hashes。<strong>常常利用Hashes来映射一个简单的Java对象</strong>。</p>
 <p>常用命令：</p>
 <table>
 <thead>
@@ -402,7 +403,7 @@
 </tr>
 </tbody>
 </table>
-<h4><span id="234-sets">2.3.4 Sets</span></h4><p>Set类型是无序且无重复的String元素的集合。redis也提供了大量对于Sets类型的操作，比如：交集、并集、补集在多个Set之间；测试给定元素是否存在等。</p>
+<h4><span id="234-sets">2.3.4 Sets</span></h4><p>　　Set类型是无序且无重复的String元素的集合。redis也提供了大量对于Sets类型的操作，比如：交集、并集、补集在多个Set之间；测试给定元素是否存在等。</p>
 <p>常用命令：</p>
 <table>
 <thead>
@@ -440,7 +441,7 @@
 </tr>
 </tbody>
 </table>
-<h4><span id="235-sorted-set">2.3.5 Sorted Set</span></h4><p>Sorted Set类型是有序的Set类型，有点像Hashes和Set的混合型数据结构。具有Set的唯一无重复特性，且有序的实现是通过额外的浮点值被称作为score决定，与Hashes的Key有点相似。</p>
+<h4><span id="235-sorted-set">2.3.5 Sorted Set</span></h4><p>　　Sorted Set类型是有序的Set类型，有点像Hashes和Set的混合型数据结构。具有Set的唯一无重复特性，且有序的实现是通过额外的浮点值被称作为score决定，与Hashes的Key有点相似。</p>
 <p>Sorted Set的排序规则，假设有两个元素a、b</p>
 <ol>
 <li>如果a.score &gt; b.score，则a &gt; b;</li>
@@ -493,7 +494,7 @@
 <p>另一种是隐含的，比如在事务里，第一句是SET foo bar， 第二句是LLEN foo，对第一句产生的String类型的key执行LLEN会失败，但这种错误只有在指令运行后才能发现，这时候第一句成功，第二句失败。</p>
 <p>还有，如果事务执行到一半redis被KILL，已经执行的指令同样也不会被回滚。</p>
 <p>Watch指令，类似乐观锁，事务提交时，如果Key的值已被别的客户端改变，比如某个list已被别的客户端push/pop过了，整个事务队列都不会被执行。</p>
-<h2><span id="4-redis执行效率">4. Redis执行效率</span></h2><p>Redis的运行效率十分之高，官方提供的数据是可以达到100000+的qps，实际应用中上也能轻松达到每秒上万次的读操作，而Redis之所以能迅速的处理，理由有以下三点：</p>
+<h2><span id="4-redis执行效率">4. Redis执行效率</span></h2><p>　　Redis的运行效率十分之高，官方提供的数据是可以达到100000+的qps，实际应用中上也能轻松达到每秒上万次的读操作，而Redis之所以能迅速的处理，理由有以下三点：</p>
 <ol>
 <li>数据存放在内存中，绝大部分请求是纯粹的内存操作</li>
 <li>单进程单线程架构，避免了不必要的上下文切换和竞争条件</li>
@@ -560,7 +561,6 @@
 <li><a href="http://www.runoob.com/redis/redis-tutorial.html" target="_blank" rel="noopener">Redis 教程 | 菜鸟教程</a></li>
 <li><a href="https://baike.baidu.com/item/Redis/6549233?fr=aladdin" target="_blank" rel="noopener">Redis_百度百科</a></li>
 </ul>
-<hr>
 <blockquote>
 <p>Copyright © 2018, GDUT CSCW back-end Kanarien, All Rights Reserved</p>
 </blockquote>
@@ -769,7 +769,7 @@
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
-		toc_hide_index: true,
+		toc_hide_index: false,
 		root: "/",
 		innerArchive: true,
 		showTags: true
@@ -834,7 +834,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -842,11 +846,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -871,6 +871,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
             
             <div class="clearfix"></div>

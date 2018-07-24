@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://kanarien.cn">
   <title>Linux下系统信息、硬件信息的查看 | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0. 前言当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。 1. CPU相关信息 查看CPU个数cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | uniq | wc -l   示例输出：1 说明:这是">
+  <meta name="description" content="0. 前言　　当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。 1. CPU相关信息 查看CPU个数cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | uniq | wc -l   示例输出：1 说明:">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux下系统信息、硬件信息的查看">
 <meta property="og:url" content="http://kanarien.cn/2018/07/22/Linux系统信息、硬件信息查看/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
-<meta property="og:description" content="0. 前言当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。 1. CPU相关信息 查看CPU个数cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | uniq | wc -l   示例输出：1 说明:这是">
+<meta property="og:description" content="0. 前言　　当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。 1. CPU相关信息 查看CPU个数cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | uniq | wc -l   示例输出：1 说明:">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-002.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/cpuinfo.png">
@@ -26,10 +26,10 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/fdisk.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/df.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/du.png">
-<meta property="og:updated_time" content="2018-07-22T13:40:09.197Z">
+<meta property="og:updated_time" content="2018-07-24T08:10:38.978Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux下系统信息、硬件信息的查看">
-<meta name="twitter:description" content="0. 前言当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。 1. CPU相关信息 查看CPU个数cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | uniq | wc -l   示例输出：1 说明:这是">
+<meta name="twitter:description" content="0. 前言　　当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。 1. CPU相关信息 查看CPU个数cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | uniq | wc -l   示例输出：1 说明:">
 <meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-002.jpg">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
@@ -187,7 +187,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-002.jpg" alt="动漫美图"></p>
-<h2><span id="0-前言">0. 前言</span></h2><p>当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。</p>
+<h2><span id="0-前言">0. 前言</span></h2><p>　　当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。</p>
 <h2><span id="1-cpu相关信息">1. CPU相关信息</span></h2><ol>
 <li>查看CPU个数<br><code>cat /proc/cpuinfo | grep &quot;physical id&quot; | uniq | wc -l</code></li>
 </ol>
@@ -564,7 +564,7 @@
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
-		toc_hide_index: true,
+		toc_hide_index: false,
 		root: "/",
 		innerArchive: true,
 		showTags: true
@@ -629,7 +629,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -637,11 +641,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -666,6 +666,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
             
             <div class="clearfix"></div>
