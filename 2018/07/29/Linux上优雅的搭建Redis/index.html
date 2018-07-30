@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/redis-cli%20socket%E8%BF%9E%E6%8E%A5.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Redis%20%E5%AF%86%E7%A0%81%E8%AE%A4%E8%AF%81.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Redis%20Desktop%20Manager.png">
-<meta property="og:updated_time" content="2018-07-30T12:39:22.969Z">
+<meta property="og:updated_time" content="2018-07-30T13:01:50.629Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux上优雅的搭建Redis">
 <meta name="twitter:description" content="0.前言在Linux上搭建Redis并不是一件简单的事，官方只提供了源码，安装就首先需要事先下载gcc工具来编译，后续还包括一些安全事项，比如：绑定连接的IP、设置连接密码、设置Redis日志位置。 不过，在这里安装不会详细说明，晚上有很多关于安装的资料，这里主要详细的说明一下配置和连接，比如：绑定连接的IP、设置连接密码、设置Redis日志位置等一切有相当实际意义的参数都会说明；同时也会介绍使">
@@ -198,7 +198,7 @@
       
         <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-018.jpg" alt="动漫美图"></p>
 <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h2><p>在Linux上搭建Redis并不是一件简单的事，官方只提供了源码，安装就首先需要事先下载gcc工具来编译，后续还包括一些安全事项，比如：绑定连接的IP、设置连接密码、设置Redis日志位置。</p>
-<p>不过，在这里安装不会详细说明，晚上有很多关于安装的资料，这里<strong>主要详细的说明一下配置和连接</strong>，比如：绑定连接的IP、设置连接密码、设置Redis日志位置等一切有相当实际意义的参数都会说明；同时也会介绍<strong>使用Unix domain Socket来连接</strong>，也会说明下自己在搭建时遇到的问题。<br><a id="more"></a><br>关于Redis的基本介绍，可以参考我的笔记<a href="https://kanarien.cn/2018/07/22/Redis%E2%80%94%E2%80%94%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Redis——学习笔记</a></p>
+<p>不过，在这里安装不会详细说明，晚上有很多关于安装的资料，这里<strong>主要详细的说明一下配置和连接</strong>，比如：绑定连接的IP、设置连接密码、设置Redis日志位置等一切有相当实际意义的参数都会说明；同时也会介绍<strong>使用Unix domain Socket来连接</strong>，也会说明下自己在搭建时遇到的问题。<br><a id="more"></a><br>关于Redis的基本介绍，可以参考我的笔记 <a href="https://kanarien.cn/2018/07/22/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Redis学习笔记</a></p>
 <h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h2><h3 id="1-1-安装说明"><a href="#1-1-安装说明" class="headerlink" title="1.1 安装说明"></a>1.1 安装说明</h3><ul>
 <li>系统环境： CentOS 7.4.1708</li>
 <li>Redis版本：3.2.10</li>
@@ -680,10 +680,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -700,6 +696,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
               </li>
              
@@ -709,10 +709,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -728,6 +724,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
               </li>
              
@@ -737,14 +745,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
               </li>
             
             <div class="clearfix"></div>

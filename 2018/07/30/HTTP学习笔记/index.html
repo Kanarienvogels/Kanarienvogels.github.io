@@ -18,8 +18,8 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-021.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/URI%E3%80%81URL%E3%80%81URN.jpg">
-<meta property="og:image" content="http://note.youdao.com/yws/api/personal/file/273BC7CDA96142CEA6F6F91650C0A833?method=download&shareKey=4076894ad2ada3c14baf1fa0fcfab9aa">
-<meta property="og:updated_time" content="2018-07-30T12:33:34.055Z">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Http%20Request.png">
+<meta property="og:updated_time" content="2018-07-30T13:02:59.277Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP学习笔记">
 <meta name="twitter:description" content="0. 前言该笔记记录了HTTP相关的基本知识，包括：  HTTP定义、特点、工作方式 简单辨别URI、URL、URN 请求与响应的结构 请求方法，GET和POST的区别 常见的响应码">
@@ -212,6 +212,7 @@
 <li><strong>无状态</strong>：HTTP协议是无状态协议。无状态是指协议<strong>对于事务处理没有记忆能力</strong>。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的<strong>应答就较快</strong>。</li>
 <li>支持B/S及C/S模式。</li>
 </ol>
+<p>关于无连接可参考我的笔记 <a href="https://kanarien.cn/2018/07/25/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3HTTP%E7%9A%84%E6%97%A0%E8%BF%9E%E6%8E%A5%E3%80%81%E7%9F%AD%E8%BF%9E%E6%8E%A5%E3%80%81%E9%95%BF%E8%BF%9E%E6%8E%A5/">如何理解HTTP的无连接、短连接、长连接</a></p>
 <h2 id="3-工作过程"><a href="#3-工作过程" class="headerlink" title="3. 工作过程"></a>3. 工作过程</h2><ol>
 <li><strong>客户端连接到Web服务器</strong>, 一个HTTP客户端，通常是浏览器，与Web服务器的HTTP端口（默认为80）建立一个TCP套接字连接。例如，<a href="http://kanarien.cn。" target="_blank" rel="noopener">http://kanarien.cn。</a></li>
 <li><strong>发送HTTP请求</strong>, 通过TCP套接字，客户端向Web服务器发送一个文本的请求报文，一个请求报文由请求行、请求头部、空行和请求数据4部分组成。</li>
@@ -245,7 +246,7 @@
 <p>最后的<code>#0-前言</code>，标识了<strong>资源名称</strong></p>
 <p>因此，这一整个URI中:<br><code>http://kanarien.cn:80/2018/07/22/Nginx搭配Tomcat作Web服务器/index.html</code>是一个URL<br><code>kanarien.cn:80/2018/07/22/Nginx搭配Tomcat作Web服务器/index.html#0-前言</code>是一个URN</p>
 <h2 id="5-请求——HTTP-Request"><a href="#5-请求——HTTP-Request" class="headerlink" title="5. 请求——HTTP Request"></a>5. 请求——HTTP Request</h2><p>请求消息，由请求行（request line）、请求头部（header）、空行和请求数据四个部分组成。如图：</p>
-<p><img src="http://note.youdao.com/yws/api/personal/file/273BC7CDA96142CEA6F6F91650C0A833?method=download&amp;shareKey=4076894ad2ada3c14baf1fa0fcfab9aa" alt="image"></p>
+<p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Http%20Request.png" alt="HTTP Request"></p>
 <p>Post请求例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">POST https://cosapi4.cloud.tencent.com/api.php?Action=DeleteResource HTTP/1.1</span><br><span class="line">Host    cosapi4.cloud.tencent.com</span><br><span class="line">User-Agent    Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36</span><br><span class="line">Accept    pplication/json, text/javascript, */*; q=0.01</span><br><span class="line">Referer    https://console.cloud.tencent.com/cos/bucket</span><br><span class="line">Accept-Encoding    gzip, deflate, sdch</span><br><span class="line">Accept-Language    zh-CN,zh;q=0.8</span><br><span class="line"></span><br><span class="line">appid=12345678&amp;bucketName=kanarien</span><br></pre></td></tr></table></figure></p>
 <p><strong>第一部分：请求行，用来说明请求类型,要访问的资源以及所使用的HTTP版本.</strong><br>POST说明请求类型为GET，<code>https://cosapi4.cloud.tencent.com/api.php?Action=DeleteResource</code>为要访问的资源，该行的最后一部分说明使用的是HTTP1.1版本。</p>
 <p><strong>第二部分：请求头部，紧接着请求行（即第一行）之后的部分，用来说明服务器要使用的附加信息</strong><br>从第二行起为请求头部，HOST将指出请求的目的地.User-Agent,服务器端和客户端脚本都能访问它,它是浏览器类型检测逻辑的重要基础.该信息由你的浏览器来定义,并且在每个请求中自动发送等等</p>
@@ -607,10 +608,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -627,6 +624,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
               </li>
              
@@ -636,10 +637,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -655,6 +652,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
               </li>
              
@@ -664,14 +673,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
               </li>
             
             <div class="clearfix"></div>
