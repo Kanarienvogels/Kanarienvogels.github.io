@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="http://kanarien.cn">
   <title>MongoDB数据的导出与导入（Unix 命令） | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0. 前言　　某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。 1. 数据的导出1.1 准备操作打开windows命令窗口（或登录服务器用Unix命令行），转到mongo的bin文件夹下(如果直接配置好环境变量，可直接敲命令)使用mongodump命令(别急着按回车)">
-<meta name="keywords" content="MongoDB,Linux">
+  <meta name="description" content="0. 前言某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。 1. 数据的导出1.1 准备操作打开windows命令窗口（或登录服务器用Unix命令行），转到mongo的bin文件夹下(如果直接配置好环境变量，可直接敲命令)使用mongodump命令(别急着按回车)">
+<meta name="keywords" content="Linux,MongoDB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MongoDB数据的导出与导入（Unix 命令）">
 <meta property="og:url" content="http://kanarien.cn/2018/07/22/MongoDB数据的导出与导入/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
-<meta property="og:description" content="0. 前言　　某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。 1. 数据的导出1.1 准备操作打开windows命令窗口（或登录服务器用Unix命令行），转到mongo的bin文件夹下(如果直接配置好环境变量，可直接敲命令)使用mongodump命令(别急着按回车)">
+<meta property="og:description" content="0. 前言某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。 1. 数据的导出1.1 准备操作打开windows命令窗口（或登录服务器用Unix命令行），转到mongo的bin文件夹下(如果直接配置好环境变量，可直接敲命令)使用mongodump命令(别急着按回车)">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-001.jpg">
 <meta property="og:image" content="http://note.youdao.com/yws/api/personal/file/54318CC871824676A1552B21FBD61042?method=download&shareKey=a7cca9bf54334ad8a0dc740ad755c3f3">
 <meta property="og:image" content="http://note.youdao.com/yws/api/personal/file/D4313D2F1BD24E258000FF6E78AFC378?method=download&shareKey=609cce0141d45de1d737ec0be6fd03dd">
-<meta property="og:updated_time" content="2018-07-24T08:11:09.148Z">
+<meta property="og:updated_time" content="2018-07-30T12:44:30.341Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB数据的导出与导入（Unix 命令）">
-<meta name="twitter:description" content="0. 前言　　某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。 1. 数据的导出1.1 准备操作打开windows命令窗口（或登录服务器用Unix命令行），转到mongo的bin文件夹下(如果直接配置好环境变量，可直接敲命令)使用mongodump命令(别急着按回车)">
+<meta name="twitter:description" content="0. 前言某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。 1. 数据的导出1.1 准备操作打开windows命令窗口（或登录服务器用Unix命令行），转到mongo的bin文件夹下(如果直接配置好环境变量，可直接敲命令)使用mongodump命令(别急着按回车)">
 <meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-001.jpg">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
@@ -68,6 +68,8 @@
 	        
 				<li><a href="/casualwrite">随笔</a></li>
 	        
+				<li><a href="/archives">归档</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -96,7 +98,9 @@
 		        
 			</div>
 		</nav>
-	</header>		
+			
+		</header>	
+		
 </div>
 
     </div>
@@ -124,6 +128,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -139,12 +145,14 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/casualwrite">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/casualwrite">随笔</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/archives">归档</a></li>
 		        
 				</ul>
 			</nav>
@@ -163,6 +171,7 @@
   <div class="article-inner">
     
       <header class="article-header">
+		
         
   
     <h1 class="article-title" itemprop="name">
@@ -170,22 +179,28 @@
     </h1>
   
 
+		
         
         <a href="/2018/07/22/MongoDB数据的导出与导入/" class="archive-article-date">
   	<time datetime="2018-07-22T13:02:54.951Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-22</time>
 </a>
         
+		
+		<span class="archive-article-date">
+			阅读量 <span id="busuanzi_value_page_pv"></span>
+		</span>
+
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-001.jpg" alt="动漫美图"></p>
-<h2><span id="0-前言">0. 前言</span></h2><p>　　某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。</p>
-<h2><span id="1-数据的导出">1. 数据的导出</span></h2><h3><span id="11-准备操作">1.1 准备操作</span></h3><p>打开windows命令窗口（或登录服务器用Unix命令行），转到mongo的<strong>bin</strong>文件夹下(如果直接配置好环境变量，可直接敲命令)使用<strong>mongodump</strong>命令(别急着按回车)<br><a id="more"></a></p>
-<h3><span id="12-mongodump基本语法">1.2 mongodump基本语法</span></h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; mongodump -h dbhost -d dbname -o dbdirectory</span><br></pre></td></tr></table></figure>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>某次项目需要从MongoDB导入导出数据，但发现可视化工具robot 3.x并没有提供数据的导入导出功能，只好上敲命令，期间遇到了点坑，以此记录下来。</p>
+<h2 id="1-数据的导出"><a href="#1-数据的导出" class="headerlink" title="1. 数据的导出"></a>1. 数据的导出</h2><h3 id="1-1-准备操作"><a href="#1-1-准备操作" class="headerlink" title="1.1 准备操作"></a>1.1 准备操作</h3><p>打开windows命令窗口（或登录服务器用Unix命令行），转到mongo的<strong>bin</strong>文件夹下(如果直接配置好环境变量，可直接敲命令)使用<strong>mongodump</strong>命令(别急着按回车)<br><a id="more"></a></p>
+<h3 id="1-2-mongodump基本语法"><a href="#1-2-mongodump基本语法" class="headerlink" title="1.2 mongodump基本语法"></a>1.2 mongodump基本语法</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; mongodump -h dbhost -d dbname -o dbdirectory</span><br></pre></td></tr></table></figure>
 <p> <strong>-h：</strong><br> MongDB所在服务器地址，例如：127.0.0.1，当然也可以指定端口号：127.0.0.1:27017<br> <strong>-d：</strong><br> 需要备份的数据库实例，例如：test<br> <strong>-o：</strong><br>备份的数据存放位置，例如：c:\data\dump，当然该目录需要提前建立，在备份完成后，系统自动在dump目录下建立一个test目录，这个目录里面存放该数据库实例的备份数据。</p>
 <p>如果直接输入mongodump命令，客户端会连接到ip为 127.0.0.1 端口号为 27017 的MongoDB服务上，并备份所有数据到 bin/dump/ 目录中。</p>
-<h3><span id="13-注意点">1.3 注意点</span></h3><p>由于数据库往往带有账户密码，所以直接还要加上用户与密码参数。<br>Mongo的参考文档中有：<br><strong>-u [ –username ] arg    username</strong><br>  <strong>-p [ –password ] arg    password</strong></p>
+<h3 id="1-3-注意点"><a href="#1-3-注意点" class="headerlink" title="1.3 注意点"></a>1.3 注意点</h3><p>由于数据库往往带有账户密码，所以直接还要加上用户与密码参数。<br>Mongo的参考文档中有：<br><strong>-u [ –username ] arg    username</strong><br>  <strong>-p [ –password ] arg    password</strong></p>
 <p>下面举个例子</p>
 <blockquote>
 <p>mongodump -d mydb -u root -p -o d:\mydb</p>
@@ -195,15 +210,15 @@
 <p>比如：</p>
 <p><img src="http://note.youdao.com/yws/api/personal/file/54318CC871824676A1552B21FBD61042?method=download&amp;shareKey=a7cca9bf54334ad8a0dc740ad755c3f3" alt="dump sample"></p>
 <p>成功的话可以看到目标目录有以数据库名字为名的文件夹以及bson和json文件<br><img src="http://note.youdao.com/yws/api/personal/file/D4313D2F1BD24E258000FF6E78AFC378?method=download&amp;shareKey=609cce0141d45de1d737ec0be6fd03dd" alt="dump success"></p>
-<h2><span id="2-数据的导入">2. 数据的导入</span></h2><h3><span id="21-准备操作">2.1 准备操作</span></h3><ul>
+<h2 id="2-数据的导入"><a href="#2-数据的导入" class="headerlink" title="2. 数据的导入"></a>2. 数据的导入</h2><h3 id="2-1-准备操作"><a href="#2-1-准备操作" class="headerlink" title="2.1 准备操作"></a>2.1 准备操作</h3><ul>
 <li>既然是导入，那就得有导入的数据文件，其实就是<strong>导出的bson和json文件</strong></li>
 <li>安装好的mongo客户端(进入路径{mongoDB}/bin/或配置好环境变量)</li>
 <li>mongorestore命令</li>
 </ul>
-<h3><span id="22-mongorestor基本语法">2.2 mongorestor基本语法</span></h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; mongorestore -h &lt;hostname&gt;&lt;<span class="symbol">:port&gt;</span> -d dbname &lt;path&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-mongorestor基本语法"><a href="#2-2-mongorestor基本语法" class="headerlink" title="2.2 mongorestor基本语法"></a>2.2 mongorestor基本语法</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; mongorestore -h &lt;hostname&gt;&lt;<span class="symbol">:port&gt;</span> -d dbname &lt;path&gt;</span><br></pre></td></tr></table></figure>
 <p><strong>–host &lt;:port&gt;, -h &lt;:port&gt;：</strong><br>MongoDB所在服务器地址，默认为： localhost:27017<br><strong>–db , -d ：</strong><br>需要恢复的数据库实例，例如：test，当然这个名称也可以和备份时候的不一样，比如test2<br><strong>–drop：</strong><br>恢复的时候，先删除当前数据，然后恢复备份的数据。就是说，恢复后，备份后添加修改的数据都会被删除，慎用哦！</p>
 <p><strong><code>&lt;path&gt;</code>：</strong><br>mongorestore 最后的一个参数，设置备份数据所在位置，例如：c:\data\dump\test。<br>你不能同时指定 <code>&lt;path&gt;</code> 和 –dir 选项，–dir也可以设置备份目录。<br><strong>–dir：</strong><br>指定备份的目录<br>你不能同时指定 <code>&lt;path&gt;</code> 和 –dir 选项。</p>
-<h3><span id="23-注意点">2.3 注意点</span></h3><ul>
+<h3 id="2-3-注意点"><a href="#2-3-注意点" class="headerlink" title="2.3 注意点"></a>2.3 注意点</h3><ul>
 <li><p><strong>同导出操作1.3的注意点</strong>。如果设置了账号则要需要指明账号密码参数，并使用–authenticationDataBase admin</p>
 </li>
 <li><p><strong>不需要指明导入到哪里，会自动导入到mongo的数据库中，如果数据(库)已存在则会覆盖</strong></p>
@@ -258,11 +273,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MongoDB</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MongoDB</a>
         		</li>
       		
 		</ul>
@@ -381,7 +396,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">1. 数据的导出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 准备操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 mongodump基本语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 注意点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">2. 数据的导入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 准备操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 mongorestor基本语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 注意点</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-数据的导出"><span class="toc-number">2.</span> <span class="toc-text">1. 数据的导出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-准备操作"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 准备操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-mongodump基本语法"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 mongodump基本语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-注意点"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 注意点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-数据的导入"><span class="toc-number">3.</span> <span class="toc-text">2. 数据的导入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-准备操作"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 准备操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-mongorestor基本语法"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 mongorestor基本语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-注意点"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 注意点</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -399,8 +414,11 @@
   
 
   
-
+	
+	
+	
   
+
 
 
           </div>
@@ -410,11 +428,15 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Kanarien
+    		&copy; 2018 Kanarien&nbsp;&nbsp;
+			<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
+			<p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+		</div>
+		
     </div>
   </div>
 </footer>
@@ -428,7 +450,7 @@
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
-		toc_hide_index: false,
+		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
 		showTags: true
@@ -493,38 +515,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -533,11 +523,71 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Lettuce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
               </li>
             
             <div class="clearfix"></div>
