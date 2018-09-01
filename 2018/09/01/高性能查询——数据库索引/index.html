@@ -6,16 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://kanarien.cn">
-  <title>Tag: BeetlSQL | 无悔的博客小屋</title>
+  <title>高性能查询——数据库索引 | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Kanarien">
-<meta property="og:type" content="website">
-<meta property="og:title" content="无悔的博客小屋">
-<meta property="og:url" content="http://kanarien.cn/tags/BeetlSQL/index.html">
+  <meta name="description" content="1. 概念索引（在MySQL中也叫作“键（key）”），是存储引擎用于快速找到记录的一种数据结构。这是索引的基本功能，除此之外，索引还有其他的一些方面有用的属性。 索引对于良好的性能而言非常关键，尤其是表中的数据量非常大的时候，而糟糕的索引则会导致性能的急剧下降。 索引优化是对查询优化最有效的手段。 2. 基础索引的工作方式：查询语句现在索引中找到对应值，然后根据匹配的索引记录找到对应的数据行。">
+<meta name="keywords" content="MySQL,数据库索引">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高性能查询——数据库索引">
+<meta property="og:url" content="http://kanarien.cn/2018/09/01/高性能查询——数据库索引/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
+<meta property="og:description" content="1. 概念索引（在MySQL中也叫作“键（key）”），是存储引擎用于快速找到记录的一种数据结构。这是索引的基本功能，除此之外，索引还有其他的一些方面有用的属性。 索引对于良好的性能而言非常关键，尤其是表中的数据量非常大的时候，而糟糕的索引则会导致性能的急剧下降。 索引优化是对查询优化最有效的手段。 2. 基础索引的工作方式：查询语句现在索引中找到对应值，然后根据匹配的索引记录找到对应的数据行。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-022.jpg">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/B-Tree%E7%B4%A2%E5%BC%95.JPG">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%83.JPG">
+<meta property="og:updated_time" content="2018-09-01T08:55:17.988Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="无悔的博客小屋">
+<meta name="twitter:title" content="高性能查询——数据库索引">
+<meta name="twitter:description" content="1. 概念索引（在MySQL中也叫作“键（key）”），是存储引擎用于快速找到记录的一种数据结构。这是索引的基本功能，除此之外，索引还有其他的一些方面有用的属性。 索引对于良好的性能而言非常关键，尤其是表中的数据量非常大的时候，而糟糕的索引则会导致性能的急剧下降。 索引优化是对查询优化最有效的手段。 2. 基础索引的工作方式：查询语句现在索引中找到对应值，然后根据匹配的索引记录找到对应的数据行。">
+<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-022.jpg">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
   
@@ -159,79 +167,280 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-高性能查询——数据库索引" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/24/Spring Boot2.x整合BeetlSQL的一次实践经验/" class="archive-article-date">
-  	<time datetime="2018-07-24T07:30:18.167Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-24</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+		
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/24/Spring Boot2.x整合BeetlSQL的一次实践经验/">Spring Boot2.x整合BeetlSQL2.x的一次实践经验</a>
+    <h1 class="article-title" itemprop="name">
+      高性能查询——数据库索引
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+		
+        
+        <a href="/2018/09/01/高性能查询——数据库索引/" class="archive-article-date">
+  	<time datetime="2018-09-01T08:54:41.051Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-01</time>
+</a>
+        
+		
+		<span class="archive-article-date">
+			阅读量 <span id="busuanzi_value_page_pv"></span>
+		</span>
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-022.jpg" alt="动漫美图"></p>
+<h2 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h2><p>索引（在MySQL中也叫作“键（key）”），是存储引擎用于快速找到记录的一种<strong>数据结构</strong>。这是索引的基本功能，除此之外，索引还有其他的一些方面有用的属性。</p>
+<p>索引对于良好的性能而言非常关键，尤其是表中的数据量非常大的时候，而糟糕的索引则会导致性能的急剧下降。</p>
+<p><strong>索引优化是对查询优化最有效的手段</strong>。</p>
+<h2 id="2-基础"><a href="#2-基础" class="headerlink" title="2. 基础"></a>2. 基础</h2><p>索引的工作方式：查询语句现在索引中找到对应值，然后根据匹配的索引记录找到对应的数据行。比如：<br><code>SELECT book_title FROM t_book WHERE book_id = 36;</code><br>若<code>book_id</code>列上建有索引，则MySQL将使用索引找到<code>book_id</code>为5的行，即，MySQL先在索引上按值查找，然后返回包含该值的数据行。</p>
+<p>索引可以包含一个或多个列的值。当包含多个列的值，此时列的顺序十分重要，MySQL只能高效的使用最左前缀列。</p>
+<h2 id="3-索引的类型"><a href="#3-索引的类型" class="headerlink" title="3. 索引的类型"></a>3. 索引的类型</h2><p>索引的实现与存储引擎的类型有关，没有统一的标准，下面讲述MySQL中支持的索引类型：</p>
+<h3 id="3-1-B-Tree-索引"><a href="#3-1-B-Tree-索引" class="headerlink" title="3.1 B-Tree 索引"></a>3.1 B-Tree 索引</h3><h4 id="3-1-1-概念"><a href="#3-1-1-概念" class="headerlink" title="3.1.1 概念"></a>3.1.1 概念</h4><p>索引的<strong>默认类型</strong>是B-Tree索引，指的是使用B-Tree数据结构来存储数据，大多数存储引擎都支持这种索引，<strong>实际上很多存储引擎使用的是B+Tree数据结构</strong>，即每个结点都包含指向下一个叶子节点的指针，从而方便叶子节点的范围遍历。</p>
+<h4 id="3-1-2-特点"><a href="#3-1-2-特点" class="headerlink" title="3.1.2 特点"></a>3.1.2 特点</h4><p>B-Tree意味着所有的值都是<strong>有序的</strong>，并且每个叶子页到根的距离相等。根节点存放了指向子节点的指针，存储引擎通过比较节点页的值和要查找的值，找到合适的指针进入下层的子节点，而叶子节点的指针指向被索引的数据。其抽象表示如下图：</p>
+<p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/B-Tree%E7%B4%A2%E5%BC%95.JPG" alt="B-Tree索引的抽象表示"></p>
+<h4 id="3-1-3-适合B-Tree索引的查询类型及使用限制"><a href="#3-1-3-适合B-Tree索引的查询类型及使用限制" class="headerlink" title="3.1.3 适合B-Tree索引的查询类型及使用限制"></a>3.1.3 适合B-Tree索引的查询类型及使用限制</h4><p>假设有如下数据表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE t_book (</span><br><span class="line">  book_title VARCHAR(50) NOT NULL,</span><br><span class="line">  book_subtitle VARCHAR(50) NOT NULL,</span><br><span class="line">  publish_date Date NOT NULL,</span><br><span class="line">  author VARCHAR(50) NOT NULL,</span><br><span class="line">  key(book_title, book_subtitle, publish_date)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<p>其中对于每一行数据，使用了<code>book_title, book_subtitle, publish_date</code>共3列的值当索引，用这个当做例子进行下面的讲述。</p>
+<ul>
+<li><strong>全值匹配</strong>：指的是和索引中的所有列进行匹配，例如<code>SELECT * FROM t_book WHERE book_title = ? AND book_subtitle = ? AND public_date = ?</code>。</li>
+<li><strong>匹配最左前缀</strong>：指的是只使用索引的第一列进行匹配，例如<code>SELECT * FROM t_book WHERE book_title = ?</code>。</li>
+<li><strong>匹配列前缀</strong>：指的是只使用某一列的开头部分进行匹配，例如<code>SELECT * FROM t_book WHERE book_title like &#39;computer%&#39;</code>。</li>
+<li><strong>匹配范围值</strong>：指的是可以范围匹配符合条件的某一列，例如<code>SELECT * FROM t_book WHERE book_title &gt; ? AND book_title &lt; ?</code>，或者使用<code>like</code>关键字。</li>
+<li><strong>精确匹配某一列并范围匹配另外一列</strong>：指的是使用索引的第一列进行匹配然后在范围匹配索引第二列，例如<code>SELECT * FROM t_book WHERE book_title = ? AND book_title &gt; ? AND book_title &lt; ?</code>。</li>
+<li><strong>只访问索引的查询</strong>：指的是查询只需要访问索引，而不需要访问数据行，例如<code>SELECT book_title FROM t_book WHERE book_title &gt; ? AND book_title &lt; ?</code>。</li>
+</ul>
+<p>关于B-Tree索引的使用有下面的限制，主要是受到B-Tree数据结构本身的限制，但也受到存储引擎以及数据库优化器的影响：</p>
+<ul>
+<li><strong>如果不是按索引的最左列开始查询，则无法使用索引</strong>，反例如：<code>SELECT * FROM t_book WHERE book_subtitle = ? AND public_date = ?</code>。</li>
+<li><strong>不能跳过索引中的列</strong>，即不能跳过第一列利用第二列进行查询，反例如<code>SELECT * FROM t_book WHERE book_subtitle = ?</code>。</li>
+<li><strong>如果查询中有某个列的范围查询，则其右边的所有列都无法使用索引进行查询</strong>，反例如：<code>SELECT * FROM t_book WHERE book_title = ? AND book_subtitle like ? AND public_date = ?</code>。</li>
+</ul>
+<p>显然，索引的顺序十分重要。</p>
+<h3 id="3-2-哈希索引"><a href="#3-2-哈希索引" class="headerlink" title="3.2 哈希索引"></a>3.2 哈希索引</h3><h4 id="3-2-1-概念"><a href="#3-2-1-概念" class="headerlink" title="3.2.1 概念"></a>3.2.1 概念</h4><p>哈希索引基（hash index）于哈希表实现，<strong>只有精确匹配索引所有列的查询才会起效</strong>。对于每一行数据，存储引擎都会对所有的索引列计算一个哈希码，哈希码是一个较小的值，不同键值的行计算出来的哈希码也不同。</p>
+<p><strong>在MySQL中，只有MEMORY引擎支持哈希索引</strong>。</p>
+<h4 id="3-2-2-特点"><a href="#3-2-2-特点" class="headerlink" title="3.2.2 特点"></a>3.2.2 特点</h4><p>哈希索引将所有的哈希码及指向数据行的指针存储在索引中，假设有如下表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE t_order (</span><br><span class="line">  order_id VARCHAR(50) NOT NULL,</span><br><span class="line">  order_info VARCHAR(50) NOT NULL,</span><br><span class="line">  KEY USING HASH(order_id)</span><br><span class="line">)ENGINE=MEMORY;</span><br></pre></td></tr></table></figure></p>
+<p>表中包含如下数据：<br>| 序号 | order_id | order_info |<br>| – | – | – |<br>| 1 | ORDER_10000 | INFO_1 |<br>| 2 | ORDER_20000 | INFO_2 |<br>| 3 | ORDER_30000 | INFO_3 |<br>| 4 | ORDER_40000 | INFO_4 |</p>
+<p>假设使用哈希函数<code>hash()</code>，满足以下条件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hash(&quot;ORDER_10000&quot;) = 2222,</span><br><span class="line">hash(&quot;ORDER_20000&quot;) = 1111,</span><br><span class="line">hash(&quot;ORDER_30000&quot;) = 4444,</span><br><span class="line">hash(&quot;ORDER_40000&quot;) = 3333</span><br></pre></td></tr></table></figure></p>
+<p>则哈希索引的结构如下：<br>| 序号 | 槽（Slot） | 值（Value） |<br>| – | – | – |<br>| 1 | 1111 | ORDER_20000 |<br>| 2 | 2222 | ORDER_10000 |<br>| 3 | 3333 | ORDER_40000 |<br>| 4 | 4444 | ORDER_30000 |</p>
+<p>显然，哈希索引按槽（哈希码）有序，但<strong>对于索引列的值来说是无序的</strong>。哈希索引存储内容少，结构紧凑，查找速度非常快。</p>
+<h4 id="3-2-3-哈希索引的使用限制"><a href="#3-2-3-哈希索引的使用限制" class="headerlink" title="3.2.3 哈希索引的使用限制"></a>3.2.3 哈希索引的使用限制</h4><ul>
+<li><strong>不能使用索引中的值来避免读取行</strong>：哈希索引只存储哈希码和行指针，而不存储字段值，不能使用索引中的值来避免读取行。</li>
+<li><strong>无法用于排序</strong>：哈希索引的数据并不是按照索引值顺序排序的。</li>
+<li><strong>不支持部分按列索引匹配查找</strong>：哈希索引始终是使用索引列内的全部内容来计算哈希值。</li>
+<li><strong>只支持等值比较查询</strong>：只能使用<code>=, IN(), &lt;=&gt;</code>，不支持任何范围查询，比如<code>SELECT * FROM t_order WHERE order_id &gt; ?</code>。</li>
+<li><strong>当哈希冲突很多时，索引代价维护随之变高</strong>：哈希索引采用链式哈希存储，当出现哈希冲突时，必须遍历链表的所有行指针进行匹配，同理，删除时也同样需要遍历。</li>
+</ul>
+<p>可见，哈希索引的限制非常大，只适用于某些特定的场合。</p>
+<h4 id="3-2-4-自适应哈希索引"><a href="#3-2-4-自适应哈希索引" class="headerlink" title="3.2.4 自适应哈希索引"></a>3.2.4 自适应哈希索引</h4><p>自适应哈希索引（Adaptive Hash Index）：当InnoDB注意到某些索引值被使用得非常频繁的时候，它会在内存中基于B-Tree索引之上再创建一个哈希索引，让B-Tree索引具有一些哈希索引的优点，如快速哈希查找。这是完全封闭的、内部的、自动的行为，用户无法直接控制，但如果有必要，可以完全关闭此功能。</p>
+<h3 id="3-3-空间数据索引"><a href="#3-3-空间数据索引" class="headerlink" title="3.3 空间数据索引"></a>3.3 空间数据索引</h3><p>MyISAM存储引擎支持空间索引，可以用作地理数据存储，这类索引<strong>无需前缀匹配查询，可以从所有维度来索引数据，查询时可任意的组合索引列</strong>。</p>
+<p>必须使用MySQL的GIS相关函数如<code>MBRCONTAINS()</code>等来维护数据，然而MySQL在5.5版本及之前做得并不完善，若要使用可使用开源的PostgreSQL数据库。</p>
+<h3 id="3-4-全文索引"><a href="#3-4-全文索引" class="headerlink" title="3.4 全文索引"></a>3.4 全文索引</h3><p>全文索引是一种特殊索引，查找的是文本中的关键词，而不是直接比较索引中的值，类似于搜索引擎所做的事，适用于<code>MATCH AGAINST</code>操作而不是普通的<code>WHERE</code>操作。</p>
+<h2 id="4-索引的优点"><a href="#4-索引的优点" class="headerlink" title="4. 索引的优点"></a>4. 索引的优点</h2><p>索引除了快速定位到查询的数据行外，根据所使用索引的数据结构的不同，也会有不同的附加效果。</p>
+<p>根据常用的B-Tree索引的特性，索引的优点总的包括以下三点：</p>
+<ol>
+<li>索引大大减少了服务器需要扫描的数据量；</li>
+<li>索引可以帮助服务器避免排序和临时表；</li>
+<li>索引可以将随机I/O变为顺序I/O。</li>
+</ol>
+<p><strong>索引并不总是最好的查询工具</strong><br>总的来说，只有当索引帮助存储引擎快速查找到记录带来的好处大于其带来的额外工作时，索引才是有效的。对于非常小的表，大部分情况下简单的全表扫描更高效。对于中到大型表，索引就非常有效。对于特大型表，维护索引的代价随之增大，可使用分区技术。</p>
+<h2 id="5-使用索引的正确方法"><a href="#5-使用索引的正确方法" class="headerlink" title="5. 使用索引的正确方法"></a>5. 使用索引的正确方法</h2><p>正确的使用索引非常重要，否则会导致索引无效、占用内存增加，最终导致服务器性能下降。</p>
+<h3 id="5-1-使用独立的列"><a href="#5-1-使用独立的列" class="headerlink" title="5.1 使用独立的列"></a>5.1 使用独立的列</h3><p>使用索引除了索引类型本身的限制外，<strong>如果查询的列不是独立的，则MySQl同样不会使用索引</strong>，独立的列指的是<strong>索引列不能是表达式的一部分，也不能是函数的参数</strong>:<br>反例如:<br><code>SELECT * FROM t_test WHERE test_id + 5 = 12;</code><br>或者<br><code>SELECT * FROM t_test WHERE LEFT(test_name, 4) = &#39;kana&#39;;</code></p>
+<h3 id="5-2-多列索引"><a href="#5-2-多列索引" class="headerlink" title="5.2 多列索引"></a>5.2 多列索引</h3><p>一个<strong>常见错误</strong>是：为每个列创建单独的索引，或者按照错误的顺序创建多列索引。</p>
+<p>为每个列创建单独的索引，往往导致多条件AND查询时只在最左列使用到索引，对于多条件OR查询在MySQL5.0后的版本则会使用<em>索引合并</em>自动进行优化，嵌套进<code>UNION</code>语句。当触发<em>索引合并</em>时，应当思考下索引创建是否合理。当索引的列顺序与查询的条件顺序一致时，才会使用索引。</p>
+<h3 id="5-3-避免多个范围查询"><a href="#5-3-避免多个范围查询" class="headerlink" title="5.3 避免多个范围查询"></a>5.3 避免多个范围查询</h3><p>范围查询指的是查询包含了范围条件，比如<code>&lt;</code>、<code>&gt;</code>和<code>BETWEEN</code>操作符，当索引列遇到该范围查询条件列，之后的列就无法再使用索引，情况允许的时候可以手动将某些条件转化成<code>IN()</code>操作符，这样数据库在查询时就会转换成多个等值查询，继而后续列可以继续使用索引，否则，当查询注重效率时，应该考虑不要使用多个范围查询，或者范围条件放最后。</p>
+<h2 id="6-聚簇索引"><a href="#6-聚簇索引" class="headerlink" title="6. 聚簇索引"></a>6. 聚簇索引</h2><p>聚簇索引并不是一种索引类型而是一种数据存储方式。InnoDB的聚簇索引实际上在同一个数据结构中保存了B-Tree索引和数据行，“聚簇”表示数据行和相邻的键值紧紧地存储在一起，如下图<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%83.JPG" alt="聚簇索引的数据分布"></p>
+<p>由于数据行和相邻的键值紧紧地存储在一起，因此无法同时把数据行存放在两个不同的地方，一个表只能由一个聚簇索引。</p>
+<h2 id="7-覆盖索引"><a href="#7-覆盖索引" class="headerlink" title="7. 覆盖索引"></a>7. 覆盖索引</h2><p>如果一个索引包含（或者说覆盖）所有需要查询的字段的值，我们就称之为覆盖索引。当索引包含要查询的数据，就没有必要再回表查询，查询效率更加高效。</p>
+<hr>
+<blockquote>
+<p>Copyright © 2018, CSCW back-end Kanarien, All Rights Reserved</p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>大好きだよ~<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wxpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">BeetlSQL</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">数据库索引</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/实践轨迹//" class="article-tag-list-link color5">实践轨迹</a>
+        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://kanarien.cn/2018/09/01/高性能查询——数据库索引/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/07/30/HTTP学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HTTP学习笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-概念"><span class="toc-number">1.</span> <span class="toc-text">1. 概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-基础"><span class="toc-number">2.</span> <span class="toc-text">2. 基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-索引的类型"><span class="toc-number">3.</span> <span class="toc-text">3. 索引的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-B-Tree-索引"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 B-Tree 索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1-概念"><span class="toc-number">3.1.1.</span> <span class="toc-text">3.1.1 概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-2-特点"><span class="toc-number">3.1.2.</span> <span class="toc-text">3.1.2 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-3-适合B-Tree索引的查询类型及使用限制"><span class="toc-number">3.1.3.</span> <span class="toc-text">3.1.3 适合B-Tree索引的查询类型及使用限制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-哈希索引"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 哈希索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-概念"><span class="toc-number">3.2.1.</span> <span class="toc-text">3.2.1 概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-特点"><span class="toc-number">3.2.2.</span> <span class="toc-text">3.2.2 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-3-哈希索引的使用限制"><span class="toc-number">3.2.3.</span> <span class="toc-text">3.2.3 哈希索引的使用限制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-4-自适应哈希索引"><span class="toc-number">3.2.4.</span> <span class="toc-text">3.2.4 自适应哈希索引</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-空间数据索引"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 空间数据索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-全文索引"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 全文索引</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-索引的优点"><span class="toc-number">4.</span> <span class="toc-text">4. 索引的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-使用索引的正确方法"><span class="toc-number">5.</span> <span class="toc-text">5. 使用索引的正确方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-使用独立的列"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 使用独立的列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-多列索引"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 多列索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-避免多个范围查询"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 避免多个范围查询</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-聚簇索引"><span class="toc-number">6.</span> <span class="toc-text">6. 聚簇索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-覆盖索引"><span class="toc-number">7.</span> <span class="toc-text">7. 覆盖索引</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+	
+	
+	
+  
+
 
 
           </div>
@@ -258,9 +467,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
