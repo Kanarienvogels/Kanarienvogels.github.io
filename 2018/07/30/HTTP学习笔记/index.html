@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-021.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/URI%E3%80%81URL%E3%80%81URN.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Http%20Request.png">
-<meta property="og:updated_time" content="2018-07-30T13:02:59.277Z">
+<meta property="og:updated_time" content="2018-09-01T08:58:23.096Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP学习笔记">
 <meta name="twitter:description" content="0. 前言该笔记记录了HTTP相关的基本知识，包括：  HTTP定义、特点、工作方式 简单辨别URI、URL、URN 请求与响应的结构 请求方法，GET和POST的区别 常见的响应码">
@@ -317,7 +317,53 @@
 <li>4xx：客户端错误–请求有语法错误或请求无法实现</li>
 <li>5xx：服务器端错误–服务器未能实现合法的请求</li>
 </ul>
-<p>常见的状态码如下：<br>状态代码 | 状态描述 | 说明<br> — | — | —<br> 200 | OK | 客户端请求成功<br> 400 | Bad Request | 客户端请求语法有问题，或者是参数错误<br> 401 | Unauthorized | 请求未经授权，客户端可以重复提交一个包含恰当的 Authorization 头信息的请求<br> 403 | Forbidden | 服务器已经接收到请求，但拒绝提供服务，服务器通常会在响应正文中给出不能提供服务的原因<br> 404 | Not Found | 请求的资源不存在<br> 405 | Method Not Allowed | 客户端请求中的方法被禁止，常见如，由于DELETE、PUT请求对资源进行写操作，故大部分浏览器都不支持或者在默认配置下不允许DELETE、PUT请求<br> 500 | Internal Server Error | 服务器内部错误，无法完成请求，如服务器运行出现异常</p>
+<p>常见的状态码如下：</p>
+<table>
+<thead>
+<tr>
+<th>状态代码</th>
+<th>状态描述</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> 200</td>
+<td>OK</td>
+<td>客户端请求成功</td>
+</tr>
+<tr>
+<td> 400</td>
+<td>Bad Request</td>
+<td>客户端请求语法有问题，或者是参数错误</td>
+</tr>
+<tr>
+<td> 401</td>
+<td>Unauthorized</td>
+<td>请求未经授权，客户端可以重复提交一个包含恰当的 Authorization 头信息的请求</td>
+</tr>
+<tr>
+<td> 403</td>
+<td>Forbidden</td>
+<td>服务器已经接收到请求，但拒绝提供服务，服务器通常会在响应正文中给出不能提供服务的原因</td>
+</tr>
+<tr>
+<td> 404</td>
+<td>Not Found</td>
+<td>请求的资源不存在</td>
+</tr>
+<tr>
+<td> 405</td>
+<td>Method Not Allowed</td>
+<td>客户端请求中的方法被禁止，常见如，由于DELETE、PUT请求对资源进行写操作，故大部分浏览器都不支持或者在默认配置下不允许DELETE、PUT请求</td>
+</tr>
+<tr>
+<td> 500</td>
+<td>Internal Server Error</td>
+<td>服务器内部错误，无法完成请求，如服务器运行出现异常</td>
+</tr>
+</tbody>
+</table>
 <h2 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h2><p>该笔记参考了以下文章：</p>
 <ul>
 <li><a href="http://web.jobbole.com/83452/" target="_blank" rel="noopener">你知道URL、URI和URN三者之间的区别吗？ - WEB前端 - 伯乐在线</a></li>
@@ -617,14 +663,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
@@ -633,11 +671,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -649,11 +691,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
+                <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -665,6 +703,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Lettuce</a>
               </li>
              
@@ -673,19 +719,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Netty</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
               </li>
             
             <div class="clearfix"></div>
