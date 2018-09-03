@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/redis-cli%20socket%E8%BF%9E%E6%8E%A5.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Redis%20%E5%AF%86%E7%A0%81%E8%AE%A4%E8%AF%81.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Redis%20Desktop%20Manager.png">
-<meta property="og:updated_time" content="2018-07-30T13:01:50.629Z">
+<meta property="og:updated_time" content="2018-09-03T13:56:39.671Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux上优雅的搭建Redis">
 <meta name="twitter:description" content="0.前言在Linux上搭建Redis并不是一件简单的事，官方只提供了源码，安装就首先需要事先下载gcc工具来编译，后续还包括一些安全事项，比如：绑定连接的IP、设置连接密码、设置Redis日志位置。 不过，在这里安装不会详细说明，晚上有很多关于安装的资料，这里主要详细的说明一下配置和连接，比如：绑定连接的IP、设置连接密码、设置Redis日志位置等一切有相当实际意义的参数都会说明；同时也会介绍使">
@@ -250,14 +250,13 @@
 </li>
 </ol>
 <pre><code>&gt; **关于redis的dump.rdb文件**
-</code></pre><p>dump.rdb文件是redis快照的结果，也就是将数据库中是数据保存到硬盘中，防止redis意外重启后数据丢失的。<br>  redis每次启动时，都会先去找这个文件，将里面的数据导入数据库中，如果没有找到这个文件就会重新建立一个，如果找到了，但是被清空了，对不起，你的数据也就丢失了。<br>  配置文件中默认位置是，redis启动命令执行的位置。<br>也就是，你在哪启动redis，这个文件就放在哪。<br>一般我们会通过 CD 命令进入到redis的src或者bin目录来执行redis-server.exe，此时dump.rdb的位置就是src或bin；<br>  其保存时机由 <code>save</code> 参数配置指定</p>
+</code></pre><p>dump.rdb文件是redis快照的结果，也就是将数据库中是数据保存到硬盘中，防止redis意外重启后数据丢失的。redis每次启动时，都会先去找这个文件，将里面的数据导入数据库中，如果没有找到这个文件就会重新建立一个，如果找到了，但是被清空了，对不起，你的数据也就丢失了。配置文件中默认位置是，redis启动命令执行的位置。也就是，你在哪启动redis，这个文件就放在哪。一般我们会通过 CD 命令进入到redis的src或者bin目录来执行redis-server.exe，此时dump.rdb的位置就是src或bin；其保存时机由 <code>save</code> 参数配置指定</p>
 <ol start="14">
 <li><p><code>dir</code><br>说明：数据库(持久化)存放目录，也是dump.rdb存放的目录。必须是一个目录，aof文件也会保存到该目录下。<br>缺省配置：dir ./</p>
 </li>
-<li><p><code>save</code><br>说明：保存数据到磁盘。格式是：save <seconds> <changes> ，含义是在 seconds 秒之后至少有 changes个keys 发生改变则保存一次。<br>缺省配置：save 900 1</changes></seconds></p>
-<pre><code>save 300 10
-save 60 10000
-</code></pre></li>
+<li><p><code>save</code><br>说明：保存数据到磁盘。格式是：save <seconds> <changes> ，含义是在 seconds 秒之后至少有 changes个keys 发生改变则保存一次。<br>缺省配置：</changes></seconds></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">save 900 1</span><br><span class="line">save 300 10</span><br><span class="line">save 60 10000</span><br></pre></td></tr></table></figure>
+</li>
 <li><p><code>stop-writes-on-bgsave-error</code><br>说明：默认情况下，如果 redis 最后一次的后台保存失败，redis 将停止接受写操作，这样以一种强硬的方式让用户知道数据不能正确的持久化到磁盘， 否则就会没人注意到灾难的发生。 如果后台保存进程重新启动工作了，redis 也将自动的允许写操作。然而你要是安装了靠谱的监控，你可能不希望 redis 这样做，那你就改成 no 好了。<br>缺省配置：stop-writes-on-bgsave-error yes</p>
 </li>
 <li><p><code>rdbcompression</code><br>说明：是否在dump.rdb数据库的时候压缩字符串，默认设置为yes。如果你想节约一些cpu资源的话，可以把它设置为no，这样的话数据集就可能会比较大。<br>缺省配置：rdbcompression yes</p>
@@ -680,6 +679,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
@@ -688,15 +695,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -708,7 +711,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -720,14 +727,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Lettuce</a>
               </li>
              
@@ -736,19 +735,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
               </li>
             
             <div class="clearfix"></div>
