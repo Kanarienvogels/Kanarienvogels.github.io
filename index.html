@@ -254,28 +254,9 @@
 </tr>
 </tbody>
 </table>
-<p><strong>注意点</strong></p>
-<ul>
-<li>空间复杂度O(1)表示数组排序时，仅采用了一个额外的辅助单元进行数组元素的交换；O(N)一般表示采用了长度为N的辅助数组；</li>
-<li>希尔排序的平均时间复杂度主要受到增量序列与数组长度的影响，当使用<code>h = h * 3 + 1</code>，如：1、4、13、40、121……时，平均时间复杂度为O(N^(3/2))；当增量序列为1时，退化成插入排序，时间复杂度为O(N^2)；</li>
-<li>当排序数组为降序而按升序排序时，快速排序退化成冒泡排序，时间复杂度为O(N^2)；</li>
-<li>快速排序使用原地排序的算法时，空间复杂度是O(1)，真正耗空间的是递归调用。最优的情况下空间复杂度为O(logN)，即每次切分都平分数组；最坏的情况下空间复杂度为O(N)，即退化成冒泡排序的情况；</li>
-<li>希尔排序是改进的插入排序，堆排序属于另一种形式的选择排序；</li>
-</ul>
-<h2 id="2-速度测试"><a href="#2-速度测试" class="headerlink" title="2. 速度测试"></a>2. 速度测试</h2><p>以下为对100个长度为10000的整型数组进行排序的测试，数据由0到100000中随机选取：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BubbleSort 耗费 17833 ms  经检查，测试数组全部有序</span><br><span class="line">SelectionSort 耗费 3904 ms  经检查，测试数组全部有序</span><br><span class="line">InsertionSort 耗费 4726 ms  经检查，测试数组全部有序</span><br><span class="line">InsertionSortEX 耗费 2223 ms  经检查，测试数组全部有序</span><br><span class="line">ShellSort 耗费 131 ms  经检查，测试数组全部有序</span><br><span class="line">TopDownMergeSort 耗费 130 ms  经检查，测试数组全部有序</span><br><span class="line">BottomUpMergeSort 耗费 112 ms  经检查，测试数组全部有序</span><br><span class="line">QuickSort 耗费 107 ms  经检查，测试数组全部有序</span><br><span class="line">HeapSort 耗费 115 ms  经检查，测试数组全部有序</span><br></pre></td></tr></table></figure></p>
-<p>说明：</p>
-<ul>
-<li>下面的测试使用的排序算法都是最原始的实现，没有任何优化；</li>
-<li>原始的插入排序使用一一交换的方式把元素往后移动，为体现出与选择排序的差别，补充了现在一般的插入排序实现(InsertionSortEX)，元素直接后移而不是一一交换；</li>
-<li>归并排序有两种实现：自顶向下归并排序(TopDownMergeSort)和自底向上归并排序(BottomUpMergeSort)。自顶向下使用递归（化整为零），自底向上使用迭代（循序渐进）；</li>
-<li>测试速度因设备不同而异。</li>
-</ul>
-<h2 id="3-补充"><a href="#3-补充" class="headerlink" title="3. 补充"></a>3. 补充</h2><p>最后附上其中七大排序算法(除了基数排序)的Java源码实现：<a href="https://github.com/Kanarienvogels/sort-test" target="_blank" rel="noopener">Kanarien - Git Hub</a></p>
-<hr>
-<blockquote>
-<p>Copyright © 2018, GDUT CSCW back-end Kanarien, All Rights Reserved</p>
-</blockquote>
-
+        
+          <a class="article-more-a" href="/2018/09/10/八大排序算法比较/#more">more >></a>
+        
       
 
       
@@ -766,11 +747,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -976,15 +957,15 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -1362,6 +1343,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
@@ -1371,14 +1360,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1394,6 +1375,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring</a>
               </li>
              
@@ -1403,10 +1388,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
