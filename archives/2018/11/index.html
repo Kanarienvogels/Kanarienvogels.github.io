@@ -6,22 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://kanarien.cn">
-  <title>Nginx搭配Tomcat作Web服务器 | 无悔的博客小屋</title>
+  <title>Archives: 2018/11 | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0. 前言Nginx搭配Tomcat作Web服务器是项目部署在服务器上最常见的方式，为什么要使用Nginx呢？理由有不少，下面来分条讲讲：">
-<meta name="keywords" content="Nginx,Tomcat">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Nginx搭配Tomcat作Web服务器">
-<meta property="og:url" content="http://kanarien.cn/2018/07/22/Nginx搭配Tomcat作Web服务器/index.html">
+  <meta name="keywords" content="Kanarien">
+<meta property="og:type" content="website">
+<meta property="og:title" content="无悔的博客小屋">
+<meta property="og:url" content="http://kanarien.cn/archives/2018/11/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
-<meta property="og:description" content="0. 前言Nginx搭配Tomcat作Web服务器是项目部署在服务器上最常见的方式，为什么要使用Nginx呢？理由有不少，下面来分条讲讲：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-007.jpg">
-<meta property="og:updated_time" content="2018-07-30T12:44:35.483Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nginx搭配Tomcat作Web服务器">
-<meta name="twitter:description" content="0. 前言Nginx搭配Tomcat作Web服务器是项目部署在服务器上最常见的方式，为什么要使用Nginx呢？理由有不少，下面来分条讲讲：">
-<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-007.jpg">
+<meta name="twitter:title" content="无悔的博客小屋">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
   
@@ -165,260 +159,120 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Nginx搭配Tomcat作Web服务器" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-		
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Nginx搭配Tomcat作Web服务器
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/11/27/5种网络IO模型和Java IO/" class="archive-article-date">
+  	<time datetime="2018-11-27T14:33:49.953Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-27</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/11/27/5种网络IO模型和Java IO/">5种网络IO模型和Java IO</a>
     </h1>
   
 
-		
-        
-        <a href="/2018/07/22/Nginx搭配Tomcat作Web服务器/" class="archive-article-date">
-  	<time datetime="2018-07-22T13:11:28.690Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-22</time>
-</a>
-        
-		
-		<span class="archive-article-date">
-			阅读量 <span id="busuanzi_value_page_pv"></span>
-		</span>
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-007.jpg" alt="动漫美图"></p>
-<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>Nginx搭配Tomcat作Web服务器是项目部署在服务器上最常见的方式，为什么要使用Nginx呢？理由有不少，下面来分条讲讲：<br><a id="more"></a></p>
-<h2 id="1-Nginx简介"><a href="#1-Nginx简介" class="headerlink" title="1. Nginx简介"></a>1. Nginx简介</h2><p>Nginx是一款轻量级的Web 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器，并在一个BSD-like 协议下发行。其特点是占有内存少，并发能力强，事实上nginx的并发能力确实在同类型的网页服务器中表现较好，中国大陆使用nginx网站用户有：百度、京东、新浪、网易、腾讯、淘宝等。</p>
-<p>Nginx是由伊戈尔·赛索耶夫为俄罗斯访问量第二的Rambler.ru站点（俄文：Рамблер）开发的，第一个公开版本0.1.0发布于2004年10月4日。</p>
-<h2 id="2-为什么要使用Nginx？"><a href="#2-为什么要使用Nginx？" class="headerlink" title="2. 为什么要使用Nginx？"></a>2. 为什么要使用Nginx？</h2><ol>
-<li>提供静态内容服务，处理静态文件是比一般的Web服务器（如Apache、Tomcat）更稳妥并更快速的；</li>
-<li>处理高性能和高效率的并发，占用资源更少；</li>
-<li>可定制负载均衡策略，提高服务器的负荷能力。</li>
-<li>使处理HTTP请求与相应与实际的业务分离。</li>
-</ol>
-<h2 id="3-Nginx的特性"><a href="#3-Nginx的特性" class="headerlink" title="3. Nginx的特性"></a>3. Nginx的特性</h2><p>Nginx的特性主要讲下下面的三个：</p>
-<ol>
-<li>反向代理</li>
-<li>负载均衡</li>
-<li>IO处理</li>
-</ol>
-<p>另外，还可以参考：<a href="http://blog.csdn.net/zhongguozhichuang/article/details/52816887" target="_blank" rel="noopener">Nginx的一些基本功能 - CSDN博客</a></p>
-<h3 id="3-1-反向代理"><a href="#3-1-反向代理" class="headerlink" title="3.1 反向代理"></a>3.1 反向代理</h3><p><strong>反向代理(Reverse Proxy)</strong>方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</p>
-<p><strong>反向代理是负载均衡的实现方式之一</strong>。</p>
-<p>一个反向代理的服务器抛开所有业务层的东西，只单纯的接下请求再返回，即<strong>分离IO和业务</strong>，能够极大限度的使用服务器的性能。</p>
-<h3 id="3-2-负载均衡"><a href="#3-2-负载均衡" class="headerlink" title="3.2 负载均衡"></a>3.2 负载均衡</h3><p><strong>负载均衡(Load Balance)</strong>，其意思就是<strong>分摊到多个操作单元上</strong>进行执行。建立在现有网络结构之上，它提供了一种廉价有效透明的方法扩展网络设备和服务器的带宽、增加吞吐量、加强网络数据处理能力、提高网络的灵活性和可用性。</p>
-<p>具体体现：</p>
-<ul>
-<li>在Nginx设置文件中的upstream模块设置好各节点的权重以分发请求。</li>
-<li>反向代理</li>
-</ul>
-<h3 id="3-3-IO处理"><a href="#3-3-IO处理" class="headerlink" title="3.3 IO处理"></a>3.3 IO处理</h3><p>对于后端是动态服务来说，比如Java和PHP。这类服务器（如JBoss和PHP-FPM）的IO处理能力往往不高。Nginx有个好处是它会把Request在读取完整之前buffer住，这样交给后端的就是一个完整的HTTP请求，从而提高后端的效率，而不是断断续续的传递（互联网上连接速度一般比较慢）。同样，Nginx也可以把response给buffer住，同样也是减轻后端的压力。</p>
-<p>引用于 <a href="https://www.zhihu.com/question/19761434" target="_blank" rel="noopener">Nginx 反向代理为什么可以提高网站性能？</a></p>
-<h2 id="4-Nginx的下载、配置、使用"><a href="#4-Nginx的下载、配置、使用" class="headerlink" title="4. Nginx的下载、配置、使用"></a>4. Nginx的下载、配置、使用</h2><p>具体的下载、配置、使用可以参考以下网站：</p>
-<ul>
-<li><a href="https://www.cnblogs.com/naaoveGIS/p/5478208.html" target="_blank" rel="noopener">Nginx与tomcat组合的简单使用 - 李晓晖 - 博客园</a></li>
-<li><a href="http://blog.csdn.net/shimiso/article/details/8690897" target="_blank" rel="noopener">Nginx的介绍和使用 - CSDN博客</a></li>
-<li><a href="https://lufficc.com/blog/configure-nginx-as-a-web-server" target="_blank" rel="noopener">你真的了解如何将 Nginx 配置为Web服务器吗 聪聪的个人网站</a></li>
-</ul>
-<blockquote>
-<p>Copyright © 2018, CSCW back-end Kanarien, All Rights Reserved</p>
-</blockquote>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>大好きだよ~<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/wxpay.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tomcat</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/知识漫谈//" class="article-tag-list-link color5">知识漫谈</a>
+        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://kanarien.cn/2018/07/22/Nginx搭配Tomcat作Web服务器/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
   
-<nav id="article-nav">
-  
-    <a href="/2018/07/24/Spring Boot2.x整合BeetlSQL的一次实践经验/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Spring Boot2.x整合BeetlSQL2.x的一次实践经验
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/07/22/MongoDB数据的导出与导入/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">MongoDB数据的导出与导入（Unix 命令）</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/11/27/regular-expression-matching算法讲解/" class="archive-article-date">
+  	<time datetime="2018-11-27T13:50:52.394Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-27</time>
+</a>
         </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Nginx简介"><span class="toc-number">2.</span> <span class="toc-text">1. Nginx简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-为什么要使用Nginx？"><span class="toc-number">3.</span> <span class="toc-text">2. 为什么要使用Nginx？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Nginx的特性"><span class="toc-number">4.</span> <span class="toc-text">3. Nginx的特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-反向代理"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 反向代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-负载均衡"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 负载均衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-IO处理"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 IO处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Nginx的下载、配置、使用"><span class="toc-number">5.</span> <span class="toc-text">4. Nginx的下载、配置、使用</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/11/27/regular-expression-matching算法讲解/">regular-expression-matching算法讲解</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
         </div>
-        
-    </div>
-</aside>
-
-
-
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
   
   
+    </div></section>
   
 
-  
-
-  
-	
-	
-	
-  
-
+    
 
 
           </div>
@@ -445,8 +299,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

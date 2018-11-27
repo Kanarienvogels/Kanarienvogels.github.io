@@ -17,7 +17,7 @@
 <meta property="og:description" content="1. 排序算法比较表格   排序算法 平均时间复杂度 最坏时间复杂度 空间复杂度 是否稳定     冒泡排序(BubbleSort) O(N^2) O(N^2) O(1) 是   选择排序(SelectionSort) O(N^2) O(N^2) O(1) 不是   插入排序(InsertionSort) O(N^2) O(N^2) O(1) 是   希尔排序(ShellSort) O(N^(3">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-025.jpg">
-<meta property="og:updated_time" content="2018-09-10T14:59:55.609Z">
+<meta property="og:updated_time" content="2018-11-27T15:17:11.509Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="八大排序算法比较">
 <meta name="twitter:description" content="1. 排序算法比较表格   排序算法 平均时间复杂度 最坏时间复杂度 空间复杂度 是否稳定     冒泡排序(BubbleSort) O(N^2) O(N^2) O(1) 是   选择排序(SelectionSort) O(N^2) O(N^2) O(1) 不是   插入排序(InsertionSort) O(N^2) O(N^2) O(1) 是   希尔排序(ShellSort) O(N^(3">
@@ -255,8 +255,8 @@
 </tr>
 <tr>
 <td>基数排序(RadixSort)</td>
-<td>O(M * N)</td>
-<td>O(M * N)</td>
+<td>O (Nlog(r)m)</td>
+<td>O (Nlog(r)m)</td>
 <td>O(N)</td>
 <td>是</td>
 </tr>
@@ -270,14 +270,15 @@
 <li>当排序数组为降序而按升序排序时，快速排序退化成冒泡排序，时间复杂度为O(N^2)；</li>
 <li>快速排序使用原地排序的算法时，空间复杂度是O(1)，真正耗空间的是递归调用。最优的情况下空间复杂度为O(logN)，即每次切分都平分数组；最坏的情况下空间复杂度为O(N)，即退化成冒泡排序的情况；</li>
 <li>希尔排序是改进的插入排序，堆排序属于另一种形式的选择排序；</li>
+<li>基数排序（radix sort）属于“分配式排序”（distribution sort），又称“桶子法”（bucket sort）或bin sort，顾名思义，它是透过键值的部份资讯，将要排序的元素分配至某些“桶”中，藉以达到排序的作用，基数排序法是属于稳定性的排序，其时间复杂度为O (nlog(r)m)，其中r为所采取的基数，而m为堆数，在某些时候，基数排序法的效率高于其它的稳定性排序法。</li>
 </ul>
 <h2 id="2-速度测试"><a href="#2-速度测试" class="headerlink" title="2. 速度测试"></a>2. 速度测试</h2><p>以下为对100个长度为10000的整型数组进行排序的测试，数据由0到100000中随机选取：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BubbleSort 耗费 17833 ms  经检查，测试数组全部有序</span><br><span class="line">SelectionSort 耗费 3904 ms  经检查，测试数组全部有序</span><br><span class="line">InsertionSort 耗费 4726 ms  经检查，测试数组全部有序</span><br><span class="line">InsertionSortEX 耗费 2223 ms  经检查，测试数组全部有序</span><br><span class="line">ShellSort 耗费 131 ms  经检查，测试数组全部有序</span><br><span class="line">TopDownMergeSort 耗费 130 ms  经检查，测试数组全部有序</span><br><span class="line">BottomUpMergeSort 耗费 112 ms  经检查，测试数组全部有序</span><br><span class="line">QuickSort 耗费 107 ms  经检查，测试数组全部有序</span><br><span class="line">HeapSort 耗费 115 ms  经检查，测试数组全部有序</span><br></pre></td></tr></table></figure></p>
 <p>说明：</p>
 <ul>
-<li>下面的测试使用的排序算法都是最原始的实现，没有任何优化；</li>
+<li>测试使用的排序算法都是最原始的实现，希尔排序使用增量序列<code>h = h * 3 + 1</code>；</li>
 <li>原始的插入排序使用一一交换的方式把元素往后移动，为体现出与选择排序的差别，补充了现在一般的插入排序实现(InsertionSortEX)，元素直接后移而不是一一交换；</li>
-<li>归并排序有两种实现：自顶向下归并排序(TopDownMergeSort)和自底向上归并排序(BottomUpMergeSort)。自顶向下使用递归（化整为零），自底向上使用迭代（循序渐进）；</li>
-<li>测试速度因设备不同而异。</li>
+<li>归并排序有两种实现：自顶向下归并排序(TopDownMergeSort)和自底向上归并排序(BottomUpMergeSort)。自顶向下使用递归（化整为零），自底向上使用迭代（循序渐进）。显然，循环比递归快；</li>
+<li>测试速度因环境不同而异。</li>
 </ul>
 <h2 id="3-补充"><a href="#3-补充" class="headerlink" title="3. 补充"></a>3. 补充</h2><p>最后附上其中七大排序算法(除了基数排序)的Java源码实现：<a href="https://github.com/Kanarienvogels/sort-test" target="_blank" rel="noopener">Kanarien - Git Hub</a></p>
 <hr>
@@ -409,6 +410,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2018/11/27/regular-expression-matching算法讲解/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          regular-expression-matching算法讲解
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/09/05/SQL那些值得注意的地方/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">SQL那些值得注意的地方</div>
@@ -471,7 +481,7 @@
     <div id="footer-info">
     	<div class="footer-left">
     		&copy; 2018 Kanarien&nbsp;&nbsp;
-			<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 		<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
     	</div>
       	<div class="footer-right">
@@ -565,23 +575,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -594,6 +596,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -782,5 +792,5 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":120,"height":120},"mobile":{"show":true},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":120,"height":120},"mobile":{"show":false},"log":false});</script></body>
 </html>

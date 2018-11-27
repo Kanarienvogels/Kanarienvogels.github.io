@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://kanarien.cn">
-  <title>Nginx搭配Tomcat作Web服务器 | 无悔的博客小屋</title>
+  <title>regular-expression-matching算法讲解 | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0. 前言Nginx搭配Tomcat作Web服务器是项目部署在服务器上最常见的方式，为什么要使用Nginx呢？理由有不少，下面来分条讲讲：">
-<meta name="keywords" content="Nginx,Tomcat">
+  <meta name="description" content="0. 前言LeetCode的一道算法题：正则字符串匹配。涉及了比较复杂的递归和动态规划算法，特此记录。 1. 题目regular-expression-matching(正则字符串匹配) Implement regular expression matching with support for’.’and’*’. ‘.’ Matches any single character.‘*’ Mat">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Nginx搭配Tomcat作Web服务器">
-<meta property="og:url" content="http://kanarien.cn/2018/07/22/Nginx搭配Tomcat作Web服务器/index.html">
+<meta property="og:title" content="regular-expression-matching算法讲解">
+<meta property="og:url" content="http://kanarien.cn/2018/11/27/regular-expression-matching算法讲解/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
-<meta property="og:description" content="0. 前言Nginx搭配Tomcat作Web服务器是项目部署在服务器上最常见的方式，为什么要使用Nginx呢？理由有不少，下面来分条讲讲：">
+<meta property="og:description" content="0. 前言LeetCode的一道算法题：正则字符串匹配。涉及了比较复杂的递归和动态规划算法，特此记录。 1. 题目regular-expression-matching(正则字符串匹配) Implement regular expression matching with support for’.’and’*’. ‘.’ Matches any single character.‘*’ Mat">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-007.jpg">
-<meta property="og:updated_time" content="2018-07-30T12:44:35.483Z">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-026.jpg">
+<meta property="og:updated_time" content="2018-11-27T14:53:15.144Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nginx搭配Tomcat作Web服务器">
-<meta name="twitter:description" content="0. 前言Nginx搭配Tomcat作Web服务器是项目部署在服务器上最常见的方式，为什么要使用Nginx呢？理由有不少，下面来分条讲讲：">
-<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-007.jpg">
+<meta name="twitter:title" content="regular-expression-matching算法讲解">
+<meta name="twitter:description" content="0. 前言LeetCode的一道算法题：正则字符串匹配。涉及了比较复杂的递归和动态规划算法，特此记录。 1. 题目regular-expression-matching(正则字符串匹配) Implement regular expression matching with support for’.’and’*’. ‘.’ Matches any single character.‘*’ Mat">
+<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-026.jpg">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
   
@@ -165,7 +165,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Nginx搭配Tomcat作Web服务器" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-regular-expression-matching算法讲解" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -173,14 +173,14 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Nginx搭配Tomcat作Web服务器
+      regular-expression-matching算法讲解
     </h1>
   
 
 		
         
-        <a href="/2018/07/22/Nginx搭配Tomcat作Web服务器/" class="archive-article-date">
-  	<time datetime="2018-07-22T13:11:28.690Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-22</time>
+        <a href="/2018/11/27/regular-expression-matching算法讲解/" class="archive-article-date">
+  	<time datetime="2018-11-27T13:50:52.394Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-27</time>
 </a>
         
 		
@@ -192,42 +192,96 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-007.jpg" alt="动漫美图"></p>
-<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>Nginx搭配Tomcat作Web服务器是项目部署在服务器上最常见的方式，为什么要使用Nginx呢？理由有不少，下面来分条讲讲：<br><a id="more"></a></p>
-<h2 id="1-Nginx简介"><a href="#1-Nginx简介" class="headerlink" title="1. Nginx简介"></a>1. Nginx简介</h2><p>Nginx是一款轻量级的Web 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器，并在一个BSD-like 协议下发行。其特点是占有内存少，并发能力强，事实上nginx的并发能力确实在同类型的网页服务器中表现较好，中国大陆使用nginx网站用户有：百度、京东、新浪、网易、腾讯、淘宝等。</p>
-<p>Nginx是由伊戈尔·赛索耶夫为俄罗斯访问量第二的Rambler.ru站点（俄文：Рамблер）开发的，第一个公开版本0.1.0发布于2004年10月4日。</p>
-<h2 id="2-为什么要使用Nginx？"><a href="#2-为什么要使用Nginx？" class="headerlink" title="2. 为什么要使用Nginx？"></a>2. 为什么要使用Nginx？</h2><ol>
-<li>提供静态内容服务，处理静态文件是比一般的Web服务器（如Apache、Tomcat）更稳妥并更快速的；</li>
-<li>处理高性能和高效率的并发，占用资源更少；</li>
-<li>可定制负载均衡策略，提高服务器的负荷能力。</li>
-<li>使处理HTTP请求与相应与实际的业务分离。</li>
-</ol>
-<h2 id="3-Nginx的特性"><a href="#3-Nginx的特性" class="headerlink" title="3. Nginx的特性"></a>3. Nginx的特性</h2><p>Nginx的特性主要讲下下面的三个：</p>
-<ol>
-<li>反向代理</li>
-<li>负载均衡</li>
-<li>IO处理</li>
-</ol>
-<p>另外，还可以参考：<a href="http://blog.csdn.net/zhongguozhichuang/article/details/52816887" target="_blank" rel="noopener">Nginx的一些基本功能 - CSDN博客</a></p>
-<h3 id="3-1-反向代理"><a href="#3-1-反向代理" class="headerlink" title="3.1 反向代理"></a>3.1 反向代理</h3><p><strong>反向代理(Reverse Proxy)</strong>方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</p>
-<p><strong>反向代理是负载均衡的实现方式之一</strong>。</p>
-<p>一个反向代理的服务器抛开所有业务层的东西，只单纯的接下请求再返回，即<strong>分离IO和业务</strong>，能够极大限度的使用服务器的性能。</p>
-<h3 id="3-2-负载均衡"><a href="#3-2-负载均衡" class="headerlink" title="3.2 负载均衡"></a>3.2 负载均衡</h3><p><strong>负载均衡(Load Balance)</strong>，其意思就是<strong>分摊到多个操作单元上</strong>进行执行。建立在现有网络结构之上，它提供了一种廉价有效透明的方法扩展网络设备和服务器的带宽、增加吞吐量、加强网络数据处理能力、提高网络的灵活性和可用性。</p>
-<p>具体体现：</p>
-<ul>
-<li>在Nginx设置文件中的upstream模块设置好各节点的权重以分发请求。</li>
-<li>反向代理</li>
-</ul>
-<h3 id="3-3-IO处理"><a href="#3-3-IO处理" class="headerlink" title="3.3 IO处理"></a>3.3 IO处理</h3><p>对于后端是动态服务来说，比如Java和PHP。这类服务器（如JBoss和PHP-FPM）的IO处理能力往往不高。Nginx有个好处是它会把Request在读取完整之前buffer住，这样交给后端的就是一个完整的HTTP请求，从而提高后端的效率，而不是断断续续的传递（互联网上连接速度一般比较慢）。同样，Nginx也可以把response给buffer住，同样也是减轻后端的压力。</p>
-<p>引用于 <a href="https://www.zhihu.com/question/19761434" target="_blank" rel="noopener">Nginx 反向代理为什么可以提高网站性能？</a></p>
-<h2 id="4-Nginx的下载、配置、使用"><a href="#4-Nginx的下载、配置、使用" class="headerlink" title="4. Nginx的下载、配置、使用"></a>4. Nginx的下载、配置、使用</h2><p>具体的下载、配置、使用可以参考以下网站：</p>
-<ul>
-<li><a href="https://www.cnblogs.com/naaoveGIS/p/5478208.html" target="_blank" rel="noopener">Nginx与tomcat组合的简单使用 - 李晓晖 - 博客园</a></li>
-<li><a href="http://blog.csdn.net/shimiso/article/details/8690897" target="_blank" rel="noopener">Nginx的介绍和使用 - CSDN博客</a></li>
-<li><a href="https://lufficc.com/blog/configure-nginx-as-a-web-server" target="_blank" rel="noopener">你真的了解如何将 Nginx 配置为Web服务器吗 聪聪的个人网站</a></li>
-</ul>
+        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-026.jpg" alt="动漫美图"></p>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>LeetCode的一道算法题：正则字符串匹配。涉及了比较复杂的递归和动态规划算法，特此记录。</p>
+<h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1. 题目"></a>1. 题目</h2><p><strong>regular-expression-matching(正则字符串匹配)</strong></p>
+<p>Implement regular expression matching with support for’.’and’*’.</p>
+<p>‘.’ Matches any single character.<br>‘*’ Matches zero or more of the preceding element.</p>
+<a id="more"></a>
+<p>The matching should cover the entire input string (not partial).</p>
+<p>The function prototype should be:<br>bool isMatch(const char <em>s, const char </em>p)</p>
 <blockquote>
-<p>Copyright © 2018, CSCW back-end Kanarien, All Rights Reserved</p>
+<p>Some examples:<br>isMatch(“aa”,”a”) → false<br>isMatch(“aa”,”aa”) → true<br>isMatch(“aaa”,”aa”) → false<br>isMatch(“aa”, “a<em>“) → true<br>isMatch(“aa”, “.</em>“) → true<br>isMatch(“ab”, “.<em>“) → true<br>isMatch(“aab”, “c\</em>a*b”) → true</p>
+</blockquote>
+<h2 id="2-分类递归"><a href="#2-分类递归" class="headerlink" title="2. 分类递归"></a>2. 分类递归</h2><h3 id="2-1-思路"><a href="#2-1-思路" class="headerlink" title="2.1 思路"></a>2.1 思路</h3><p>最直观的做法就是根据s和p的情况进行分类匹配，<br>然后递归判断，每次递归视情况匹配p的前1或2个字符。</p>
+<p>为使分类清晰，这里根据p字符串的长度进行分类：</p>
+<ol>
+<li>当p.length = 0，返回s.isEmpty()</li>
+<li>当p.length = 1(说明没有”*”)，判断s时候也是长度为1且当前字符能够匹配</li>
+<li>当p.length &gt; 1，且p[1] != “*”(不含星号的情况)<br>若s为空，返回false，否则就是单一字符进行匹配,递归判断s和p的下一个字符。</li>
+<li>当p.length &gt; 1，且p[1] = “*”(含星号的情况)，<br>则应该把可能重复的s字符逐一匹配然后去掉，使用一个循环，<br>由于星号的特性，要考虑到当前p的前两个字符可能匹配不到任何的s，<br>所以要先判断下isMatch(s, p.substring(2))，即当前p的前两个字符不进行任何匹配。<br>然后再是逐一判断s[0]与p[0]是否相等，是则s取下一字符，否则结束循环。<br>循环结束后，说明p的前两个字符已经匹配完毕，p取后面的字符。</li>
+</ol>
+<h3 id="2-2-实现"><a href="#2-2-实现" class="headerlink" title="2.2 实现"></a>2.2 实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">private static boolean isMatch_recursion(String s, String p) &#123;</span><br><span class="line">    if (p.isEmpty()) &#123;</span><br><span class="line">        return s.isEmpty();</span><br><span class="line">    &#125; else if (p.length() == 1) &#123;</span><br><span class="line">        return s.length() == 1 &amp;&amp; (p.equals(s) || p.equals(&quot;.&quot;));</span><br><span class="line">    &#125; else if (p.charAt(1) != &apos;*&apos;) &#123;</span><br><span class="line">        if (s.isEmpty()) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return (s.charAt(0) == p.charAt(0) || p.charAt(0) == &apos;.&apos;)</span><br><span class="line">            &amp;&amp; isMatch_recursion(s.substring(1, s.length()), p.substring(1, p.length()));</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        while (!s.isEmpty() &amp;&amp; (s.charAt(0) == p.charAt(0) || p.charAt(0) == &apos;.&apos;)) &#123;</span><br><span class="line">            if (isMatch_recursion(s, p.substring(2, p.length()))) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">            s = s.substring(1, s.length());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return isMatch_recursion(s, p.substring(2, p.length()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-动态规划"><a href="#3-动态规划" class="headerlink" title="3. 动态规划"></a>3. 动态规划</h2><h3 id="3-1-思路"><a href="#3-1-思路" class="headerlink" title="3.1 思路"></a>3.1 思路</h3><p>设dp[i][j]为字符串s前i个字符与正则式p前j个字符的匹配结果，记m = s.length()，n = p.length()，因此所求最终结果为dp[m][n]。</p>
+<p><strong>初始状态</strong>：<br>显然,dp[0][0] = true，<br>第一行表示s = “” 去匹配全部p，只需要注意’*‘。当p[i - 1] = ‘*’ &amp;&amp; dp[0][i - 1] = true时dp[0][i + 1] = true，<br>第一列表示p = “” 去匹配全部s，显然全为false。</p>
+<p><strong>状态转移方程</strong>：</p>
+<ul>
+<li>如果 p[j] == str[i] || pattern[j] == ‘.’, 此时dp[i][j] = dp[i-1][j-1];</li>
+<li>如果 p[j] == ‘*’<br>分两种情况:<ul>
+<li>1: 如果p[j-1] != str[i] &amp;&amp; p[j-1] != ‘.’, 此时dp[i][j] = dp[i][j-2] //*前面字符匹配0次</li>
+<li>2: 如果p[j-1] == str[i] || p[j-1] == ‘.’<br>   此时dp[i][j] = dp[i][j-2] // *前面字符匹配0次<br>   或者 dp[i][j] = dp[i][j-1] // *前面字符匹配1次<br>   或者 dp[i][j] = dp[i-1][j] // *前面字符匹配多次</li>
+</ul>
+</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">s\p</th>
+<th style="text-align:center">“”</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">*</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">*</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">“”</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">a</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">a</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">a</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">a</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-2-实现"><a href="#3-2-实现" class="headerlink" title="3.2 实现"></a>3.2 实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">private static boolean isMatch_dp(String s, String p) &#123;</span><br><span class="line">    if (s == null || p == null) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    int m = s.length(), n = p.length();</span><br><span class="line">    boolean[][] dp = new boolean[m + 1][n + 1];</span><br><span class="line">    dp[0][0] = true;</span><br><span class="line">    for (int i = 1; i &lt; n; i++) &#123; // 初始化第一行，p匹配s = &quot;&quot;</span><br><span class="line">        if (p.charAt(i) == &apos;*&apos; &amp;&amp; dp[0][i - 1]) &#123;</span><br><span class="line">            dp[0][i + 1] = true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = 1; i &lt;= m; i++) &#123;</span><br><span class="line">        for (int j = 1; j &lt;= n; j++) &#123;</span><br><span class="line">            // p[j - 1]不是&quot;*&quot;的情况，单字符匹配</span><br><span class="line">            if (p.charAt(j - 1) == &apos;.&apos; || p.charAt(j - 1) == s.charAt(i - 1)) &#123;</span><br><span class="line">                dp[i][j] = dp[i - 1][j - 1];</span><br><span class="line">            &#125;</span><br><span class="line">            // p[j - 1]是&quot;*&quot;的情况，则要判断p[j - 2]是否匹配当前s[i - 1]</span><br><span class="line">            // 若不匹配，则p[j - 1]匹配空字符串</span><br><span class="line">            // 否则，有三种情况：</span><br><span class="line">            //   1.p[j - 1]匹配空字符串；</span><br><span class="line">            //   2.p[j - 1]匹配单一s[i - 1]字符；</span><br><span class="line">            //   3.p[j - 1]匹配多个s[i - 1]字符</span><br><span class="line">            if (p.charAt(j - 1) == &apos;*&apos;) &#123;</span><br><span class="line">                if (p.charAt(j - 2) != s.charAt(i - 1) &amp;&amp; p.charAt(j - 2) != &apos;.&apos;) &#123;</span><br><span class="line">                    dp[i][j] = dp[i][j - 2];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    dp[i][j] = dp[i][j - 2] || dp[i][j - 1] || dp[i - 1][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[m][n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>Copyright © 2018, GDUT CSCW back-end Kanarien, All Rights Reserved</p>
 </blockquote>
 
       
@@ -273,11 +327,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tomcat</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -289,7 +339,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/知识漫谈//" class="article-tag-list-link color5">知识漫谈</a>
+        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
         		</li>
       		
 		</ul>
@@ -344,7 +394,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://kanarien.cn/2018/07/22/Nginx搭配Tomcat作Web服务器/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://kanarien.cn/2018/11/27/regular-expression-matching算法讲解/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -358,18 +408,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/24/Spring Boot2.x整合BeetlSQL的一次实践经验/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/11/27/5种网络IO模型和Java IO/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Spring Boot2.x整合BeetlSQL2.x的一次实践经验
+          5种网络IO模型和Java IO
         
       </div>
     </a>
   
   
-    <a href="/2018/07/22/MongoDB数据的导出与导入/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">MongoDB数据的导出与导入（Unix 命令）</div>
+    <a href="/2018/09/10/八大排序算法比较/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">八大排序算法比较</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -396,7 +446,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Nginx简介"><span class="toc-number">2.</span> <span class="toc-text">1. Nginx简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-为什么要使用Nginx？"><span class="toc-number">3.</span> <span class="toc-text">2. 为什么要使用Nginx？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Nginx的特性"><span class="toc-number">4.</span> <span class="toc-text">3. Nginx的特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-反向代理"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 反向代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-负载均衡"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 负载均衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-IO处理"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 IO处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Nginx的下载、配置、使用"><span class="toc-number">5.</span> <span class="toc-text">4. Nginx的下载、配置、使用</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-题目"><span class="toc-number">2.</span> <span class="toc-text">1. 题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-分类递归"><span class="toc-number">3.</span> <span class="toc-text">2. 分类递归</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-思路"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-实现"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-动态规划"><span class="toc-number">4.</span> <span class="toc-text">3. 动态规划</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-思路"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-实现"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 实现</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

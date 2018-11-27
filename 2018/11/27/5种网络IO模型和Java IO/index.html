@@ -6,22 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://kanarien.cn">
-  <title>Nginx搭配Tomcat作Web服务器 | 无悔的博客小屋</title>
+  <title>5种网络IO模型和Java IO | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0. 前言Nginx搭配Tomcat作Web服务器是项目部署在服务器上最常见的方式，为什么要使用Nginx呢？理由有不少，下面来分条讲讲：">
-<meta name="keywords" content="Nginx,Tomcat">
+  <meta name="description" content="0. 前言关于网络IO的理论知识比较凌乱，理解起来有难度，特此梳理。 1. 操作系统中的IO处理当我们需要理解关于 IO 的时候，最好还是理解操作系统是如何处理IO的。 1.1 操作系统如何处理IOLinux 会把所有的外部设备都看成一个文件来操作，对外部设备的操作可以看成是对文件的操作。">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Nginx搭配Tomcat作Web服务器">
-<meta property="og:url" content="http://kanarien.cn/2018/07/22/Nginx搭配Tomcat作Web服务器/index.html">
+<meta property="og:title" content="5种网络IO模型和Java IO">
+<meta property="og:url" content="http://kanarien.cn/2018/11/27/5种网络IO模型和Java IO/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
-<meta property="og:description" content="0. 前言Nginx搭配Tomcat作Web服务器是项目部署在服务器上最常见的方式，为什么要使用Nginx呢？理由有不少，下面来分条讲讲：">
+<meta property="og:description" content="0. 前言关于网络IO的理论知识比较凌乱，理解起来有难度，特此梳理。 1. 操作系统中的IO处理当我们需要理解关于 IO 的时候，最好还是理解操作系统是如何处理IO的。 1.1 操作系统如何处理IOLinux 会把所有的外部设备都看成一个文件来操作，对外部设备的操作可以看成是对文件的操作。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-007.jpg">
-<meta property="og:updated_time" content="2018-07-30T12:44:35.483Z">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-027.jpg">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E9%98%BB%E5%A1%9EIO%E6%A8%A1%E5%9E%8B.jpg">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E9%9D%9E%E9%98%BB%E5%A1%9EIO%E6%A8%A1%E5%9E%8B.jpg">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8IO%E6%A8%A1%E5%9E%8B.jpg">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E4%BF%A1%E5%8F%B7%E9%A9%B1%E5%8A%A8IO%E6%A8%A1%E5%9E%8B.jpg">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%BC%82%E6%AD%A5IO%E6%A8%A1%E5%9E%8B.jpg">
+<meta property="og:updated_time" content="2018-11-27T14:48:11.090Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nginx搭配Tomcat作Web服务器">
-<meta name="twitter:description" content="0. 前言Nginx搭配Tomcat作Web服务器是项目部署在服务器上最常见的方式，为什么要使用Nginx呢？理由有不少，下面来分条讲讲：">
-<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-007.jpg">
+<meta name="twitter:title" content="5种网络IO模型和Java IO">
+<meta name="twitter:description" content="0. 前言关于网络IO的理论知识比较凌乱，理解起来有难度，特此梳理。 1. 操作系统中的IO处理当我们需要理解关于 IO 的时候，最好还是理解操作系统是如何处理IO的。 1.1 操作系统如何处理IOLinux 会把所有的外部设备都看成一个文件来操作，对外部设备的操作可以看成是对文件的操作。">
+<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-027.jpg">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
   
@@ -165,7 +170,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Nginx搭配Tomcat作Web服务器" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-5种网络IO模型和Java IO" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -173,14 +178,14 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Nginx搭配Tomcat作Web服务器
+      5种网络IO模型和Java IO
     </h1>
   
 
 		
         
-        <a href="/2018/07/22/Nginx搭配Tomcat作Web服务器/" class="archive-article-date">
-  	<time datetime="2018-07-22T13:11:28.690Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-22</time>
+        <a href="/2018/11/27/5种网络IO模型和Java IO/" class="archive-article-date">
+  	<time datetime="2018-11-27T14:33:49.953Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-27</time>
 </a>
         
 		
@@ -192,42 +197,83 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-007.jpg" alt="动漫美图"></p>
-<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>Nginx搭配Tomcat作Web服务器是项目部署在服务器上最常见的方式，为什么要使用Nginx呢？理由有不少，下面来分条讲讲：<br><a id="more"></a></p>
-<h2 id="1-Nginx简介"><a href="#1-Nginx简介" class="headerlink" title="1. Nginx简介"></a>1. Nginx简介</h2><p>Nginx是一款轻量级的Web 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器，并在一个BSD-like 协议下发行。其特点是占有内存少，并发能力强，事实上nginx的并发能力确实在同类型的网页服务器中表现较好，中国大陆使用nginx网站用户有：百度、京东、新浪、网易、腾讯、淘宝等。</p>
-<p>Nginx是由伊戈尔·赛索耶夫为俄罗斯访问量第二的Rambler.ru站点（俄文：Рамблер）开发的，第一个公开版本0.1.0发布于2004年10月4日。</p>
-<h2 id="2-为什么要使用Nginx？"><a href="#2-为什么要使用Nginx？" class="headerlink" title="2. 为什么要使用Nginx？"></a>2. 为什么要使用Nginx？</h2><ol>
-<li>提供静态内容服务，处理静态文件是比一般的Web服务器（如Apache、Tomcat）更稳妥并更快速的；</li>
-<li>处理高性能和高效率的并发，占用资源更少；</li>
-<li>可定制负载均衡策略，提高服务器的负荷能力。</li>
-<li>使处理HTTP请求与相应与实际的业务分离。</li>
-</ol>
-<h2 id="3-Nginx的特性"><a href="#3-Nginx的特性" class="headerlink" title="3. Nginx的特性"></a>3. Nginx的特性</h2><p>Nginx的特性主要讲下下面的三个：</p>
+        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-027.jpg" alt="动漫美图"></p>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>关于网络IO的理论知识比较凌乱，理解起来有难度，特此梳理。</p>
+<h2 id="1-操作系统中的IO处理"><a href="#1-操作系统中的IO处理" class="headerlink" title="1. 操作系统中的IO处理"></a>1. 操作系统中的IO处理</h2><p>当我们需要理解关于 IO 的时候，最好还是理解操作系统是如何处理IO的。</p>
+<h3 id="1-1-操作系统如何处理IO"><a href="#1-1-操作系统如何处理IO" class="headerlink" title="1.1 操作系统如何处理IO"></a>1.1 操作系统如何处理IO</h3><p>Linux 会把所有的外部设备都看成一个文件来操作，对外部设备的操作可以看成是对文件的操作。</p>
+<a id="more"></a>
+<p>我们对一个文件的读写，都会通过内核提供的系统调用，内核会给我们返回一个 File Descriptor，这个描述符是一个数字，指向内核的一个结构体，我们应用程序对文件的读写就是对描述符指向的结构体的读写。</p>
+<h3 id="1-2-系统调用是如何完成IO操作"><a href="#1-2-系统调用是如何完成IO操作" class="headerlink" title="1.2 系统调用是如何完成IO操作"></a>1.2 系统调用是如何完成IO操作</h3><p>Linux 会把内存分为 <strong>内核区和用户区</strong>。Linux 的内核区会帮我们管理所有的硬件资源，并且会提供系统调用，我们应用程序的读操作，就会通过系统调用 read 发起一个读操作，这个时候，内核就会创建一个文件描述符，通过驱动向硬件发送读指令，并且把读的数据放在描述符指向的结构体的缓冲区中。当这个数据传到用户区的时候，就完成了一次 IO。</p>
+<p>Linux 系统调用的 read，是一个阻塞函数。这个我们应用程序在发起read系统调用的时候，就必须要阻塞，进程挂起，等待文件描述符的读就绪。</p>
+<p>从上面我们可以知道，应用程序的一个 read系统调用，需要经过：</p>
 <ol>
-<li>反向代理</li>
-<li>负载均衡</li>
-<li>IO处理</li>
+<li>硬件读取文件数据到文件描述符指向的结构体的缓冲区。</li>
+<li>结构体的缓冲区的数据 传输到 用户区。</li>
 </ol>
-<p>另外，还可以参考：<a href="http://blog.csdn.net/zhongguozhichuang/article/details/52816887" target="_blank" rel="noopener">Nginx的一些基本功能 - CSDN博客</a></p>
-<h3 id="3-1-反向代理"><a href="#3-1-反向代理" class="headerlink" title="3.1 反向代理"></a>3.1 反向代理</h3><p><strong>反向代理(Reverse Proxy)</strong>方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</p>
-<p><strong>反向代理是负载均衡的实现方式之一</strong>。</p>
-<p>一个反向代理的服务器抛开所有业务层的东西，只单纯的接下请求再返回，即<strong>分离IO和业务</strong>，能够极大限度的使用服务器的性能。</p>
-<h3 id="3-2-负载均衡"><a href="#3-2-负载均衡" class="headerlink" title="3.2 负载均衡"></a>3.2 负载均衡</h3><p><strong>负载均衡(Load Balance)</strong>，其意思就是<strong>分摊到多个操作单元上</strong>进行执行。建立在现有网络结构之上，它提供了一种廉价有效透明的方法扩展网络设备和服务器的带宽、增加吞吐量、加强网络数据处理能力、提高网络的灵活性和可用性。</p>
-<p>具体体现：</p>
+<h2 id="2-5种网络IO模型"><a href="#2-5种网络IO模型" class="headerlink" title="2. 5种网络IO模型"></a>2. 5种网络IO模型</h2><p>操作系统对网络IO进行处理时，结合上述所讲，有5种模型。</p>
+<p>5种模型介绍</p>
+<h3 id="2-1-阻塞I-O模型"><a href="#2-1-阻塞I-O模型" class="headerlink" title="2.1 阻塞I/O模型"></a>2.1 阻塞I/O模型</h3><p>对于一个套接字上的输入操作，第一步通常涉及等待数据从网络中到达。当所有等待分组到达时，它被复制到内核中的某个缓冲区。第二步就是把数据从内核缓冲区复制到应用程序缓冲区。 好，下面我们以阻塞套接字的recvfrom的的调用图来说明阻塞<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E9%98%BB%E5%A1%9EIO%E6%A8%A1%E5%9E%8B.jpg" alt="阻塞I/O模型"><br>标红的这部分过程就是阻塞，直到阻塞结束recvfrom才能返回。</p>
+<h3 id="2-2-非阻塞I-O模型"><a href="#2-2-非阻塞I-O模型" class="headerlink" title="2.2 非阻塞I/O模型"></a>2.2 非阻塞I/O模型</h3><p>以下这句话很重要：进程把一个套接字设置成非阻塞是在通知内核，当所请求的I/O操作非得把本进程投入睡眠才能完成时，不要把进程投入睡眠，而是返回一个错误。看看非阻塞的套接字的recvfrom操作如何进行<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E9%9D%9E%E9%98%BB%E5%A1%9EIO%E6%A8%A1%E5%9E%8B.jpg" alt="非阻塞I/O模型"><br>可以看出recvfrom总是立即返回。</p>
+<h3 id="2-3-I-O多路复用模型"><a href="#2-3-I-O多路复用模型" class="headerlink" title="2.3 I/O多路复用模型"></a>2.3 I/O多路复用模型</h3><p>虽然I/O多路复用的函数也是阻塞的，但是其与以上两种还是有不同的，I/O多路复用是阻塞在select，epoll这样的系统调用之上，而没有阻塞在真正的I/O系统调用如recvfrom之上。如图<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8IO%E6%A8%A1%E5%9E%8B.jpg" alt="I/O多路复用模型"></p>
+<h3 id="2-4-信号式驱动I-O模型"><a href="#2-4-信号式驱动I-O模型" class="headerlink" title="2.4 信号式驱动I/O模型"></a>2.4 信号式驱动I/O模型</h3><p>用得少<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E4%BF%A1%E5%8F%B7%E9%A9%B1%E5%8A%A8IO%E6%A8%A1%E5%9E%8B.jpg" alt="信号驱动I/O模型"></p>
+<h3 id="2-5-异步I-O模型"><a href="#2-5-异步I-O模型" class="headerlink" title="2.5 异步I/O模型"></a>2.5 异步I/O模型</h3><p>这类函数的工作机制是告知内核启动某个操作，并让内核在整个操作（包括将数据从内核拷贝到用户空间）完成后通知我们。如图：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%BC%82%E6%AD%A5IO%E6%A8%A1%E5%9E%8B.jpg" alt="异步I/O模型"><br>注意红线标记处说明在调用时就可以立马返回，等函数操作完成会通知我们。</p>
+<p>其实前四种I/O模型都是同步I/O操作，他们的区别在于第一阶段，而他们的第二阶段是一样的：在数据从内核复制到应用缓冲区期间（用户空间），进程阻塞于recvfrom调用。相反，异步I/O模型在这两个阶段都要处理。</p>
+<h2 id="3-同步与异步、阻塞与非阻塞"><a href="#3-同步与异步、阻塞与非阻塞" class="headerlink" title="3. 同步与异步、阻塞与非阻塞"></a>3. 同步与异步、阻塞与非阻塞</h2><p>同步与异步同步和异步关注的是<strong>消息通信机制</strong> (synchronous communication/ asynchronous communication)<br>所谓同步，就是在发出一个<em>调用</em>时，在没有得到结果之前，该<em>调用</em>就不返回。但是一旦调用返回，就得到返回值了。换句话说，就是由<em>调用者</em>主动等待这个<em>调用</em>的结果。而异步则是相反，<em>调用</em>在发出之后，这个调用就直接返回了，所以没有返回结果。换句话说，当一个异步过程调用发出后，调用者不会立刻得到结果。而是在<em>调用</em>发出后，<em>被调用者</em>通过状态、通知来通知调用者，或通过回调函数处理这个调用。典型的异步编程模型比如Node.js</p>
+<p>举个通俗的例子：你打电话问书店老板有没有《分布式系统》这本书，如果是同步通信机制，书店老板会说，你稍等，”我查一下”，然后开始查啊查，等查好了（可能是5秒，也可能是一天）告诉你结果（返回结果）。而异步通信机制，书店老板直接告诉你我查一下啊，查好了打电话给你，然后直接挂电话了（不返回结果）。然后查好了，他会主动打电话给你。在这里老板通过“回电”这种方式来回调。</p>
+<p>阻塞与非阻塞阻塞和非阻塞关注的是程序在<strong>等待调用结果（消息，返回值）时的状态</strong>.<br>阻塞调用是指调用结果返回之前，当前线程会被挂起。调用线程只有在得到结果之后才会返回。非阻塞调用指在不能立刻得到结果之前，该调用不会阻塞当前线程。</p>
+<p>还是上面的例子，你打电话问书店老板有没有《分布式系统》这本书，你如果是阻塞式调用，你会一直把自己“挂起”，直到得到这本书有没有的结果，如果是非阻塞式调用，你不管老板有没有告诉你，你自己先一边去玩了， 当然你也要偶尔过几分钟check一下老板有没有返回结果。在这里阻塞与非阻塞与是否同步异步无关。跟老板通过什么方式回答你结果无关。</p>
+<blockquote>
+<p>以上引用于知乎, <a href="https://www.zhihu.com/question/19732473" target="_blank" rel="noopener">https://www.zhihu.com/question/19732473</a></p>
+</blockquote>
+<p>在Java中：</p>
 <ul>
-<li>在Nginx设置文件中的upstream模块设置好各节点的权重以分发请求。</li>
-<li>反向代理</li>
+<li>同步 ： 使用同步IO时，Java自己处理IO读写；</li>
+<li>异步 ： 使用异步IO时，Java将IO读写委托给OS处理，需要将数据缓冲区地址和大小传给OS，OS需要支持异步IO操作API；</li>
+<li>阻塞 ： 使用阻塞IO时，Java调用会一直阻塞到读写完成才返回；</li>
+<li>非阻塞 ： 使用非阻塞IO时，如果不能读写Java调用会马上返回，当IO事件分发器会通知可读写时再继续进行读写，不断循环直到读写完成</li>
 </ul>
-<h3 id="3-3-IO处理"><a href="#3-3-IO处理" class="headerlink" title="3.3 IO处理"></a>3.3 IO处理</h3><p>对于后端是动态服务来说，比如Java和PHP。这类服务器（如JBoss和PHP-FPM）的IO处理能力往往不高。Nginx有个好处是它会把Request在读取完整之前buffer住，这样交给后端的就是一个完整的HTTP请求，从而提高后端的效率，而不是断断续续的传递（互联网上连接速度一般比较慢）。同样，Nginx也可以把response给buffer住，同样也是减轻后端的压力。</p>
-<p>引用于 <a href="https://www.zhihu.com/question/19761434" target="_blank" rel="noopener">Nginx 反向代理为什么可以提高网站性能？</a></p>
-<h2 id="4-Nginx的下载、配置、使用"><a href="#4-Nginx的下载、配置、使用" class="headerlink" title="4. Nginx的下载、配置、使用"></a>4. Nginx的下载、配置、使用</h2><p>具体的下载、配置、使用可以参考以下网站：</p>
+<p>简单来说：</p>
 <ul>
-<li><a href="https://www.cnblogs.com/naaoveGIS/p/5478208.html" target="_blank" rel="noopener">Nginx与tomcat组合的简单使用 - 李晓晖 - 博客园</a></li>
-<li><a href="http://blog.csdn.net/shimiso/article/details/8690897" target="_blank" rel="noopener">Nginx的介绍和使用 - CSDN博客</a></li>
-<li><a href="https://lufficc.com/blog/configure-nginx-as-a-web-server" target="_blank" rel="noopener">你真的了解如何将 Nginx 配置为Web服务器吗 聪聪的个人网站</a></li>
+<li>阻塞和非阻塞是针对应用程序的状态而言的</li>
+<li>同步和异步是针对应用程序和OS谁处理读写而言的</li>
+</ul>
+<h2 id="4-Java中的网络IO"><a href="#4-Java中的网络IO" class="headerlink" title="4. Java中的网络IO"></a>4. Java中的网络IO</h2><p>Java对BIO、NIO、AIO的支持：</p>
+<ul>
+<li><p>Java BIO ： <strong>同步并阻塞</strong>，服务器实现模式为一个连接一个线程，即客户端有连接请求时服务器端就需要启动一个线程进行处理，如果这个连接不做任何事情会造成不必要的线程开销，当然可以通过线程池机制改善。</p>
+</li>
+<li><p>Java NIO ： <strong>同步非阻塞</strong>，服务器实现模式为一个请求一个线程，即客户端发送的连接请求都会注册到多路复用器上，多路复用器轮询到连接有I/O请求时才启动一个线程进行处理。使用Selector.select()函数进行IO请求和同步阻塞模型没有太大的区别，甚至还多了添加监视socket，以及调用select函数的额外操作，感觉效率更差。<br>但是，使用select以后最大的优势是用户可以在<strong>一个线程内同时处理多个socket的IO请求</strong>。用户可以注册多个socket，然后不断地调用select读取被激活的socket，<br>即可达到在同一个线程内同时处理多个IO请求的目的。而在同步阻塞模型中，必须通过多线程的方式才能达到这个目的。Java的实现会调用JNI，使用系统调用（select，poll，epoll）</p>
+</li>
+<li><p>Java AIO(NIO.2) ： <strong>异步非阻塞</strong>，服务器实现模式为一个有效请求一个线程，客户端的I/O请求都是由OS先完成了再通知服务器应用去启动线程进行处理，</p>
+</li>
+</ul>
+<p>BIO、NIO、AIO<strong>适用场景</strong>分析:</p>
+<ul>
+<li><p>BIO方式适用于连接数目比较小且固定的架构，这种方式对服务器资源要求比较高，并发局限于应用中，JDK1.4以前的唯一选择，但程序直观简单易理解。</p>
+</li>
+<li><p>NIO方式适用于连接数目多且连接比较短（轻操作）的架构，比如聊天服务器，并发局限于应用中，编程比较复杂，JDK1.4开始支持。</p>
+</li>
+<li><p>AIO方式使用于连接数目多且连接比较长（重操作）的架构，比如相册服务器，充分调用OS参与并发操作，编程比较复杂，JDK7开始支持。</p>
+</li>
 </ul>
 <blockquote>
-<p>Copyright © 2018, CSCW back-end Kanarien, All Rights Reserved</p>
+<p>另外，I/O属于底层操作，需要操作系统支持，并发也需要操作系统的支持，所以性能方面不同操作系统差异会比较明显。</p>
+</blockquote>
+<h2 id="5-Java-NIO-示例代码"><a href="#5-Java-NIO-示例代码" class="headerlink" title="5. Java NIO 示例代码"></a>5. Java NIO 示例代码</h2><p>下面是使用Java NIO实现的多路复用模型的服务器端代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">import java.io.IOException;</span><br><span class="line">import java.net.InetSocketAddress;</span><br><span class="line">import java.nio.ByteBuffer;</span><br><span class="line">import java.nio.channels.SelectionKey;</span><br><span class="line">import java.nio.channels.Selector;</span><br><span class="line">import java.nio.channels.ServerSocketChannel;</span><br><span class="line">import java.nio.channels.SocketChannel;</span><br><span class="line">import java.util.Iterator;</span><br><span class="line">import java.util.Set;</span><br><span class="line"></span><br><span class="line">public class EpollServer &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            ServerSocketChannel ssc = ServerSocketChannel.open();</span><br><span class="line">            ssc.socket().bind(new InetSocketAddress(&quot;127.0.0.1&quot;, 8000));</span><br><span class="line">            ssc.configureBlocking(false);</span><br><span class="line"></span><br><span class="line">            Selector selector = Selector.open();</span><br><span class="line">            // 注册 channel，并且指定感兴趣的事件是 Accept</span><br><span class="line">            ssc.register(selector, SelectionKey.OP_ACCEPT);</span><br><span class="line"></span><br><span class="line">            ByteBuffer readBuff = ByteBuffer.allocate(1024);</span><br><span class="line">            ByteBuffer writeBuff = ByteBuffer.allocate(128);</span><br><span class="line">            writeBuff.put(&quot;received&quot;.getBytes());</span><br><span class="line">            writeBuff.flip();</span><br><span class="line"></span><br><span class="line">            while (true) &#123;</span><br><span class="line">                int nReady = selector.select();</span><br><span class="line">                Set&lt;SelectionKey&gt; keys = selector.selectedKeys();</span><br><span class="line">                Iterator&lt;SelectionKey&gt; it = keys.iterator();</span><br><span class="line"></span><br><span class="line">                while (it.hasNext()) &#123;</span><br><span class="line">                    SelectionKey key = it.next();</span><br><span class="line">                    it.remove();</span><br><span class="line"></span><br><span class="line">                    if (key.isAcceptable()) &#123;</span><br><span class="line">                        // 创建新的连接，并且把连接注册到selector上，而且，</span><br><span class="line">                        // 声明这个channel只对读操作感兴趣。</span><br><span class="line">                        SocketChannel socketChannel = ssc.accept();</span><br><span class="line">                        socketChannel.configureBlocking(false);</span><br><span class="line">                        socketChannel.register(selector, SelectionKey.OP_READ);</span><br><span class="line">                    &#125;</span><br><span class="line">                    else if (key.isReadable()) &#123;</span><br><span class="line">                        SocketChannel socketChannel = (SocketChannel) key.channel();</span><br><span class="line">                        readBuff.clear();</span><br><span class="line">                        socketChannel.read(readBuff);</span><br><span class="line"></span><br><span class="line">                        readBuff.flip();</span><br><span class="line">                        System.out.println(&quot;received : &quot; + new String(readBuff.array()));</span><br><span class="line">                        key.interestOps(SelectionKey.OP_WRITE);</span><br><span class="line">                    &#125;</span><br><span class="line">                    else if (key.isWritable()) &#123;</span><br><span class="line">                        writeBuff.rewind();</span><br><span class="line">                        SocketChannel socketChannel = (SocketChannel) key.channel();</span><br><span class="line">                        socketChannel.write(writeBuff);</span><br><span class="line">                        key.interestOps(SelectionKey.OP_READ);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>本人对于Selector.select()有一个的疑问：<br>Java的NIO是同步非阻塞，但为什么其核心的Selector.select()是阻塞的？不矛盾吗？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Selector selector = Selector.open();</span><br><span class="line">while (true) &#123;</span><br><span class="line">    int nReady = selector.select(); // 这里会阻塞，哪里体现非阻塞？</span><br><span class="line">    Set&lt;SelectionKey&gt; keys = selector.selectedKeys();</span><br><span class="line">    Iterator&lt;SelectionKey&gt; it = keys.iterator();</span><br><span class="line">    //...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>答：NIO 是同步非阻塞 这句话指的是对于一个IO来看，是同步非阻塞，非阻塞的意思是拥有这次IO的线程没有阻塞，而在NIO中实际上是一条线程拥有很多的IO，有任何一个IO有数据 ，selector就被唤醒，所以你可以这么想：在这条线程中，当IOA没有数据处于等待时，IOB可能正在被处理，所以这条线程并没有被这个IOA阻塞</p>
+<p>详细可参考：<a href="https://segmentfault.com/q/1010000017151127?_ea=5178673" target="_blank" rel="noopener">Java的NIO是同步非阻塞，但为什么其核心的Selector.select()是阻塞的？ - SegmentFault 思否</a></p>
+<h2 id="6-引用"><a href="#6-引用" class="headerlink" title="6. 引用"></a>6. 引用</h2><p>文章引用了以下文章：</p>
+<ul>
+<li><a href="https://blog.csdn.net/skiof007/article/details/52873421" target="_blank" rel="noopener">BIO与NIO、AIO的区别(这个容易理解)</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/27382996" target="_blank" rel="noopener">Java NIO(3): IO模型 - 知乎</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/27434028" target="_blank" rel="noopener">Java NIO(6): Selector - 知乎</a></li>
+<li><a href="https://blog.csdn.net/hutongling/article/details/69944456" target="_blank" rel="noopener">Java IO：操作系统的IO处理过程以及5种网络IO模型 - hutongling的博客 - CSDN博客</a></li>
+<li><a href="https://www.zhihu.com/question/19732473" target="_blank" rel="noopener">怎样理解阻塞非阻塞与同步异步的区别？</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>Copyright © 2018, GDUT CSCW back-end Kanarien, All Rights Reserved</p>
 </blockquote>
 
       
@@ -273,11 +319,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tomcat</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -289,7 +331,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/知识漫谈//" class="article-tag-list-link color5">知识漫谈</a>
+        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
         		</li>
       		
 		</ul>
@@ -344,7 +386,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://kanarien.cn/2018/07/22/Nginx搭配Tomcat作Web服务器/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://kanarien.cn/2018/11/27/5种网络IO模型和Java IO/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -358,18 +400,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/24/Spring Boot2.x整合BeetlSQL的一次实践经验/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Spring Boot2.x整合BeetlSQL2.x的一次实践经验
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/22/MongoDB数据的导出与导入/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">MongoDB数据的导出与导入（Unix 命令）</div>
+    <a href="/2018/11/27/regular-expression-matching算法讲解/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">regular-expression-matching算法讲解</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -396,7 +429,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Nginx简介"><span class="toc-number">2.</span> <span class="toc-text">1. Nginx简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-为什么要使用Nginx？"><span class="toc-number">3.</span> <span class="toc-text">2. 为什么要使用Nginx？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Nginx的特性"><span class="toc-number">4.</span> <span class="toc-text">3. Nginx的特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-反向代理"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 反向代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-负载均衡"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 负载均衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-IO处理"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 IO处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Nginx的下载、配置、使用"><span class="toc-number">5.</span> <span class="toc-text">4. Nginx的下载、配置、使用</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-操作系统中的IO处理"><span class="toc-number">2.</span> <span class="toc-text">1. 操作系统中的IO处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-操作系统如何处理IO"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 操作系统如何处理IO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-系统调用是如何完成IO操作"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 系统调用是如何完成IO操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5种网络IO模型"><span class="toc-number">3.</span> <span class="toc-text">2. 5种网络IO模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-阻塞I-O模型"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 阻塞I/O模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-非阻塞I-O模型"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 非阻塞I/O模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-I-O多路复用模型"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 I/O多路复用模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-信号式驱动I-O模型"><span class="toc-number">3.4.</span> <span class="toc-text">2.4 信号式驱动I/O模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-异步I-O模型"><span class="toc-number">3.5.</span> <span class="toc-text">2.5 异步I/O模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-同步与异步、阻塞与非阻塞"><span class="toc-number">4.</span> <span class="toc-text">3. 同步与异步、阻塞与非阻塞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Java中的网络IO"><span class="toc-number">5.</span> <span class="toc-text">4. Java中的网络IO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Java-NIO-示例代码"><span class="toc-number">6.</span> <span class="toc-text">5. Java NIO 示例代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-引用"><span class="toc-number">7.</span> <span class="toc-text">6. 引用</span></a></li></ol>
                     </div>
                 </span>
             </div>
