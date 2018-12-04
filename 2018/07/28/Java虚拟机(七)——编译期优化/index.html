@@ -5,14 +5,14 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://kanarien.cn">
+  <link rel="dns-prefetch" href="https://kanarien.cn">
   <title>Java虚拟机(七)——编译期优化 | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="编译期优化Java语言的编译期是一段不确定的操作过程，因为它可能是指一个前端编译器（或叫编译器的前端）把 .java文件 转变成 .class文件 的过程；也可能是虚拟机的后端运行期编译器（JIT编译器，Just in Time Compiler）把字节码抓变成机器码的过程；还可能是指使用静态提前编译器（AOT编译器，Ahead Of Time Compiler）  直接把 *.java 文件编">
 <meta name="keywords" content="Java,JVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java虚拟机(七)——编译期优化">
-<meta property="og:url" content="http://kanarien.cn/2018/07/28/Java虚拟机(七)——编译期优化/index.html">
+<meta property="og:url" content="https://kanarien.cn/2018/07/28/Java虚拟机(七)——编译期优化/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
 <meta property="og:description" content="编译期优化Java语言的编译期是一段不确定的操作过程，因为它可能是指一个前端编译器（或叫编译器的前端）把 .java文件 转变成 .class文件 的过程；也可能是虚拟机的后端运行期编译器（JIT编译器，Just in Time Compiler）把字节码抓变成机器码的过程；还可能是指使用静态提前编译器（AOT编译器，Ahead Of Time Compiler）  直接把 *.java 文件编">
 <meta property="og:locale" content="zh-CN">
@@ -359,7 +359,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://kanarien.cn/2018/07/28/Java虚拟机(七)——编译期优化/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://kanarien.cn/2018/07/28/Java虚拟机(七)——编译期优化/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -530,6 +530,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -538,7 +542,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,19 +550,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,6 +559,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,10 +586,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
@@ -603,6 +599,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -670,7 +670,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://kanarien.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接</a>
+              <a href="https://kanarien.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接</a>
             </li>
           
         </ul>

@@ -5,21 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://kanarien.cn">
+  <link rel="dns-prefetch" href="https://kanarien.cn">
   <title>HTTP学习笔记 | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="0. 前言该笔记记录了HTTP相关的基本知识，包括：  HTTP定义、特点、工作方式 简单辨别URI、URL、URN 请求与响应的结构 请求方法，GET和POST的区别 常见的响应码">
 <meta name="keywords" content="HTTP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTTP学习笔记">
-<meta property="og:url" content="http://kanarien.cn/2018/07/30/HTTP学习笔记/index.html">
+<meta property="og:url" content="https://kanarien.cn/2018/07/30/HTTP学习笔记/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
 <meta property="og:description" content="0. 前言该笔记记录了HTTP相关的基本知识，包括：  HTTP定义、特点、工作方式 简单辨别URI、URL、URN 请求与响应的结构 请求方法，GET和POST的区别 常见的响应码">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-021.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/URI%E3%80%81URL%E3%80%81URN.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Http%20Request.png">
-<meta property="og:updated_time" content="2018-09-01T08:58:23.096Z">
+<meta property="og:updated_time" content="2018-12-04T12:56:39.858Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP学习笔记">
 <meta name="twitter:description" content="0. 前言该笔记记录了HTTP相关的基本知识，包括：  HTTP定义、特点、工作方式 简单辨别URI、URL、URN 请求与响应的结构 请求方法，GET和POST的区别 常见的响应码">
@@ -333,6 +333,16 @@
 <td>客户端请求成功</td>
 </tr>
 <tr>
+<td> 301</td>
+<td>Moved Permanently</td>
+<td>请求的网页已永久移动到新的位置</td>
+</tr>
+<tr>
+<td> 302</td>
+<td>Found</td>
+<td>请求的网页临时移动到新的位置，Found是HTTP1.1的标准，Temporarily Moved是HTTP1.0的标准</td>
+</tr>
+<tr>
 <td> 400</td>
 <td>Bad Request</td>
 <td>客户端请求语法有问题，或者是参数错误</td>
@@ -484,7 +494,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://kanarien.cn/2018/07/30/HTTP学习笔记/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://kanarien.cn/2018/07/30/HTTP学习笔记/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -655,6 +665,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -663,7 +677,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -671,19 +685,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -692,6 +694,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -711,10 +721,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
@@ -728,6 +734,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -795,7 +805,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://kanarien.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接</a>
+              <a href="https://kanarien.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接</a>
             </li>
           
         </ul>

@@ -5,20 +5,20 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://kanarien.cn">
+  <link rel="dns-prefetch" href="https://kanarien.cn">
   <title>如何理解HTTP的无连接、短连接、长连接？ | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="0. 前言HTTP有个特点叫“无连接”，然而为了达到可靠的传输数据，HTTP肯定是依靠可靠连接的，那什么叫“无连接”呢？ 1. 无连接？有连接？无连接：限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。 可见，HTTP不是字面意义上的没有连接，事实上，这个定义也符合HTTP短连接的定义，但无连接强调的是HTTP的特性，短连接可理解为">
-<meta name="keywords" content="HTTP,HTTP&#x2F;2">
+<meta name="keywords" content="HTTP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何理解HTTP的无连接、短连接、长连接？">
-<meta property="og:url" content="http://kanarien.cn/2018/07/25/如何理解HTTP的无连接、短连接、长连接/index.html">
+<meta property="og:url" content="https://kanarien.cn/2018/07/25/如何理解HTTP的无连接、短连接、长连接/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
 <meta property="og:description" content="0. 前言HTTP有个特点叫“无连接”，然而为了达到可靠的传输数据，HTTP肯定是依靠可靠连接的，那什么叫“无连接”呢？ 1. 无连接？有连接？无连接：限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。 可见，HTTP不是字面意义上的没有连接，事实上，这个定义也符合HTTP短连接的定义，但无连接强调的是HTTP的特性，短连接可理解为">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-017.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/pipelining%E5%92%8Cmultiplexing.png">
-<meta property="og:updated_time" content="2018-07-30T13:13:57.138Z">
+<meta property="og:updated_time" content="2018-12-04T13:46:40.661Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何理解HTTP的无连接、短连接、长连接？">
 <meta name="twitter:description" content="0. 前言HTTP有个特点叫“无连接”，然而为了达到可靠的传输数据，HTTP肯定是依靠可靠连接的，那什么叫“无连接”呢？ 1. 无连接？有连接？无连接：限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。 可见，HTTP不是字面意义上的没有连接，事实上，这个定义也符合HTTP短连接的定义，但无连接强调的是HTTP的特性，短连接可理解为">
@@ -281,10 +281,6 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">HTTP/2</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -350,7 +346,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://kanarien.cn/2018/07/25/如何理解HTTP的无连接、短连接、长连接/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://kanarien.cn/2018/07/25/如何理解HTTP的无连接、短连接、长连接/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -521,6 +517,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -529,7 +529,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,19 +537,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">HTTP/2</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,6 +546,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,10 +573,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
@@ -594,6 +586,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -661,7 +657,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://kanarien.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接</a>
+              <a href="https://kanarien.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接</a>
             </li>
           
         </ul>
