@@ -6,15 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://kanarien.cn">
-  <title>5种网络IO模型和Java IO | 无悔的博客小屋</title>
+  <title>5种IO模型和Java IO | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0. 前言关于网络IO的理论知识比较凌乱，理解起来有难度，特此梳理。 1. 操作系统中的IO处理当我们需要理解关于 IO 的时候，最好还是理解操作系统是如何处理IO的。 1.1 操作系统如何处理IOLinux 会把所有的外部设备都看成一个文件来操作，对外部设备的操作可以看成是对文件的操作。">
+  <meta name="description" content="0. 前言关于网络IO的理论知识比较凌乱，理解起来有难度，特此梳理。 1. 操作系统中的IO处理当我们需要理解关于 IO 的时候，最好首先理解操作系统是如何处理IO的。 1.1 操作系统如何处理IOLinux 会把所有的外部设备都看成一个文件（文件描述符fd）来操作，对外部设备的操作可以看成是对文件的操作。">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="5种网络IO模型和Java IO">
+<meta property="og:title" content="5种IO模型和Java IO">
 <meta property="og:url" content="https://kanarien.cn/2018/11/27/5种网络IO模型和Java IO/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
-<meta property="og:description" content="0. 前言关于网络IO的理论知识比较凌乱，理解起来有难度，特此梳理。 1. 操作系统中的IO处理当我们需要理解关于 IO 的时候，最好还是理解操作系统是如何处理IO的。 1.1 操作系统如何处理IOLinux 会把所有的外部设备都看成一个文件来操作，对外部设备的操作可以看成是对文件的操作。">
+<meta property="og:description" content="0. 前言关于网络IO的理论知识比较凌乱，理解起来有难度，特此梳理。 1. 操作系统中的IO处理当我们需要理解关于 IO 的时候，最好首先理解操作系统是如何处理IO的。 1.1 操作系统如何处理IOLinux 会把所有的外部设备都看成一个文件（文件描述符fd）来操作，对外部设备的操作可以看成是对文件的操作。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-027.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E9%98%BB%E5%A1%9EIO%E6%A8%A1%E5%9E%8B.jpg">
@@ -22,10 +22,10 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8IO%E6%A8%A1%E5%9E%8B.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E4%BF%A1%E5%8F%B7%E9%A9%B1%E5%8A%A8IO%E6%A8%A1%E5%9E%8B.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%BC%82%E6%AD%A5IO%E6%A8%A1%E5%9E%8B.jpg">
-<meta property="og:updated_time" content="2018-11-27T14:48:11.090Z">
+<meta property="og:updated_time" content="2019-01-23T08:45:27.671Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="5种网络IO模型和Java IO">
-<meta name="twitter:description" content="0. 前言关于网络IO的理论知识比较凌乱，理解起来有难度，特此梳理。 1. 操作系统中的IO处理当我们需要理解关于 IO 的时候，最好还是理解操作系统是如何处理IO的。 1.1 操作系统如何处理IOLinux 会把所有的外部设备都看成一个文件来操作，对外部设备的操作可以看成是对文件的操作。">
+<meta name="twitter:title" content="5种IO模型和Java IO">
+<meta name="twitter:description" content="0. 前言关于网络IO的理论知识比较凌乱，理解起来有难度，特此梳理。 1. 操作系统中的IO处理当我们需要理解关于 IO 的时候，最好首先理解操作系统是如何处理IO的。 1.1 操作系统如何处理IOLinux 会把所有的外部设备都看成一个文件（文件描述符fd）来操作，对外部设备的操作可以看成是对文件的操作。">
 <meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-027.jpg">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
@@ -178,7 +178,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      5种网络IO模型和Java IO
+      5种IO模型和Java IO
     </h1>
   
 
@@ -199,8 +199,8 @@
       
         <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-027.jpg" alt="动漫美图"></p>
 <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>关于网络IO的理论知识比较凌乱，理解起来有难度，特此梳理。</p>
-<h2 id="1-操作系统中的IO处理"><a href="#1-操作系统中的IO处理" class="headerlink" title="1. 操作系统中的IO处理"></a>1. 操作系统中的IO处理</h2><p>当我们需要理解关于 IO 的时候，最好还是理解操作系统是如何处理IO的。</p>
-<h3 id="1-1-操作系统如何处理IO"><a href="#1-1-操作系统如何处理IO" class="headerlink" title="1.1 操作系统如何处理IO"></a>1.1 操作系统如何处理IO</h3><p>Linux 会把所有的外部设备都看成一个文件来操作，对外部设备的操作可以看成是对文件的操作。</p>
+<h2 id="1-操作系统中的IO处理"><a href="#1-操作系统中的IO处理" class="headerlink" title="1. 操作系统中的IO处理"></a>1. 操作系统中的IO处理</h2><p>当我们需要理解关于 IO 的时候，最好首先理解操作系统是如何处理IO的。</p>
+<h3 id="1-1-操作系统如何处理IO"><a href="#1-1-操作系统如何处理IO" class="headerlink" title="1.1 操作系统如何处理IO"></a>1.1 操作系统如何处理IO</h3><p>Linux 会把所有的外部设备都看成一个文件（文件描述符fd）来操作，对外部设备的操作可以看成是对文件的操作。</p>
 <a id="more"></a>
 <p>我们对一个文件的读写，都会通过内核提供的系统调用，内核会给我们返回一个 File Descriptor，这个描述符是一个数字，指向内核的一个结构体，我们应用程序对文件的读写就是对描述符指向的结构体的读写。</p>
 <h3 id="1-2-系统调用是如何完成IO操作"><a href="#1-2-系统调用是如何完成IO操作" class="headerlink" title="1.2 系统调用是如何完成IO操作"></a>1.2 系统调用是如何完成IO操作</h3><p>Linux 会把内存分为 <strong>内核区和用户区</strong>。Linux 的内核区会帮我们管理所有的硬件资源，并且会提供系统调用，我们应用程序的读操作，就会通过系统调用 read 发起一个读操作，这个时候，内核就会创建一个文件描述符，通过驱动向硬件发送读指令，并且把读的数据放在描述符指向的结构体的缓冲区中。当这个数据传到用户区的时候，就完成了一次 IO。</p>
@@ -210,15 +210,31 @@
 <li>硬件读取文件数据到文件描述符指向的结构体的缓冲区。</li>
 <li>结构体的缓冲区的数据 传输到 用户区。</li>
 </ol>
-<h2 id="2-5种网络IO模型"><a href="#2-5种网络IO模型" class="headerlink" title="2. 5种网络IO模型"></a>2. 5种网络IO模型</h2><p>操作系统对网络IO进行处理时，结合上述所讲，有5种模型。</p>
-<p>5种模型介绍</p>
+<p><strong>操作系统5种不同的IO处理，事实上就是对上述两个过程的不同处理方法。</strong></p>
+<h2 id="2-5种网络IO模型"><a href="#2-5种网络IO模型" class="headerlink" title="2. 5种网络IO模型"></a>2. 5种网络IO模型</h2><p>5种模型介绍</p>
 <h3 id="2-1-阻塞I-O模型"><a href="#2-1-阻塞I-O模型" class="headerlink" title="2.1 阻塞I/O模型"></a>2.1 阻塞I/O模型</h3><p>对于一个套接字上的输入操作，第一步通常涉及等待数据从网络中到达。当所有等待分组到达时，它被复制到内核中的某个缓冲区。第二步就是把数据从内核缓冲区复制到应用程序缓冲区。 好，下面我们以阻塞套接字的recvfrom的的调用图来说明阻塞<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E9%98%BB%E5%A1%9EIO%E6%A8%A1%E5%9E%8B.jpg" alt="阻塞I/O模型"><br>标红的这部分过程就是阻塞，直到阻塞结束recvfrom才能返回。</p>
-<h3 id="2-2-非阻塞I-O模型"><a href="#2-2-非阻塞I-O模型" class="headerlink" title="2.2 非阻塞I/O模型"></a>2.2 非阻塞I/O模型</h3><p>以下这句话很重要：进程把一个套接字设置成非阻塞是在通知内核，当所请求的I/O操作非得把本进程投入睡眠才能完成时，不要把进程投入睡眠，而是返回一个错误。看看非阻塞的套接字的recvfrom操作如何进行<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E9%9D%9E%E9%98%BB%E5%A1%9EIO%E6%A8%A1%E5%9E%8B.jpg" alt="非阻塞I/O模型"><br>可以看出recvfrom总是立即返回。</p>
-<h3 id="2-3-I-O多路复用模型"><a href="#2-3-I-O多路复用模型" class="headerlink" title="2.3 I/O多路复用模型"></a>2.3 I/O多路复用模型</h3><p>虽然I/O多路复用的函数也是阻塞的，但是其与以上两种还是有不同的，I/O多路复用是阻塞在select，epoll这样的系统调用之上，而没有阻塞在真正的I/O系统调用如recvfrom之上。如图<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8IO%E6%A8%A1%E5%9E%8B.jpg" alt="I/O多路复用模型"></p>
-<h3 id="2-4-信号式驱动I-O模型"><a href="#2-4-信号式驱动I-O模型" class="headerlink" title="2.4 信号式驱动I/O模型"></a>2.4 信号式驱动I/O模型</h3><p>用得少<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E4%BF%A1%E5%8F%B7%E9%A9%B1%E5%8A%A8IO%E6%A8%A1%E5%9E%8B.jpg" alt="信号驱动I/O模型"></p>
+<h3 id="2-2-非阻塞I-O模型"><a href="#2-2-非阻塞I-O模型" class="headerlink" title="2.2 非阻塞I/O模型"></a>2.2 非阻塞I/O模型</h3><p>以下这句话很重要：进程把一个套接字设置成非阻塞是在通知内核，当所请求的I/O操作非得把本进程投入睡眠才能完成时，不要把进程投入睡眠，而是返回一个错误。当一个应用程序在一个循环里对一个非阻塞调用recvfrom，我们称为<strong>轮询</strong>。<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E9%9D%9E%E9%98%BB%E5%A1%9EIO%E6%A8%A1%E5%9E%8B.jpg" alt="非阻塞I/O模型"><br>可以看出recvfrom总是立即返回。</p>
+<h3 id="2-3-I-O多路复用模型"><a href="#2-3-I-O多路复用模型" class="headerlink" title="2.3 I/O多路复用模型"></a>2.3 I/O多路复用模型</h3><p>I/O多路复用的函数也是阻塞的，<strong>和阻塞I/O模型非常相像</strong>，但是其与以上两种还是有不同的，<strong>I/O多路复用是阻塞在select，epoll这样的系统调用之上，而没有阻塞在真正的I/O系统调用如recvfrom之上</strong>。如图<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8IO%E6%A8%A1%E5%9E%8B.jpg" alt="I/O多路复用模型"></p>
+<p><strong>select</strong><br>调用select函数会阻塞，直到有描述符就绪（有数据 可读、可写、或者有except），或者超时（timeout指定等待时间，如果立即返回设为null即可），函数返回。当select函数返回后，可以通过遍历fdset，来找到就绪的描述符。</p>
+<blockquote>
+<p>缺点:<br>1、select最大的缺陷就是<strong>单个进程所打开的FD是有一定限制的</strong>，它由FDSETSIZE设置，32位机默认是1024个，64位机默认是2048。<br>一般来说这个数目和系统内存关系很大，”具体数目可以cat /proc/sys/fs/file-max察看”。32位机默认是1024个。64位机默认是2048.<br>2、对socket进行扫描时是线性扫描，即采用<strong>轮询</strong>的方法，效率较低。<br>当套接字比较多的时候，每次select()都要通过遍历FDSETSIZE个Socket来完成调度，不管哪个Socket是活跃的，都遍历一遍。这会浪费很多CPU时间。”如果能给套接字注册某个回调函数，当他们活跃时，自动完成相关操作，那就避免了轮询”，这正是epoll与kqueue做的。<br>3、需要<strong>维护一个用来存放大量fd的数据结构</strong>，这样会使得用户空间和内核空间在传递该结构时复制开销大。</p>
+</blockquote>
+<p><strong>poll</strong><br><strong>poll本质上和select没有区别</strong>，它将用户传入的数组拷贝到内核空间，然后查询每个fd对应的设备状态，如果设备就绪则在设备等待队列中加入一项并继续遍历，如果遍历完所有fd后没有发现就绪设备，则挂起当前进程，直到设备就绪或者主动超时，被唤醒后它又要再次遍历fd。这个过程经历了多次无谓的遍历。</p>
+<p>它<strong>没有最大连接数的限制</strong>，原因是它是基于链表来存储的，</p>
+<blockquote>
+<p>缺点：<br>1、大量的fd的数组被整体复制于用户态和内核地址空间之间，而不管这样的复制是不是有意义。<br>2 、poll还有一个特点是“<strong>水平触发</strong>”，如果报告了fd后，没有被处理，那么下次poll时会再次报告该fd。</p>
+</blockquote>
+<p><strong>注意：从上面看，select和poll都需要在返回后，通过遍历文件描述符来获取已经就绪的socket。事实上，同时连接的大量客户端在一时刻可能只有很少的处于就绪状态，因此随着监视的描述符数量的增长，其效率也会线性下降。</strong></p>
+<p><strong>epoll</strong><br>epoll是在2.6内核中提出的，是之前的select和poll的增强版本。相对于select和poll来说，epoll更加灵活，没有描述符限制。epoll使用一个文件描述符管理多个描述符，将用户关系的文件描述符的事件存放到内核的一个事件表中，这样在用户空间和内核空间的copy只需一次。</p>
+<p>基本原理：epoll支持水平触发和边缘触发，最大的特点在于<strong>边缘触发</strong>，它只告诉进程哪些fd刚刚变为就绪态，并且只会通知一次。还有一个特点是，epoll<strong>使用“事件”的就绪通知方式</strong>，通过epollctl注册fd，一旦该fd就绪，内核就会<strong>采用类似callback的回调机制</strong>来激活该fd，epollwait便可以收到通知。</p>
+<blockquote>
+<p>epoll的优点：<br>1、<strong>没有最大并发连接的限制</strong>，能打开的FD的上限远大于1024（1G的内存上能监听约10万个端口）。<br>2、效率提升，<strong>不是轮询的方式</strong>，不会随着FD数目的增加效率下降。<br>只有活跃可用的FD才会调用callback函数；即Epoll最大的优点就在于它只管“活跃”的连接，而跟连接总数无关，因此在实际的网络环境中，Epoll的效率就会远远高于select和poll。<br>3、内存拷贝，利用mmap()文件映射内存加速与内核空间的消息传递；即epoll使用mmap<strong>减少复制开销</strong>。</p>
+</blockquote>
+<p><strong>注意：如果处理的连接数不是很高的话，使用select/epoll的web server不一定比使用multi-threading + blocking IO的web server性能更好，可能延迟还更大。select/epoll的优势并不是对于单个连接能处理得更快，而是在于能处理更多的连接。</strong></p>
+<h3 id="2-4-信号式驱动I-O模型"><a href="#2-4-信号式驱动I-O模型" class="headerlink" title="2.4 信号式驱动I/O模型"></a>2.4 信号式驱动I/O模型</h3><p>用得少，不多说<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E4%BF%A1%E5%8F%B7%E9%A9%B1%E5%8A%A8IO%E6%A8%A1%E5%9E%8B.jpg" alt="信号驱动I/O模型"></p>
 <h3 id="2-5-异步I-O模型"><a href="#2-5-异步I-O模型" class="headerlink" title="2.5 异步I/O模型"></a>2.5 异步I/O模型</h3><p>这类函数的工作机制是告知内核启动某个操作，并让内核在整个操作（包括将数据从内核拷贝到用户空间）完成后通知我们。如图：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%BC%82%E6%AD%A5IO%E6%A8%A1%E5%9E%8B.jpg" alt="异步I/O模型"><br>注意红线标记处说明在调用时就可以立马返回，等函数操作完成会通知我们。</p>
-<p>其实前四种I/O模型都是同步I/O操作，他们的区别在于第一阶段，而他们的第二阶段是一样的：在数据从内核复制到应用缓冲区期间（用户空间），进程阻塞于recvfrom调用。相反，异步I/O模型在这两个阶段都要处理。</p>
-<h2 id="3-同步与异步、阻塞与非阻塞"><a href="#3-同步与异步、阻塞与非阻塞" class="headerlink" title="3. 同步与异步、阻塞与非阻塞"></a>3. 同步与异步、阻塞与非阻塞</h2><p>同步与异步同步和异步关注的是<strong>消息通信机制</strong> (synchronous communication/ asynchronous communication)<br>所谓同步，就是在发出一个<em>调用</em>时，在没有得到结果之前，该<em>调用</em>就不返回。但是一旦调用返回，就得到返回值了。换句话说，就是由<em>调用者</em>主动等待这个<em>调用</em>的结果。而异步则是相反，<em>调用</em>在发出之后，这个调用就直接返回了，所以没有返回结果。换句话说，当一个异步过程调用发出后，调用者不会立刻得到结果。而是在<em>调用</em>发出后，<em>被调用者</em>通过状态、通知来通知调用者，或通过回调函数处理这个调用。典型的异步编程模型比如Node.js</p>
+<p><strong>其实前四种I/O模型都是同步I/O操作，他们的区别在于第一阶段，而他们的第二阶段是一样的</strong>：在数据从内核复制到应用缓冲区期间（用户空间），进程阻塞于recvfrom调用。相反，异步I/O模型在这两个阶段都要处理。</p>
+<h2 id="3-同步与异步、阻塞与非阻塞"><a href="#3-同步与异步、阻塞与非阻塞" class="headerlink" title="3. 同步与异步、阻塞与非阻塞"></a>3. 同步与异步、阻塞与非阻塞</h2><p>同步和异步关注的是<strong>消息通信机制</strong> (synchronous communication/ asynchronous communication)<br>所谓同步，就是在发出一个<em>调用</em>时，在没有得到结果之前，该<em>调用</em>就不返回。但是一旦调用返回，就得到返回值了。换句话说，就是由<em>调用者</em>主动等待这个<em>调用</em>的结果。而异步则是相反，<em>调用</em>在发出之后，这个调用就直接返回了，所以没有返回结果。换句话说，当一个异步过程调用发出后，调用者不会立刻得到结果。而是在<em>调用</em>发出后，<em>被调用者</em>通过状态、通知来通知调用者，或通过回调函数处理这个调用。典型的异步编程模型比如Node.js</p>
 <p>举个通俗的例子：你打电话问书店老板有没有《分布式系统》这本书，如果是同步通信机制，书店老板会说，你稍等，”我查一下”，然后开始查啊查，等查好了（可能是5秒，也可能是一天）告诉你结果（返回结果）。而异步通信机制，书店老板直接告诉你我查一下啊，查好了打电话给你，然后直接挂电话了（不返回结果）。然后查好了，他会主动打电话给你。在这里老板通过“回电”这种方式来回调。</p>
 <p>阻塞与非阻塞阻塞和非阻塞关注的是程序在<strong>等待调用结果（消息，返回值）时的状态</strong>.<br>阻塞调用是指调用结果返回之前，当前线程会被挂起。调用线程只有在得到结果之后才会返回。非阻塞调用指在不能立刻得到结果之前，该调用不会阻塞当前线程。</p>
 <p>还是上面的例子，你打电话问书店老板有没有《分布式系统》这本书，你如果是阻塞式调用，你会一直把自己“挂起”，直到得到这本书有没有的结果，如果是非阻塞式调用，你不管老板有没有告诉你，你自己先一边去玩了， 当然你也要偶尔过几分钟check一下老板有没有返回结果。在这里阻塞与非阻塞与是否同步异步无关。跟老板通过什么方式回答你结果无关。</p>
@@ -237,11 +253,14 @@
 <li>阻塞和非阻塞是针对应用程序的状态而言的</li>
 <li>同步和异步是针对应用程序和OS谁处理读写而言的</li>
 </ul>
-<h2 id="4-Java中的网络IO"><a href="#4-Java中的网络IO" class="headerlink" title="4. Java中的网络IO"></a>4. Java中的网络IO</h2><p>Java对BIO、NIO、AIO的支持：</p>
+<h2 id="4-Java中的IO"><a href="#4-Java中的IO" class="headerlink" title="4. Java中的IO"></a>4. Java中的IO</h2><p>Java对BIO、NIO、AIO的支持：</p>
 <ul>
 <li><p>Java BIO ： <strong>同步并阻塞</strong>，服务器实现模式为一个连接一个线程，即客户端有连接请求时服务器端就需要启动一个线程进行处理，如果这个连接不做任何事情会造成不必要的线程开销，当然可以通过线程池机制改善。</p>
 </li>
-<li><p>Java NIO ： <strong>同步非阻塞</strong>，服务器实现模式为一个请求一个线程，即客户端发送的连接请求都会注册到多路复用器上，多路复用器轮询到连接有I/O请求时才启动一个线程进行处理。使用Selector.select()函数进行IO请求和同步阻塞模型没有太大的区别，甚至还多了添加监视socket，以及调用select函数的额外操作，感觉效率更差。<br>但是，使用select以后最大的优势是用户可以在<strong>一个线程内同时处理多个socket的IO请求</strong>。用户可以注册多个socket，然后不断地调用select读取被激活的socket，<br>即可达到在同一个线程内同时处理多个IO请求的目的。而在同步阻塞模型中，必须通过多线程的方式才能达到这个目的。Java的实现会调用JNI，使用系统调用（select，poll，epoll）</p>
+<li><p>Java NIO ： <strong>同步非阻塞</strong>，服务器实现模式为一个请求一个线程，即客户端发送的连接请求都会注册到多路复用器上，多路复用器轮询到连接有I/O请求时才启动一个线程进行处理。使用Selector.select()函数进行IO请求和同步阻塞模型没有太大的区别，甚至还多了添加监视socket，以及调用select函数的额外操作，感觉效率更差。<br>但是，使用select以后最大的优势是用户可以在<strong>一个线程内同时处理多个socket的IO请求</strong>。用户可以注册多个socket，然后不断地调用select读取被激活的socket，<br>即可达到在同一个线程内同时处理多个IO请求的目的。而在同步阻塞模型中，必须通过多线程的方式才能达到这个目的。Java的实现会调用JNI，使用系统调用（select，poll，epoll）。</p>
+<blockquote>
+<p>Java的Selector.select()函数并不是直接调用系统调用select，事实上首先会判断操作系统是不是Linux，是则再判断内核版本，若版本大于等于2.6，则通过JNI使用epoll系统调用，否则使用poll系统调用。</p>
+</blockquote>
 </li>
 <li><p>Java AIO(NIO.2) ： <strong>异步非阻塞</strong>，服务器实现模式为一个有效请求一个线程，客户端的I/O请求都是由OS先完成了再通知服务器应用去启动线程进行处理，</p>
 </li>
@@ -258,18 +277,19 @@
 <blockquote>
 <p>另外，I/O属于底层操作，需要操作系统支持，并发也需要操作系统的支持，所以性能方面不同操作系统差异会比较明显。</p>
 </blockquote>
-<h2 id="5-Java-NIO-示例代码"><a href="#5-Java-NIO-示例代码" class="headerlink" title="5. Java NIO 示例代码"></a>5. Java NIO 示例代码</h2><p>下面是使用Java NIO实现的多路复用模型的服务器端代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">import java.io.IOException;</span><br><span class="line">import java.net.InetSocketAddress;</span><br><span class="line">import java.nio.ByteBuffer;</span><br><span class="line">import java.nio.channels.SelectionKey;</span><br><span class="line">import java.nio.channels.Selector;</span><br><span class="line">import java.nio.channels.ServerSocketChannel;</span><br><span class="line">import java.nio.channels.SocketChannel;</span><br><span class="line">import java.util.Iterator;</span><br><span class="line">import java.util.Set;</span><br><span class="line"></span><br><span class="line">public class EpollServer &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            ServerSocketChannel ssc = ServerSocketChannel.open();</span><br><span class="line">            ssc.socket().bind(new InetSocketAddress(&quot;127.0.0.1&quot;, 8000));</span><br><span class="line">            ssc.configureBlocking(false);</span><br><span class="line"></span><br><span class="line">            Selector selector = Selector.open();</span><br><span class="line">            // 注册 channel，并且指定感兴趣的事件是 Accept</span><br><span class="line">            ssc.register(selector, SelectionKey.OP_ACCEPT);</span><br><span class="line"></span><br><span class="line">            ByteBuffer readBuff = ByteBuffer.allocate(1024);</span><br><span class="line">            ByteBuffer writeBuff = ByteBuffer.allocate(128);</span><br><span class="line">            writeBuff.put(&quot;received&quot;.getBytes());</span><br><span class="line">            writeBuff.flip();</span><br><span class="line"></span><br><span class="line">            while (true) &#123;</span><br><span class="line">                int nReady = selector.select();</span><br><span class="line">                Set&lt;SelectionKey&gt; keys = selector.selectedKeys();</span><br><span class="line">                Iterator&lt;SelectionKey&gt; it = keys.iterator();</span><br><span class="line"></span><br><span class="line">                while (it.hasNext()) &#123;</span><br><span class="line">                    SelectionKey key = it.next();</span><br><span class="line">                    it.remove();</span><br><span class="line"></span><br><span class="line">                    if (key.isAcceptable()) &#123;</span><br><span class="line">                        // 创建新的连接，并且把连接注册到selector上，而且，</span><br><span class="line">                        // 声明这个channel只对读操作感兴趣。</span><br><span class="line">                        SocketChannel socketChannel = ssc.accept();</span><br><span class="line">                        socketChannel.configureBlocking(false);</span><br><span class="line">                        socketChannel.register(selector, SelectionKey.OP_READ);</span><br><span class="line">                    &#125;</span><br><span class="line">                    else if (key.isReadable()) &#123;</span><br><span class="line">                        SocketChannel socketChannel = (SocketChannel) key.channel();</span><br><span class="line">                        readBuff.clear();</span><br><span class="line">                        socketChannel.read(readBuff);</span><br><span class="line"></span><br><span class="line">                        readBuff.flip();</span><br><span class="line">                        System.out.println(&quot;received : &quot; + new String(readBuff.array()));</span><br><span class="line">                        key.interestOps(SelectionKey.OP_WRITE);</span><br><span class="line">                    &#125;</span><br><span class="line">                    else if (key.isWritable()) &#123;</span><br><span class="line">                        writeBuff.rewind();</span><br><span class="line">                        SocketChannel socketChannel = (SocketChannel) key.channel();</span><br><span class="line">                        socketChannel.write(writeBuff);</span><br><span class="line">                        key.interestOps(SelectionKey.OP_READ);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="5-Java-NIO-示例代码"><a href="#5-Java-NIO-示例代码" class="headerlink" title="5. Java NIO 示例代码"></a>5. Java NIO 示例代码</h2><p>下面是使用Java NIO实现的多路复用模型的服务器端代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">import java.io.IOException;</span><br><span class="line">import java.net.InetSocketAddress;</span><br><span class="line">import java.nio.ByteBuffer;</span><br><span class="line">import java.nio.channels.SelectionKey;</span><br><span class="line">import java.nio.channels.Selector;</span><br><span class="line">import java.nio.channels.ServerSocketChannel;</span><br><span class="line">import java.nio.channels.SocketChannel;</span><br><span class="line">import java.util.Iterator;</span><br><span class="line">import java.util.Set;</span><br><span class="line"></span><br><span class="line">public class EpollServer &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            ServerSocketChannel ssc = ServerSocketChannel.open();</span><br><span class="line">            ssc.socket().bind(new InetSocketAddress(&quot;127.0.0.1&quot;, 8000));</span><br><span class="line">            ssc.configureBlocking(false); // 重要</span><br><span class="line"></span><br><span class="line">            Selector selector = Selector.open();</span><br><span class="line">            // 注册 channel，并且指定感兴趣的事件是 Accept</span><br><span class="line">            ssc.register(selector, SelectionKey.OP_ACCEPT);</span><br><span class="line"></span><br><span class="line">            ByteBuffer readBuff = ByteBuffer.allocate(1024);</span><br><span class="line">            ByteBuffer writeBuff = ByteBuffer.allocate(128);</span><br><span class="line">            writeBuff.put(&quot;received&quot;.getBytes());</span><br><span class="line">            writeBuff.flip();</span><br><span class="line"></span><br><span class="line">            while (true) &#123;</span><br><span class="line">                int nReady = selector.select();</span><br><span class="line">                Set&lt;SelectionKey&gt; keys = selector.selectedKeys();</span><br><span class="line">                Iterator&lt;SelectionKey&gt; it = keys.iterator();</span><br><span class="line"></span><br><span class="line">                while (it.hasNext()) &#123;</span><br><span class="line">                    SelectionKey key = it.next();</span><br><span class="line">                    it.remove();</span><br><span class="line"></span><br><span class="line">                    if (key.isAcceptable()) &#123;</span><br><span class="line">                        // 创建新的连接，并且把连接注册到selector上，而且，</span><br><span class="line">                        // 声明这个channel只对读操作感兴趣。</span><br><span class="line">                        SocketChannel socketChannel = ssc.accept();</span><br><span class="line">                        socketChannel.configureBlocking(false);</span><br><span class="line">                        socketChannel.register(selector, SelectionKey.OP_READ);</span><br><span class="line">                    &#125;</span><br><span class="line">                    else if (key.isReadable()) &#123;</span><br><span class="line">                        SocketChannel socketChannel = (SocketChannel) key.channel();</span><br><span class="line">                        readBuff.clear();</span><br><span class="line">                        socketChannel.read(readBuff);</span><br><span class="line"></span><br><span class="line">                        readBuff.flip();</span><br><span class="line">                        System.out.println(&quot;received : &quot; + new String(readBuff.array()));</span><br><span class="line">                        key.interestOps(SelectionKey.OP_WRITE);</span><br><span class="line">                    &#125;</span><br><span class="line">                    else if (key.isWritable()) &#123;</span><br><span class="line">                        writeBuff.rewind();</span><br><span class="line">                        SocketChannel socketChannel = (SocketChannel) key.channel();</span><br><span class="line">                        socketChannel.write(writeBuff);</span><br><span class="line">                        key.interestOps(SelectionKey.OP_READ);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>本人对于Selector.select()有一个的疑问：<br>Java的NIO是同步非阻塞，但为什么其核心的Selector.select()是阻塞的？不矛盾吗？</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Selector selector = Selector.open();</span><br><span class="line">while (true) &#123;</span><br><span class="line">    int nReady = selector.select(); // 这里会阻塞，哪里体现非阻塞？</span><br><span class="line">    Set&lt;SelectionKey&gt; keys = selector.selectedKeys();</span><br><span class="line">    Iterator&lt;SelectionKey&gt; it = keys.iterator();</span><br><span class="line">    //...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>答：NIO 是同步非阻塞 这句话指的是对于一个IO来看，是同步非阻塞，非阻塞的意思是拥有这次IO的线程没有阻塞，而在NIO中实际上是一条线程拥有很多的IO，有任何一个IO有数据 ，selector就被唤醒，所以你可以这么想：在这条线程中，当IOA没有数据处于等待时，IOB可能正在被处理，所以这条线程并没有被这个IOA阻塞</p>
 <p>详细可参考：<a href="https://segmentfault.com/q/1010000017151127?_ea=5178673" target="_blank" rel="noopener">Java的NIO是同步非阻塞，但为什么其核心的Selector.select()是阻塞的？ - SegmentFault 思否</a></p>
 <h2 id="6-引用"><a href="#6-引用" class="headerlink" title="6. 引用"></a>6. 引用</h2><p>文章引用了以下文章：</p>
 <ul>
-<li><a href="https://blog.csdn.net/skiof007/article/details/52873421" target="_blank" rel="noopener">BIO与NIO、AIO的区别(这个容易理解)</a></li>
+<li><a href="https://blog.csdn.net/skiof007/article/details/52873421" target="_blank" rel="noopener">BIO与NIO、AIO的区别(这个容易理解) - CSDN博客</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/27382996" target="_blank" rel="noopener">Java NIO(3): IO模型 - 知乎</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/27434028" target="_blank" rel="noopener">Java NIO(6): Selector - 知乎</a></li>
 <li><a href="https://blog.csdn.net/hutongling/article/details/69944456" target="_blank" rel="noopener">Java IO：操作系统的IO处理过程以及5种网络IO模型 - hutongling的博客 - CSDN博客</a></li>
-<li><a href="https://www.zhihu.com/question/19732473" target="_blank" rel="noopener">怎样理解阻塞非阻塞与同步异步的区别？</a></li>
+<li><a href="https://www.zhihu.com/question/19732473" target="_blank" rel="noopener">怎样理解阻塞非阻塞与同步异步的区别？ - 知乎</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU0MzQ5MDA0Mw==&amp;mid=2247483907&amp;idx=1&amp;sn=3d5e1384a36bd59f5fd14135067af1c2&amp;chksm=fb0be897cc7c61815a6a1c3181f3ba3507b199fd7a8c9025e9d8f67b5e9783bc0f0fe1c73903&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">NIO相关基础篇 - 微信公众号</a></li>
 </ul>
 <hr>
 <blockquote>
@@ -438,7 +458,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-操作系统中的IO处理"><span class="toc-number">2.</span> <span class="toc-text">1. 操作系统中的IO处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-操作系统如何处理IO"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 操作系统如何处理IO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-系统调用是如何完成IO操作"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 系统调用是如何完成IO操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5种网络IO模型"><span class="toc-number">3.</span> <span class="toc-text">2. 5种网络IO模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-阻塞I-O模型"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 阻塞I/O模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-非阻塞I-O模型"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 非阻塞I/O模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-I-O多路复用模型"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 I/O多路复用模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-信号式驱动I-O模型"><span class="toc-number">3.4.</span> <span class="toc-text">2.4 信号式驱动I/O模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-异步I-O模型"><span class="toc-number">3.5.</span> <span class="toc-text">2.5 异步I/O模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-同步与异步、阻塞与非阻塞"><span class="toc-number">4.</span> <span class="toc-text">3. 同步与异步、阻塞与非阻塞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Java中的网络IO"><span class="toc-number">5.</span> <span class="toc-text">4. Java中的网络IO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Java-NIO-示例代码"><span class="toc-number">6.</span> <span class="toc-text">5. Java NIO 示例代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-引用"><span class="toc-number">7.</span> <span class="toc-text">6. 引用</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-操作系统中的IO处理"><span class="toc-number">2.</span> <span class="toc-text">1. 操作系统中的IO处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-操作系统如何处理IO"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 操作系统如何处理IO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-系统调用是如何完成IO操作"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 系统调用是如何完成IO操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5种网络IO模型"><span class="toc-number">3.</span> <span class="toc-text">2. 5种网络IO模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-阻塞I-O模型"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 阻塞I/O模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-非阻塞I-O模型"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 非阻塞I/O模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-I-O多路复用模型"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 I/O多路复用模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-信号式驱动I-O模型"><span class="toc-number">3.4.</span> <span class="toc-text">2.4 信号式驱动I/O模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-异步I-O模型"><span class="toc-number">3.5.</span> <span class="toc-text">2.5 异步I/O模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-同步与异步、阻塞与非阻塞"><span class="toc-number">4.</span> <span class="toc-text">3. 同步与异步、阻塞与非阻塞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Java中的IO"><span class="toc-number">5.</span> <span class="toc-text">4. Java中的IO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Java-NIO-示例代码"><span class="toc-number">6.</span> <span class="toc-text">5. Java NIO 示例代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-引用"><span class="toc-number">7.</span> <span class="toc-text">6. 引用</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -470,7 +490,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Kanarien&nbsp;&nbsp;
+    		&copy; 2019 Kanarien&nbsp;&nbsp;
 			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 		<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
     	</div>
@@ -569,15 +589,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -589,11 +605,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,6 +633,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
@@ -626,10 +650,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
               </li>
              
               <li class="article-tag-list-item">

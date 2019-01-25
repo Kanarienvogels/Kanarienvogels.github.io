@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://static.zybuluo.com/Rico123/yn5j5ojk6mz9axjutk4hogxq/%E6%A0%87%E8%AE%B0-%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%951.jpg">
 <meta property="og:image" content="http://static.zybuluo.com/Rico123/b26me40cjhiqkeb2vl6jb807/%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
 <meta property="og:image" content="http://static.zybuluo.com/Rico123/9hswys8w1pqy0ch06vmlbqi2/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8.jpg">
-<meta property="og:updated_time" content="2018-07-30T12:43:56.638Z">
+<meta property="og:updated_time" content="2019-01-19T08:17:45.714Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java虚拟机(四)——垃圾回收机制">
 <meta name="twitter:description" content="垃圾回收机制1. 垃圾回收概述在C++中，对象所占的内存在程序结束运行之前一直被占用，在明确释放之前不能分配给其它对象。而在Java中，当没有对象引用指向原先分配给某个对象的内存时，该内存便成为垃圾。JVM的一个系统级线程会自动释放该内存块。垃圾回收意味着程序不再需要的对象是”无用信息”，这些信息将被丢弃。当一个对象不再被引用的时候，内存回收它占领的空间，以便空间被后来的新对象使用。事实上，除了">
@@ -237,7 +237,15 @@
 <li><strong>Minor GC</strong>：对新生代进行回收，不会影响到年老代。因为新生代的 Java 对象大多死亡频繁，所以 Minor GC 非常频繁，一般在这里使用速度快、效率高的算法，使垃圾回收能尽快完成。</li>
 <li><strong>Full GC</strong>：也叫 Major GC，对整个堆进行回收，包括新生代、老年代和永久代。由于Full GC需要对整个堆进行回收，所以比Minor GC要慢，因此应该尽可能减少Full GC的次数，导致Full GC的原因包括：老年代被写满、永久代（Perm）被写满和System.gc()被显式调用等。</li>
 </ul>
-<h3 id="5-垃圾回收时机"><a href="#5-垃圾回收时机" class="headerlink" title="5. 垃圾回收时机"></a>5. 垃圾回收时机</h3><p>那么对于 Minor GC 的触发条件：大多数情况下，直接在 Eden 区中进行分配。如果 Eden区域没有足够的空间，那么就会发起一次 Minor GC；对于 Full GC（Major GC）的触发条件：也是如果老年代没有足够空间的话，那么就会进行一次 Full GC。</p>
+<h3 id="5-垃圾回收时机"><a href="#5-垃圾回收时机" class="headerlink" title="5. 垃圾回收时机"></a>5. 垃圾回收时机</h3><ul>
+<li>对于 Minor GC 的触发条件：大多数情况下，直接在 Eden 区中进行分配。如果 Eden区域没有足够的空间，那么就会发起一次 Minor GC；</li>
+<li>对于 Full GC（Major GC）的触发条件，情况比较多<ul>
+<li>老年代没有足够空间</li>
+<li>方法区空间不足</li>
+<li>调用System.gc()，建议系统执行Full GC</li>
+</ul>
+</li>
+</ul>
 <p>上面所说的只是一般情况下，实际上，需要考虑一个<strong>空间分配担保</strong>的问题：</p>
 <p>在发生Minor GC之前，虚拟机会先检查老年代最大可用的连续空间是否大于新生代所有对象的总空间。如果大于则进行Minor GC，如果小于则看HandlePromotionFailure设置是否允许担保失败（不允许则直接Full GC）。如果允许，那么会继续检查老年代最大可用的连续空间是否大于历次晋升到老年代对象的平均大小，如果大于则尝试Minor GC（如果尝试失败也会触发Full GC），如果小于则进行Full GC。</p>
 <p>但是，<strong>具体到什么时刻执行</strong>，这个是<strong>由系统来进行决定</strong>，终究是<strong>无法预测的</strong>。</p>
@@ -488,7 +496,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Kanarien&nbsp;&nbsp;
+    		&copy; 2019 Kanarien&nbsp;&nbsp;
 			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 		<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
     	</div>
@@ -587,15 +595,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -607,11 +611,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -631,6 +639,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
@@ -644,10 +656,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
               </li>
              
               <li class="article-tag-list-item">

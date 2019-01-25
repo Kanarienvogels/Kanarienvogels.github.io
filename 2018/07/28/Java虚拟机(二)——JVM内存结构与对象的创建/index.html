@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/JVM%20%E7%BB%93%E6%9E%84%20.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%8F%A5%E6%9F%84%E8%AE%BF%E9%97%AE.JPG">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%9B%B4%E6%8E%A5%E6%8C%87%E9%92%88%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1.JPG">
-<meta property="og:updated_time" content="2018-07-30T12:43:13.490Z">
+<meta property="og:updated_time" content="2019-01-22T07:13:59.548Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java虚拟机(二)——JVM内存结构与对象的创建">
 <meta name="twitter:description" content="JVM内存结构与对象的创建1. 数据运行时区域虚拟机的结构都是在内存中的一块空间，称为虚拟机内存结构，也称为数据运行时区域。 虚拟机的内存结构由五部分组成:  程序计数器 Java 虚拟机栈 本地方法栈 Java 堆 方法区">
@@ -203,9 +203,10 @@
 <li>Java 虚拟机栈</li>
 <li>本地方法栈</li>
 <li>Java 堆</li>
-<li>方法区<a id="more"></a>
-<img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/JVM%20%E7%BB%93%E6%9E%84%20.jpg" alt=""></li>
+<li>方法区</li>
 </ol>
+<a id="more"></a>
+<p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/JVM%20%E7%BB%93%E6%9E%84%20.jpg" alt=""></p>
 <h4 id="1-1-程序计数器"><a href="#1-1-程序计数器" class="headerlink" title="1.1 程序计数器"></a>1.1 程序计数器</h4><p>程序计数器（Program Counter Register）是一块较小的内存空间，可以看作是<strong>当前线程所执行字节码的行号指示器</strong>。<strong>分支、循环、跳转、异常处理、线程恢复</strong>等基础功能都需要依赖这个计数器完成。</p>
 <p>由于 Java 虚拟机的多线程是通过<strong>线程轮流切换</strong>并分配处理器执行时间的方式实现的。<strong>为了线程切换后能恢复到正确的执行位置，每条线程都需要一个独立的程序计数器，各线程之间的计数器互不影响，独立存储。</strong></p>
 <ul>
@@ -467,7 +468,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Kanarien&nbsp;&nbsp;
+    		&copy; 2019 Kanarien&nbsp;&nbsp;
 			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 		<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
     	</div>
@@ -566,15 +567,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,11 +583,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -610,6 +611,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
@@ -623,10 +628,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
               </li>
              
               <li class="article-tag-list-item">
