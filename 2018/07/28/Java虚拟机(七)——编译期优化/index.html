@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Sun%20Javac%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E4%B8%BB%E4%BD%93%E4%BB%A3%E7%A0%81.JPG">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%B1%BB%E5%9E%8B%E6%93%A6%E9%99%A4%E7%9A%84%E4%BE%8B%E5%AD%90.JPG">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%B1%BB%E5%9E%8B%E6%93%A6%E9%99%A4%E7%9A%84%E4%BE%8B%E5%AD%902.JPG">
-<meta property="og:updated_time" content="2018-07-30T12:43:26.586Z">
+<meta property="og:updated_time" content="2019-01-26T13:22:59.066Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java虚拟机(七)——编译期优化">
 <meta name="twitter:description" content="编译期优化Java语言的编译期是一段不确定的操作过程，因为它可能是指一个前端编译器（或叫编译器的前端）把 .java文件 转变成 .class文件 的过程；也可能是虚拟机的后端运行期编译器（JIT编译器，Just in Time Compiler）把字节码抓变成机器码的过程；还可能是指使用静态提前编译器（AOT编译器，Ahead Of Time Compiler）  直接把 *.java 文件编">
@@ -201,9 +201,9 @@
 <ul>
 <li>前端编译器：Sun的Javac、Eclipse JDT中的增量式编译器（ECJ）；</li>
 <li>JIT编译器：HotSpot VM的C1、C2编译器；</li>
-<li>AOT编译器：GNU Compiler for the Java（GCJ）、Excelsior JET。<a id="more"></a>
-</li>
+<li>AOT编译器：GNU Compiler for the Java（GCJ）、Excelsior JET。</li>
 </ul>
+<p>该篇的重点难点在于理解Java编译期的语法糖。<br><a id="more"></a></p>
 <h3 id="1-Sun-Javac-编译过程"><a href="#1-Sun-Javac-编译过程" class="headerlink" title="1. Sun Javac 编译过程"></a>1. Sun Javac 编译过程</h3><p>虚拟机严格定义了Class文件的格式，但并没有对如何把Java源码转变为Class文件的编译过程进行严格的定义。某些情况下，会出现Javac编译器可以编译而ECJ编译器不可编译的问题。</p>
 <p>对Sun Javac而言，编译过程如图所示：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Sun%20Javac%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B.JPG" alt="Sun Javac编译过程"></p>
 <p>主体代码如下：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Sun%20Javac%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E4%B8%BB%E4%BD%93%E4%BB%A3%E7%A0%81.JPG" alt="Sun Javac编译主体代码"></p>
@@ -542,11 +542,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,15 +558,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -594,15 +594,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Lettuce</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
               <li class="article-tag-list-item">
