@@ -8,23 +8,23 @@
   <link rel="dns-prefetch" href="https://kanarien.cn">
   <title>Linux上优雅的搭建Redis | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0.前言在Linux上搭建Redis并不是一件简单的事，官方只提供了源码，安装就首先需要事先下载gcc工具来编译，后续还包括一些安全事项，比如：绑定连接的IP、设置连接密码、设置Redis日志位置。 不过，在这里安装不会详细说明，晚上有很多关于安装的资料，这里主要详细的说明一下配置和连接，比如：绑定连接的IP、设置连接密码、设置Redis日志位置等一切有相当实际意义的参数都会说明；同时也会介绍使">
+  <meta name="description" content="0.前言在Linux上搭建Redis并不是一件简单的事，官方只提供了源码，安装就首先需要事先下载gcc工具来编译，后续还包括一些安全事项，比如：绑定连接的IP、设置连接密码、设置Redis日志位置。 不过，在这里安装不会详细说明，网上有很多关于安装的资料，这里主要详细的说明一下配置和连接，比如：绑定连接的IP、设置连接密码、设置Redis日志位置等一切有相当实际意义的参数都会说明；同时也会介绍使">
 <meta name="keywords" content="Linux,Redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux上优雅的搭建Redis">
 <meta property="og:url" content="https://kanarien.cn/2018/07/29/Linux上优雅的搭建Redis/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
-<meta property="og:description" content="0.前言在Linux上搭建Redis并不是一件简单的事，官方只提供了源码，安装就首先需要事先下载gcc工具来编译，后续还包括一些安全事项，比如：绑定连接的IP、设置连接密码、设置Redis日志位置。 不过，在这里安装不会详细说明，晚上有很多关于安装的资料，这里主要详细的说明一下配置和连接，比如：绑定连接的IP、设置连接密码、设置Redis日志位置等一切有相当实际意义的参数都会说明；同时也会介绍使">
+<meta property="og:description" content="0.前言在Linux上搭建Redis并不是一件简单的事，官方只提供了源码，安装就首先需要事先下载gcc工具来编译，后续还包括一些安全事项，比如：绑定连接的IP、设置连接密码、设置Redis日志位置。 不过，在这里安装不会详细说明，网上有很多关于安装的资料，这里主要详细的说明一下配置和连接，比如：绑定连接的IP、设置连接密码、设置Redis日志位置等一切有相当实际意义的参数都会说明；同时也会介绍使">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-018.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Redis%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/redis-cli%20socket%E8%BF%9E%E6%8E%A5.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Redis%20%E5%AF%86%E7%A0%81%E8%AE%A4%E8%AF%81.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Redis%20Desktop%20Manager.png">
-<meta property="og:updated_time" content="2018-09-03T13:56:39.671Z">
+<meta property="og:updated_time" content="2019-01-29T09:43:11.605Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux上优雅的搭建Redis">
-<meta name="twitter:description" content="0.前言在Linux上搭建Redis并不是一件简单的事，官方只提供了源码，安装就首先需要事先下载gcc工具来编译，后续还包括一些安全事项，比如：绑定连接的IP、设置连接密码、设置Redis日志位置。 不过，在这里安装不会详细说明，晚上有很多关于安装的资料，这里主要详细的说明一下配置和连接，比如：绑定连接的IP、设置连接密码、设置Redis日志位置等一切有相当实际意义的参数都会说明；同时也会介绍使">
+<meta name="twitter:description" content="0.前言在Linux上搭建Redis并不是一件简单的事，官方只提供了源码，安装就首先需要事先下载gcc工具来编译，后续还包括一些安全事项，比如：绑定连接的IP、设置连接密码、设置Redis日志位置。 不过，在这里安装不会详细说明，网上有很多关于安装的资料，这里主要详细的说明一下配置和连接，比如：绑定连接的IP、设置连接密码、设置Redis日志位置等一切有相当实际意义的参数都会说明；同时也会介绍使">
 <meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-018.jpg">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
@@ -198,12 +198,12 @@
       
         <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-018.jpg" alt="动漫美图"></p>
 <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h2><p>在Linux上搭建Redis并不是一件简单的事，官方只提供了源码，安装就首先需要事先下载gcc工具来编译，后续还包括一些安全事项，比如：绑定连接的IP、设置连接密码、设置Redis日志位置。</p>
-<p>不过，在这里安装不会详细说明，晚上有很多关于安装的资料，这里<strong>主要详细的说明一下配置和连接</strong>，比如：绑定连接的IP、设置连接密码、设置Redis日志位置等一切有相当实际意义的参数都会说明；同时也会介绍<strong>使用Unix domain Socket来连接</strong>，也会说明下自己在搭建时遇到的问题。<br><a id="more"></a><br>关于Redis的基本介绍，可以参考我的笔记 <a href="https://kanarien.cn/2018/07/22/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Redis学习笔记</a></p>
+<p>不过，在这里安装不会详细说明，网上有很多关于安装的资料，这里<strong>主要详细的说明一下配置和连接</strong>，比如：绑定连接的IP、设置连接密码、设置Redis日志位置等一切有相当实际意义的参数都会说明；同时也会介绍<strong>使用Unix domain Socket来连接</strong>，也会说明下自己在搭建时遇到的问题。<br><a id="more"></a><br>关于Redis的基本介绍，可以参考我的笔记 <a href="https://kanarien.cn/2018/07/22/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Redis学习笔记</a></p>
 <h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h2><h3 id="1-1-安装说明"><a href="#1-1-安装说明" class="headerlink" title="1.1 安装说明"></a>1.1 安装说明</h3><ul>
 <li>系统环境： CentOS 7.4.1708</li>
 <li>Redis版本：3.2.10</li>
 </ul>
-<p>完整的安装过程需要gcc编辑工具、和TCL(8.5以上版本)工具脚本语言</p>
+<p>完整的安装过程需要gcc编译工具、和TCL(8.5以上版本)工具脚本语言</p>
 <p><strong>安装gcc-c</strong><br>用<code>gcc -v</code>看是否有输出来检测是否安装了gcc，可通过<code>yum install gcc-c++</code>或<a href="http://gcc.gnu.org/" target="_blank" rel="noopener">gcc官网</a> 下载压缩包解压</p>
 <p><strong>安装tcl8.5+</strong>（非必要）<br>Redis的make test命令需要tcl8.5+，通过<a href="https://sourceforge.net/projects/tcl/files/Tcl/" target="_blank" rel="noopener">https://sourceforge.net/projects/tcl/files/Tcl/</a>，下载压缩包，然后需要编译安装，这里略过</p>
 <p>详细安装过程可以参考下面的博客：<a href="https://blog.csdn.net/qq_20989105/article/details/76390367" target="_blank" rel="noopener">Redis之在Linux上安装和简单的使用 - CSDN博客</a>。</p>
@@ -244,17 +244,16 @@
 </li>
 <li><p><code>logfile</code><br>说明：日志文件的位置，当指定为空字符串时，为标准输出，如果redis已守护进程模式运行，那么日志将会输出到  /dev/null 。<strong>输出到/dev/null就是没了！为了维护地方便，这里务必自己配置一个路径。</strong><br>缺省配置：logfile “”</p>
 </li>
-<li><p><code>databases</code><br>说明：设置数据库的数目。默认的数据库是DB 0 ，可以在每个连接上使用select  <dbid> 命令选择一个不同的数据库，dbid是一个介于0到databases - 1 之间的数值。<br>缺省配置：databases 16</dbid></p>
+<li><p><code>databases</code><br>说明：设置数据库的数目。默认的数据库是DB 0 ，可以在每个连接上使用<code>select  &lt;dbid&gt;</code> 命令选择一个不同的数据库，dbid是一个介于0到databases - 1 之间的数值。<br>缺省配置：databases 16</p>
 </li>
 <li><p><code>dbfilename</code><br>说明：rdb文件的名字。缺省是redis启动命令执行的位置，<strong>dump.rdb文件请务必了解</strong><br>缺省配置：dbfilename dump.rdb</p>
+<blockquote>
+<p><strong>关于redis的dump.rdb文件</strong><br>dump.rdb文件是redis快照的结果，也就是将数据库中是数据保存到硬盘中，防止redis意外重启后数据丢失的。redis每次启动时，都会先去找这个文件，将里面的数据导入数据库中，如果没有找到这个文件就会重新建立一个，如果找到了，但是被清空了，对不起，你的数据也就丢失了。配置文件中默认位置是，redis启动命令执行的位置。也就是，你在哪启动redis，这个文件就放在哪。一般我们会通过 CD 命令进入到redis的src或者bin目录来执行redis-server.exe，此时dump.rdb的位置就是src或bin；其保存时机由 <code>save</code> 参数配置指定</p>
+</blockquote>
 </li>
-</ol>
-<pre><code>&gt; **关于redis的dump.rdb文件**
-</code></pre><p>dump.rdb文件是redis快照的结果，也就是将数据库中是数据保存到硬盘中，防止redis意外重启后数据丢失的。redis每次启动时，都会先去找这个文件，将里面的数据导入数据库中，如果没有找到这个文件就会重新建立一个，如果找到了，但是被清空了，对不起，你的数据也就丢失了。配置文件中默认位置是，redis启动命令执行的位置。也就是，你在哪启动redis，这个文件就放在哪。一般我们会通过 CD 命令进入到redis的src或者bin目录来执行redis-server.exe，此时dump.rdb的位置就是src或bin；其保存时机由 <code>save</code> 参数配置指定</p>
-<ol start="14">
 <li><p><code>dir</code><br>说明：数据库(持久化)存放目录，也是dump.rdb存放的目录。必须是一个目录，aof文件也会保存到该目录下。<br>缺省配置：dir ./</p>
 </li>
-<li><p><code>save</code><br>说明：保存数据到磁盘。格式是：save <seconds> <changes> ，含义是在 seconds 秒之后至少有 changes个keys 发生改变则保存一次。<br>缺省配置：</changes></seconds></p>
+<li><p><code>save</code><br>说明：保存数据到磁盘。格式是：<code>save &lt;seconds&gt; &lt;changes&gt;</code> ，含义是在 seconds 秒之后至少有 changes个keys 发生改变则保存一次。<br>缺省配置：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">save 900 1</span><br><span class="line">save 300 10</span><br><span class="line">save 60 10000</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>stop-writes-on-bgsave-error</code><br>说明：默认情况下，如果 redis 最后一次的后台保存失败，redis 将停止接受写操作，这样以一种强硬的方式让用户知道数据不能正确的持久化到磁盘， 否则就会没人注意到灾难的发生。 如果后台保存进程重新启动工作了，redis 也将自动的允许写操作。然而你要是安装了靠谱的监控，你可能不希望 redis 这样做，那你就改成 no 好了。<br>缺省配置：stop-writes-on-bgsave-error yes</p>
@@ -263,7 +262,7 @@
 </li>
 <li><p><code>requirepass</code><br>说明：设置redis连接密码，默认不使用，<strong>很多时候我们为了测试环境能够连上服务器上的Redis而设置了bind 0.0.0.0，没有改变端口设置，更没有设置密码，为了你的Redis安全，请务必使用密码连接</strong><br>示例配置：requirepass foobared</p>
 </li>
-<li><p><code>maxmemory</code><br>解释： 指定Redis最大内存限制，Redis在启动时会把数据加载到内存中，达到最大内存后，Redis会先尝试清除已到期或即将到期的Key，当此方法处理 后，仍然到达最大内存设置，将无法再进行写入操作，但仍然可以进行读取操作。Redis新的vm机制，会把Key存放内存，Value会存放在swap区，格式：maxmemory <bytes>　。<strong>当你需要占用很多内存时，请务必设置一个最大内存大小</strong>。<br>示例配置：maxmemory　1024000</bytes></p>
+<li><p><code>maxmemory</code><br>解释： 指定Redis最大内存限制，Redis在启动时会把数据加载到内存中，达到最大内存后，Redis会先尝试清除已到期或即将到期的Key，当此方法处理 后，仍然到达最大内存设置，将无法再进行写入操作，但仍然可以进行读取操作。Redis新的vm机制，会把Key存放内存，Value会存放在swap区，格式：<code>maxmemory &lt;bytes&gt;</code>　。<strong>当你需要占用很多内存时，请务必设置一个最大内存大小</strong>。<br>示例配置：maxmemory　1024000</p>
 </li>
 <li><p><code>appendonly</code><br>说明：是否启用aof持久化方式 。即是否在每次更新操作后进行日志记录，默认配置是no，即在采用异步方式把数据写入到磁盘，如果不开启，可能会在断电时导致部分数据丢失。<strong>如果拿Redis当Cache用，一般不会用到aof持久化</strong><br>缺省配置：appendonly no</p>
 <blockquote>
@@ -691,19 +690,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
              
               <li class="article-tag-list-item">

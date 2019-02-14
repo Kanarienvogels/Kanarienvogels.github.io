@@ -17,7 +17,7 @@
 <meta property="og:description" content="0. 前言LeetCode的一道算法题：正则字符串匹配。涉及了比较复杂的递归和动态规划算法，特此记录。 1. 题目regular-expression-matching(正则字符串匹配) Implement regular expression matching with support for’.’and’*’. ‘.’ Matches any single character.‘*’ Mat">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-026.jpg">
-<meta property="og:updated_time" content="2018-11-27T14:53:15.144Z">
+<meta property="og:updated_time" content="2019-01-29T02:53:10.076Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="regular-expression-matching算法讲解">
 <meta name="twitter:description" content="0. 前言LeetCode的一道算法题：正则字符串匹配。涉及了比较复杂的递归和动态规划算法，特此记录。 1. 题目regular-expression-matching(正则字符串匹配) Implement regular expression matching with support for’.’and’*’. ‘.’ Matches any single character.‘*’ Mat">
@@ -212,6 +212,13 @@
 <li>当p.length &gt; 1，且p[1] = “*”(含星号的情况)，<br>则应该把可能重复的s字符逐一匹配然后去掉，使用一个循环，<br>由于星号的特性，要考虑到当前p的前两个字符可能匹配不到任何的s，<br>所以要先判断下isMatch(s, p.substring(2))，即当前p的前两个字符不进行任何匹配。<br>然后再是逐一判断s[0]与p[0]是否相等，是则s取下一字符，否则结束循环。<br>循环结束后，说明p的前两个字符已经匹配完毕，p取后面的字符。</li>
 </ol>
 <h3 id="2-2-实现"><a href="#2-2-实现" class="headerlink" title="2.2 实现"></a>2.2 实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">private static boolean isMatch_recursion(String s, String p) &#123;</span><br><span class="line">    if (p.isEmpty()) &#123;</span><br><span class="line">        return s.isEmpty();</span><br><span class="line">    &#125; else if (p.length() == 1) &#123;</span><br><span class="line">        return s.length() == 1 &amp;&amp; (p.equals(s) || p.equals(&quot;.&quot;));</span><br><span class="line">    &#125; else if (p.charAt(1) != &apos;*&apos;) &#123;</span><br><span class="line">        if (s.isEmpty()) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return (s.charAt(0) == p.charAt(0) || p.charAt(0) == &apos;.&apos;)</span><br><span class="line">            &amp;&amp; isMatch_recursion(s.substring(1, s.length()), p.substring(1, p.length()));</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        while (!s.isEmpty() &amp;&amp; (s.charAt(0) == p.charAt(0) || p.charAt(0) == &apos;.&apos;)) &#123;</span><br><span class="line">            if (isMatch_recursion(s, p.substring(2, p.length()))) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">            s = s.substring(1, s.length());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return isMatch_recursion(s, p.substring(2, p.length()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-另一实现"><a href="#2-3-另一实现" class="headerlink" title="2.3 另一实现"></a>2.3 另一实现</h3><p>当模式中的第二个字符不是“*”时：<br>1、如果字符串第一个字符和模式中的第一个字符相匹配，那么字符串和模式都后移一个字符，然后匹配剩余的。<br>2、如果 字符串第一个字符和模式中的第一个字符相不匹配，直接返回false。</p>
+<p>而当模式中的第二个字符是“*”时：<br>如果字符串第一个字符跟模式第一个字符不匹配，则模式后移2个字符，继续匹配。如果字符串第一个字符跟模式第一个字符匹配，可以有3种匹配方式：<br>1、模式后移2字符，相当于x*被忽略；<br>2、字符串后移1字符，模式后移2字符；<br>3、字符串后移1字符，模式不变，即继续匹配字符下一位，因为*可以匹配多位；</p>
+<p>这里需要注意的是：Java里，要时刻检验数组是否越界。</p>
+<blockquote>
+<p>来源：<a href="https://www.nowcoder.com/questionTerminal/45327ae22b7b413ea21df13ee7d6429c" target="_blank" rel="noopener">牛客网</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public boolean match(String s, String p) &#123;</span><br><span class="line">        if (str == null || pattern == null) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        int strIndex = 0;</span><br><span class="line">        int patternIndex = 0;</span><br><span class="line">        return matchCore(s.toCharArray(), strIndex, p.toCharArray(), patternIndex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">public boolean matchCore(char[] str, int strIndex, char[] pattern, int patternIndex) &#123;</span><br><span class="line">    //有效性检验：str到尾，pattern到尾，匹配成功</span><br><span class="line">    if (strIndex == str.length &amp;&amp; patternIndex == pattern.length) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    //pattern先到尾，匹配失败</span><br><span class="line">    if (strIndex != str.length &amp;&amp; patternIndex == pattern.length) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    //模式第2个是*，且字符串第1个跟模式第1个匹配,分3种匹配模式；如不匹配，模式后移2位</span><br><span class="line">    if (patternIndex + 1 &lt; pattern.length &amp;&amp; pattern[patternIndex + 1] == &apos;*&apos;) &#123;</span><br><span class="line">        if ((strIndex != str.length &amp;&amp; pattern[patternIndex] == str[strIndex]) || (pattern[patternIndex] == &apos;.&apos; &amp;&amp; strIndex != str.length)) &#123;</span><br><span class="line">            return matchCore(str, strIndex, pattern, patternIndex + 2)//模式后移2，视为x*匹配0个字符</span><br><span class="line">                    || matchCore(str, strIndex + 1, pattern, patternIndex);//*匹配1个，再匹配str中的下一个</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return matchCore(str, strIndex, pattern, patternIndex + 2);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //模式第2个不是*，且字符串第1个跟模式第1个匹配，则都后移1位，否则直接返回false</span><br><span class="line">    if ((strIndex != str.length &amp;&amp; pattern[patternIndex] == str[strIndex]) || (pattern[patternIndex] == &apos;.&apos; &amp;&amp; strIndex != str.length)) &#123;</span><br><span class="line">        return matchCore(str, strIndex + 1, pattern, patternIndex + 1);</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="3-动态规划"><a href="#3-动态规划" class="headerlink" title="3. 动态规划"></a>3. 动态规划</h2><h3 id="3-1-思路"><a href="#3-1-思路" class="headerlink" title="3.1 思路"></a>3.1 思路</h3><p>设dp[i][j]为字符串s前i个字符与正则式p前j个字符的匹配结果，记m = s.length()，n = p.length()，因此所求最终结果为dp[m][n]。</p>
 <p><strong>初始状态</strong>：<br>显然,dp[0][0] = true，<br>第一行表示s = “” 去匹配全部p，只需要注意’*‘。当p[i - 1] = ‘*’ &amp;&amp; dp[0][i - 1] = true时dp[0][i + 1] = true，<br>第一列表示p = “” 去匹配全部s，显然全为false。</p>
 <p><strong>状态转移方程</strong>：</p>
@@ -223,7 +230,7 @@
 </ul>
 </li>
 </ul>
-<p><strong>示例</strong>：</p>
+<p><strong>示例</strong>(0、1表示匹配失败、成功)：</p>
 <table>
 <thead>
 <tr>
@@ -446,7 +453,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-题目"><span class="toc-number">2.</span> <span class="toc-text">1. 题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-分类递归"><span class="toc-number">3.</span> <span class="toc-text">2. 分类递归</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-思路"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-实现"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-动态规划"><span class="toc-number">4.</span> <span class="toc-text">3. 动态规划</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-思路"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-实现"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 实现</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-题目"><span class="toc-number">2.</span> <span class="toc-text">1. 题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-分类递归"><span class="toc-number">3.</span> <span class="toc-text">2. 分类递归</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-思路"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-实现"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-另一实现"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 另一实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-动态规划"><span class="toc-number">4.</span> <span class="toc-text">3. 动态规划</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-思路"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-实现"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 实现</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -585,19 +592,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
