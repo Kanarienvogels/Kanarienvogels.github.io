@@ -184,42 +184,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-027.jpg" alt="动漫美图"></p>
+        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-029.jpg" alt="动漫美图"></p>
 <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>动态规划算法常常被用于处理字符串相关的问题，其中最经典的就是最长公共子序列和最长公共子串问题。</p>
 <h2 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1. 问题描述"></a>1. 问题描述</h2><p><strong>最长公共子序列（Longest Common Sequence）</strong><br>给定两个字符串，求出它们之间最长的相同子序列的长度。如：字符串1：BDCABA；字符串2：ABCBDAB，则最长公共子序列是：BCBA，长度为4。</p>
 <p><strong>最长公共子串(Longest Common Substring)</strong><br>给定两个字符串，求出它们之间最长的相同子字符串的长度。如：字符串1：DVBGHRF，字符串2：ABGHRCD，则最长公共子串为：BGHR，长度为4。</p>
 <p><strong>子序列和子串的区别在于：子序列要求字符可以不连续，子串要求字符连续</strong></p>
-<p>下面使用动态规划的方法进行求解，最长公共子串和最长公共子序列在不引起混淆的情况下简称为LCS。</p>
-<h2 id="2-最长公共子串问题求解"><a href="#2-最长公共子串问题求解" class="headerlink" title="2. 最长公共子串问题求解"></a>2. 最长公共子串问题求解</h2><p><strong>暴力解法</strong>：方便对比，时间复杂度O(n^3)，空间复杂度O(1)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public int lcs_n3(String str1, String str2) &#123;</span><br><span class="line">    int len1 = str1.size();</span><br><span class="line">    int len2 = str2.size();</span><br><span class="line">    if (size1 == 0 || size2 == 0) return 0;</span><br><span class="line"></span><br><span class="line">    // 长度</span><br><span class="line">    int result = 0;</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i &lt; len1; ++i) &#123;</span><br><span class="line">        for (int j = 0; j &lt; len2; ++j) &#123;</span><br><span class="line">            int length = 0;</span><br><span class="line">            int m = i;</span><br><span class="line">            int n = j;</span><br><span class="line">            while(m &lt; len1 &amp;&amp; n &lt; len2) &#123;</span><br><span class="line">                if (str1[m] != str2[n]) break;</span><br><span class="line">                ++length;</span><br><span class="line">                ++m;</span><br><span class="line">                ++n;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (result &lt; length) &#123;</span><br><span class="line">                result = length;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>动态规划的关键是把问题分解成一个个规模更小的关联的子问题（状态转移方程），直到到达边界条件或已知条件（初始状态）</strong></p>
-<p><strong>动态规划</strong><br>设dp[i][j]为字符串 [a1,a2,…,ai]与字符串[b1,b2,…,bj]的最长公共连续子串的最后一个字符与这个两个字符串的最后一个字符相等的情况下，这个LCS的长度</p>
-<p><strong>初始状态</strong>：<br>显然dp[0][0] = 0，而且第一列和第一行（str1或str2长度为0）也为0</p>
-<p><strong>状态转移方程</strong>:</p>
-<ul>
-<li>dp[i][j] = 0, str1[i] != str2[j]</li>
-<li>dp[i][j] = dp[i - 1][j - 1] + 1, str1[i] = str2[j]</li>
-</ul>
-<p>时间复杂度O(n^2)，空间复杂度O(n^2)</p>
-<p><strong>实例</strong>：<br>str1:ABGHRCD str2:DVBGHRF<br>| str1\str2 |  | D | V | B | G | H | R | F |<br>| :–: | :–: | :–: | :–: | :–: | :–: | :–: | :–: | :–: |<br>|   | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |<br>| A | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |<br>| B | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 |<br>| G | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 0 |<br>| H | 0 | 0 | 0 | 0 | 0 | 3 | 0 | 0 |<br>| R | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 0 |<br>| C | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |<br>| D | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |</p>
-<p>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public int lcs_dp(String str1, String str2) &#123;</span><br><span class="line">    int len1 = str1.length();</span><br><span class="line">    int len2 = str2.length();</span><br><span class="line">    int result = 0;     //记录最长公共子串长度</span><br><span class="line">    int c[][] = new int[len1 + 1][len2 + 1];</span><br><span class="line">    for (int i = 0; i &lt;= len1; i++) &#123;</span><br><span class="line">        for( int j = 0; j &lt;= len2; j++) &#123;</span><br><span class="line">            if(i == 0 || j == 0) &#123;</span><br><span class="line">                c[i][j] = 0;</span><br><span class="line">            &#125; else if (str1.charAt(i - 1) == str2.charAt(j - 1)) &#123;</span><br><span class="line">                c[i][j] = c[i - 1][j - 1] + 1;</span><br><span class="line">                result = max(c[i][j], result);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                c[i][j] = 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="3-最长公共子序列问题求解"><a href="#3-最长公共子序列问题求解" class="headerlink" title="3. 最长公共子序列问题求解"></a>3. 最长公共子序列问题求解</h2><p>最长公共子序列和最长公共子串的差异，本质上体现在子字符串是否连续，因此也造成了dp数组的意义不同。</p>
-<p>设dp[i][j]为最长公共子序列的长度（和最长公共子串的dp数组不一样），显然dp[str1.size()][str2.size()]就是所求结果</p>
-<p><strong>初始状态</strong>：<br>显然dp[0][0] = 0，而且第一列和第一行（str1或str2长度为0）也为0</p>
-<p><strong>状态转移方程</strong>:</p>
-<ul>
-<li>dp[i][j] = dp[i - 1][j - 1] + 1, str1[i] = str2[j]</li>
-<li>dp[i][j] = max(dp[i][j - 1], dp[i - 1][j]), str1[i] != str2[j]</li>
-</ul>
-<p>时间复杂度O(n^2)，空间复杂度O(n^2)</p>
-<p><strong>实例</strong>：<br>str1:ABCBDAB str2:BDCABA<br>| str1\str2 |  | B | D | C | A | B | A |<br>| :–: | :–: | :–: | :–: | :–: | :–: | :–: | :–: |<br>|   | 0 | 0 | 0 | 0 | 0 | 0 | 0 |<br>| A | 0 | 0 | 0 | 0 | 1 | 1 | 1 |<br>| B | 0 | 1 | 1 | 1 | 1 | 2 | 2 |<br>| C | 0 | 1 | 1 | 2 | 2 | 2 | 2 |<br>| B | 0 | 1 | 1 | 2 | 2 | 3 | 3 |<br>| D | 0 | 1 | 2 | 2 | 2 | 3 | 3 |<br>| A | 0 | 1 | 2 | 2 | 3 | 3 | 4 |<br>| B | 0 | 1 | 2 | 3 | 3 | 4 | 4 |</p>
-<p>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public static int lcs_dp(String str1, String str2)&#123;</span><br><span class="line">    int[][] c = new int[str1.length() + 1][str2.length() + 1];</span><br><span class="line">    for(int row = 0; row &lt;= str1.length(); row++)</span><br><span class="line">        c[row][0] = 0;</span><br><span class="line">    for(int column = 0; column &lt;= str2.length(); column++)</span><br><span class="line">        c[0][column] = 0;</span><br><span class="line"></span><br><span class="line">    for(int i = 1; i &lt;= str1.length(); i++)</span><br><span class="line">        for(int j = 1; j &lt;= str2.length(); j++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(str1.charAt(i - 1) == str2.charAt(j - 1))</span><br><span class="line">                c[i][j] = c[i - 1][j - 1] + 1;</span><br><span class="line">            else if(c[i][j - 1] &gt; c[i - 1][j])</span><br><span class="line">                c[i][j] = c[i][j - 1];</span><br><span class="line">            else</span><br><span class="line">                c[i][j] = c[i - 1][j];</span><br><span class="line">        &#125;</span><br><span class="line">    return c[str1.length()][str2.length()];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h2><p>重点再说一遍：<strong>子序列和子串的区别在于：子序列要求字符可以不连续，子串要求字符连续</strong></p>
-<p>动态规划通过空间换时间，实际上上述的解法还可以进一步压缩空间复杂度到O(1)，这里不作讲解。</p>
-<hr>
-<blockquote>
-<p>Copyright © 2018, GDUT CSCW back-end Kanarien, All Rights Reserved</p>
-</blockquote>
-
+        
+          <a class="article-more-a" href="/2019/02/12/动态规划：最长公共序列和最长公共子串/#more">more >></a>
+        
       
 
       
@@ -1333,11 +1305,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1349,15 +1317,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1385,15 +1357,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Lettuce</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
               <li class="article-tag-list-item">
