@@ -25,7 +25,9 @@
 <meta property="og:image" content="http://static.zybuluo.com/Rico123/yn5j5ojk6mz9axjutk4hogxq/%E6%A0%87%E8%AE%B0-%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%951.jpg">
 <meta property="og:image" content="http://static.zybuluo.com/Rico123/b26me40cjhiqkeb2vl6jb807/%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
 <meta property="og:image" content="http://static.zybuluo.com/Rico123/9hswys8w1pqy0ch06vmlbqi2/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8.jpg">
-<meta property="og:updated_time" content="2019-01-25T15:39:52.799Z">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/jconsole.PNG">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/jvisualvm.PNG">
+<meta property="og:updated_time" content="2019-02-27T14:05:04.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java虚拟机(四)——垃圾回收机制">
 <meta name="twitter:description" content="垃圾回收机制1. 垃圾回收概述在C++中，对象所占的内存在程序结束运行之前一直被占用，在明确释放之前不能分配给其它对象。而在Java中，当没有对象引用指向原先分配给某个对象的内存时，该内存便成为垃圾。JVM的一个系统级线程会自动释放该内存块。垃圾回收意味着程序不再需要的对象是”无用信息”，这些信息将被丢弃。当一个对象不再被引用的时候，内存回收它占领的空间，以便空间被后来的新对象使用。事实上，除了">
@@ -288,10 +290,10 @@
 <li><strong>Serial收集器（复制算法)</strong>: 新生代单线程收集器，标记和清理都是单线程，优点是简单高效；</li>
 <li><strong>Serial Old收集器 (标记-整理算法)</strong>: 老年代单线程收集器，Serial收集器的老年代版本；</li>
 <li><strong>ParNew收集器 (复制算法)</strong>: 新生代收并行集器，实际上是Serial收集器的多线程版本，在多核CPU环境下有着比Serial更好的表现；</li>
-<li><strong>Parallel Scavenge收集器 (复制算法)</strong>: 新生代并行收集器，追求高吞吐量，高效利用 CPU。吞吐量 = 用户线程时间/(用户线程时间+GC线程时间)，高吞吐量可以高效率的利用CPU时间，尽快完成程序的运算任务，适合后台应用等对交互相应要求不高的场景；</li>
-<li><strong>Parallel Old收集器 (标记-整理算法)</strong>： 老年代并行收集器，吞吐量优先，Parallel Scavenge收集器的老年代版本；</li>
+<li><strong>Parallel Scavenge收集器 (复制算法，Java7、8 默认收集器)</strong>: 新生代并行收集器，追求高吞吐量，高效利用 CPU。吞吐量 = 用户线程时间/(用户线程时间+GC线程时间)，高吞吐量可以高效率的利用CPU时间，尽快完成程序的运算任务，适合后台应用等对交互相应要求不高的场景；</li>
+<li><strong>Parallel Old收集器 (标记-整理算法，Java7、8 默认收集器)</strong>： 老年代并行收集器，吞吐量优先，Parallel Scavenge收集器的老年代版本；</li>
 <li><strong>CMS(Concurrent Mark Sweep)收集器（标记-清除算法）</strong>： 老年代并行收集器，以获取最短回收停顿时间为目标的收集器，具有高并发、低停顿的特点，追求最短GC回收停顿时间。</li>
-<li><strong>G1(Garbage First)收集器 (标记-整理算法)</strong>： Java堆并行收集器，G1收集器是JDK1.7提供的一个新收集器，G1收集器基于“标记-整理”算法实现，也就是说不会产生内存碎片。此外，G1收集器不同于之前的收集器的一个重要特点是：G1回收的范围是整个Java堆(包括新生代，老年代)，而前六种收集器回收的范围仅限于新生代或老年代。</li>
+<li><strong>G1(Garbage First,Java9 默认收集器)收集器 (标记-整理算法)</strong>： Java堆并行收集器，G1收集器是JDK1.7提供的一个新收集器，G1收集器基于“标记-整理”算法实现，也就是说不会产生内存碎片。此外，G1收集器不同于之前的收集器的一个重要特点是：G1回收的范围是整个Java堆(包括新生代，老年代)，而前六种收集器回收的范围仅限于新生代或老年代。</li>
 </ul>
 <h3 id="9-JVM常用参数"><a href="#9-JVM常用参数" class="headerlink" title="9. JVM常用参数"></a>9. JVM常用参数</h3><p><strong>信息跟踪相关参数</strong></p>
 <ul>
@@ -309,6 +311,13 @@
 <li>-XX:NewRatio：新生代（eden+2*Survivor）和老年代（不包含永久区）的比值，例如：-XX:NewRatio=4，表示新生代:老年代=1:4，即新生代占整个堆的1/5。</li>
 <li>-XX:SurvivorRatio：设置两个Survivor区和eden的比值，例如：8，表示两个Survivor:eden=2:8，即一个Survivor占年轻代的1/10</li>
 </ul>
+<h3 id="10-JVM信息查看方法"><a href="#10-JVM信息查看方法" class="headerlink" title="10. JVM信息查看方法"></a>10. JVM信息查看方法</h3><p>下面介绍的方法都是JDK自带的工具：jmap、jconsole、jvisualvm</p>
+<p><strong>jmap -heap [pid]</strong>，就可查看整个JVM中内存的状况，输出如下图：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Administrator&gt;jmap -heap 1156</span><br><span class="line">Attaching to process ID 1156, please wait...</span><br><span class="line">Debugger attached successfully.</span><br><span class="line">Server compiler detected.</span><br><span class="line">JVM version is 25.112-b15</span><br><span class="line"></span><br><span class="line">using thread-local object allocation.</span><br><span class="line">Parallel GC with 4 thread(s)</span><br><span class="line"></span><br><span class="line">Heap Configuration:</span><br><span class="line">   MinHeapFreeRatio         = 0</span><br><span class="line">   MaxHeapFreeRatio         = 100</span><br><span class="line">   MaxHeapSize              = 2113929216 (2016.0MB)</span><br><span class="line">   NewSize                  = 2621440 (2.5MB)</span><br><span class="line">   MaxNewSize               = 704643072 (672.0MB)</span><br><span class="line">   OldSize                  = 5767168 (5.5MB)</span><br><span class="line">   NewRatio                 = 2</span><br><span class="line">   SurvivorRatio            = 8</span><br><span class="line">   MetaspaceSize            = 21807104 (20.796875MB)</span><br><span class="line">   CompressedClassSpaceSize = 1073741824 (1024.0MB)</span><br><span class="line">   MaxMetaspaceSize         = 17592186044415 MB</span><br><span class="line">   G1HeapRegionSize         = 0 (0.0MB)</span><br><span class="line"></span><br><span class="line">Heap Usage:</span><br><span class="line">PS Young Generation</span><br><span class="line">Eden Space:</span><br><span class="line">   capacity = 33030144 (31.5MB)</span><br><span class="line">   used     = 12418088 (11.842811584472656MB)</span><br><span class="line">   free     = 20612056 (19.657188415527344MB)</span><br><span class="line">   37.59622725229415% used</span><br><span class="line">From Space:</span><br><span class="line">   capacity = 5242880 (5.0MB)</span><br><span class="line">   used     = 2598496 (2.478118896484375MB)</span><br><span class="line">   free     = 2644384 (2.521881103515625MB)</span><br><span class="line">   49.5623779296875% used</span><br><span class="line">To Space:</span><br><span class="line">   capacity = 5767168 (5.5MB)</span><br><span class="line">   used     = 0 (0.0MB)</span><br><span class="line">   free     = 5767168 (5.5MB)</span><br><span class="line">   0.0% used</span><br><span class="line">PS Old Generation</span><br><span class="line">   capacity = 28311552 (27.0MB)</span><br><span class="line">   used     = 20265752 (19.326927185058594MB)</span><br><span class="line">   free     = 8045800 (7.673072814941406MB)</span><br><span class="line">   71.58121179651332% used</span><br><span class="line"></span><br><span class="line">12361 interned Strings occupying 984184 bytes.</span><br></pre></td></tr></table></figure></p>
+<p><strong>JConsole</strong>可以图形化查看JVM中内存的变化状况，JConsole是JDK 5及以上版本中自带的工具，位于JDK的bin目录下，运行时直接运行JConsole.exe或JConsole.sh（要求支持图形界面）。</p>
+<p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/jconsole.PNG" alt="jconsole"></p>
+<p><strong>JVisualVM</strong>是JDK 6 update 7之后推出的一个工具，它类似于JProfiler的工具，基于此工具可查看内存的消耗情况、线程的执行状况及程序中消耗CPU、内存的动作。</p>
+<p>在内存分析上，JVisualVM的最大好处是可通过安装VisualGC插件来分析GC趋势、内存消耗详细状况。</p>
+<p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/jvisualvm.PNG" alt="jvisualvm"></p>
 <hr>
 <blockquote>
 <p>Copyright © 2018, GDUT CSCW back-end Kanarien, All Rights Reserved</p>
@@ -480,7 +489,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#垃圾回收机制"><span class="toc-number">1.</span> <span class="toc-text">垃圾回收机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-垃圾回收概述"><span class="toc-number">1.1.</span> <span class="toc-text">1. 垃圾回收概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-垃圾回收意义"><span class="toc-number">1.2.</span> <span class="toc-text">2. 垃圾回收意义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-垃圾回收区域"><span class="toc-number">1.3.</span> <span class="toc-text">3. 垃圾回收区域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-再述Java堆"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 再述Java堆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-再述方法区"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 再述方法区</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-垃圾回收种类"><span class="toc-number">1.4.</span> <span class="toc-text">4. 垃圾回收种类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-垃圾回收时机"><span class="toc-number">1.5.</span> <span class="toc-text">5. 垃圾回收时机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-垃圾回收对象"><span class="toc-number">1.6.</span> <span class="toc-text">6. 垃圾回收对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-垃圾回收算法"><span class="toc-number">1.7.</span> <span class="toc-text">7. 垃圾回收算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-标记清除算法"><span class="toc-number">1.7.1.</span> <span class="toc-text">7.1 标记清除算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-复制算法"><span class="toc-number">1.7.2.</span> <span class="toc-text">7.2 复制算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-标记整理算法"><span class="toc-number">1.7.3.</span> <span class="toc-text">7.3 标记整理算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-4-分代收集算法"><span class="toc-number">1.7.4.</span> <span class="toc-text">7.4 分代收集算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-垃圾回收器"><span class="toc-number">1.8.</span> <span class="toc-text">8. 垃圾回收器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-JVM常用参数"><span class="toc-number">1.9.</span> <span class="toc-text">9. JVM常用参数</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#垃圾回收机制"><span class="toc-number">1.</span> <span class="toc-text">垃圾回收机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-垃圾回收概述"><span class="toc-number">1.1.</span> <span class="toc-text">1. 垃圾回收概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-垃圾回收意义"><span class="toc-number">1.2.</span> <span class="toc-text">2. 垃圾回收意义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-垃圾回收区域"><span class="toc-number">1.3.</span> <span class="toc-text">3. 垃圾回收区域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-再述Java堆"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 再述Java堆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-再述方法区"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 再述方法区</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-垃圾回收种类"><span class="toc-number">1.4.</span> <span class="toc-text">4. 垃圾回收种类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-垃圾回收时机"><span class="toc-number">1.5.</span> <span class="toc-text">5. 垃圾回收时机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-垃圾回收对象"><span class="toc-number">1.6.</span> <span class="toc-text">6. 垃圾回收对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-垃圾回收算法"><span class="toc-number">1.7.</span> <span class="toc-text">7. 垃圾回收算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-标记清除算法"><span class="toc-number">1.7.1.</span> <span class="toc-text">7.1 标记清除算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-复制算法"><span class="toc-number">1.7.2.</span> <span class="toc-text">7.2 复制算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-标记整理算法"><span class="toc-number">1.7.3.</span> <span class="toc-text">7.3 标记整理算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-4-分代收集算法"><span class="toc-number">1.7.4.</span> <span class="toc-text">7.4 分代收集算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-垃圾回收器"><span class="toc-number">1.8.</span> <span class="toc-text">8. 垃圾回收器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-JVM常用参数"><span class="toc-number">1.9.</span> <span class="toc-text">9. JVM常用参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-JVM信息查看方法"><span class="toc-number">1.10.</span> <span class="toc-text">10. JVM信息查看方法</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -611,7 +620,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -623,19 +644,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">

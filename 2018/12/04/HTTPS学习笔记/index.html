@@ -8,22 +8,22 @@
   <link rel="dns-prefetch" href="https://kanarien.cn">
   <title>HTTPS学习笔记 | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0. 前言该笔记记录了HTTPS相关的基本知识，包括：  HTTPS的定义、发明动机，SSL/TLS的概念 HTTPS涉及主体 HTTPS的特点 HTTPS的工作流程">
+  <meta name="description" content="0. 前言该笔记记录了HTTPS相关的基本知识，包括：  HTTPS的定义、发明动机，SSL/TLS的概念 HTTPS涉及主体 HTTPS的特点 HTTPS的工作流程 HTTPS的优缺点">
 <meta name="keywords" content="HTTPS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTTPS学习笔记">
 <meta property="og:url" content="https://kanarien.cn/2018/12/04/HTTPS学习笔记/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
-<meta property="og:description" content="0. 前言该笔记记录了HTTPS相关的基本知识，包括：  HTTPS的定义、发明动机，SSL/TLS的概念 HTTPS涉及主体 HTTPS的特点 HTTPS的工作流程">
+<meta property="og:description" content="0. 前言该笔记记录了HTTPS相关的基本知识，包括：  HTTPS的定义、发明动机，SSL/TLS的概念 HTTPS涉及主体 HTTPS的特点 HTTPS的工作流程 HTTPS的优缺点">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-028.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/TLS%E5%9C%A8TCP%E5%8D%8F%E8%AE%AE%E6%A0%88%E4%B8%AD%E7%9A%84%E5%9C%B0%E4%BD%8D.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/HTTPS%E6%B6%89%E5%8F%8A%E4%B8%BB%E4%BD%93.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/HTTPS%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B.png">
-<meta property="og:updated_time" content="2018-12-04T13:48:13.356Z">
+<meta property="og:updated_time" content="2019-02-22T14:07:17.699Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTPS学习笔记">
-<meta name="twitter:description" content="0. 前言该笔记记录了HTTPS相关的基本知识，包括：  HTTPS的定义、发明动机，SSL/TLS的概念 HTTPS涉及主体 HTTPS的特点 HTTPS的工作流程">
+<meta name="twitter:description" content="0. 前言该笔记记录了HTTPS相关的基本知识，包括：  HTTPS的定义、发明动机，SSL/TLS的概念 HTTPS涉及主体 HTTPS的特点 HTTPS的工作流程 HTTPS的优缺点">
 <meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-028.jpg">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
@@ -201,7 +201,8 @@
 <li>HTTPS的定义、发明动机，SSL/TLS的概念</li>
 <li>HTTPS涉及主体</li>
 <li>HTTPS的特点</li>
-<li>HTTPS的工作流程<a id="more"></a>
+<li>HTTPS的工作流程</li>
+<li>HTTPS的优缺点<a id="more"></a>
 </li>
 </ul>
 <h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h2><p>HTTPS（Hyper Text Transfer Protocol over Secure Socket Layer 或 Hypertext Transfer Protocol Secure，超文本传输安全协议），是以安全为目标的HTTP通道，简单讲是HTTP的安全版。即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL。</p>
@@ -235,12 +236,28 @@
 <li><p><strong>加密通讯</strong>。此时客户端服务器双方都有了本次通讯的会话密钥，之后传输的所有Http数据，<strong>都通过会话密钥加密</strong>。这样网路上的其它用户，将很难窃取和篡改客户端和服务端之间传输的数据，从而保证了数据的私密性和完整性。</p>
 </li>
 </ol>
-<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h2><p>虽然标题是HTTPS的学习笔记，但HTTPS说的是HTTP运行在SSL/TLS之上，讨论的主题在于SSL/TLS，而非HTTP，关于HTTP的学习笔记可以查看 <a href="https://kanarien.cn/2018/07/30/HTTP学习笔记">HTTP学习笔记 – Kanarien</a></p>
+<h2 id="5-HTTPS的优缺点"><a href="#5-HTTPS的优缺点" class="headerlink" title="5. HTTPS的优缺点"></a>5. HTTPS的优缺点</h2><p><strong>优点</strong>：</p>
+<ol>
+<li>使用HTTPS协议可认证用户和服务器，确保数据发送到正确的客户机和服务器</li>
+<li>HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，要比HTTP协议安全，可防止数据在传输过程中不被窃取、改变，确保数据的完整性</li>
+<li>HTTPS是现行架构下最安全的解决方案，虽然不是绝对安全，但它大幅增加了中间人攻击的成本，有效防止DNS劫持</li>
+</ol>
+<p><strong>缺点</strong>：</p>
+<ol>
+<li>相同网络环境下，HTTPS协议会使页面的加载时间延长近50%，增加10%到20%的耗电。此外，HTTPS协议还会影响缓存，增加数据开销和功耗</li>
+<li>HTTPS协议的安全是有范围的，在黑客攻击、拒绝服务攻击、服务器劫持等方面几乎起不到什么作用</li>
+<li>最关键的，SSL 证书的信用链体系并不安全。特别是在某些国家可以控制 CA 根证书的情况下，中间人攻击一样可行</li>
+<li>SSL的专业证书需要购买，功能越强大的证书费用越高。个人网站、小网站可以选择入门级免费证书</li>
+<li>HTTPS 连接服务器端资源占用高较高多，相同负载下会增加带宽和服务器投入成本</li>
+<li>百度目前对HTTPS的优先展现效果不明显，谷歌较为明显</li>
+</ol>
+<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h2><p>虽然标题是HTTPS的学习笔记，但HTTPS说的是HTTP运行在SSL/TLS之上，讨论的主题在于SSL/TLS，而非HTTP，关于HTTP的学习笔记可以查看 <a href="https://kanarien.cn/2018/07/30/HTTP学习笔记">HTTP学习笔记 – Kanarien</a></p>
 <p>本笔记参考了以下文章：</p>
 <ul>
 <li><a href="http://www.techug.com/post/https-ssl-tls.html" target="_blank" rel="noopener">聊聊HTTPS和SSL/TLS协议</a></li>
 <li><a href="https://www.cnblogs.com/xinzhao/p/4949344.html" target="_blank" rel="noopener">白话Https - 程序员赵鑫 - 博客园</a></li>
 <li><a href="https://www.cnblogs.com/svan/p/5090201.html" target="_blank" rel="noopener">HTTPS工作原理 - vitoxie.xiepaup - 博客园</a></li>
+<li><a href="http://baijiahao.baidu.com/s?id=1604406292429610611&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">HTTPS优缺点、原理解析：我们的网站该不该做</a></li>
 </ul>
 <hr>
 <blockquote>
@@ -409,7 +426,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-定义"><span class="toc-number">2.</span> <span class="toc-text">1. 定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-SSL-TLS"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 SSL/TLS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-发明动机"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 发明动机</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-涉及主体"><span class="toc-number">3.</span> <span class="toc-text">2. 涉及主体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-特点"><span class="toc-number">4.</span> <span class="toc-text">3. 特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-工作流程"><span class="toc-number">5.</span> <span class="toc-text">4. 工作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-总结"><span class="toc-number">6.</span> <span class="toc-text">5. 总结</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-定义"><span class="toc-number">2.</span> <span class="toc-text">1. 定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-SSL-TLS"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 SSL/TLS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-发明动机"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 发明动机</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-涉及主体"><span class="toc-number">3.</span> <span class="toc-text">2. 涉及主体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-特点"><span class="toc-number">4.</span> <span class="toc-text">3. 特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-工作流程"><span class="toc-number">5.</span> <span class="toc-text">4. 工作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-HTTPS的优缺点"><span class="toc-number">6.</span> <span class="toc-text">5. HTTPS的优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-总结"><span class="toc-number">7.</span> <span class="toc-text">6. 总结</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -540,7 +557,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -552,19 +581,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
