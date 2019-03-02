@@ -17,9 +17,10 @@
 <meta property="og:description" content="1. 概念索引（在MySQL中也叫作“键（key）”），是存储引擎用于快速找到记录的一种数据结构。这是索引的基本功能，除此之外，索引还有其他的一些方面有用的属性。 索引对于良好的性能而言非常关键，尤其是表中的数据量非常大的时候，而糟糕的索引则会导致性能的急剧下降。 索引优化是对查询优化最有效的手段。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-022.jpg">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/B+Tree%E7%B4%A2%E5%BC%95.JPG">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/B-Tree%E7%B4%A2%E5%BC%95.JPG">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%83.JPG">
-<meta property="og:updated_time" content="2019-01-20T04:16:16.479Z">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E4%B8%8E%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95.PNG">
+<meta property="og:updated_time" content="2019-02-28T12:50:26.001Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高性能查询——数据库索引">
 <meta name="twitter:description" content="1. 概念索引（在MySQL中也叫作“键（key）”），是存储引擎用于快速找到记录的一种数据结构。这是索引的基本功能，除此之外，索引还有其他的一些方面有用的属性。 索引对于良好的性能而言非常关键，尤其是表中的数据量非常大的时候，而糟糕的索引则会导致性能的急剧下降。 索引优化是对查询优化最有效的手段。">
@@ -201,10 +202,11 @@
 <a id="more"></a>
 <h2 id="2-基础"><a href="#2-基础" class="headerlink" title="2. 基础"></a>2. 基础</h2><p>索引的工作方式：查询语句现在索引中找到对应值，然后根据匹配的索引记录找到对应的数据行。比如：<br><code>SELECT book_title FROM t_book WHERE book_id = 36;</code><br>若<code>book_id</code>列上建有索引，则MySQL将使用索引找到<code>book_id</code>为5的行，即，MySQL先在索引上按值查找，然后返回包含该值的数据行。</p>
 <p>索引可以包含一个或多个列的值。当包含多个列的值，此时列的顺序十分重要，MySQL只能高效的使用最左前缀列。</p>
-<h2 id="3-索引的类型"><a href="#3-索引的类型" class="headerlink" title="3. 索引的类型"></a>3. 索引的类型</h2><p>索引的实现与存储引擎的类型有关，没有统一的标准，下面讲述MySQL中支持的索引类型：</p>
+<h2 id="2-1-索引的存储"><a href="#2-1-索引的存储" class="headerlink" title="2.1 索引的存储"></a>2.1 索引的存储</h2><p>一般来说，索引本身也很大，不可能全部存储在内存中，因此索引往往以索引文件的形式存储的磁盘上。这样的话，索引查找过程中就要产生磁盘I/O消耗，相对于内存存取，I/O存取的消耗要高几个数量级，所以评价一个数据结构作为索引的优劣最重要的指标就是在查找过程中磁盘I/O操作次数的渐进复杂度。换句话说，索引的结构组织要尽量减少查找过程中磁盘I/O的存取次数，其中典型的例子就是树状索引使用数据结构B+Tree而不是B-Tree或红黑树。</p>
+<h2 id="3-索引的类型"><a href="#3-索引的类型" class="headerlink" title="3. 索引的类型"></a>3. 索引的类型</h2><p>索引的实现与存储引擎的类型有关，没有统一的标准，下面讲述MySQL中支持的索引类型：B+Tree索引、哈希索引、空间数据索引、全文索引，其中，详细介绍B+Tree索引。</p>
 <h3 id="3-1-B-Tree-索引"><a href="#3-1-B-Tree-索引" class="headerlink" title="3.1 B+Tree 索引"></a>3.1 B+Tree 索引</h3><h4 id="3-1-1-概念"><a href="#3-1-1-概念" class="headerlink" title="3.1.1 概念"></a>3.1.1 概念</h4><p>索引的<strong>默认类型</strong>是B+Tree索引，指的是使用B+Tree数据结构来存储数据，大多数存储引擎都支持这种索引，<strong>实际上很多存储引擎使用的是B+Tree数据结构</strong>，即每个结点都包含指向下一个叶子节点的指针，从而方便叶子节点的范围遍历。</p>
 <h4 id="3-1-2-特点"><a href="#3-1-2-特点" class="headerlink" title="3.1.2 特点"></a>3.1.2 特点</h4><p>B+Tree意味着所有的值都是<strong>有序的</strong>，并且每个叶子页到根的距离相等。根节点存放了指向子节点的指针，存储引擎通过比较节点页的值和要查找的值，找到合适的指针进入下层的子节点，而叶子节点的指针指向被索引的数据。其抽象表示如下图：</p>
-<p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/B+Tree%E7%B4%A2%E5%BC%95.JPG" alt="B+Tree索引的抽象表示"></p>
+<p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/B-Tree%E7%B4%A2%E5%BC%95.JPG" alt="B+Tree索引的抽象表示"></p>
 <h4 id="3-1-3-适合B-Tree索引的查询类型及使用限制"><a href="#3-1-3-适合B-Tree索引的查询类型及使用限制" class="headerlink" title="3.1.3 适合B+Tree索引的查询类型及使用限制"></a>3.1.3 适合B+Tree索引的查询类型及使用限制</h4><p>假设有如下数据表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE t_book (</span><br><span class="line">  book_title VARCHAR(50) NOT NULL,</span><br><span class="line">  book_subtitle VARCHAR(50) NOT NULL,</span><br><span class="line">  publish_date Date NOT NULL,</span><br><span class="line">  author VARCHAR(50) NOT NULL,</span><br><span class="line">  key(book_title, book_subtitle, publish_date)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
 <p>其中对于每一行数据，使用了<code>book_title, book_subtitle, publish_date</code>共3列的值当索引，用这个当做例子进行下面的讲述。</p>
 <ul>
@@ -227,8 +229,9 @@
 <li>单一节点存储更多的元素，B+树空间利用率更高，使得查询的IO次数更少。</li>
 <li>所有查询都要查找到叶子节点，查询性能稳定。</li>
 <li>所有叶子节点形成有序链表，便于范围查询。</li>
+<li>B+树非叶子节点去掉了data域，因此可以拥有更大的出度，拥有更好的性能。</li>
 <li>增加，删除，红黑树会进行频繁的调整，来保证红黑树的性质，浪费时间。</li>
-<li>红黑树往往深度过大，导致磁盘IO次数多。 </li>
+<li>红黑树往往深度过大，导致磁盘IO次数多。</li>
 <li>B树，查询性能不稳定，查询结果高度不一致。</li>
 <li>B树，每个结点保存指向真实数据的指印，相比B+树每一层每屋存储的元素更多，显得更高一点。</li>
 </ol>
@@ -328,6 +331,9 @@
 <h3 id="5-3-避免多个范围查询"><a href="#5-3-避免多个范围查询" class="headerlink" title="5.3 避免多个范围查询"></a>5.3 避免多个范围查询</h3><p>范围查询指的是查询包含了范围条件，比如<code>&lt;</code>、<code>&gt;</code>和<code>BETWEEN</code>操作符，当索引列遇到该范围查询条件列，之后的列就无法再使用索引，情况允许的时候可以手动将某些条件转化成<code>IN()</code>操作符，这样数据库在查询时就会转换成多个等值查询，继而后续列可以继续使用索引，否则，当查询注重效率时，应该考虑不要使用多个范围查询，或者范围条件放最后。</p>
 <h2 id="6-聚簇索引"><a href="#6-聚簇索引" class="headerlink" title="6. 聚簇索引"></a>6. 聚簇索引</h2><p>聚簇索引并不是一种索引类型而是一种数据存储方式。InnoDB的聚簇索引实际上在同一个数据结构中保存了B+Tree索引和数据行，“聚簇”表示数据行和相邻的键值紧紧地存储在一起，如下图<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%83.JPG" alt="聚簇索引的数据分布"></p>
 <p>由于数据行和相邻的键值紧紧地存储在一起，因此无法同时把数据行存放在两个不同的地方，一个表只能由一个聚簇索引。</p>
+<p>聚簇索引和非聚簇索引对比：<br>聚簇索引的数据的物理存放顺序与索引顺序是一致的，即：只要索引是相邻的，那么对应的数据一定也是相邻地存放在磁盘上的。聚簇索引要比非聚簇索引查询效率高很多。<br>聚集索引这种主+辅索引的好处是，当发生数据行移动或者页分裂时，辅助索引树不需要更新，因为辅助索引树存储的是主索引的主键关键字，而不是数据具体的物理地址。</p>
+<p>非聚集索引，类似于图书的附录，那个专业术语出现在哪个章节，这些专业术语是有顺序的，但是出现的位置是没有顺序的。每个表只能有一个聚簇索引，因为一个表中的记录只能以一种物理顺序存放。但是，一个表可以有不止一个非聚簇索引。</p>
+<p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E4%B8%8E%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95.PNG" alt="聚簇索引和非聚簇索引"></p>
 <h2 id="7-覆盖索引"><a href="#7-覆盖索引" class="headerlink" title="7. 覆盖索引"></a>7. 覆盖索引</h2><p>如果一个索引包含（或者说覆盖）所有需要查询的字段的值，我们就称之为覆盖索引。当索引包含要查询的数据，就没有必要再回表查询，查询效率更加高效。</p>
 <h2 id="8-备注"><a href="#8-备注" class="headerlink" title="8. 备注"></a>8. 备注</h2><p> 以上内容主要摘自《高性能MySQL第三版》第五章。</p>
 <hr>
@@ -501,7 +507,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-概念"><span class="toc-number">1.</span> <span class="toc-text">1. 概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-基础"><span class="toc-number">2.</span> <span class="toc-text">2. 基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-索引的类型"><span class="toc-number">3.</span> <span class="toc-text">3. 索引的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-B-Tree-索引"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 B+Tree 索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1-概念"><span class="toc-number">3.1.1.</span> <span class="toc-text">3.1.1 概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-2-特点"><span class="toc-number">3.1.2.</span> <span class="toc-text">3.1.2 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-3-适合B-Tree索引的查询类型及使用限制"><span class="toc-number">3.1.3.</span> <span class="toc-text">3.1.3 适合B+Tree索引的查询类型及使用限制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-4-为何选择B-Tree，而不是B-Tree或红黑树"><span class="toc-number">3.1.4.</span> <span class="toc-text">3.1.4 为何选择B+Tree，而不是B-Tree或红黑树</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-哈希索引"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 哈希索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-概念"><span class="toc-number">3.2.1.</span> <span class="toc-text">3.2.1 概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-特点"><span class="toc-number">3.2.2.</span> <span class="toc-text">3.2.2 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-3-哈希索引的使用限制"><span class="toc-number">3.2.3.</span> <span class="toc-text">3.2.3 哈希索引的使用限制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-4-自适应哈希索引"><span class="toc-number">3.2.4.</span> <span class="toc-text">3.2.4 自适应哈希索引</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-空间数据索引"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 空间数据索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-全文索引"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 全文索引</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-索引的优点"><span class="toc-number">4.</span> <span class="toc-text">4. 索引的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-使用索引的正确方法"><span class="toc-number">5.</span> <span class="toc-text">5. 使用索引的正确方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-使用独立的列"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 使用独立的列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-多列索引"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 多列索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-避免多个范围查询"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 避免多个范围查询</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-聚簇索引"><span class="toc-number">6.</span> <span class="toc-text">6. 聚簇索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-覆盖索引"><span class="toc-number">7.</span> <span class="toc-text">7. 覆盖索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-备注"><span class="toc-number">8.</span> <span class="toc-text">8. 备注</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-概念"><span class="toc-number">1.</span> <span class="toc-text">1. 概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-基础"><span class="toc-number">2.</span> <span class="toc-text">2. 基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-索引的存储"><span class="toc-number">3.</span> <span class="toc-text">2.1 索引的存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-索引的类型"><span class="toc-number">4.</span> <span class="toc-text">3. 索引的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-B-Tree-索引"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 B+Tree 索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1-概念"><span class="toc-number">4.1.1.</span> <span class="toc-text">3.1.1 概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-2-特点"><span class="toc-number">4.1.2.</span> <span class="toc-text">3.1.2 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-3-适合B-Tree索引的查询类型及使用限制"><span class="toc-number">4.1.3.</span> <span class="toc-text">3.1.3 适合B+Tree索引的查询类型及使用限制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-4-为何选择B-Tree，而不是B-Tree或红黑树"><span class="toc-number">4.1.4.</span> <span class="toc-text">3.1.4 为何选择B+Tree，而不是B-Tree或红黑树</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-哈希索引"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 哈希索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-概念"><span class="toc-number">4.2.1.</span> <span class="toc-text">3.2.1 概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-特点"><span class="toc-number">4.2.2.</span> <span class="toc-text">3.2.2 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-3-哈希索引的使用限制"><span class="toc-number">4.2.3.</span> <span class="toc-text">3.2.3 哈希索引的使用限制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-4-自适应哈希索引"><span class="toc-number">4.2.4.</span> <span class="toc-text">3.2.4 自适应哈希索引</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-空间数据索引"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 空间数据索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-全文索引"><span class="toc-number">4.4.</span> <span class="toc-text">3.4 全文索引</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-索引的优点"><span class="toc-number">5.</span> <span class="toc-text">4. 索引的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-使用索引的正确方法"><span class="toc-number">6.</span> <span class="toc-text">5. 使用索引的正确方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-使用独立的列"><span class="toc-number">6.1.</span> <span class="toc-text">5.1 使用独立的列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-多列索引"><span class="toc-number">6.2.</span> <span class="toc-text">5.2 多列索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-避免多个范围查询"><span class="toc-number">6.3.</span> <span class="toc-text">5.3 避免多个范围查询</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-聚簇索引"><span class="toc-number">7.</span> <span class="toc-text">6. 聚簇索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-覆盖索引"><span class="toc-number">8.</span> <span class="toc-text">7. 覆盖索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-备注"><span class="toc-number">9.</span> <span class="toc-text">8. 备注</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -620,10 +626,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -632,11 +634,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -648,7 +646,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -660,11 +662,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -676,15 +674,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -693,6 +695,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-006.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/IO%E9%98%BB%E5%A1%9E%E6%A8%A1%E5%9E%8B.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/IO%E5%A4%8D%E7%94%A8%E6%A8%A1%E5%9E%8B.jpg">
-<meta property="og:updated_time" content="2019-01-29T10:06:59.449Z">
+<meta property="og:updated_time" content="2019-03-02T15:14:26.675Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis学习笔记">
 <meta name="twitter:description" content="0. 前言此笔记用来记录关于Redis的一些基本知识，主要包括：  Redis背景、特点 Redis五种常用的数据结构 Redis常用命令及Key命名相关 Redis事务 Redis过期数据清除 Redis持久化机制：RDB和AOF">
@@ -210,6 +210,7 @@
 <li>更新记录<ul>
 <li>2018.2.14<br>  初次记录</li>
 <li>2018 4.21<br>  重新对目录进行了分级，补充了4.Redis执行效率，以及其他章节的细节</li>
+<li>2019 3.2<br>完善了数据过期策略（内存回收），补充各种数据结构的应用</li>
 </ul>
 </li>
 </ul>
@@ -279,6 +280,7 @@
 <h3 id="2-3-Redis常用数据结构和操作"><a href="#2-3-Redis常用数据结构和操作" class="headerlink" title="2.3 Redis常用数据结构和操作"></a>2.3 Redis常用数据结构和操作</h3><p>命令和参数之间、参数和参数之间用空格分隔</p>
 <h4 id="2-3-1-String"><a href="#2-3-1-String" class="headerlink" title="2.3.1 String"></a>2.3.1 String</h4><p>最普通的key-value类型，说是String，其实是任意的byte[]，比如图片，最大512M。 所有常用命令的复杂度都是O(1)，普通的Get/Set方法，可以用来做Cache。</p>
 <p><strong>value参数可以含有双引号也可以不含有</strong></p>
+<p>应用：最常规的缓存应用结构，范围宽广，如：微博数，粉丝数等。</p>
 <p>常用命令：</p>
 <table>
 <thead>
@@ -332,6 +334,7 @@
 </tbody>
 </table>
 <h4 id="2-3-2-Lists"><a href="#2-3-2-Lists" class="headerlink" title="2.3.2 Lists"></a>2.3.2 Lists</h4><p>基于<strong>Linked List链式节点</strong>实现的List数据结构。<br>相对于缓存或者数据库系统而言，在插入或者更新的操作上性能更重要，相对于查询操作，查询所带来的性能损耗更低。平衡性能的确采用Linked List实现更具有优越性。<br>redis中复合类型的基元素都是String类型。Lists也不例外。Lists类型实质就是一串String元素的序列，redis提供了很多丰富命令，用于操作Lists类型。</p>
+<p>应用：微博的关注列表，粉丝列表，最新消息排行</p>
 <p>常用命令：</p>
 <table>
 <thead>
@@ -428,6 +431,7 @@
 </tbody>
 </table>
 <h4 id="2-3-4-Sets"><a href="#2-3-4-Sets" class="headerlink" title="2.3.4 Sets"></a>2.3.4 Sets</h4><p>Set类型是无序且无重复的String元素的集合。redis也提供了大量对于Sets类型的操作，比如：交集、并集、补集在多个Set之间；测试给定元素是否存在等。</p>
+<p>应用：在微博应用中，可以将一个用户所有的关注人存在一个集合中，将其所有粉丝存在一个集合。Redis可以非常方便的实现如共同关注、共同喜好、二度好友等功能。</p>
 <p>常用命令：</p>
 <table>
 <thead>
@@ -471,6 +475,7 @@
 <li>如果a.score &gt; b.score，则a &gt; b;</li>
 <li>如果a.score = b.score，a &gt; b，则a &gt; b;</li>
 </ol>
+<p>应用：在直播系统中，实时排行信息包含直播间在线用户列表，各种礼物排行榜，弹幕消息（可以理解为按消息维度的消息排行榜）等信息，</p>
 <p>常用命令：</p>
 <table>
 <thead>
@@ -549,10 +554,29 @@
 <p>多个的进程的IO可以注册到一个复用器（select）上，然后用一个进程调用该select， select会监听所有注册进来的IO；<br>如果select没有监听的IO在内核缓冲区都没有可读数据，select调用进程会被阻塞；而当任一IO在内核缓冲区中有可数据时，select调用就会返回；<br>而后select调用进程可以自己或通知另外的进程（注册进程）来再次发起读取IO，读取内核中准备好的数据。<br>可以看到，多个进程注册IO后，只有另一个select调用进程被阻塞。</p>
 <p>1、典型应用：select、poll、epoll三种方案，nginx都可以选择使用这三个方案;Java NIO;</p>
 <p>2、特点：<br>专一进程解决多个进程IO的阻塞问题，性能好；Reactor模式;<br>实现、开发应用难度较大；<br>适用高并发服务应用开发：一个进程（线程）响应多个请求；</p>
-<h2 id="5-Redis过期数据清除"><a href="#5-Redis过期数据清除" class="headerlink" title="5. Redis过期数据清除"></a>5. Redis过期数据清除</h2><p>官方文档 与 《Redis设计与实现》中的详述，过期数据的清除从来不容易，为每一条key设置一个timer，到点立刻删除的消耗太大，每秒遍历所有数据消耗也大，Redis使用了一种相对务实的做法：</p>
-<p><strong>当client主动访问key会先对key进行超时判断，过时的key会立刻删除。</strong></p>
-<p>如果client永远都不再get那条key呢？ 它会在Master的后台，<strong>每秒10次的执行如下操作： 随机选取100个key校验是否过期，如果有25个以上的key过期了，立刻额外随机选取下100个key(不计算在10次之内)。</strong></p>
-<p>可见，如果过期的key不多，它最多每秒回收200条左右，如果有超过25%的key过期了，它就会做得更多，但只要key不被主动get，它占用的内存什么时候最终被清理掉只有天知道。</p>
+<h2 id="5-Redis过期数据清除"><a href="#5-Redis过期数据清除" class="headerlink" title="5. Redis过期数据清除"></a>5. Redis过期数据清除</h2><p>官方文档 与 《Redis设计与实现》中的详述，过期数据的清除从来不容易，为每一条key设置一个timer，到点立刻删除的消耗太大，每秒遍历所有数据消耗也大。</p>
+<p>Redis key过期的方式有三种：</p>
+<ul>
+<li>被动删除：当读/写一个已经过期的key时，会触发惰性删除策略，直接删除掉这个过期key</li>
+<li>定时删除：由于惰性删除策略无法保证冷数据被及时删掉，所以Redis会定期主动淘汰一批已过期的key</li>
+<li>主动删除：当前已用内存超过maxmemory限定时，触发主动清理策略</li>
+</ul>
+<h3 id="5-1-被动删除"><a href="#5-1-被动删除" class="headerlink" title="5.1 被动删除"></a>5.1 被动删除</h3><p><strong>当client主动访问key会先对key进行超时判断，过时的key会立刻删除。</strong></p>
+<p>这种删除策略对CPU是友好的，删除操作只有在不得不的情况下才会进行，不会其他的expire key上浪费无谓的CPU时间。</p>
+<p>但仅是这样是不够的，因为可能存在一些key永远不会被再次访问到，这些设置了过期时间的key也是需要在过期后被删除的，我们甚至可以将这种情况看作是一种内存泄露—-无用的垃圾数据占用了大量的内存，而服务器却不会自己去释放它们，这对于运行状态非常依赖于内存的Redis服务器来说，肯定不是一个好消息。</p>
+<h3 id="5-2-定时删除"><a href="#5-2-定时删除" class="headerlink" title="5.2 定时删除"></a>5.2 定时删除</h3><p>在 Redis 2.6 版本中， 程序规定<strong>serverCron每秒10次的执行如下操作：随机选取100个key校验是否过期，如果有25个以上的key过期了，立刻额外随机选取下100个key(不计算在10次之内)。</strong></p>
+<p>这是一个基于概率的简单算法，基本的假设是抽出的样本能够代表整个key空间，redis持续清理过期的数据直至将要过期的key的百分比降到了25%以下。这也意味着在任何给定的时刻已经过期但仍占据着内存空间的key的量最多为每秒的写操作量除以4。</p>
+<p>但只要key不被主动get，它占用的内存什么时候最终被清理掉只有天知道。</p>
+<h3 id="5-3-主动删除"><a href="#5-3-主动删除" class="headerlink" title="5.3 主动删除"></a>5.3 主动删除</h3><p>当前已用内存超过<code>maxmemory</code>限定时，触发主动清理策略：</p>
+<ol>
+<li>volatile-lru：从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰</li>
+<li>volatile-ttl：从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰</li>
+<li>volatile-random：从已设置过期时间的数据集（server.db[i].expires）中任意选择数据淘汰</li>
+<li>allkeys-lru：从数据集（server.db[i].dict）中挑选最近最少使用的数据淘汰</li>
+<li>allkeys-random：从数据集（server.db[i].dict）中任意选择数据淘汰</li>
+<li>no-enviction（驱逐）：禁止驱逐数据</li>
+</ol>
+<p>默认的内存策略是noeviction，在Redis中LRU算法是一个近似算法，默认情况下，Redis随机挑选5个键，并且从中选取一个最近最久未使用的key进行淘汰，在配置文件中可以通过<code>maxmemory-samples</code>的值来设置redis需要检查key的个数,但是查的越多，耗费的时间也就越久,但是结构越精确。</p>
 <h2 id="6-Redis的持久化机制"><a href="#6-Redis的持久化机制" class="headerlink" title="6. Redis的持久化机制"></a>6. Redis的持久化机制</h2><p>对于persistence持久化存储，Redis提供了两种持久化方法：</p>
 <ol>
 <li>Redis DataBase(简称RDB)</li>
@@ -579,6 +603,7 @@
 <li><a href="https://www.zhihu.com/question/19764056" target="_blank" rel="noopener">redis是个单线程的程序，为什么会这么快呢？  - 知乎</a></li>
 <li><a href="https://blog.csdn.net/mine_song/article/details/60141646" target="_blank" rel="noopener">Redis为什么使用单进程单线程方式也这么快 - CSDN博客</a></li>
 <li><a href="https://www.linuxidc.com/Linux/2016-10/136352.htm" target="_blank" rel="noopener">Redis持久化存储(AOF与RDB两种模式)_数据库技术_Linux公社-Linux系统门户网站</a></li>
+<li><a href="https://blog.csdn.net/qq_34337272/article/details/80012284" target="_blank" rel="noopener">面试中关于Redis的问题看这篇就够了 - 不忘初心 - CSDN博客</a></li>
 </ul>
 <p>参考网站：</p>
 <ul>
@@ -747,7 +772,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Redis简单介绍"><span class="toc-number">2.</span> <span class="toc-text">1. Redis简单介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Redis常用数据结构和操作"><span class="toc-number">3.</span> <span class="toc-text">2. Redis常用数据结构和操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Key的命名规则"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 Key的命名规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Key的常用命令"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 Key的常用命令 *</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Redis常用数据结构和操作"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 Redis常用数据结构和操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-String"><span class="toc-number">3.3.1.</span> <span class="toc-text">2.3.1 String</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-2-Lists"><span class="toc-number">3.3.2.</span> <span class="toc-text">2.3.2 Lists</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-3-Hashes"><span class="toc-number">3.3.3.</span> <span class="toc-text">2.3.3 Hashes</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-4-Sets"><span class="toc-number">3.3.4.</span> <span class="toc-text">2.3.4 Sets</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-5-Sorted-Set"><span class="toc-number">3.3.5.</span> <span class="toc-text">2.3.5 Sorted Set</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Redis事务"><span class="toc-number">4.</span> <span class="toc-text">3. Redis事务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Redis执行效率"><span class="toc-number">5.</span> <span class="toc-text">4. Redis执行效率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Redis架构"><span class="toc-number">5.1.</span> <span class="toc-text">4.1 Redis架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-I-O多路复用"><span class="toc-number">5.2.</span> <span class="toc-text">4.2 I/O多路复用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-阻塞IO模型"><span class="toc-number">5.2.1.</span> <span class="toc-text">4.2.1 阻塞IO模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-IO复用模型"><span class="toc-number">5.2.2.</span> <span class="toc-text">4.2.2 IO复用模型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Redis过期数据清除"><span class="toc-number">6.</span> <span class="toc-text">5. Redis过期数据清除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Redis的持久化机制"><span class="toc-number">7.</span> <span class="toc-text">6. Redis的持久化机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-RDB概述"><span class="toc-number">7.1.</span> <span class="toc-text">6.1 RDB概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-AOF概述"><span class="toc-number">7.2.</span> <span class="toc-text">6.2 AOF概述</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Redis简单介绍"><span class="toc-number">2.</span> <span class="toc-text">1. Redis简单介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Redis常用数据结构和操作"><span class="toc-number">3.</span> <span class="toc-text">2. Redis常用数据结构和操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Key的命名规则"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 Key的命名规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Key的常用命令"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 Key的常用命令 *</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Redis常用数据结构和操作"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 Redis常用数据结构和操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-String"><span class="toc-number">3.3.1.</span> <span class="toc-text">2.3.1 String</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-2-Lists"><span class="toc-number">3.3.2.</span> <span class="toc-text">2.3.2 Lists</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-3-Hashes"><span class="toc-number">3.3.3.</span> <span class="toc-text">2.3.3 Hashes</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-4-Sets"><span class="toc-number">3.3.4.</span> <span class="toc-text">2.3.4 Sets</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-5-Sorted-Set"><span class="toc-number">3.3.5.</span> <span class="toc-text">2.3.5 Sorted Set</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Redis事务"><span class="toc-number">4.</span> <span class="toc-text">3. Redis事务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Redis执行效率"><span class="toc-number">5.</span> <span class="toc-text">4. Redis执行效率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Redis架构"><span class="toc-number">5.1.</span> <span class="toc-text">4.1 Redis架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-I-O多路复用"><span class="toc-number">5.2.</span> <span class="toc-text">4.2 I/O多路复用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-阻塞IO模型"><span class="toc-number">5.2.1.</span> <span class="toc-text">4.2.1 阻塞IO模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-IO复用模型"><span class="toc-number">5.2.2.</span> <span class="toc-text">4.2.2 IO复用模型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Redis过期数据清除"><span class="toc-number">6.</span> <span class="toc-text">5. Redis过期数据清除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-被动删除"><span class="toc-number">6.1.</span> <span class="toc-text">5.1 被动删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-定时删除"><span class="toc-number">6.2.</span> <span class="toc-text">5.2 定时删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-主动删除"><span class="toc-number">6.3.</span> <span class="toc-text">5.3 主动删除</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Redis的持久化机制"><span class="toc-number">7.</span> <span class="toc-text">6. Redis的持久化机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-RDB概述"><span class="toc-number">7.1.</span> <span class="toc-text">6.1 RDB概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-AOF概述"><span class="toc-number">7.2.</span> <span class="toc-text">6.2 AOF概述</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -866,10 +891,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -878,11 +899,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -894,7 +911,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -906,11 +927,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -922,15 +939,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -939,6 +960,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
               <li class="article-tag-list-item">
