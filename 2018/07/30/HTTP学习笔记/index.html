@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-021.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/URI%E3%80%81URL%E3%80%81URN.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Http%20Request.png">
-<meta property="og:updated_time" content="2019-01-22T03:48:51.898Z">
+<meta property="og:updated_time" content="2019-03-04T15:19:03.388Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP学习笔记">
 <meta name="twitter:description" content="0. 前言该笔记记录了HTTP相关的基本知识，包括：  HTTP定义、特点、工作方式 简单辨别URI、URL、URN 请求与响应的结构 请求方法，GET和POST的区别 常见的响应码">
@@ -349,9 +349,14 @@
 <td>客户端请求成功</td>
 </tr>
 <tr>
+<td> 300</td>
+<td>Multiple Choices</td>
+<td>客户端请求了实际指向多个资源的URL。这个代码是和一个选项列表一起返回的，然后用户就可以选择他希望的选项了</td>
+</tr>
+<tr>
 <td> 301</td>
 <td>Moved Permanently</td>
-<td>请求的网页已永久移动到新的位置</td>
+<td>请求的网页已永久移动到新的位置，Response中应该包含一个Location URL, 说明资源现在所处的位置</td>
 </tr>
 <tr>
 <td> 302</td>
@@ -362,6 +367,11 @@
 <td> 304</td>
 <td>NOT Modified</td>
 <td>未修改，服务器告诉客户，原来缓冲的文档还可以继续使用</td>
+</tr>
+<tr>
+<td> 305</td>
+<td>Use Proxy</td>
+<td>必须通过代理访问资源， 代理的地址在Response 的Location中</td>
 </tr>
 <tr>
 <td> 400</td>
@@ -389,6 +399,11 @@
 <td>客户端请求中的方法被禁止，常见如，由于DELETE、PUT请求对资源进行写操作，故大部分浏览器都不支持或者在默认配置下不允许DELETE、PUT请求</td>
 </tr>
 <tr>
+<td> 408</td>
+<td>Request Timeout</td>
+<td>如果客户端完成请求时花费的时间太长， 服务器可以回送这个状态码并关闭连接</td>
+</tr>
+<tr>
 <td> 413</td>
 <td>Request Entity Too Large</td>
 <td>请求实体过大，如上传文件过大</td>
@@ -406,7 +421,7 @@
 <tr>
 <td> 502</td>
 <td>Bad Gateway</td>
-<td>常见如使用Nginx时，后端处理不过来，可能是内存或缓存使用方面出问题</td>
+<td>代理使用的服务器遇到了上游的无效响应，常见如使用Nginx时，后端处理不过来，可能是内存或缓存使用方面出问题</td>
 </tr>
 <tr>
 <td> 503</td>
@@ -711,6 +726,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -719,7 +738,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -731,14 +758,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
@@ -747,7 +766,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -759,19 +782,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -780,10 +799,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
               <li class="article-tag-list-item">
