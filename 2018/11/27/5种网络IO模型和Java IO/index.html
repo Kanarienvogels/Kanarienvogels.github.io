@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8IO%E6%A8%A1%E5%9E%8B.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E4%BF%A1%E5%8F%B7%E9%A9%B1%E5%8A%A8IO%E6%A8%A1%E5%9E%8B.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%BC%82%E6%AD%A5IO%E6%A8%A1%E5%9E%8B.jpg">
-<meta property="og:updated_time" content="2019-01-23T08:45:27.671Z">
+<meta property="og:updated_time" content="2019-03-05T14:28:03.162Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="5种IO模型和Java IO">
 <meta name="twitter:description" content="0. 前言关于网络IO的理论知识比较凌乱，理解起来有难度，特此梳理。 1. 操作系统中的IO处理当我们需要理解关于 IO 的时候，最好首先理解操作系统是如何处理IO的。 1.1 操作系统如何处理IOLinux 会把所有的外部设备都看成一个文件（文件描述符fd）来操作，对外部设备的操作可以看成是对文件的操作。">
@@ -207,15 +207,15 @@
 <p>Linux 系统调用的 read，是一个阻塞函数。这个我们应用程序在发起read系统调用的时候，就必须要阻塞，进程挂起，等待文件描述符的读就绪。</p>
 <p>从上面我们可以知道，应用程序的一个 read系统调用，需要经过：</p>
 <ol>
-<li>硬件读取文件数据到文件描述符指向的结构体的缓冲区。</li>
-<li>结构体的缓冲区的数据 传输到 用户区。</li>
+<li>硬件读取文件数据到文件描述符指向的结构体的缓冲区。(等待数据准备好)</li>
+<li>结构体的缓冲区的数据 传输到 用户区。(复制数据)</li>
 </ol>
 <p><strong>操作系统5种不同的IO处理，事实上就是对上述两个过程的不同处理方法。</strong></p>
 <h2 id="2-5种网络IO模型"><a href="#2-5种网络IO模型" class="headerlink" title="2. 5种网络IO模型"></a>2. 5种网络IO模型</h2><p>5种模型介绍</p>
 <h3 id="2-1-阻塞I-O模型"><a href="#2-1-阻塞I-O模型" class="headerlink" title="2.1 阻塞I/O模型"></a>2.1 阻塞I/O模型</h3><p>对于一个套接字上的输入操作，第一步通常涉及等待数据从网络中到达。当所有等待分组到达时，它被复制到内核中的某个缓冲区。第二步就是把数据从内核缓冲区复制到应用程序缓冲区。 好，下面我们以阻塞套接字的recvfrom的的调用图来说明阻塞<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E9%98%BB%E5%A1%9EIO%E6%A8%A1%E5%9E%8B.jpg" alt="阻塞I/O模型"><br>标红的这部分过程就是阻塞，直到阻塞结束recvfrom才能返回。</p>
 <h3 id="2-2-非阻塞I-O模型"><a href="#2-2-非阻塞I-O模型" class="headerlink" title="2.2 非阻塞I/O模型"></a>2.2 非阻塞I/O模型</h3><p>以下这句话很重要：进程把一个套接字设置成非阻塞是在通知内核，当所请求的I/O操作非得把本进程投入睡眠才能完成时，不要把进程投入睡眠，而是返回一个错误。当一个应用程序在一个循环里对一个非阻塞调用recvfrom，我们称为<strong>轮询</strong>。<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E9%9D%9E%E9%98%BB%E5%A1%9EIO%E6%A8%A1%E5%9E%8B.jpg" alt="非阻塞I/O模型"><br>可以看出recvfrom总是立即返回。</p>
 <h3 id="2-3-I-O多路复用模型"><a href="#2-3-I-O多路复用模型" class="headerlink" title="2.3 I/O多路复用模型"></a>2.3 I/O多路复用模型</h3><p>I/O多路复用的函数也是阻塞的，<strong>和阻塞I/O模型非常相像</strong>，但是其与以上两种还是有不同的，<strong>I/O多路复用是阻塞在select，epoll这样的系统调用之上，而没有阻塞在真正的I/O系统调用如recvfrom之上</strong>。如图<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8IO%E6%A8%A1%E5%9E%8B.jpg" alt="I/O多路复用模型"></p>
-<p><strong>select</strong><br>调用select函数会阻塞，直到有描述符就绪（有数据 可读、可写、或者有except），或者超时（timeout指定等待时间，如果立即返回设为null即可），函数返回。当select函数返回后，可以通过遍历fdset，来找到就绪的描述符。</p>
+<p><strong>select</strong><br>Linux的内核将所有外部设备都可以看做一个文件来操作，而对一个socket的读写也会有相应的描述符，称为socketfd(socket描述符）。调用select函数会阻塞，直到有描述符就绪（有数据 可读、可写、或者有except），或者超时（timeout指定等待时间，如果立即返回设为null即可），函数返回。当select函数返回后，可以通过遍历fdset，来找到就绪的描述符。</p>
 <blockquote>
 <p>缺点:<br>1、select最大的缺陷就是<strong>单个进程所打开的FD是有一定限制的</strong>，它由FDSETSIZE设置，32位机默认是1024个，64位机默认是2048。<br>一般来说这个数目和系统内存关系很大，”具体数目可以cat /proc/sys/fs/file-max察看”。32位机默认是1024个。64位机默认是2048.<br>2、对socket进行扫描时是线性扫描，即采用<strong>轮询</strong>的方法，效率较低。<br>当套接字比较多的时候，每次select()都要通过遍历FDSETSIZE个Socket来完成调度，不管哪个Socket是活跃的，都遍历一遍。这会浪费很多CPU时间。”如果能给套接字注册某个回调函数，当他们活跃时，自动完成相关操作，那就避免了轮询”，这正是epoll与kqueue做的。<br>3、需要<strong>维护一个用来存放大量fd的数据结构</strong>，这样会使得用户空间和内核空间在传递该结构时复制开销大。</p>
 </blockquote>
@@ -267,9 +267,9 @@
 </ul>
 <p>BIO、NIO、AIO<strong>适用场景</strong>分析:</p>
 <ul>
-<li><p>BIO方式适用于连接数目比较小且固定的架构，这种方式对服务器资源要求比较高，并发局限于应用中，JDK1.4以前的唯一选择，但程序直观简单易理解。</p>
+<li><p>BIO方式适用于连接数目比较小且固定的架构，这种方式对服务器资源要求比较高，并发局限于应用中，JDK4以前的唯一选择，但程序直观简单易理解。</p>
 </li>
-<li><p>NIO方式适用于连接数目多且连接比较短（轻操作）的架构，比如聊天服务器，并发局限于应用中，编程比较复杂，JDK1.4开始支持。</p>
+<li><p>NIO方式适用于连接数目多且连接比较短（轻操作）的架构，比如聊天服务器，并发局限于应用中，编程比较复杂，JDK4开始支持。</p>
 </li>
 <li><p>AIO方式使用于连接数目多且连接比较长（重操作）的架构，比如相册服务器，充分调用OS参与并发操作，编程比较复杂，JDK7开始支持。</p>
 </li>
@@ -581,23 +581,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -609,11 +597,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -653,19 +653,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Netty</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
               </li>
             
             <div class="clearfix"></div>
