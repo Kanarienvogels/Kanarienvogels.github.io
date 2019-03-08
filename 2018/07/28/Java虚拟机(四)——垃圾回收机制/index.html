@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://static.zybuluo.com/Rico123/9hswys8w1pqy0ch06vmlbqi2/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/jconsole.PNG">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/jvisualvm.PNG">
-<meta property="og:updated_time" content="2019-02-27T14:05:04.148Z">
+<meta property="og:updated_time" content="2019-03-07T14:46:43.297Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java虚拟机(四)——垃圾回收机制">
 <meta name="twitter:description" content="垃圾回收机制1. 垃圾回收概述在C++中，对象所占的内存在程序结束运行之前一直被占用，在明确释放之前不能分配给其它对象。而在Java中，当没有对象引用指向原先分配给某个对象的内存时，该内存便成为垃圾。JVM的一个系统级线程会自动释放该内存块。垃圾回收意味着程序不再需要的对象是”无用信息”，这些信息将被丢弃。当一个对象不再被引用的时候，内存回收它占领的空间，以便空间被后来的新对象使用。事实上，除了">
@@ -225,15 +225,23 @@
 </li>
 </ul>
 <h4 id="3-2-再述方法区"><a href="#3-2-再述方法区" class="headerlink" title="3.2 再述方法区"></a>3.2 再述方法区</h4><p>方法区也叫<strong>永久代</strong>。在过去（自定义类加载器还不是很常见的时候），类大多是”static”的，很少被卸载或收集，因此被称为“永久的(Permanent)”。虽然Java 虚拟机规范把方法区描述为堆的一个逻辑部分，但是它却有一个别名叫做<strong>Non-Heap（非堆）</strong>，目的应该是与Java 堆区分开来。同时，由于类class是JVM实现的一部分，并不是由应用创建的，所以又被认为是“非堆(non-heap)”内存。HotSpot 虚拟机的设计团队选择把GC 分代收集扩展至方法区，或者说使用永久代来实现方法区而已。<strong>对于其他虚拟机（如BEA JRockit、IBM J9 等）来说是不存在永久代的概念的</strong>。</p>
-<p>永久代也是各个线程共享的区域，它用于存储已经被虚拟机加载过的类信息，常量，静态变量（JDK7中被移到Java堆），即时编译期编译后的代码（类方法）等数据。这里要讲一下运行时常量池，它是方法区的一部分，用于存放编译期生成的各种字面量和符号引用（其实就是八大基本类型的包装类型和String类型数据（JDK7中被移到Java堆））（官方文档说明： In JDK 7, interned strings are no longer allocated in the permanent generation of the Java heap, but are instead allocated in the main part of the Java heap (known as the young and old generations), along with the other objects created by the application）。</p>
-<p><strong>在JDK1.7中的HotASpot中，已经把原本放在方法区的字符串常量池移出。</strong></p>
+<p>永久代也是各个线程共享的区域，它用于存储已经被虚拟机加载过的类（Class）信息，元（Meta）数据，常量，静态变量（JDK7中被移到Java堆），即时编译期编译后的代码（类方法）等数据。这里要讲一下运行时常量池，它是方法区的一部分，用于存放编译期生成的各种字面量和符号引用（其实就是八大基本类型的包装类型和String类型数据（JDK7中被移到Java堆））（官方文档说明： In JDK 7, interned strings are no longer allocated in the permanent generation of the Java heap, but are instead allocated in the main part of the Java heap (known as the young and old generations), along with the other objects created by the application）。</p>
+<p><strong>在JDK1.7中的HotSpot中，已经把原本放在方法区的字符串常量池移出。</strong></p>
 <ul>
 <li>将interned String移到Java堆中</li>
 <li>将符号Symbols移到native memory（不受GC管理的内存）</li>
+<li>将Class对象存放在堆中，Class对象是java.lang.Class的实例</li>
+<li>klass是class文件在jvm里的运行时数据结构，这部分存放在元空间，NoKlass Metaspace专门来存klass相关的其他的内容</li>
 </ul>
 <p>从JDK7开始永久代的移除工作，贮存在永久代的一部分数据已经转移到了Java Heap或者是Native Heap。但永久代仍然存在于JDK7，并没有完全的移除：符号引用(Symbols)转移到了native heap;字面量(interned strings)转移到了java heap;类的静态变量(class statics)转移到了java heap。</p>
 <p>随着JDK8的到来，JVM不再有永久代。但类的元数据信息（metadata）还在，只不过不再是存储在连续的堆空间上，而是移动到叫做“Metaspace”的本地内存（Native memory）中。</p>
+<blockquote>
+<p>元数据（metadata）：定义数据的数据，klass和noklass属于元数据，存放在元空间中。</p>
+</blockquote>
 <p>在JVM中共享数据空间划分如下图所示<br><img src="http://images2015.cnblogs.com/blog/908514/201607/908514-20160728195713028-1922699910.jpg" alt=""></p>
+<blockquote>
+<p>类似A.class其实是存在堆里的，是java.lang.Class的一个对象实例。这块内存是紧接着堆的，和我们之前的perm一样，这块内存大小可通过-XX:CompressedClassSpaceSize参数来控制，这个参数前面提到了默认是1G，但是这块内存也可以没有，假如没有开启压缩指针就不会有这块内存，这种情况下klass都会存在NoKlass Metaspace里，另外如果我们把-Xmx设置大于32G的话，其实也是没有这块内存的，因为会这么大内存会关闭压缩指针开关。还有就是这块内存最多只会存在一块。</p>
+</blockquote>
 <h3 id="4-垃圾回收种类"><a href="#4-垃圾回收种类" class="headerlink" title="4. 垃圾回收种类"></a>4. 垃圾回收种类</h3><p>由于对象进行了分代处理，因此垃圾回收区域、时间也不一样。垃圾回收有两种类型，Minor GC 和 Full GC。</p>
 <ul>
 <li><strong>Minor GC</strong>：对新生代进行回收，不会影响到年老代。因为新生代的 Java 对象大多死亡频繁，所以 Minor GC 非常频繁，一般在这里使用速度快、效率高的算法，使垃圾回收能尽快完成。</li>
@@ -310,7 +318,12 @@
 <li>-Xss：每个线程的方法栈大小，不熟悉最好保留默认值</li>
 <li>-XX:NewRatio：新生代（eden+2*Survivor）和老年代（不包含永久区）的比值，例如：-XX:NewRatio=4，表示新生代:老年代=1:4，即新生代占整个堆的1/5。</li>
 <li>-XX:SurvivorRatio：设置两个Survivor区和eden的比值，例如：8，表示两个Survivor:eden=2:8，即一个Survivor占年轻代的1/10</li>
+<li>-XX:MaxMetaspaceSize：设置元空间最大大小，，如XX:MaxMetaspaceSize=128m，默认无限制</li>
+<li>-XX:MetaspaceSize：初始元空间大小，达到该值就会触发垃圾收集进行类型卸载</li>
 </ul>
+<blockquote>
+<p>Java已经完全移除持久代，不会再遇到java.lang.OutOfMemoryError: PermGen问题，但类加载导致内存移除异常仍然存在，取而代之出现的是java.lang.OutOfMemoryError: Metaspace，当Metaspace空间不足时（达到MetaspaceSize，但未达到MaxMetaspaceSize），同样会触发FullGC</p>
+</blockquote>
 <h3 id="10-JVM信息查看方法"><a href="#10-JVM信息查看方法" class="headerlink" title="10. JVM信息查看方法"></a>10. JVM信息查看方法</h3><p>下面介绍的方法都是JDK自带的工具：jmap、jconsole、jvisualvm</p>
 <p><strong>jmap -heap [pid]</strong>，就可查看整个JVM中内存的状况，输出如下图：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Administrator&gt;jmap -heap 1156</span><br><span class="line">Attaching to process ID 1156, please wait...</span><br><span class="line">Debugger attached successfully.</span><br><span class="line">Server compiler detected.</span><br><span class="line">JVM version is 25.112-b15</span><br><span class="line"></span><br><span class="line">using thread-local object allocation.</span><br><span class="line">Parallel GC with 4 thread(s)</span><br><span class="line"></span><br><span class="line">Heap Configuration:</span><br><span class="line">   MinHeapFreeRatio         = 0</span><br><span class="line">   MaxHeapFreeRatio         = 100</span><br><span class="line">   MaxHeapSize              = 2113929216 (2016.0MB)</span><br><span class="line">   NewSize                  = 2621440 (2.5MB)</span><br><span class="line">   MaxNewSize               = 704643072 (672.0MB)</span><br><span class="line">   OldSize                  = 5767168 (5.5MB)</span><br><span class="line">   NewRatio                 = 2</span><br><span class="line">   SurvivorRatio            = 8</span><br><span class="line">   MetaspaceSize            = 21807104 (20.796875MB)</span><br><span class="line">   CompressedClassSpaceSize = 1073741824 (1024.0MB)</span><br><span class="line">   MaxMetaspaceSize         = 17592186044415 MB</span><br><span class="line">   G1HeapRegionSize         = 0 (0.0MB)</span><br><span class="line"></span><br><span class="line">Heap Usage:</span><br><span class="line">PS Young Generation</span><br><span class="line">Eden Space:</span><br><span class="line">   capacity = 33030144 (31.5MB)</span><br><span class="line">   used     = 12418088 (11.842811584472656MB)</span><br><span class="line">   free     = 20612056 (19.657188415527344MB)</span><br><span class="line">   37.59622725229415% used</span><br><span class="line">From Space:</span><br><span class="line">   capacity = 5242880 (5.0MB)</span><br><span class="line">   used     = 2598496 (2.478118896484375MB)</span><br><span class="line">   free     = 2644384 (2.521881103515625MB)</span><br><span class="line">   49.5623779296875% used</span><br><span class="line">To Space:</span><br><span class="line">   capacity = 5767168 (5.5MB)</span><br><span class="line">   used     = 0 (0.0MB)</span><br><span class="line">   free     = 5767168 (5.5MB)</span><br><span class="line">   0.0% used</span><br><span class="line">PS Old Generation</span><br><span class="line">   capacity = 28311552 (27.0MB)</span><br><span class="line">   used     = 20265752 (19.326927185058594MB)</span><br><span class="line">   free     = 8045800 (7.673072814941406MB)</span><br><span class="line">   71.58121179651332% used</span><br><span class="line"></span><br><span class="line">12361 interned Strings occupying 984184 bytes.</span><br></pre></td></tr></table></figure></p>
 <p><strong>JConsole</strong>可以图形化查看JVM中内存的变化状况，JConsole是JDK 5及以上版本中自带的工具，位于JDK的bin目录下，运行时直接运行JConsole.exe或JConsole.sh（要求支持图形界面）。</p>
@@ -612,11 +625,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -632,19 +653,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -653,6 +662,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -668,10 +685,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
@@ -684,19 +697,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
               </li>
             
             <div class="clearfix"></div>
