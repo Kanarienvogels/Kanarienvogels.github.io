@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-021.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/URI%E3%80%81URL%E3%80%81URN.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Http%20Request.png">
-<meta property="og:updated_time" content="2019-03-04T15:19:03.388Z">
+<meta property="og:updated_time" content="2019-03-13T13:14:28.501Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP学习笔记">
 <meta name="twitter:description" content="0. 前言该笔记记录了HTTP相关的基本知识，包括：  HTTP定义、特点、工作方式 简单辨别URI、URL、URN 请求与响应的结构 请求方法，GET和POST的区别 常见的响应码">
@@ -349,6 +349,21 @@
 <td>客户端请求成功</td>
 </tr>
 <tr>
+<td> 201</td>
+<td>Created</td>
+<td>服务器已经创建了文档，Location头给出了它的URL</td>
+</tr>
+<tr>
+<td> 202</td>
+<td>Accepted</td>
+<td>已经接受请求，但处理尚未完成</td>
+</tr>
+<tr>
+<td> 204</td>
+<td>No Content</td>
+<td>没有新文档，浏览器应该继续显示原来的文档。操作已经执行成功，但是没有返回数据</td>
+</tr>
+<tr>
 <td> 300</td>
 <td>Multiple Choices</td>
 <td>客户端请求了实际指向多个资源的URL。这个代码是和一个选项列表一起返回的，然后用户就可以选择他希望的选项了</td>
@@ -419,6 +434,11 @@
 <td>服务器内部错误，无法完成请求，如服务器运行出现异常</td>
 </tr>
 <tr>
+<td> 501</td>
+<td>Not Implemented</td>
+<td>服务器不支持实现请求所需要的功能</td>
+</tr>
+<tr>
 <td> 502</td>
 <td>Bad Gateway</td>
 <td>代理使用的服务器遇到了上游的无效响应，常见如使用Nginx时，后端处理不过来，可能是内存或缓存使用方面出问题</td>
@@ -427,6 +447,11 @@
 <td> 503</td>
 <td>Service Unavailable</td>
 <td>服务不可用，暂时性的，可表示服务器正在维护</td>
+</tr>
+<tr>
+<td> 504</td>
+<td>Gateway Timeout</td>
+<td>由作为代理或网关的服务器使用，表示不能及时地从远程服务器获得应答</td>
 </tr>
 <tr>
 <td> 505</td>
@@ -738,11 +763,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -758,6 +783,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
@@ -767,14 +796,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -790,6 +811,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
@@ -802,19 +827,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Netty</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
               </li>
             
             <div class="clearfix"></div>

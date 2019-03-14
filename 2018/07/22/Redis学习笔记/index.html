@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-006.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/IO%E9%98%BB%E5%A1%9E%E6%A8%A1%E5%9E%8B.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/IO%E5%A4%8D%E7%94%A8%E6%A8%A1%E5%9E%8B.jpg">
-<meta property="og:updated_time" content="2019-03-02T15:14:26.675Z">
+<meta property="og:updated_time" content="2019-03-12T14:07:59.581Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis学习笔记">
 <meta name="twitter:description" content="0. 前言此笔记用来记录关于Redis的一些基本知识，主要包括：  Redis背景、特点 Redis五种常用的数据结构 Redis常用命令及Key命名相关 Redis事务 Redis过期数据清除 Redis持久化机制：RDB和AOF">
@@ -467,6 +467,16 @@
 <td style="text-align:center">SINTER</td>
 <td style="text-align:center">取多个Set的交集</td>
 </tr>
+<tr>
+<td>6</td>
+<td style="text-align:center">SUNION</td>
+<td style="text-align:center">返回所有给定集合的并集</td>
+</tr>
+<tr>
+<td>7</td>
+<td style="text-align:center">SDIFF</td>
+<td style="text-align:center">返回给定所有集合的差集</td>
+</tr>
 </tbody>
 </table>
 <h4 id="2-3-5-Sorted-Set"><a href="#2-3-5-Sorted-Set" class="headerlink" title="2.3.5 Sorted Set"></a>2.3.5 Sorted Set</h4><p>Sorted Set类型是有序的Set类型，有点像Hashes和Set的混合型数据结构。具有Set的唯一无重复特性，且有序的实现是通过额外的浮点值被称作为score决定，与Hashes的Key有点相似。</p>
@@ -505,6 +515,11 @@
 <td>4</td>
 <td style="text-align:center">ZREVRANGE</td>
 <td style="text-align:center">获取Sorted Set中元素并反向输出</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align:center">ZSCORE</td>
+<td style="text-align:center">返回有序集中，成员的分数值</td>
 </tr>
 </tbody>
 </table>
@@ -903,11 +918,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -923,6 +938,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
@@ -932,14 +951,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -955,6 +966,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
@@ -967,19 +982,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Netty</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
               </li>
             
             <div class="clearfix"></div>

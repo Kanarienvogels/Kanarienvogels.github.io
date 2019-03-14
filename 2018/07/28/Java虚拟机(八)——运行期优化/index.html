@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-010.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E8%AE%A1%E6%95%B0%E5%99%A8%E8%A7%A6%E5%8F%91%E5%8D%B3%E6%97%B6%E7%BC%96%E8%AF%91.JPG">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Client%20Compiler%E7%9A%84%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B.JPG">
-<meta property="og:updated_time" content="2019-01-26T13:28:20.035Z">
+<meta property="og:updated_time" content="2019-03-14T06:38:45.897Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java虚拟机(八)——运行期优化">
 <meta name="twitter:description" content="运行期优化运行期优化主要靠编译执行，虽然编译执行有“编译”两个字，但要认识到编译执行是在运行期而不是编译期进行的。 该篇重点难点是JIT编译器的概念，其优化原理（编译技术）可适当了解。">
@@ -209,6 +209,9 @@
 <li>第1层，也称为C1编译，将字节码编译成本地代码，进行简单的、可靠的优化，如有必要加入性能监控逻辑。</li>
 <li>第2层（或以上），也称为C2编译，也是将字节码编译成本地代码，但会开启一些编译耗时较长的优化，甚至根据性能监控信息开启一些不可靠的激进优化。</li>
 </ul>
+<blockquote>
+<p>添加 -Xint 参数使JVM以解释模式运行，所有的字节码将被直接执行，而不会编译成本地码。</p>
+</blockquote>
 <h3 id="3-编译对象与触发条件"><a href="#3-编译对象与触发条件" class="headerlink" title="3. 编译对象与触发条件"></a>3. 编译对象与触发条件</h3><p>被JIT编译器编译的代码有两类：</p>
 <ul>
 <li>被多次调用的方法</li>
@@ -541,11 +544,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,6 +564,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
@@ -570,14 +577,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -593,6 +592,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
@@ -605,19 +608,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Netty</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
               </li>
             
             <div class="clearfix"></div>
