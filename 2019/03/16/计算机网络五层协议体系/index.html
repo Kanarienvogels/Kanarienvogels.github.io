@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/UDP%E6%95%B0%E6%8D%AE%E6%8A%A5.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/TCP%E6%95%B0%E6%8D%AE%E6%8A%A5.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/TCP%E6%8B%A5%E5%A1%9E%E7%AA%97%E5%8F%A3.jpg">
-<meta property="og:updated_time" content="2019-03-17T14:08:14.725Z">
+<meta property="og:updated_time" content="2019-03-21T14:20:56.820Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络五层协议体系">
 <meta name="twitter:description" content="0. 前言对计算机网络五层协议进行一次规范的整理，主要是一些基础的和偏向实际应用的知识。 1. 物理层1.1 作用物理层尽可能的屏蔽掉传输媒体和通信手段的差异，使物理层上面的数据链路层感觉不到这些差异，只考虑完成本层的协议和服务。 给数据链路层在一条物理的传输媒体上传送和接收比特流（实际上则是0和1的电信号），为此物理层解决物理连接的建立、维持和释放问题。">
@@ -209,8 +209,11 @@
 <p>给数据链路层<strong>在一条物理的传输媒体上传送和接收比特流</strong>（实际上则是0和1的电信号），为此物理层解决物理连接的建立、维持和释放问题。</p>
 <a id="more"></a>
 <h3 id="1-2-传输媒体"><a href="#1-2-传输媒体" class="headerlink" title="1.2 传输媒体"></a>1.2 传输媒体</h3><p>导引型：双绞线、同轴电缆、光缆<br>非导引型：地面微波接力通信、卫星通信</p>
-<h3 id="1-3-宽带接入技术"><a href="#1-3-宽带接入技术" class="headerlink" title="1.3 宽带接入技术"></a>1.3 宽带接入技术</h3><p><strong>ADSL技术</strong><br>非对称数据用户线（Asymmetric Digital Subscriber Line）技术是用数字技术对现有的模拟电话用户线进行改造，使它能承载数字业务。标准模拟电话信号的频带被限制在300~3400Hz的范围内，但用户线本身实际可通过的信号频率却超过1MHz。ADSL技术把0~4kHz低端频谱留给传统电话使用，而把原来没有被利用的高端频谱留给用户上网使用。“<strong>非对称</strong>”指用户上网时主要是从互联网上下载各种文档，而向互联网发送的信息量一般都不太大，因此ADSL的下行（从ISP到用户）带宽远远大于上行（从用户到ISP）带宽。</p>
+<h3 id="1-3-宽带接入技术"><a href="#1-3-宽带接入技术" class="headerlink" title="1.3 宽带接入技术"></a>1.3 宽带接入技术</h3><p><strong>ADSL技术</strong><br>非对称数字用户环线（Asymmetric Digital Subscriber Line）技术是用数字技术对现有的模拟电话用户线进行改造，使它能承载数字业务。标准模拟电话信号的频带被限制在300~3400Hz的范围内，但用户线本身实际可通过的信号频率却超过1MHz。ADSL技术把0~4kHz低端频谱留给传统电话使用，而把原来没有被利用的高端频谱留给用户上网使用。“<strong>非对称</strong>”指用户上网时主要是从互联网上下载各种文档，而向互联网发送的信息量一般都不太大，因此ADSL的下行（从ISP到用户）带宽远远大于上行（从用户到ISP）带宽。</p>
 <p><strong>FTTx技术</strong><br>宽带光纤接入方式，称为FTTx，表示Fiber To The…，字母x代表不同的接入地点，FTTH指光纤到户，但由于其价格不够便宜，且一般家庭这么高的数据率需求，流畅的观赏视频节目只要数M的数据率即可，不需要用到100Mbit/s或以上。实际上，FTTx就是把光电转换的地方，从用户家中向外延伸到离用户家门口有一定距离的地方。</p>
+<blockquote>
+<p>计算机接入因特网的几种方式<br>常见的因特网接入方式主要有：拨号接入方式，专线接入方式、无线接入方式和局域网接入方式。拨号接入方式如ADSL拨号上网，专线接入方式如FTTx技术，无线接入如无线Wifi、蓝牙技术、热点，局域网接入方式如校园网搭配使用交换机和路由器搭建局域网。详细可以参考这篇文档：<a href="https://wenku.baidu.com/view/386b60da0242a8956bece46f.html" target="_blank" rel="noopener">计算机接入因特网的几种方式</a></p>
+</blockquote>
 <h2 id="2-数据链路层"><a href="#2-数据链路层" class="headerlink" title="2. 数据链路层"></a>2. 数据链路层</h2><h3 id="2-1-作用"><a href="#2-1-作用" class="headerlink" title="2.1 作用"></a>2.1 作用</h3><p>在两个相邻结点之间传送数据时，数据链路层将网络层交下来的IP数据报组装成帧(framing)，在两个相邻结点之间的链路上“透明”地传送帧中的数据。同时，检测到所收到的帧中有无差错。如发现有差错，数据链路层就简单地丢弃这个出了差错的帧，以免继续传送下去白白浪费网络资源。如需改正错误，就由运输层的TCP协议来完成。</p>
 <p>归纳成三点，就是：封装成帧、透明传输、差错检测。</p>
 <h4 id="2-1-1-封装成帧"><a href="#2-1-1-封装成帧" class="headerlink" title="2.1.1 封装成帧"></a>2.1.1 封装成帧</h4><p>封装成帧就是在一段数据前后分别<strong>添加首部和尾部</strong>，构成了一个帧。使用帧定界符SOH和EOT来表示帧的开始和结束。</p>
@@ -220,7 +223,7 @@
 <h4 id="2-1-3-差错检测"><a href="#2-1-3-差错检测" class="headerlink" title="2.1.3 差错检测"></a>2.1.3 差错检测</h4><p>比特差错：比特在传输过程中可能会产生差错：1 可能会变成 0 而 0 也可能变成 1。<br>为了保证数据传输的可靠性，在计算机网络传输数据时，必须采用各种差错检测措施，现在广泛采用的方法是循环冗余检测CRC（Cyclic Redundancy Check）。</p>
 <p>CRC就是在数据后面再添加供差错检测用的 n 位<strong>冗余码</strong>一起发送，冗余码被称为帧检测序列（Frame Check Sequence）。</p>
 <blockquote>
-<p>为什么只有数据链路层有尾部？（其它层只有首部）<br>因为尾部的FCS用于CRC差错检测，而把FCS放在尾部的原因是考虑到效率，只用扫描一次帧即可完成检错。</p>
+<p>为什么只有数据链路层同时有首部和尾部？（其它层只有首部）<br>因为尾部的FCS用于CRC差错检测，而把FCS放在尾部的原因是考虑到效率，只用扫描一次帧即可完成检错。</p>
 </blockquote>
 <p>仅用循环冗余检验 CRC 差错检测技术只能做到<strong>无差错接受</strong>。“无差错接受”是指：“凡是接受的帧（即不包括丢弃的帧），我们都能以非常接近于 1 的概率认为这些帧在传输过程中没有产生差错”。也就是说：“凡是接收端数据链路层接受的帧都没有传输差错”（有差错的帧就丢弃而不接受），<strong>无法应对帧丢失、帧重复或帧失序的情况</strong>。要做到“可靠传输”（即发送什么就收到什么）就必须再加上确认和重传机制。</p>
 <blockquote>
@@ -599,6 +602,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2019/03/23/Java中Exception的最佳实践方式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Java中Exception的最佳实践方式
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/02/12/动态规划：最长公共序列和最长公共子串/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">动态规划：最长公共子序列和最长公共子串</div>
@@ -751,19 +763,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -775,15 +783,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -823,19 +835,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
               </li>
              
               <li class="article-tag-list-item">

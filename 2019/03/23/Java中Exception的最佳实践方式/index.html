@@ -6,25 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://kanarien.cn">
-  <title>Java虚拟机(二)——JVM内存结构与对象的创建 | 无悔的博客小屋</title>
+  <title>Java中Exception的最佳实践方式 | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JVM内存结构与对象的创建1. 数据运行时区域虚拟机的结构都是在内存中的一块空间，称为虚拟机内存结构，也称为数据运行时区域。 虚拟机的内存结构由五部分组成:  程序计数器 Java 虚拟机栈 本地方法栈 Java 堆 方法区">
-<meta name="keywords" content="Java,JVM">
+  <meta name="description" content="0. 前言Java异常该怎么正确的使用，于是有了这篇关于Java异常的基本知识和最佳实践方式的整理。 1. Exception和Error共同点Exception 和Error 都是继承了Throwable类，在Java中只有Throwable类型的实例才可以被抛出或者捕获，它是异常处理机制的基本类型。">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java虚拟机(二)——JVM内存结构与对象的创建">
-<meta property="og:url" content="https://kanarien.cn/2018/07/28/Java虚拟机(二)——JVM内存结构与对象的创建/index.html">
+<meta property="og:title" content="Java中Exception的最佳实践方式">
+<meta property="og:url" content="https://kanarien.cn/2019/03/23/Java中Exception的最佳实践方式/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
-<meta property="og:description" content="JVM内存结构与对象的创建1. 数据运行时区域虚拟机的结构都是在内存中的一块空间，称为虚拟机内存结构，也称为数据运行时区域。 虚拟机的内存结构由五部分组成:  程序计数器 Java 虚拟机栈 本地方法栈 Java 堆 方法区">
+<meta property="og:description" content="0. 前言Java异常该怎么正确的使用，于是有了这篇关于Java异常的基本知识和最佳实践方式的整理。 1. Exception和Error共同点Exception 和Error 都是继承了Throwable类，在Java中只有Throwable类型的实例才可以被抛出或者捕获，它是异常处理机制的基本类型。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-011.jpg">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/JVM%20%E7%BB%93%E6%9E%84%20.jpg">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%8F%A5%E6%9F%84%E8%AE%BF%E9%97%AE.JPG">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%9B%B4%E6%8E%A5%E6%8C%87%E9%92%88%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1.JPG">
-<meta property="og:updated_time" content="2019-01-22T07:13:59.548Z">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-032.jpg">
+<meta property="og:updated_time" content="2019-03-23T14:03:22.144Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java虚拟机(二)——JVM内存结构与对象的创建">
-<meta name="twitter:description" content="JVM内存结构与对象的创建1. 数据运行时区域虚拟机的结构都是在内存中的一块空间，称为虚拟机内存结构，也称为数据运行时区域。 虚拟机的内存结构由五部分组成:  程序计数器 Java 虚拟机栈 本地方法栈 Java 堆 方法区">
-<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-011.jpg">
+<meta name="twitter:title" content="Java中Exception的最佳实践方式">
+<meta name="twitter:description" content="0. 前言Java异常该怎么正确的使用，于是有了这篇关于Java异常的基本知识和最佳实践方式的整理。 1. Exception和Error共同点Exception 和Error 都是继承了Throwable类，在Java中只有Throwable类型的实例才可以被抛出或者捕获，它是异常处理机制的基本类型。">
+<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-032.jpg">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
   
@@ -168,7 +165,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java虚拟机(二)——JVM内存结构与对象的创建" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java中Exception的最佳实践方式" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -176,14 +173,14 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Java虚拟机(二)——JVM内存结构与对象的创建
+      Java中Exception的最佳实践方式
     </h1>
   
 
 		
         
-        <a href="/2018/07/28/Java虚拟机(二)——JVM内存结构与对象的创建/" class="archive-article-date">
-  	<time datetime="2018-07-28T12:40:30.370Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-28</time>
+        <a href="/2019/03/23/Java中Exception的最佳实践方式/" class="archive-article-date">
+  	<time datetime="2019-03-23T08:36:06.927Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-23</time>
 </a>
         
 		
@@ -195,80 +192,60 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-011.jpg" alt="动漫美图"></p>
-<h2 id="JVM内存结构与对象的创建"><a href="#JVM内存结构与对象的创建" class="headerlink" title="JVM内存结构与对象的创建"></a>JVM内存结构与对象的创建</h2><h3 id="1-数据运行时区域"><a href="#1-数据运行时区域" class="headerlink" title="1. 数据运行时区域"></a>1. 数据运行时区域</h3><p>虚拟机的结构都是在内存中的一块空间，称为<strong>虚拟机内存结构</strong>，也称为<strong>数据运行时区域</strong>。</p>
-<p>虚拟机的内存结构由<strong>五部分</strong>组成:</p>
+        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-032.jpg" alt="动漫美图"></p>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>Java异常该怎么正确的使用，于是有了这篇关于Java异常的基本知识和最佳实践方式的整理。</p>
+<h2 id="1-Exception和Error"><a href="#1-Exception和Error" class="headerlink" title="1. Exception和Error"></a>1. Exception和Error</h2><p><strong>共同点</strong><br>Exception 和Error <strong>都是继承了Throwable类</strong>，<br>在Java中只有Throwable类型的实例才可以被抛出或者捕获，它是异常处理机制的基本类型。<br><a id="more"></a></p>
+<p><strong>不同点</strong><br>Exception和Error体现了Java平台设计者<strong>对不同异常情况的分类</strong>。</p>
 <ol>
-<li>程序计数器</li>
-<li>Java 虚拟机栈</li>
-<li>本地方法栈</li>
-<li>Java 堆</li>
-<li>方法区</li>
-</ol>
-<a id="more"></a>
-<p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/JVM%20%E7%BB%93%E6%9E%84%20.jpg" alt=""></p>
-<h4 id="1-1-程序计数器"><a href="#1-1-程序计数器" class="headerlink" title="1.1 程序计数器"></a>1.1 程序计数器</h4><p>程序计数器（Program Counter Register）是一块较小的内存空间，可以看作是<strong>当前线程所执行字节码的行号指示器</strong>。<strong>分支、循环、跳转、异常处理、线程恢复</strong>等基础功能都需要依赖这个计数器完成。</p>
-<p>由于 Java 虚拟机的多线程是通过<strong>线程轮流切换</strong>并分配处理器执行时间的方式实现的。<strong>为了线程切换后能恢复到正确的执行位置，每条线程都需要一个独立的程序计数器，各线程之间的计数器互不影响，独立存储。</strong></p>
-<ul>
-<li><p>如果线程正在执行的是一个 Java 方法，计数器记录的是正在执行的虚拟机字节码指令的地址；</p>
-</li>
-<li><p>如果正在执行的是 本地 方法，这个计数器的值为空。</p>
-</li>
-</ul>
-<p><strong>程序计数器是唯一一个没有规定任何 内存溢出(OutOfMemoryError) 的区域。</strong></p>
-<h4 id="1-2-Java虚拟机栈"><a href="#1-2-Java虚拟机栈" class="headerlink" title="1.2 Java虚拟机栈"></a>1.2 Java虚拟机栈</h4><p>Java 虚拟机栈（Java Virtual Machine Stacks）是<strong>线程私有</strong>的，生命周期与线程相同。<br>虚拟机栈描述的是 Java 方法执行的内存模型：每个方法被执行的时候都会创建一个<strong>栈帧</strong>（Stack Frame），存储</p>
-<ol>
-<li>局部变量表</li>
-<li>操作栈</li>
-<li>动态链接</li>
-<li>方法出口</li>
-</ol>
-<p>每一个方法被调用到执行完成的过程，就对应着一个栈帧在虚拟机栈中从入栈到出栈的过程。</p>
-<p>这个区域有两种异常情况：</p>
-<ol>
-<li>StackOverflowError：线程请求的栈深度大于虚拟机所允许的深度</li>
-<li>OutOfMemoryError：虚拟机栈扩展到无法申请足够的内存时</li>
+<li>Exception是程序正常运行中，可以预料的意外情况，可能并且应该被捕获，进行相应处理。</li>
+<li>Exception又分为可检查(checked)异常和不可检查(unchecked)异常。<br>可检查异常在源代码里必须显式的进行捕获处理，这是编译期检查的一部分，像InterruptedException、ClassNotFoundException，<br>不可检查时异常是指运行时异常，像NullPointerException、ArrayIndexOutOfBoundsException之类，<br>通常是可以编码避免的逻辑错误，具体根据需要来判断是否需要捕获，并不会在编译期强制要求。</li>
+<li>Error是指正常情况下，不大可能出现的情况，绝大部分的Error都会导致程序处于非正常的、不可恢复的状态。既然是非正常情况，不便于也不需要捕获。常见的比如OutOfMemoryError之类都是Error的子类。</li>
 </ol>
 <blockquote>
-<p>当程序在运行时抛出异常时，进行捕获时，经常会用到<strong>e.printStackTrace()</strong>,其输出的异常信息就是按对应线程的Java 虚拟机栈出栈输出的。</p>
+<p>关于 Java 中引入的 Checked Exceptions，目前存在着很多反对意见。<br>正方的观点是引入 Checked Exceptions，可以增加程度的鲁棒性。<br>反方的观点是 Checked Exceptions 很少被开发人员正确使用过，并且降低了程序开发的生产率和代码的执行效率。 </p>
 </blockquote>
-<h4 id="1-3-本地方法栈"><a href="#1-3-本地方法栈" class="headerlink" title="1.3 本地方法栈"></a>1.3 本地方法栈</h4><p>本地方法栈（Native Method Stacks）为<strong>虚拟机使用到的 本地(Native) 方法服务</strong>，是<strong>线程私有</strong>的。其<strong>与Java虚拟机栈类似</strong>，只不过Java 虚拟机栈为的是Java方法（字节码）服务 。不过，在虚拟机规范中，本地方法栈使用的语言、方式、数据结构没有绝对的规定，任何具体的虚拟机都可以自由实现。</p>
-<h4 id="1-4-Java-堆"><a href="#1-4-Java-堆" class="headerlink" title="1.4 Java 堆"></a>1.4 Java 堆</h4><p>Java 堆（Java Heap）是 Java 虚拟机中<strong>内存最大的一块</strong>。Java 堆在虚拟机<strong>启动时创建</strong>，被所有<strong>线程共享</strong>。</p>
+<p><strong>从性能角度审视Java的异常处理机制</strong><br>try-catch 代码段会产生额外的性能开销，或者换个角度说，它往往会影响 JVM 对代码进行优化，<br>所以建议仅捕获有必要的代码段，尽量不要一个大的 try 包住整段的代码；与此同时，利用异常控制代码流程，<br>也不是一个好主意，远比我们通常意义上的条件语句（if/else、switch）要低效。</p>
+<p>Java 每实例化一个 Exception，都会对当时的栈进行快照，这是一个相对比较重的操作。<br>如果发生的非常频繁，这个开销可就不能被忽略了。</p>
+<h2 id="2-设计异常的最佳实践（Best-Practises-for-Designing-the-API）"><a href="#2-设计异常的最佳实践（Best-Practises-for-Designing-the-API）" class="headerlink" title="2. 设计异常的最佳实践（Best Practises for Designing the API）"></a>2. 设计异常的最佳实践（Best Practises for Designing the API）</h2><p><strong>1. 当要决定是采用checked exception还是Unchecked exception的时候，你要问自己一个问题，“如果这种异常一旦抛出，客户端会做怎样的补救？（When deciding on checked exceptions vs. unchecked exceptions, ask yourself, “What action can the client code take when the exception occurs?）”</strong></p>
+<p>如果客户端可以通过其他的方法恢复异常，那么这种异常就是checked exception；如果客户端对出现的这种异常无能为力，那么这种异常就是Unchecked exception；从使用上讲，当异常出现的时候要做一些试图恢复它的动作而不要仅仅的打印它的信息。</p>
+<p>此外，尽量使用unchecked exception来处理编程错误：因为unchecked exception不用使客户端代码显示的处理它们，它们自己会在出现的地方挂起程序并打印出异常信息。Java API中提供了丰富的unchecked excetpion，譬如：NullPointerException , IllegalArgumentException 和 IllegalStateException等，因此一般使用这些标准的异常类而不愿亲自创建新的异常类，这样使代码易于理解并避免的过多的消耗内存。</p>
+<p><strong>2. 保护封装性（Preserve encapsulation）</strong></p>
+<p>不要让你要抛出的checked exception升级到较高的层次。例如，不要让SQLException延伸到业务层。业务层并不需要（不关心？）SQLException。你有两种方法来解决这种问题：</p>
 <ul>
-<li>作用：<strong>存放对象实例</strong>，也是<strong>唯一</strong>的目的。</li>
-<li><strong>垃圾收集器</strong>主要管理的就是 Java 堆。</li>
-<li>Java 堆在物理上可以不连续，只要<strong>逻辑上连续</strong>即可。</li>
+<li>转变SQLException为另外一个checked exception，如果客户端并不需要恢复这种异常的话；</li>
+<li>转变SQLException为一个unchecked exception，如果客户端对这种异常无能为力的话；</li>
 </ul>
-<h4 id="1-5-方法区"><a href="#1-5-方法区" class="headerlink" title="1.5 方法区"></a>1.5 方法区</h4><p>方法区（Method Area）被所有<strong>线程共享</strong>，用于存储已被虚拟机加载的<strong>类信息、常量、静态变量、即时编译器编译后的代码</strong>等数据。方法区也被叫做永久代，在Java堆之外，JDK8中已把方法区（永久代）移除，取而代之的是原数据区(Meta Space)。</p>
-<p>和 Java 堆一样，不需要连续的内存，可以选择固定的大小，更可以选择不实现垃圾收集。</p>
-<h4 id="1-6-运行时常量池"><a href="#1-6-运行时常量池" class="headerlink" title="1.6 运行时常量池"></a>1.6 运行时常量池</h4><p>运行时常量池（Runtime Constant Pool）是<strong>方法区的一部分</strong>。保存 <strong>Class 文件中的符号引用、翻译出来的直接引用</strong>。运行时常量池可以在运行期间将新的常量放入池中。</p>
-<h4 id="1-7-直接内存"><a href="#1-7-直接内存" class="headerlink" title="1.7 直接内存"></a>1.7 直接内存</h4><p>直接内存（Direct Memory）并<strong>不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范中定义的内存区域</strong>，但是这部分内存也被频繁地使用，而且也可能导致OutOfMemoryError 异常出现，所以我们放到这里一起讲解。</p>
-<p>在JDK 1.4 中新加入了NIO（New Input/Output）类，引入了一种基于通道（Channel）与缓冲区（Buffer）的I/O 方式，<strong>它可以使用Native 函数库直接分配堆外内存</strong>，然后通过一个存储在Java 堆里面的DirectByteBuffer 对象作为这块内存的引用进行操作。这样能在一些场景中显著提高性能，因为<strong>避免了在Java 堆和Native 堆中来回复制数据</strong>。显然，<strong>本机直接内存的分配不会受到Java 堆大小的限制</strong>，但是，既然是内存，则肯定还是会受到本机总内存（包括RAM 及SWAP 区或者分页文件）的大小及处理器寻址空间的限制。服务器管理员配置虚拟机参数时，一般会根据实际内存设置-Xmx等参数信息，但经常会忽略掉直接内存，使得各个内存区域的总和大于物理内存限制（包括物理上的和操作系统级的限制），从而导致动态扩展时出现OutOfMemoryError异常。</p>
-<h3 id="2-对象的创建"><a href="#2-对象的创建" class="headerlink" title="2. 对象的创建"></a>2. 对象的创建</h3><p><strong>new指令 =&gt; 类加载 =&gt; 内存分配 =&gt; 内存初始化 =&gt; 对象头设置 =&gt; 构造方法执行</strong></p>
-<h4 id="2-1-类加载"><a href="#2-1-类加载" class="headerlink" title="2.1 类加载"></a>2.1 类加载</h4><p>虚拟机遇到一个new指令时，首先会去检查这个指令的参数能否在常量池定位到一个符号引用，并检查这个符号引用代表的类是否已被加载、解析、初始化过，如果没有则进行类加载过程(见模块3)。</p>
-<h4 id="2-2-内存分配"><a href="#2-2-内存分配" class="headerlink" title="2.2 内存分配"></a>2.2 内存分配</h4><p>类加载通过后，为对象分配内存，对象所占的内存大小由类加载可完全确定。内存分配方式有两种：指针碰撞和空闲列表。</p>
+<p>多数情况下，客户端代码都是对SQLException无能为力的，因此你要毫不犹豫的把它转变为一个unchecked exception，看看下边的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public void dataAccessCode()&#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        ..some code that throws SQLException</span><br><span class="line">    &#125; catch (SQLException ex) &#123;</span><br><span class="line">        throw new RuntimeException(ex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上边的做法是把SQLException转换为RuntimeException，一旦SQLException被抛出，那么程序将抛出RuntimeException,此时程序被挂起并返回客户端异常信息。Spring在底层就是把SQLException封装成了unchecked exception，以便于回滚事务。</p>
+<p>如果你有足够的信心恢复它当SQLException被抛出的时候，那么你也可以把它转换为一个有意义的checked exception, 但是我发现在大多时候抛出RuntimeException已经足够用了。</p>
+<p><strong>3. 不要创建没有意义的异常（Try not to create new custom exceptions if they do not have useful information for client code.）</strong><br>看看下面的代码有什么问题？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class DuplicateUsernameException extends Exception &#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>它除了有一个“意义明确”的名字以外没有任何有用的信息了。不要忘记Exception跟其他的Java类一样，客户端可以调用其中的方法来得到更多的信息。</p>
+<p>我们可以为其添加一些必要的方法，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class DuplicateUsernameException extends Exception &#123;</span><br><span class="line">    public DuplicateUsernameException (String username)&#123;....&#125;</span><br><span class="line">    public String requestedUsername()&#123;...&#125;</span><br><span class="line">    public String[] availableNames()&#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在新的代码中有两个有用的方法：reqeuestedUsername(),客户但可以通过它得到请求的名称；availableNames(),客户端可以通过它得到一组有用的usernames。这样客户端在得到其返回的信息来明确自己的操作失败的原因。但是如果你不想添加更多的信息，那么你可以抛出一个标准的Exception:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">throw new Exception(&quot;Username already taken&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>很有必要再重申一下，checked exception应该让客户端从中得到丰富的信息。要想让你的代码更加易读，请倾向于用unchecked excetpion来处理程序中的错误（Prefer unchecked exceptions for all programmatic errors）</p>
+<p><strong>4． Document exceptions</strong><br>可以通过Javadoc’s <code>@throws</code> 标签来说明（document）你的API中要抛出checked exception或者unchecked exception</p>
+<h2 id="3-使用异常的最佳实践（Best-Practices-for-Using-Exceptions）"><a href="#3-使用异常的最佳实践（Best-Practices-for-Using-Exceptions）" class="headerlink" title="3. 使用异常的最佳实践（Best Practices for Using Exceptions）"></a>3. 使用异常的最佳实践（Best Practices for Using Exceptions）</h2><p><strong>1． 总是要做一些清理工作（Always clean up after yourself）</strong><br>如果你使用一些资源例如数据库连接或者网络连接，请记住要做一些清理工作（如关闭数据库连接或者网络连接）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public void dataAccessCode()&#123;</span><br><span class="line">    Connection conn = null;</span><br><span class="line">    try &#123;</span><br><span class="line">        conn = getConnection();</span><br><span class="line">        ..some code that throws SQLException</span><br><span class="line">    &#125; catch (SQLException ex) &#123;</span><br><span class="line">        ex.printStacktrace();</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">        DBUtil.closeConnection(conn);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果你的API抛出Unchecked exception，那么你要用try-finally来做必要的清理工作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Lock lock = new ReentrantLock();</span><br><span class="line"></span><br><span class="line">    public void syn() &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            lock.lock();</span><br><span class="line">            // ...do something that needs synchronization</span><br><span class="line">        &#125; catch (RuntimeException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2． 不要使用异常来控制流程（Never use exceptions for flow control）</strong></p>
+<p>下边代码中，MaximumCountReachedException被用于控制流程：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public void useExceptionsForFlowControl() &#123;</span><br><span class="line">   try &#123;</span><br><span class="line">        while (true) &#123;</span><br><span class="line">            increaseCount();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (MaximumCountReachedException ex) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    //Continue execution</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void increaseCount() throws MaximumCountReachedException &#123;</span><br><span class="line">    if (count &gt;= 5000)</span><br><span class="line">        throw new MaximumCountReachedException();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上边的useExceptionsForFlowControl()用一个无限循环来增加count直到抛出异常，这种做法并没有说让代码不易读，但是它是程序执行效率降低。</p>
+<p>记住，<strong>只在要会抛出异常的地方进行异常处理</strong>。</p>
+<p><strong>3．不要忽略异常</strong></p>
+<p>当有异常被抛出的时候，如果你不想恢复它，那么你要毫不犹豫的将其转换为unchecked exception，而不是用一个空的catch块或者什么也不做来忽略它，以至于从表面来看象是什么也没有发生一样。</p>
+<p><strong>不要捕获顶层的Exception</strong></p>
+<p>unchecked exception都是RuntimeException的子类，RuntimeException又继承Exception,因此，如果单纯的捕获Exception,那么你同样也捕获了RuntimeException,如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125; catch (Exception ex) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>一旦你写出了上边的代码（注意catch块是空的），它将忽略所有的异常，包括unchecked exception.</p>
+<p><strong>5．Log exceptions just once</strong><br>Logging the same exception stack trace more than once can confuse the programmer examining the stack trace about the original source of exception. So just log it once.</p>
+<h2 id="4-个人观点"><a href="#4-个人观点" class="headerlink" title="4. 个人观点"></a>4. 个人观点</h2><p>何时使用自定义Exception？个人认为：</p>
 <ul>
-<li><p><strong>指针碰撞</strong>：若内存是绝对规整的，所有用过的内存在一边，空闲的内存在另一边，中间放着一个指针作为分界点的指示器，分配内存的动作即为指针向空闲空间那边挪动一小段与对象大小相等的距离。</p>
-</li>
-<li><p><strong>空闲列表</strong>：若内存不是规整的，已使用的内存和空闲的内存相互交错，虚拟机通过一个列表记录内存的使用状况，分配内存时从列表中找出一块足够大的空间给对象实例并更新记录。</p>
-</li>
+<li>当业务逻辑代码遇到处理异常的情况时，如果业务范围较小，且考虑到效率问题，直接返回附带异常信息的处理结果，而当业务范围比较大，或者考虑到代码的鲁棒性和可读性，选择自定义异常将异常从Service层抛向Controller层的方式比较好。</li>
+<li>当在编写框架、API或者通用工具类的时候，应该选择抛异常的方式给调用方（或使用方），让调用方去处理异常，使调用方可以灵活的处理，若不想上层强制处理异常，可以抛出unchecked exception。</li>
 </ul>
-<p>选择哪种分配方式由Java堆内存是否规整决定，而Java堆内存是否规整由所采用的垃圾收集器决定<br>。使用Serial、ParNew等Compact过程的收集器，采用指针碰撞；使用CMS收集器等基于标记清除算法的收集器则采用空闲列表。</p>
-<h4 id="2-3-内存初始化"><a href="#2-3-内存初始化" class="headerlink" title="2.3 内存初始化"></a>2.3 内存初始化</h4><p>内存分配完毕后，虚拟机将分配到的内存空间都初始化为零值（不包括对象头）。保证对象的实例字段不赋初值就能够被访问到数据类型对应的零值。</p>
-<h4 id="2-4-对象头设置"><a href="#2-4-对象头设置" class="headerlink" title="2.4 对象头设置"></a>2.4 对象头设置</h4><p>对对象进行必要的设置，比如：该对象是哪个类的实例、如何找到这个类的元信息、对象的哈希码、GC分代信息。这些信息都放置在对象头中。</p>
-<h4 id="2-5-构造函数执行"><a href="#2-5-构造函数执行" class="headerlink" title="2.5 构造函数执行"></a>2.5 构造函数执行</h4><p>以上操作完成后，从虚拟机角度来看，对象的创建已经完成了，但从Java程序的角度来讲，对象的创建才开始（虚拟机对上屏蔽了对象内存分配的细节），程序员通过执行构造函数来进行对象的初始化。</p>
-<h3 id="3-对象的内存布局"><a href="#3-对象的内存布局" class="headerlink" title="3. 对象的内存布局"></a>3. 对象的内存布局</h3><p>对象在内存中的存储布局可分为3块：对象头（Header）、实例数据（Instance Data）、对齐填充（Padding）。</p>
-<p>对象头（Header）：对象头包括两部分信息，一是对象自身运行时的数据，如哈希码、GC分代年龄、锁状态标志、线程持有的锁、偏向线程ID、偏向时间戳等。另一部分是类型指针，即对象指向它类元数据的指针，虚拟机通过这确定对象是哪个类的实例。</p>
-<p>实例数据（Instance Data）：对象真正存储的有效信息，也是程序代码中定义的各种类型的字段内容。无论是父类的还是子类的数据都要记录。</p>
-<p>对齐填充（Padding）：仅起着占位符的作用。对象起始地址必须是8字节的整数倍，对象头肯定是8字节的整数倍，而实例数据则不一定，此时用对齐填充来补全。</p>
-<h3 id="4-对象的访问"><a href="#4-对象的访问" class="headerlink" title="4. 对象的访问"></a>4. 对象的访问</h3><p>程序中通过操作reference（引用）来操作对象，在Java堆内存中，对象的访问分为两种方式：句柄访问和直接访问。</p>
-<p><strong>句柄访问</strong>：Java堆中划分出一块内存作为句柄池，reference（引用）中存储的是对象的句柄地址，句柄包括了对象实例数据的地址和对象类型数据的地址。<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%8F%A5%E6%9F%84%E8%AE%BF%E9%97%AE.JPG" alt="句柄访问"></p>
-<p><strong>直接指针访问</strong>：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%9B%B4%E6%8E%A5%E6%8C%87%E9%92%88%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1.JPG" alt="直接指针访问"></p>
-<p>使用句柄访问的好处是reference中存储的是稳定的句柄地址，对象被移动（如GC）只会改变实例数据指针的值，而不用reference本身的值。使用直接指针访问最大的好处是速度快。Hot Spot虚拟机采用的是直接指针访问</p>
-<hr>
-<blockquote>
-<p>Copyright © 2018, GDUT CSCW back-end Kanarien, All Rights Reserved</p>
-</blockquote>
+<p>参考：</p>
+<ul>
+<li><a href="https://blog.csdn.net/hikvision_java_gyh/article/details/8974606" target="_blank" rel="noopener">Checked 和 UnChecked 异常 的使用场合 - 一个执着的程序员 - CSDN博客</a></li>
+<li><a href="https://www.cnblogs.com/baxianhua/p/9162103.html" target="_blank" rel="noopener">Java Exception 和Error有什么区别？ - 筱筱的春天 - 博客园</a></li>
+</ul>
 
       
 
@@ -314,10 +291,6 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
         		</li>
       		
 		</ul>
@@ -384,7 +357,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://kanarien.cn/2018/07/28/Java虚拟机(二)——JVM内存结构与对象的创建/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://kanarien.cn/2019/03/23/Java中Exception的最佳实践方式/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -398,18 +371,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/28/Java虚拟机(三)——类加载相关/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java虚拟机(三)——类加载相关
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/28/Java虚拟机(一)——概述/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java虚拟机(一)——概述</div>
+    <a href="/2019/03/16/计算机网络五层协议体系/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">计算机网络五层协议体系</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -436,7 +400,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM内存结构与对象的创建"><span class="toc-number">1.</span> <span class="toc-text">JVM内存结构与对象的创建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-数据运行时区域"><span class="toc-number">1.1.</span> <span class="toc-text">1. 数据运行时区域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-程序计数器"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 程序计数器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-Java虚拟机栈"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 Java虚拟机栈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-本地方法栈"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 本地方法栈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-Java-堆"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4 Java 堆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-方法区"><span class="toc-number">1.1.5.</span> <span class="toc-text">1.5 方法区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-运行时常量池"><span class="toc-number">1.1.6.</span> <span class="toc-text">1.6 运行时常量池</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-7-直接内存"><span class="toc-number">1.1.7.</span> <span class="toc-text">1.7 直接内存</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-对象的创建"><span class="toc-number">1.2.</span> <span class="toc-text">2. 对象的创建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-类加载"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 类加载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-内存分配"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 内存分配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-内存初始化"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 内存初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-对象头设置"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 对象头设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-构造函数执行"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.5 构造函数执行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-对象的内存布局"><span class="toc-number">1.3.</span> <span class="toc-text">3. 对象的内存布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-对象的访问"><span class="toc-number">1.4.</span> <span class="toc-text">4. 对象的访问</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Exception和Error"><span class="toc-number">2.</span> <span class="toc-text">1. Exception和Error</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-设计异常的最佳实践（Best-Practises-for-Designing-the-API）"><span class="toc-number">3.</span> <span class="toc-text">2. 设计异常的最佳实践（Best Practises for Designing the API）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-使用异常的最佳实践（Best-Practices-for-Using-Exceptions）"><span class="toc-number">4.</span> <span class="toc-text">3. 使用异常的最佳实践（Best Practices for Using Exceptions）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-个人观点"><span class="toc-number">5.</span> <span class="toc-text">4. 个人观点</span></a></li></ol>
                     </div>
                 </span>
             </div>
