@@ -17,7 +17,7 @@
 <meta property="og:description" content="0. 前言经典的动态规划题目：背包问题 1. 问题描述01背包(ZeroOnePack): 有N件物品和一个承重为bear的背包。每种物品均只有一件。第i件物品的重量是weight[i]，价值是value[i]。求解将哪些物品装入背包可使价值总和最大。 完全背包(CompletePack): 有N种物品和一个承重为bear的背包，每种物品都有无限件可用。第i种物品的重量是weight[i]，价值">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-033.jpg">
-<meta property="og:updated_time" content="2019-03-24T06:45:33.444Z">
+<meta property="og:updated_time" content="2019-03-24T06:57:45.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态规划：01背包、完全背包、多重背包">
 <meta name="twitter:description" content="0. 前言经典的动态规划题目：背包问题 1. 问题描述01背包(ZeroOnePack): 有N件物品和一个承重为bear的背包。每种物品均只有一件。第i件物品的重量是weight[i]，价值是value[i]。求解将哪些物品装入背包可使价值总和最大。 完全背包(CompletePack): 有N种物品和一个承重为bear的背包，每种物品都有无限件可用。第i种物品的重量是weight[i]，价值">
@@ -206,8 +206,8 @@
 <li>情况一: 第i件不放进去，这时所得价值为:dp[i - 1][j]</li>
 <li>情况二: 第i件放进去，这时所得价值为：dp[i - 1][j - weight[i]] + value[i]</li>
 </ul>
-<p>状态转移方程为：dp[i][j] = max(f[i - 1][j], f[i - 1][j - weight[i]] + value[i])，j &gt;= weight[i]</p>
-<p>时间复杂度O(bear <em> n)，空间复杂度O(bear </em> n)，其中bear为承重，n为物品数。</p>
+<p>状态转移方程为：<code>dp[i][j] = max(f[i - 1][j], f[i - 1][j - weight[i]] + value[i])，j &gt;= weight[i]</code></p>
+<p>时间复杂度<code>O(bear * n)</code>，空间复杂度<code>O(bear * n)</code>，其中bear为承重，n为物品数。</p>
 <p><strong>实例</strong>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 共5件物品</span><br><span class="line">int[] weight = &#123;2, 2, 6, 5, 4&#125;; // 重量分别为2, 2, 6, 5, 4</span><br><span class="line">int[] value = &#123;6, 3, 5, 4, 6&#125;;  // 价值分别为6, 3, 5, 4, 6</span><br><span class="line">int bear = 10;                  // 承重为10</span><br></pre></td></tr></table></figure></p>
 <table>
 <thead>
@@ -314,32 +314,32 @@
 </tbody>
 </table>
 <p>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 01背包：要么放，要么不放</span><br><span class="line"> * dp[i][j]表示前i种物品且承重为j时的背包最大价值</span><br><span class="line"> * @param weight 重量数组</span><br><span class="line"> * @param value 价值数组</span><br><span class="line"> * @param bear 承重</span><br><span class="line"> * @return 最大的价值总和</span><br><span class="line"> */</span><br><span class="line">public static int zeroOnePack(int[] weight, int[] value, int bear) &#123;</span><br><span class="line">    int[][] dp = new int[weight.length + 1][bear + 1];</span><br><span class="line">    for (int i = 0; i &lt; weight.length; i++) &#123;</span><br><span class="line">        for (int j = 0; j &lt; bear; j++) &#123;</span><br><span class="line">            if (j + 1 - weight[i] &gt;= 0) &#123; // 此处判断不可少</span><br><span class="line">                dp[i + 1][j + 1] = Math.max(dp[i][j + 1], dp[i][j + 1 - weight[i]] + value[i]);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                dp[i + 1][j + 1] = dp[i][j + 1];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[weight.length][bear];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>01背包降维</strong><br>可以降维到一维数组dp[i]，表示承重为i时背包的最大价值</p>
+<h2 id="2-1-01背包降维"><a href="#2-1-01背包降维" class="headerlink" title="2.1 01背包降维"></a>2.1 01背包降维</h2><p>可以降维到一维数组dp[i]，表示承重为i时背包的最大价值</p>
 <p><strong>初始状态</strong>：<br>dp[i] = 0, 0 &lt;= i &lt;= bear</p>
-<p><strong>状态转移方程</strong>：<br>dp[i] = max(dp[i]，dp[i - weight[i]] + value[i])  (和降维前是类似的)</p>
-<p>时间复杂度O(bear * n)，空间复杂度O(bear)，其中bear为承重，n为物品数。</p>
+<p><strong>状态转移方程</strong>：<br><code>dp[i] = max(dp[i]，dp[i - weight[i]] + value[i])  (和降维前是类似的)</code></p>
+<p>时间复杂度<code>O(bear * n)</code>，空间复杂度<code>O(bear)</code>，其中bear为承重，n为物品数。</p>
 <p><strong>注意，由于dp[i]的计算要用到之前dp[i - weight[i]]的值，所以遍历时要从数组后面逆序遍历</strong>，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 01背包(降维)，二维降一维</span><br><span class="line"> * dp[i]表示承重为i时的最大价值</span><br><span class="line"> * @param weight 重量数组</span><br><span class="line"> * @param value 价值数组</span><br><span class="line"> * @param bear 承重</span><br><span class="line"> * @return 最大的价值总和</span><br><span class="line"> */</span><br><span class="line">public static int zeroOnePack_DR(int[] weight, int[] value, int bear) &#123;</span><br><span class="line">    int[] dp = new int[bear + 1];</span><br><span class="line">    for (int i = 0; i &lt; weight.length; i++) &#123;</span><br><span class="line">        for (int j = bear; j &gt;= weight[i]; j--) &#123; // 注意要遍历要反过来</span><br><span class="line">            dp[j] = Math.max(dp[j], dp[j - weight[i]] + value[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[bear];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="3-完全背包求解"><a href="#3-完全背包求解" class="headerlink" title="3. 完全背包求解"></a>3. 完全背包求解</h2><p>完全背包和01背包十分相像， 区别就是完全背包物品有无限件。由之前的选或者不选转变成了选或者不选，选几件。</p>
 <p>设dp[i][j]表示背包装入前i种物品且承重为j时的最大价值，显然，解为dp[weight.length][bear]</p>
 <p><strong>初始状态</strong>：<br>显然dp[0][0] = 0，而且第一列和第一行（承重bear为0或不放入物品）也为0</p>
-<p><strong>状态转移方程</strong>：<br>dp[i][j] = max(dp[i - 1][j - k <em> weight[i]] + k </em> value[i] | 0 &lt;= k * weight[i] &lt;= v)</p>
+<p><strong>状态转移方程</strong>：<br><code>dp[i][j] = max(dp[i - 1][j - k * weight[i]] + k * value[i] | 0 &lt;= k * weight[i] &lt;= v)</code></p>
 <p>这里不给出代码，直接看降维的解法。</p>
 <hr>
 <p><strong>完全背包降维</strong><br>可以降维到一维数组dp[i]，表示承重为i时背包的最大价值</p>
 <p><strong>初始状态</strong>：<br>dp[i] = 0, 0 &lt;= i &lt;= bear</p>
-<p><strong>状态转移方程</strong>：<br>dp[i] = max(dp[i]，dp[i - weight[i]] + value[i])</p>
-<p>时间复杂度O(bear * n)，空间复杂度O(bear)，其中bear为承重，n为物品数。</p>
+<p><strong>状态转移方程</strong>：<br><code>dp[i] = max(dp[i]，dp[i - weight[i]] + value[i])</code></p>
+<p>时间复杂度<code>O(bear * n)</code>，空间复杂度<code>O(bear)</code>，其中bear为承重，n为物品数。</p>
 <p>没错，和01背包的降维法几乎一模一样！区别在于完全背包是<strong>顺序</strong>计算dp数组的，而01背包是<strong>逆序</strong>计算dp数组的，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 完全背包：要么不放，要么放，放几个</span><br><span class="line"> * dp[i]表示承重为i时的最大价值</span><br><span class="line"> *</span><br><span class="line"> * 与01背包的降维解法刚好逆序</span><br><span class="line"> * @param weight 重量数组</span><br><span class="line"> * @param value 价值数组</span><br><span class="line"> * @param bear 承重</span><br><span class="line"> * @return 最大的价值总和</span><br><span class="line"> */</span><br><span class="line">public static int completelyKnapsack(int[] weight, int[] value, int bear) &#123;</span><br><span class="line">    int[] dp = new int[bear + 1];</span><br><span class="line">    for (int i = 0; i &lt; weight.length; i++) &#123;</span><br><span class="line">        for (int j = weight[i]; j &lt;= bear; j++) &#123;</span><br><span class="line">            dp[j] = Math.max(dp[j - weight[i]] + value[i], dp[j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[bear];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="4-多重背包求解"><a href="#4-多重背包求解" class="headerlink" title="4. 多重背包求解"></a>4. 多重背包求解</h2><p>多重背包多了一个限制条件，每个物品规定了可用的次数。</p>
 <p><strong>初始状态</strong>：<br>显然dp[0][0] = 0，而且第一列和第一行（承重bear为0或不放入物品）也为0</p>
-<p><strong>状态转移方程</strong>：<br>dp[i][j] = max(dp[i - 1][j - k <em> weight[i]] + k </em> value[i] | 0 &lt;= k * weight[i] &lt;= amount[i])</p>
+<p><strong>状态转移方程</strong>：<br><code>dp[i][j] = max(dp[i - 1][j - k * weight[i]] + k * value[i] | 0 &lt;= k * weight[i] &lt;= amount[i])</code></p>
 <p>这里不给出代码，直接看转化为降维01背包</p>
 <hr>
-<p><strong>转化为降维01背包</strong><br>将n种物品<strong>拆分</strong>得到Σn种，即Σsize[i], 0 =&lt; i &lt; size.length，，这Σn种物品要么放，要么不放，如此将原问题<strong>转化为01背包问题</strong>，时间复杂度是O(bear * Σn)</p>
+<p><strong>转化为降维01背包</strong><br>将n种物品<strong>拆分</strong>得到Σn种，即Σsize[i], 0 =&lt; i &lt; size.length，，这Σn种物品要么放，要么不放，如此将原问题<strong>转化为01背包问题</strong>，时间复杂度是<code>O(bear * Σn)</code></p>
 <p>降维到一维数组dp[i]，表示承重为i时背包的最大价值<br><strong>初始状态</strong>：<br>dp[i] = 0, 0 &lt;= i &lt;= bear</p>
-<p><strong>状态转移方程</strong>：<br>dp[i] = max(dp[i]，dp[i - weight[i] <em> k] + k </em> value[i])，0 &lt;= k &lt;= amount[i]</p>
-<p>时间复杂度是O(bear * Σn)，空间复杂度O(bear)，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 多重背包，</span><br><span class="line"> * dp[i]表示承重为i时的最大价值</span><br><span class="line"> *</span><br><span class="line"> * 将n种物品拆分得到Σn种，即Σsize[i], 0 =&lt; i &lt; size.length</span><br><span class="line"> * 将原问题转化为01背包问题，时间复杂度是O(bear * Σn)</span><br><span class="line"> * @param weight 重量数组</span><br><span class="line"> * @param value 价值数组</span><br><span class="line"> * @param amount 数量数组</span><br><span class="line"> * @param bear 承重</span><br><span class="line"> * @return 最大的价值总和</span><br><span class="line"> */</span><br><span class="line">public static int multipleKnapsack(int[] weight, int[] value, int[] amount, int bear) &#123;</span><br><span class="line">    int[] dp = new int[bear + 1];</span><br><span class="line">    for (int i = 0; i &lt; weight.length; i++) &#123;</span><br><span class="line">        for (int j = bear; j &gt;= weight[i]; j--) &#123;</span><br><span class="line">            for (int k = 1; k &lt;= amount[i] &amp;&amp; k * weight[i] &lt;= j; k++) &#123;</span><br><span class="line">                dp[j] = Math.max(dp[j - k * weight[i]] + k * value[i], dp[j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[bear];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>有一种对上述算法的优化，同样是转化为01背包求解，不同在于拆分的数目，使用二进制的思想，将第i种物品分成若干种物品，每件物品有一个系数，分别为1, 2, 4，···，2^(k - 1)，k是满足n - 2^k + 1 &gt; 0的最大整数，例如n = 13，拆分成1，2，4，6四件物品。又有：8 = 2 + 6, 11 = 1 + 4 + 6，根据二进制的性质，0…13都可以有这四件物品组成，于是n件物品，就拆分成至多logn件物品，而不是上述算法的n，将时间复杂度降到O(bear * Σlogn)</p>
+<p><strong>状态转移方程</strong>：<br><code>dp[i] = max(dp[i]，dp[i - weight[i] * k] + k * value[i])，0 &lt;= k &lt;= amount[i]</code></p>
+<p>时间复杂度是<code>O(bear * Σn)</code>，空间复杂度<code>O(bear)</code>，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 多重背包，</span><br><span class="line"> * dp[i]表示承重为i时的最大价值</span><br><span class="line"> *</span><br><span class="line"> * 将n种物品拆分得到Σn种，即Σsize[i], 0 =&lt; i &lt; size.length</span><br><span class="line"> * 将原问题转化为01背包问题，时间复杂度是O(bear * Σn)</span><br><span class="line"> * @param weight 重量数组</span><br><span class="line"> * @param value 价值数组</span><br><span class="line"> * @param amount 数量数组</span><br><span class="line"> * @param bear 承重</span><br><span class="line"> * @return 最大的价值总和</span><br><span class="line"> */</span><br><span class="line">public static int multipleKnapsack(int[] weight, int[] value, int[] amount, int bear) &#123;</span><br><span class="line">    int[] dp = new int[bear + 1];</span><br><span class="line">    for (int i = 0; i &lt; weight.length; i++) &#123;</span><br><span class="line">        for (int j = bear; j &gt;= weight[i]; j--) &#123;</span><br><span class="line">            for (int k = 1; k &lt;= amount[i] &amp;&amp; k * weight[i] &lt;= j; k++) &#123;</span><br><span class="line">                dp[j] = Math.max(dp[j - k * weight[i]] + k * value[i], dp[j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[bear];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>有一种对上述算法的优化，同样是转化为01背包求解，不同在于拆分的数目，使用二进制的思想，将第i种物品分成若干种物品，每件物品有一个系数，分别为1, 2, 4，···，2^(k - 1)，k是满足n - 2^k + 1 &gt; 0的最大整数，例如n = 13，拆分成1，2，4，6四件物品。又有：8 = 2 + 6, 11 = 1 + 4 + 6，根据二进制的性质，0…13都可以有这四件物品组成，于是n件物品，就拆分成至多logn件物品，而不是上述算法的n，将时间复杂度降到<code>O(bear * Σlogn)</code></p>
 <p>本笔记参考了下属文章：</p>
 <ul>
 <li><a href="https://www.cnblogs.com/A-S-KirigiriKyoko/p/6036368.html" target="_blank" rel="noopener">【动态规划】背包问题（一） 01背包 完全背包 多重背包 - A.S.KirigiriKyouko - 博客园</a></li>
@@ -499,7 +499,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-问题描述"><span class="toc-number">2.</span> <span class="toc-text">1. 问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-01背包求解"><span class="toc-number">3.</span> <span class="toc-text">2. 01背包求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-完全背包求解"><span class="toc-number">4.</span> <span class="toc-text">3. 完全背包求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-多重背包求解"><span class="toc-number">5.</span> <span class="toc-text">4. 多重背包求解</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-问题描述"><span class="toc-number">2.</span> <span class="toc-text">1. 问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-01背包求解"><span class="toc-number">3.</span> <span class="toc-text">2. 01背包求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-01背包降维"><span class="toc-number">4.</span> <span class="toc-text">2.1 01背包降维</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-完全背包求解"><span class="toc-number">5.</span> <span class="toc-text">3. 完全背包求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-多重背包求解"><span class="toc-number">6.</span> <span class="toc-text">4. 多重背包求解</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -618,10 +618,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -630,11 +626,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -646,15 +642,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -694,6 +694,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Netty</a>
               </li>
              
@@ -703,14 +711,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
               </li>
             
             <div class="clearfix"></div>
