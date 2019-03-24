@@ -6,24 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://kanarien.cn">
-  <title>HTTP学习笔记 | 无悔的博客小屋</title>
+  <title>动态规划：01背包、完全背包、多重背包 | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0. 前言该笔记记录了HTTP相关的基本知识，包括：  HTTP定义、特点、工作方式 简单辨别URI、URL、URN 请求与响应的结构 请求方法，GET和POST的区别 常见的响应码">
-<meta name="keywords" content="HTTP">
+  <meta name="description" content="0. 前言经典的动态规划题目：背包问题 1. 问题描述01背包(ZeroOnePack): 有N件物品和一个承重为bear的背包。每种物品均只有一件。第i件物品的重量是weight[i]，价值是value[i]。求解将哪些物品装入背包可使价值总和最大。 完全背包(CompletePack): 有N种物品和一个承重为bear的背包，每种物品都有无限件可用。第i种物品的重量是weight[i]，价值">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTTP学习笔记">
-<meta property="og:url" content="https://kanarien.cn/2018/07/30/HTTP学习笔记/index.html">
+<meta property="og:title" content="动态规划：01背包、完全背包、多重背包">
+<meta property="og:url" content="https://kanarien.cn/2019/03/24/动态规划：01背包、完全背包、多重背包/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
-<meta property="og:description" content="0. 前言该笔记记录了HTTP相关的基本知识，包括：  HTTP定义、特点、工作方式 简单辨别URI、URL、URN 请求与响应的结构 请求方法，GET和POST的区别 常见的响应码">
+<meta property="og:description" content="0. 前言经典的动态规划题目：背包问题 1. 问题描述01背包(ZeroOnePack): 有N件物品和一个承重为bear的背包。每种物品均只有一件。第i件物品的重量是weight[i]，价值是value[i]。求解将哪些物品装入背包可使价值总和最大。 完全背包(CompletePack): 有N种物品和一个承重为bear的背包，每种物品都有无限件可用。第i种物品的重量是weight[i]，价值">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-021.jpg">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/URI%E3%80%81URL%E3%80%81URN.jpg">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Http%20Request.png">
-<meta property="og:updated_time" content="2019-03-13T13:14:28.501Z">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-033.jpg">
+<meta property="og:updated_time" content="2019-03-24T06:45:33.444Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTTP学习笔记">
-<meta name="twitter:description" content="0. 前言该笔记记录了HTTP相关的基本知识，包括：  HTTP定义、特点、工作方式 简单辨别URI、URL、URN 请求与响应的结构 请求方法，GET和POST的区别 常见的响应码">
-<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-021.jpg">
+<meta name="twitter:title" content="动态规划：01背包、完全背包、多重背包">
+<meta name="twitter:description" content="0. 前言经典的动态规划题目：背包问题 1. 问题描述01背包(ZeroOnePack): 有N件物品和一个承重为bear的背包。每种物品均只有一件。第i件物品的重量是weight[i]，价值是value[i]。求解将哪些物品装入背包可使价值总和最大。 完全背包(CompletePack): 有N种物品和一个承重为bear的背包，每种物品都有无限件可用。第i种物品的重量是weight[i]，价值">
+<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-033.jpg">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
   
@@ -167,7 +165,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-HTTP学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-动态规划：01背包、完全背包、多重背包" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -175,14 +173,14 @@
         
   
     <h1 class="article-title" itemprop="name">
-      HTTP学习笔记
+      动态规划：01背包、完全背包、多重背包
     </h1>
   
 
 		
         
-        <a href="/2018/07/30/HTTP学习笔记/" class="archive-article-date">
-  	<time datetime="2018-07-30T07:06:57.502Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
+        <a href="/2019/03/24/动态规划：01背包、完全背包、多重背包/" class="archive-article-date">
+  	<time datetime="2019-03-24T03:03:17.526Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-24</time>
 </a>
         
 		
@@ -194,281 +192,159 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-021.jpg" alt="动漫美图"></p>
-<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>该笔记记录了HTTP相关的基本知识，包括：</p>
+        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-033.jpg" alt="动漫美图"></p>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>经典的动态规划题目：背包问题</p>
+<h2 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1. 问题描述"></a>1. 问题描述</h2><p><strong>01背包(ZeroOnePack)</strong>: 有N件物品和一个承重为bear的背包。每种物品均只有一件。第i件物品的重量是weight[i]，价值是value[i]。求解将哪些物品装入背包可使价值总和最大。</p>
+<p><strong>完全背包(CompletePack)</strong>: 有N种物品和一个承重为bear的背包，每种物品都有无限件可用。第i种物品的重量是weight[i]，价值是value[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包承重，且价值总和最大。</p>
+<p><strong>多重背包(MultiplePack)</strong>: 有N种物品和一个承重为bear的背包。第i种物品最多有amount[i]件可用，每件重量是weight[i]，价值是value[i]。求解将哪些物品装入背包可使这些物品的重量总和不超过背包承重，且价值总和最大。</p>
+<a id="more"></a>
+<h2 id="2-01背包求解"><a href="#2-01背包求解" class="headerlink" title="2. 01背包求解"></a>2. 01背包求解</h2><p>最基础的背包问题，总体思路就是：<strong>选还是不选</strong></p>
+<p>设dp[i][j]表示背包装入前i种物品且承重为j时的最大价值，显然，解为dp[weight.length][bear]</p>
+<p><strong>初始状态</strong>：<br>显然dp[0][0] = 0，而且第一列和第一行（承重bear为0或不放入物品）也为0</p>
+<p><strong>状态转移方程</strong>：<br>对于一个物品，只有两种情况</p>
 <ul>
-<li>HTTP定义、特点、工作方式</li>
-<li>简单辨别URI、URL、URN</li>
-<li>请求与响应的结构</li>
-<li>请求方法，GET和POST的区别</li>
-<li>常见的响应码<a id="more"></a>
-</li>
+<li>情况一: 第i件不放进去，这时所得价值为:dp[i - 1][j]</li>
+<li>情况二: 第i件放进去，这时所得价值为：dp[i - 1][j - weight[i]] + value[i]</li>
 </ul>
-<h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h2><p>超文本传输协议 HyperText Transfer Protocol，简称HTTP。HTTP协议工作于客户端-服务端架构为上。<strong>浏览器作为HTTP客户端通过URL向HTTP服务端即WEB服务器发送所有请求，Web服务器根据接收到的请求后，向客户端发送响应信息</strong>。HTTP协议定义这个过程中Web客户端如何从Web服务器请求Web页面，以及服务器如何把Web页面传送给客户端。目前广泛使用的是HTTP/1.1版本，HTTP/2标准于2015年5月以RFC 7540正式发表，但尚未普及。</p>
-<h2 id="2-特点"><a href="#2-特点" class="headerlink" title="2. 特点"></a>2. 特点</h2><ol>
-<li>简单快速：客户向服务器请求服务时，<strong>只需传送请求方法和路径</strong>。请求方法常用的有GET、HEAD、POST。每种方法规定了客户与服务器联系的类型不同。由于HTTP协议简单，使得HTTP服务器的<strong>程序规模小</strong>，因而通信速度很快。</li>
-<li>灵活：HTTP允许<strong>传输任意类型的数据对象</strong>。正在传输的类型由<strong>Content-Type</strong>加以标记。</li>
-<li><strong>无连接</strong>：无连接的含义是限制<strong>每次连接只处理一个请求</strong>。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。</li>
-<li><strong>无状态</strong>：HTTP协议是无状态协议。无状态是指协议<strong>对于事务处理没有记忆能力</strong>。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的<strong>应答就较快</strong>。</li>
-<li>支持B/S及C/S模式。</li>
-</ol>
-<p>关于无连接可参考我的笔记 <a href="https://kanarien.cn/2018/07/25/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3HTTP%E7%9A%84%E6%97%A0%E8%BF%9E%E6%8E%A5%E3%80%81%E7%9F%AD%E8%BF%9E%E6%8E%A5%E3%80%81%E9%95%BF%E8%BF%9E%E6%8E%A5/">如何理解HTTP的无连接、短连接、长连接</a></p>
-<h2 id="3-工作过程"><a href="#3-工作过程" class="headerlink" title="3. 工作过程"></a>3. 工作过程</h2><ol>
-<li><strong>客户端连接到Web服务器</strong>, 一个HTTP客户端，通常是浏览器，与Web服务器的HTTP端口（默认为80）建立一个TCP套接字连接。例如，<a href="http://kanarien.cn。" target="_blank" rel="noopener">http://kanarien.cn。</a></li>
-<li><strong>发送HTTP请求</strong>, 通过TCP套接字，客户端向Web服务器发送一个文本的请求报文，一个请求报文由请求行、请求头部、空行和请求数据4部分组成。</li>
-<li><strong>服务器接受请求并返回HTTP响应</strong>, Web服务器解析请求，定位请求资源。服务器将资源复本写到TCP套接字，由客户端读取。一个响应由状态行、响应头部、空行和响应数据4部分组成。</li>
-<li><strong>释放连接TCP连接</strong>若connection 模式为close，则服务器主动关闭TCP连接，客户端被动关闭连接，释放TCP连接;若connection 模式为keepalive，则该连接会保持一段时间，在该时间内可以继续接收请求;</li>
-<li><strong>客户端浏览器解析HTML内容</strong>客户端浏览器首先解析状态行，查看表明请求是否成功的状态代码。然后解析每一个响应头，响应头告知以下为若干字节的HTML文档和文档的字符集。客户端浏览器读取响应数据HTML，根据HTML的语法对其进行格式化，并在浏览器窗口中显示。</li>
-</ol>
-<h2 id="4-统一资源定位符——URL"><a href="#4-统一资源定位符——URL" class="headerlink" title="4. 统一资源定位符——URL"></a>4. 统一资源定位符——URL</h2><p>统一资源定位符 Uniform Resource Locator，简称URL，<strong>是互联网上用来标识某一处资源的地址</strong>。以下面这个URL为例，介绍下普通URL的各部分组成：</p>
-<p><code>http://kanarien.cn:80/2018/07/22/Nginx搭配Tomcat作Web服务器/index.html?page=1</code></p>
-<ol>
-<li><strong>协议部分</strong>：该URL的协议部分为<code>http：</code>，这代表网页使用的是HTTP协议。在Internet中可以使用多种协议，如HTTP，FTP等等本例中使用的是HTTP协议。在”HTTP”后面的“//”为分隔符；</li>
-<li><strong>域名部分</strong>：该URL的域名部分为<code>kanarien.cn</code>，是一级域名，常见的如<code>www.baidu.com</code>是二级域名。另外，<strong>域名不区分大小写</strong>。一个URL中，<strong>也可以使用IP地址作为域名</strong>使用；</li>
-<li><strong>端口部分</strong>：跟在域名后面的是端口，域名和端口之间使用“:”作为分隔符。端口不是一个URL必须的部分，如果省略端口部分，将采用默认端口。HTTP协议的默认端口为80，HTTPS协议默认端口为443；</li>
-<li><strong>虚拟目录部分</strong>：从域名后的第一个“/”开始到最后一个“/”为止，是虚拟目录部分。虚拟目录也不是一个URL必须的部分，而且URL中的中文会被转码成类似“%EF”的形式。本例中的虚拟目录是<code>/2018/07/22/Nginx搭配Tomcat作Web服务器/</code>；</li>
-<li><strong>文件名部分</strong>：从域名后的最后一个“/”开始到“？”为止，是文件名部分，如果没有“?”,则是从域名后的最后一个“/”开始到“#”为止，是文件部分，如果没有“？”和“#”，那么从域名后的最后一个“/”开始到结束，都是文件名部分。本例中的文件名是<code>index.html</code>。文件名部分也不是一个URL必须的部分，如果省略该部分，则使用默认的文件名；</li>
-<li><strong>参数部分</strong>：从“?”开始到“#”为止之间的部分为参数部分，又称搜索部分、查询部分。本例中的参数部分为<code>?page=1</code>。参数可以允许有多个参数，参数与参数之间用“&amp;”作为分隔符；</li>
-<li><strong>锚部分</strong>：从“#”开始到最后，都是锚部分。本例中没有，比如用作文本目录的定位。URL按定义是没有锚部分的，但是URI有，具体往下看。</li>
-</ol>
-<h3 id="4-1-统一资源标识符——URI"><a href="#4-1-统一资源标识符——URI" class="headerlink" title="4.1 统一资源标识符——URI"></a>4.1 统一资源标识符——URI</h3><blockquote>
-<p>“A Uniform Resource Identifier (URI) is a compact sequence of characters that identifies an abstract or physical resource. “  ——RFC 3986</p>
-</blockquote>
-<p>Uniform Resource Identifier，统一资源标识符，简称URI，用来在万维网中唯一的<strong>标识</strong>一个资源。</p>
-<h3 id="4-2-统一资源命名——URN"><a href="#4-2-统一资源命名——URN" class="headerlink" title="4.2 统一资源命名——URN"></a>4.2 统一资源命名——URN</h3><blockquote>
-<p>“Uniform Resource Names (URNs) are intended to serve as persistent,location-independent, resource identifiers.” ——RFC 2141</p>
-</blockquote>
-<p>Uniform Resource Name，统一资源命名，简称URN，是<strong>通过名字来标识持久化的资源</strong>。</p>
-<h3 id="4-3-URI、URL、URN"><a href="#4-3-URI、URL、URN" class="headerlink" title="4.3 URI、URL、URN"></a>4.3 URI、URL、URN</h3><p><strong>URN确定了一个资源的名字，URL确定了一个资源的位置</strong>，而URN、URL是URI的子集。URI是以一种<strong>抽象的，高层次概念定义</strong>统一资源标识，而URL和URN则是具体的资源标识的方式。URL和URN都是一种URI。<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/URI%E3%80%81URL%E3%80%81URN.jpg" alt="URI、URL、URN"></p>
-<p>举个例子，与上述的URL类似的URI（多了锚部分）<code>http://kanarien.cn:80/2018/07/22/Nginx搭配Tomcat作Web服务器/index.html#0-前言</code></p>
-<p>其中<code>http://</code>表示<strong>访问方式</strong></p>
-<p>而<code>kanarien.cn:80/2018/07/22/Nginx搭配Tomcat作Web服务器/index.html</code>，定位了资源的<strong>地址</strong></p>
-<p>最后的<code>#0-前言</code>，标识了<strong>资源名称</strong></p>
-<p>因此，这一整个URI中:<br><code>http://kanarien.cn:80/2018/07/22/Nginx搭配Tomcat作Web服务器/index.html</code>是一个URL<br><code>kanarien.cn:80/2018/07/22/Nginx搭配Tomcat作Web服务器/index.html#0-前言</code>是一个URN</p>
-<h2 id="5-请求——HTTP-Request"><a href="#5-请求——HTTP-Request" class="headerlink" title="5. 请求——HTTP Request"></a>5. 请求——HTTP Request</h2><p>请求消息，由请求行（request line）、请求头部（header）、空行和请求数据四个部分组成。如图：</p>
-<p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Http%20Request.png" alt="HTTP Request"></p>
-<p>Post请求例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">POST https://cosapi4.cloud.tencent.com/api.php?Action=DeleteResource HTTP/1.1</span><br><span class="line">Host    cosapi4.cloud.tencent.com</span><br><span class="line">User-Agent    Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36</span><br><span class="line">Accept    pplication/json, text/javascript, */*; q=0.01</span><br><span class="line">Referer    https://console.cloud.tencent.com/cos/bucket</span><br><span class="line">Accept-Encoding    gzip, deflate, sdch</span><br><span class="line">Accept-Language    zh-CN,zh;q=0.8</span><br><span class="line"></span><br><span class="line">appid=12345678&amp;bucketName=kanarien</span><br></pre></td></tr></table></figure></p>
-<p><strong>第一部分：请求行，用来说明请求类型,要访问的资源以及所使用的HTTP版本.</strong><br>POST说明请求类型为GET，<code>https://cosapi4.cloud.tencent.com/api.php?Action=DeleteResource</code>为要访问的资源，该行的最后一部分说明使用的是HTTP1.1版本。</p>
-<p><strong>第二部分：请求头部，紧接着请求行（即第一行）之后的部分，用来说明服务器要使用的附加信息</strong><br>从第二行起为请求头部，HOST将指出请求的目的地.User-Agent,服务器端和客户端脚本都能访问它,它是浏览器类型检测逻辑的重要基础.该信息由你的浏览器来定义,并且在每个请求中自动发送等等</p>
-<p><strong>第三部分：空行，请求头部后面的空行是必须的</strong><br>即使第四部分的请求数据为空，也必须有空行。</p>
-<p><strong>第四部分：请求数据也叫主体，可以添加任意的其他数据。</strong><br><code>appid=12345678&amp;bucketName=kanarien</code>是Post请求的携带的数据。Get方法是没有请求体的，数据可通过URL传递。</p>
-<h2 id="5-1-请求方法——Request-Method"><a href="#5-1-请求方法——Request-Method" class="headerlink" title="5.1 请求方法——Request Method"></a>5.1 请求方法——Request Method</h2><table>
-<thead>
-<tr>
-<th>请求方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>OPTIONS</td>
-<td>返回服务器针对特定资源所支持的HTTP请求方法，也可以利用向web服务器发送‘*’的赢球来测试服务器的功能性</td>
-</tr>
-<tr>
-<td>HEAD</td>
-<td>向服务器索与与GET请求相一致的响应，只不过响应体不会被返回。可以获取包含在响应小消息头中的元消息</td>
-</tr>
-<tr>
-<td>GET</td>
-<td>请求获取服务器上的资源，详细见5.2</td>
-</tr>
-<tr>
-<td>POST</td>
-<td>请求更新服务器上的资源，详细见5.2</td>
-</tr>
-<tr>
-<td>PUT</td>
-<td>向指定资源位置上传其最新内容</td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td>请求服务器删除Request-URL所标识的资源。</td>
-</tr>
-<tr>
-<td>TRACE</td>
-<td>回显服务器收到的请求，主要用于测试和诊断</td>
-</tr>
-<tr>
-<td>CONNECT</td>
-<td>HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器</td>
-</tr>
-</tbody>
-</table>
-<h3 id="5-2-GET和POST的区别"><a href="#5-2-GET和POST的区别" class="headerlink" title="5.2 GET和POST的区别"></a>5.2 GET和POST的区别</h3><ol>
-<li>根据Http规范，get是用于获取信息，是幂等(多个请求返回相同结果)的。post是用于更新信息。</li>
-<li>get会把参数显示在URL上，如果数据是英文字母/数字，原样发送，如果是空格，转换为+，如果是中文/其他字符，则直接把字符串用BASE64加密，得出如： %E4%BD%A0%E5%A5%BD，其中％XX中的XX为该符号以16进制表示的ASCII。post把参数放在HTTP包的包体中，用户无法看到。</li>
-<li>get的参数大小直接受到URL长度的限制，不同浏览器具体限制不同,IE对URL长度的限制是2083字节(2K+35)。另外，HTTP规范并没有对URL长度做出限制。post的参数大小受到服务器处理数据能力的限制。理论上没有大小限制，但出于安全考虑，IIS规范对其做出了限制。</li>
-<li>get的安全性较post低，因为参数会显示在URL上，且post的数据不会保存到浏览器历史或web服务日志中。而效率上get高于post。</li>
-<li>刷新/后退页面，post数据会被重新提交，而get则不会。</li>
-<li>Http get,post,soap协议都是在http上运行的。</li>
-</ol>
-<h3 id="5-3-forward和redirect的区别"><a href="#5-3-forward和redirect的区别" class="headerlink" title="5.3 forward和redirect的区别"></a>5.3 forward和redirect的区别</h3><ol>
-<li>从地址栏显示来说<br>forward是服务器请求资源,服务器直接访问目标地址的URL,把那个URL的响应内容读取过来,然后把这些内容再发给浏览器.浏览器根本不知道服务器发送的内容从哪里来的,所以它的地址栏还是原来的地址.<br>redirect是服务端根据逻辑,发送一个状态码,告诉浏览器重新去请求那个地址.所以地址栏显示的是新的URL.</li>
-<li>从数据共享来说<br>forward:转发页面和转发到的页面可以共享request里面的数据.<br>redirect:不能共享数据.</li>
-<li>从运用地方来说<br>forward:一般用于用户登陆的时候,根据角色转发到相应的模块.<br>redirect:一般用于用户注销登陆时返回主页面和跳转到其它的网站等.</li>
-<li>从效率来说<br>forward:高.<br>redirect:低.</li>
-</ol>
-<h2 id="6-响应——HTTP-Response"><a href="#6-响应——HTTP-Response" class="headerlink" title="6. 响应——HTTP Response"></a>6. 响应——HTTP Response</h2><p>HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文。</p>
-<p>一个响应的例子，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Access-Control-Allow-Credentials: true</span><br><span class="line">Access-Control-Allow-Headers: DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type</span><br><span class="line">Access-Control-Allow-Methods: GET, POST, OPTIONS</span><br><span class="line">Access-Control-Allow-Origin: https://console.cloud.tencent.com</span><br><span class="line">Connection: close</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Date: Mon, 30 Jul 2018 11:39:23 GMT</span><br><span class="line">Server: nginx</span><br><span class="line">Transfer-Encoding: chunked</span><br><span class="line"></span><br><span class="line">&#123;&quot;code&quot;:0,&quot;message&quot;:&quot;success&quot;,&quot;request_id&quot;:&quot;NWI1ZWY4ZWJf&quot;&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>第一部分：状态行，由HTTP协议版本号， 状态码， 状态消息 三部分组成。</strong></p>
-<p>第一行为状态行，（HTTP/1.1）表明HTTP版本为1.1版本，状态码为200，状态消息为（ok）</p>
-<p><strong>第二部分：消息报头，用来说明客户端要使用的一些附加信息</strong><br>第二行和第三行为消息报头，<br>Date:生成响应的日期和时间；Content-Type:指定了MIME类型的HTML(text/html),编码类型是UTF-8</p>
-<p><strong>第三部分：空行，消息报头后面的空行是必须的</strong></p>
-<p><strong>第四部分：响应正文，服务器返回给客户端的文本信息。</strong><br>响应的数据对应<code>Content-Type: application/json</code>是json字符串</p>
-<h3 id="6-1-状态码——Status-Code"><a href="#6-1-状态码——Status-Code" class="headerlink" title="6.1 状态码——Status Code"></a>6.1 状态码——Status Code</h3><p>状态代码有三位数字组成，第一个数字定义了响应的类别，共分五种类别:</p>
-<ul>
-<li>1xx：指示信息–表示临时性信息，请求已接收，继续处理</li>
-<li>2xx：成功–表示请求已被成功接收、理解、接受</li>
-<li>3xx：重定向–要完成请求必须进行更进一步的操作</li>
-<li>4xx：客户端错误–请求有语法错误或请求无法实现</li>
-<li>5xx：服务器端错误–服务器未能实现合法的请求</li>
-</ul>
-<p>常见的状态码如下：</p>
+<p>状态转移方程为：dp[i][j] = max(f[i - 1][j], f[i - 1][j - weight[i]] + value[i])，j &gt;= weight[i]</p>
+<p>时间复杂度O(bear <em> n)，空间复杂度O(bear </em> n)，其中bear为承重，n为物品数。</p>
+<p><strong>实例</strong>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 共5件物品</span><br><span class="line">int[] weight = &#123;2, 2, 6, 5, 4&#125;; // 重量分别为2, 2, 6, 5, 4</span><br><span class="line">int[] value = &#123;6, 3, 5, 4, 6&#125;;  // 价值分别为6, 3, 5, 4, 6</span><br><span class="line">int bear = 10;                  // 承重为10</span><br></pre></td></tr></table></figure></p>
 <table>
 <thead>
 <tr>
-<th>状态代码</th>
-<th>状态描述</th>
-<th>说明</th>
+<th style="text-align:center">weight\bear</th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">6</th>
+<th style="text-align:center">7</th>
+<th style="text-align:center">8</th>
+<th style="text-align:center">9</th>
+<th style="text-align:center">10</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td> 100</td>
-<td>Continue</td>
-<td>继续</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
 </tr>
 <tr>
-<td> 101</td>
-<td>Switching Protocols</td>
-<td>切换协议</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
 </tr>
 <tr>
-<td> 200</td>
-<td>OK</td>
-<td>客户端请求成功</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">9</td>
 </tr>
 <tr>
-<td> 201</td>
-<td>Created</td>
-<td>服务器已经创建了文档，Location头给出了它的URL</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">11</td>
 </tr>
 <tr>
-<td> 202</td>
-<td>Accepted</td>
-<td>已经接受请求，但处理尚未完成</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">13</td>
+<td style="text-align:center">14</td>
 </tr>
 <tr>
-<td> 204</td>
-<td>No Content</td>
-<td>没有新文档，浏览器应该继续显示原来的文档。操作已经执行成功，但是没有返回数据</td>
-</tr>
-<tr>
-<td> 300</td>
-<td>Multiple Choices</td>
-<td>客户端请求了实际指向多个资源的URL。这个代码是和一个选项列表一起返回的，然后用户就可以选择他希望的选项了</td>
-</tr>
-<tr>
-<td> 301</td>
-<td>Moved Permanently</td>
-<td>请求的网页已永久移动到新的位置，Response中应该包含一个Location URL, 说明资源现在所处的位置</td>
-</tr>
-<tr>
-<td> 302</td>
-<td>Found</td>
-<td>请求的网页临时移动到新的位置，Found是HTTP1.1的标准，Temporarily Moved是HTTP1.0的标准，使用redirect会产生302</td>
-</tr>
-<tr>
-<td> 304</td>
-<td>NOT Modified</td>
-<td>未修改，服务器告诉客户，原来缓冲的文档还可以继续使用</td>
-</tr>
-<tr>
-<td> 305</td>
-<td>Use Proxy</td>
-<td>必须通过代理访问资源， 代理的地址在Response 的Location中</td>
-</tr>
-<tr>
-<td> 400</td>
-<td>Bad Request</td>
-<td>客户端请求语法有问题，或者是参数错误</td>
-</tr>
-<tr>
-<td> 401</td>
-<td>Unauthorized</td>
-<td>请求未经授权，客户端可以重复提交一个包含恰当的 Authorization 头信息的请求</td>
-</tr>
-<tr>
-<td> 403</td>
-<td>Forbidden</td>
-<td>服务器已经接收到请求，但拒绝提供服务，服务器通常会在响应正文中给出不能提供服务的原因</td>
-</tr>
-<tr>
-<td> 404</td>
-<td>Not Found</td>
-<td>请求的资源不存在</td>
-</tr>
-<tr>
-<td> 405</td>
-<td>Method Not Allowed</td>
-<td>客户端请求中的方法被禁止，常见如，由于DELETE、PUT请求对资源进行写操作，故大部分浏览器都不支持或者在默认配置下不允许DELETE、PUT请求</td>
-</tr>
-<tr>
-<td> 408</td>
-<td>Request Timeout</td>
-<td>如果客户端完成请求时花费的时间太长， 服务器可以回送这个状态码并关闭连接</td>
-</tr>
-<tr>
-<td> 413</td>
-<td>Request Entity Too Large</td>
-<td>请求实体过大，如上传文件过大</td>
-</tr>
-<tr>
-<td> 414</td>
-<td>Request URI Too Long</td>
-<td>请求URI过长</td>
-</tr>
-<tr>
-<td> 500</td>
-<td>Internal Server Error</td>
-<td>服务器内部错误，无法完成请求，如服务器运行出现异常</td>
-</tr>
-<tr>
-<td> 501</td>
-<td>Not Implemented</td>
-<td>服务器不支持实现请求所需要的功能</td>
-</tr>
-<tr>
-<td> 502</td>
-<td>Bad Gateway</td>
-<td>代理使用的服务器遇到了上游的无效响应，常见如使用Nginx时，后端处理不过来，可能是内存或缓存使用方面出问题</td>
-</tr>
-<tr>
-<td> 503</td>
-<td>Service Unavailable</td>
-<td>服务不可用，暂时性的，可表示服务器正在维护</td>
-</tr>
-<tr>
-<td> 504</td>
-<td>Gateway Timeout</td>
-<td>由作为代理或网关的服务器使用，表示不能及时地从远程服务器获得应答</td>
-</tr>
-<tr>
-<td> 505</td>
-<td>HTTP Version Not Supported</td>
-<td>HTTP版本不受支持</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">15</td>
 </tr>
 </tbody>
 </table>
-<h2 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h2><p>该笔记参考了以下文章：</p>
-<ul>
-<li><a href="http://web.jobbole.com/83452/" target="_blank" rel="noopener">你知道URL、URI和URN三者之间的区别吗？ - WEB前端 - 伯乐在线</a></li>
-<li><a href="http://www.cnblogs.com/ranyonsue/p/5984001.html" target="_blank" rel="noopener">关于HTTP协议，一篇就够了 - ranyonsue - 博客园</a></li>
-</ul>
+<p>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 01背包：要么放，要么不放</span><br><span class="line"> * dp[i][j]表示前i种物品且承重为j时的背包最大价值</span><br><span class="line"> * @param weight 重量数组</span><br><span class="line"> * @param value 价值数组</span><br><span class="line"> * @param bear 承重</span><br><span class="line"> * @return 最大的价值总和</span><br><span class="line"> */</span><br><span class="line">public static int zeroOnePack(int[] weight, int[] value, int bear) &#123;</span><br><span class="line">    int[][] dp = new int[weight.length + 1][bear + 1];</span><br><span class="line">    for (int i = 0; i &lt; weight.length; i++) &#123;</span><br><span class="line">        for (int j = 0; j &lt; bear; j++) &#123;</span><br><span class="line">            if (j + 1 - weight[i] &gt;= 0) &#123; // 此处判断不可少</span><br><span class="line">                dp[i + 1][j + 1] = Math.max(dp[i][j + 1], dp[i][j + 1 - weight[i]] + value[i]);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                dp[i + 1][j + 1] = dp[i][j + 1];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[weight.length][bear];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>01背包降维</strong><br>可以降维到一维数组dp[i]，表示承重为i时背包的最大价值</p>
+<p><strong>初始状态</strong>：<br>dp[i] = 0, 0 &lt;= i &lt;= bear</p>
+<p><strong>状态转移方程</strong>：<br>dp[i] = max(dp[i]，dp[i - weight[i]] + value[i])  (和降维前是类似的)</p>
+<p>时间复杂度O(bear * n)，空间复杂度O(bear)，其中bear为承重，n为物品数。</p>
+<p><strong>注意，由于dp[i]的计算要用到之前dp[i - weight[i]]的值，所以遍历时要从数组后面逆序遍历</strong>，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 01背包(降维)，二维降一维</span><br><span class="line"> * dp[i]表示承重为i时的最大价值</span><br><span class="line"> * @param weight 重量数组</span><br><span class="line"> * @param value 价值数组</span><br><span class="line"> * @param bear 承重</span><br><span class="line"> * @return 最大的价值总和</span><br><span class="line"> */</span><br><span class="line">public static int zeroOnePack_DR(int[] weight, int[] value, int bear) &#123;</span><br><span class="line">    int[] dp = new int[bear + 1];</span><br><span class="line">    for (int i = 0; i &lt; weight.length; i++) &#123;</span><br><span class="line">        for (int j = bear; j &gt;= weight[i]; j--) &#123; // 注意要遍历要反过来</span><br><span class="line">            dp[j] = Math.max(dp[j], dp[j - weight[i]] + value[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[bear];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-完全背包求解"><a href="#3-完全背包求解" class="headerlink" title="3. 完全背包求解"></a>3. 完全背包求解</h2><p>完全背包和01背包十分相像， 区别就是完全背包物品有无限件。由之前的选或者不选转变成了选或者不选，选几件。</p>
+<p>设dp[i][j]表示背包装入前i种物品且承重为j时的最大价值，显然，解为dp[weight.length][bear]</p>
+<p><strong>初始状态</strong>：<br>显然dp[0][0] = 0，而且第一列和第一行（承重bear为0或不放入物品）也为0</p>
+<p><strong>状态转移方程</strong>：<br>dp[i][j] = max(dp[i - 1][j - k <em> weight[i]] + k </em> value[i] | 0 &lt;= k * weight[i] &lt;= v)</p>
+<p>这里不给出代码，直接看降维的解法。</p>
 <hr>
-<blockquote>
-<p>Copyright © 2018, GDUT CSCW back-end Kanarien, All Rights Reserved</p>
-</blockquote>
+<p><strong>完全背包降维</strong><br>可以降维到一维数组dp[i]，表示承重为i时背包的最大价值</p>
+<p><strong>初始状态</strong>：<br>dp[i] = 0, 0 &lt;= i &lt;= bear</p>
+<p><strong>状态转移方程</strong>：<br>dp[i] = max(dp[i]，dp[i - weight[i]] + value[i])</p>
+<p>时间复杂度O(bear * n)，空间复杂度O(bear)，其中bear为承重，n为物品数。</p>
+<p>没错，和01背包的降维法几乎一模一样！区别在于完全背包是<strong>顺序</strong>计算dp数组的，而01背包是<strong>逆序</strong>计算dp数组的，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 完全背包：要么不放，要么放，放几个</span><br><span class="line"> * dp[i]表示承重为i时的最大价值</span><br><span class="line"> *</span><br><span class="line"> * 与01背包的降维解法刚好逆序</span><br><span class="line"> * @param weight 重量数组</span><br><span class="line"> * @param value 价值数组</span><br><span class="line"> * @param bear 承重</span><br><span class="line"> * @return 最大的价值总和</span><br><span class="line"> */</span><br><span class="line">public static int completelyKnapsack(int[] weight, int[] value, int bear) &#123;</span><br><span class="line">    int[] dp = new int[bear + 1];</span><br><span class="line">    for (int i = 0; i &lt; weight.length; i++) &#123;</span><br><span class="line">        for (int j = weight[i]; j &lt;= bear; j++) &#123;</span><br><span class="line">            dp[j] = Math.max(dp[j - weight[i]] + value[i], dp[j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[bear];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-多重背包求解"><a href="#4-多重背包求解" class="headerlink" title="4. 多重背包求解"></a>4. 多重背包求解</h2><p>多重背包多了一个限制条件，每个物品规定了可用的次数。</p>
+<p><strong>初始状态</strong>：<br>显然dp[0][0] = 0，而且第一列和第一行（承重bear为0或不放入物品）也为0</p>
+<p><strong>状态转移方程</strong>：<br>dp[i][j] = max(dp[i - 1][j - k <em> weight[i]] + k </em> value[i] | 0 &lt;= k * weight[i] &lt;= amount[i])</p>
+<p>这里不给出代码，直接看转化为降维01背包</p>
+<hr>
+<p><strong>转化为降维01背包</strong><br>将n种物品<strong>拆分</strong>得到Σn种，即Σsize[i], 0 =&lt; i &lt; size.length，，这Σn种物品要么放，要么不放，如此将原问题<strong>转化为01背包问题</strong>，时间复杂度是O(bear * Σn)</p>
+<p>降维到一维数组dp[i]，表示承重为i时背包的最大价值<br><strong>初始状态</strong>：<br>dp[i] = 0, 0 &lt;= i &lt;= bear</p>
+<p><strong>状态转移方程</strong>：<br>dp[i] = max(dp[i]，dp[i - weight[i] <em> k] + k </em> value[i])，0 &lt;= k &lt;= amount[i]</p>
+<p>时间复杂度是O(bear * Σn)，空间复杂度O(bear)，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 多重背包，</span><br><span class="line"> * dp[i]表示承重为i时的最大价值</span><br><span class="line"> *</span><br><span class="line"> * 将n种物品拆分得到Σn种，即Σsize[i], 0 =&lt; i &lt; size.length</span><br><span class="line"> * 将原问题转化为01背包问题，时间复杂度是O(bear * Σn)</span><br><span class="line"> * @param weight 重量数组</span><br><span class="line"> * @param value 价值数组</span><br><span class="line"> * @param amount 数量数组</span><br><span class="line"> * @param bear 承重</span><br><span class="line"> * @return 最大的价值总和</span><br><span class="line"> */</span><br><span class="line">public static int multipleKnapsack(int[] weight, int[] value, int[] amount, int bear) &#123;</span><br><span class="line">    int[] dp = new int[bear + 1];</span><br><span class="line">    for (int i = 0; i &lt; weight.length; i++) &#123;</span><br><span class="line">        for (int j = bear; j &gt;= weight[i]; j--) &#123;</span><br><span class="line">            for (int k = 1; k &lt;= amount[i] &amp;&amp; k * weight[i] &lt;= j; k++) &#123;</span><br><span class="line">                dp[j] = Math.max(dp[j - k * weight[i]] + k * value[i], dp[j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[bear];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>有一种对上述算法的优化，同样是转化为01背包求解，不同在于拆分的数目，使用二进制的思想，将第i种物品分成若干种物品，每件物品有一个系数，分别为1, 2, 4，···，2^(k - 1)，k是满足n - 2^k + 1 &gt; 0的最大整数，例如n = 13，拆分成1，2，4，6四件物品。又有：8 = 2 + 6, 11 = 1 + 4 + 6，根据二进制的性质，0…13都可以有这四件物品组成，于是n件物品，就拆分成至多logn件物品，而不是上述算法的n，将时间复杂度降到O(bear * Σlogn)</p>
+<p>本笔记参考了下属文章：</p>
+<ul>
+<li><a href="https://www.cnblogs.com/A-S-KirigiriKyoko/p/6036368.html" target="_blank" rel="noopener">【动态规划】背包问题（一） 01背包 完全背包 多重背包 - A.S.KirigiriKyouko - 博客园</a></li>
+<li><a href="https://blog.csdn.net/qq_40679299/article/details/81805960" target="_blank" rel="noopener">多重背包问题 - 杨美人！的博客 - CSDN博客</a></li>
+</ul>
 
       
 
@@ -513,7 +389,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -580,7 +456,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://kanarien.cn/2018/07/30/HTTP学习笔记/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://kanarien.cn/2019/03/24/动态规划：01背包、完全背包、多重背包/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -594,18 +470,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/09/01/高性能查询——数据库索引/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          高性能查询——数据库索引
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/29/Spring整合Lettuce自定义缓存简单实现/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Spring整合Lettuce自定义缓存简单实现</div>
+    <a href="/2019/03/23/Java中Exception的最佳实践方式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java中Exception的最佳实践方式</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -632,7 +499,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-定义"><span class="toc-number">2.</span> <span class="toc-text">1. 定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-特点"><span class="toc-number">3.</span> <span class="toc-text">2. 特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-工作过程"><span class="toc-number">4.</span> <span class="toc-text">3. 工作过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-统一资源定位符——URL"><span class="toc-number">5.</span> <span class="toc-text">4. 统一资源定位符——URL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-统一资源标识符——URI"><span class="toc-number">5.1.</span> <span class="toc-text">4.1 统一资源标识符——URI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-统一资源命名——URN"><span class="toc-number">5.2.</span> <span class="toc-text">4.2 统一资源命名——URN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-URI、URL、URN"><span class="toc-number">5.3.</span> <span class="toc-text">4.3 URI、URL、URN</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-请求——HTTP-Request"><span class="toc-number">6.</span> <span class="toc-text">5. 请求——HTTP Request</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-请求方法——Request-Method"><span class="toc-number">7.</span> <span class="toc-text">5.1 请求方法——Request Method</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-GET和POST的区别"><span class="toc-number">7.1.</span> <span class="toc-text">5.2 GET和POST的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-forward和redirect的区别"><span class="toc-number">7.2.</span> <span class="toc-text">5.3 forward和redirect的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-响应——HTTP-Response"><span class="toc-number">8.</span> <span class="toc-text">6. 响应——HTTP Response</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-状态码——Status-Code"><span class="toc-number">8.1.</span> <span class="toc-text">6.1 状态码——Status Code</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-总结"><span class="toc-number">9.</span> <span class="toc-text">7. 总结</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-问题描述"><span class="toc-number">2.</span> <span class="toc-text">1. 问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-01背包求解"><span class="toc-number">3.</span> <span class="toc-text">2. 01背包求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-完全背包求解"><span class="toc-number">4.</span> <span class="toc-text">3. 完全背包求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-多重背包求解"><span class="toc-number">5.</span> <span class="toc-text">4. 多重背包求解</span></a></li></ol>
                     </div>
                 </span>
             </div>

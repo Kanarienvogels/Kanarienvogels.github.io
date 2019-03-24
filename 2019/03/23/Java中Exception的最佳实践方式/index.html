@@ -17,7 +17,7 @@
 <meta property="og:description" content="0. 前言Java异常该怎么正确的使用，于是有了这篇关于Java异常的基本知识和最佳实践方式的整理。 1. Exception和Error共同点Exception 和Error 都是继承了Throwable类，在Java中只有Throwable类型的实例才可以被抛出或者捕获，它是异常处理机制的基本类型。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-032.jpg">
-<meta property="og:updated_time" content="2019-03-23T14:13:15.920Z">
+<meta property="og:updated_time" content="2019-03-24T03:01:40.362Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中Exception的最佳实践方式">
 <meta name="twitter:description" content="0. 前言Java异常该怎么正确的使用，于是有了这篇关于Java异常的基本知识和最佳实践方式的整理。 1. Exception和Error共同点Exception 和Error 都是继承了Throwable类，在Java中只有Throwable类型的实例才可以被抛出或者捕获，它是异常处理机制的基本类型。">
@@ -197,15 +197,19 @@
 <h2 id="1-Exception和Error"><a href="#1-Exception和Error" class="headerlink" title="1. Exception和Error"></a>1. Exception和Error</h2><p><strong>共同点</strong><br>Exception 和Error <strong>都是继承了Throwable类</strong>，<br>在Java中只有Throwable类型的实例才可以被抛出或者捕获，它是异常处理机制的基本类型。<br><a id="more"></a></p>
 <p><strong>不同点</strong><br>Exception和Error体现了Java平台设计者<strong>对不同异常情况的分类</strong>。</p>
 <ol>
-<li>Exception是程序正常运行中，可以预料的意外情况，可能并且应该被捕获，进行相应处理。</li>
+<li>Exception是程序正常运行中，<strong>可以预料的意外情况，可能并且应该被捕获</strong>，进行相应处理。</li>
 <li>Exception又分为可检查(checked)异常和不可检查(unchecked)异常。<br>可检查异常在源代码里必须显式的进行捕获处理，这是编译期检查的一部分，像InterruptedException、ClassNotFoundException，<br>不可检查时异常是指运行时异常，像NullPointerException、ArrayIndexOutOfBoundsException之类，<br>通常是可以编码避免的逻辑错误，具体根据需要来判断是否需要捕获，并不会在编译期强制要求。</li>
-<li>Error是指正常情况下，不大可能出现的情况，绝大部分的Error都会导致程序处于非正常的、不可恢复的状态。既然是非正常情况，不便于也不需要捕获。常见的比如OutOfMemoryError之类都是Error的子类。</li>
+<li>Error是指正常情况下，不大可能出现的情况，绝大部分的Error都会导致程序处于<strong>非正常的、不可恢复的</strong>状态。既然是非正常情况，不便于也不需要捕获。常见的比如OutOfMemoryError之类都是Error的子类。</li>
 </ol>
+<hr>
 <p>其中有一个比较经典的面试题目， 就是 NoClassDefFoundError 和 ClassNotFoundException 有什么区别？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">区别一： NoClassDefFoundError它是Error，ClassNotFoundException是</span><br><span class="line">Exception。</span><br><span class="line"></span><br><span class="line">区别二：还有一个区别在于NoClassDefFoundError是JVM运行时通过classpath加载类</span><br><span class="line">时，找不到对应的类而抛出的错误。ClassNotFoundException是在编译过程中如果可能出现此异常，在编译过程中必须将ClassNotFoundException异常抛出！</span><br><span class="line"></span><br><span class="line">NoClassDefFoundError发生场景如下：</span><br><span class="line">    1、类依赖的class或者jar不存在 （简单说就是maven生成运行包后被篡改）</span><br><span class="line">    2、类文件存在，但是存在不同的域中 （简单说就是引入的类不在对应的包下)</span><br><span class="line">    3、大小写问题，javac编译的时候是无视大小的，很有可能你编译出来的class文件就与想要的不一样！这个没有做验证</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    ClassNotFoundException发生场景如下：</span><br><span class="line">    1、调用class的forName方法时，找不到指定的类</span><br><span class="line">    2、ClassLoader 中的 findSystemClass() 方法时，找不到指定的类</span><br><span class="line"></span><br><span class="line">举例说明如下:</span><br><span class="line">    Class.forName(&quot;abc&quot;); 比如abc这个类不存项目中，代码编写时，就会提示此异常是检查性异常，比如将此异常抛出。</span><br></pre></td></tr></table></figure></p>
 <p><strong>从性能角度审视Java的异常处理机制</strong><br>try-catch 代码段会产生额外的性能开销，或者换个角度说，它往往会影响 JVM 对代码进行优化，<br>所以建议仅捕获有必要的代码段，尽量不要一个大的 try 包住整段的代码；与此同时，利用异常控制代码流程，<br>也不是一个好主意，远比我们通常意义上的条件语句（if/else、switch）要低效。</p>
 <p>Java 每实例化一个 Exception，都会对当时的栈进行快照，这是一个相对比较重的操作。<br>如果发生的非常频繁，这个开销可就不能被忽略了。</p>
 <blockquote>
-<p>关于 Java 中引入的 Checked Exceptions，目前存在着很多反对意见。<br>正方的观点是引入 Checked Exceptions，可以增加程度的鲁棒性。<br>反方的观点是 Checked Exceptions 很少被开发人员正确使用过，并且降低了程序开发的生产率和代码的执行效率。 </p>
+<p>关于 Java 中引入的 Checked Exceptions，目前存在着很多反对意见。</p>
+<ul>
+<li>正方的观点是引入 Checked Exceptions，可以增加程度的鲁棒性。<br>反方的观点是 Checked Exceptions 很少被开发人员正确使用过，并且降低了程序开发的生产率和代码的执行效率。 </li>
+</ul>
 </blockquote>
 <h2 id="2-设计异常的最佳实践（Best-Practises-for-Designing-the-API）"><a href="#2-设计异常的最佳实践（Best-Practises-for-Designing-the-API）" class="headerlink" title="2. 设计异常的最佳实践（Best Practises for Designing the API）"></a>2. 设计异常的最佳实践（Best Practises for Designing the API）</h2><p><strong>1. 当要决定是采用checked exception还是Unchecked exception的时候，你要问自己一个问题，“如果这种异常一旦抛出，客户端会做怎样的补救？（When deciding on checked exceptions vs. unchecked exceptions, ask yourself, “What action can the client code take when the exception occurs?）”</strong></p>
 <p>如果客户端可以通过其他的方法恢复异常，那么这种异常就是checked exception；如果客户端对出现的这种异常无能为力，那么这种异常就是Unchecked exception；从使用上讲，当异常出现的时候要做一些试图恢复它的动作而不要仅仅的打印它的信息。</p>
@@ -372,6 +376,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2019/03/24/动态规划：01背包、完全背包、多重背包/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          动态规划：01背包、完全背包、多重背包
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/03/16/计算机网络五层协议体系/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">计算机网络五层协议体系</div>
@@ -532,15 +545,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -552,11 +561,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -596,11 +609,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
+                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -608,11 +621,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
               </li>
             
             <div class="clearfix"></div>
