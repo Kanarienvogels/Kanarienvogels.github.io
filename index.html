@@ -185,67 +185,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-034.jpg" alt="动漫美图"></p>
-<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>在项目开发中，会经常遇到不同的编码方式。不管什么编码，都是信息在计算机中的一种表现，理解常见的编码方式，有助于我们避免出现乱码等现象。 </p>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>在项目开发中，会经常遇到不同的编码方式。不管什么编码，都是信息在计算机中的一种表现，理解常见的编码方式，有助于我们避免出现乱码等现象。</p>
 <h2 id="1-字符编码发展历史"><a href="#1-字符编码发展历史" class="headerlink" title="1. 字符编码发展历史"></a>1. 字符编码发展历史</h2><h3 id="1-1-第一阶段-ASCII"><a href="#1-1-第一阶段-ASCII" class="headerlink" title="1.1 第一阶段 ASCII"></a>1.1 第一阶段 ASCII</h3><p>在计算机中，所有的数据只可能是0或者1(用高电平和低电平分别表示1和0)，那么我们通常看到的字符也就只能用0和1来表示呀。于是科学家们(这里指的是美国的科学家)就想出一个办法，把一个特定的数字对应一个特定的字母进行存储和传输，比如我需要存储字母a，那么我存入一个数字97(即在计算机中存入二进制(01100001)，这个过程叫做<strong>编码</strong>(encode)，而我们在读取数据的时候，当遇到97时，我们就让计算机显示字母a，这个过程叫做<strong>解码</strong>(decode)。<br>为了大家在数据传输的时候不至于产生误会，那么我们需要让所有的人都使用数字97来代表字母a，所以需要制定一份标准(即码表)，最开始的这个标准叫做ASCII码表。</p>
-<p><strong>规则</strong><br>所有的控制字符(比如CR回车、DEL删除等)编码在0-31范围以及127中。<br>把所有的标点符号，英文大小写全部放在32-126范围中。<br>防止以后出现需要补充的情况，把128-255位这么多位置留出来，应该足够用了吧！所以设置一个字节8位二进制，把这个标准叫American Standard Code for Information Interchange(美国标准信息交换代码，简写为<strong>ASCII</strong>)</p>
-<p><strong>实现方式</strong><br>第一位始终未0，后面7位表示0-127的范围，一个数字对应一个字母或者标点符号，亦或者控制符号，即所有的ASCII码的统一形式为0xxxx xxxx。</p>
-<h3 id="1-2-第二阶段-Latin1-ISO-8859-1-GB2312"><a href="#1-2-第二阶段-Latin1-ISO-8859-1-GB2312" class="headerlink" title="1.2 第二阶段 Latin1 ISO-8859-1 GB2312"></a>1.2 第二阶段 Latin1 ISO-8859-1 GB2312</h3><p>计算机技术到了欧洲，欧洲人发现怎么我们的那么多符号没有编进去啊！<br>所以欧洲”砖家”坐到了一起，开始讨论。<br>发现既然美国人把第一位流出来了，那么我们就用128-255的位置好了。</p>
-<p><strong>规则</strong><br>128-159之间为控制字符，160-255位文字符号，其中包括了西欧语言、希腊语、泰语、阿拉伯语、希伯来语。<br>刚好把美国人给的空间全部用完，世界真美好，谢谢美利坚预留的每一个位置。<br>砖家们决定把他们的编码名称叫做<strong>Latin1</strong>，后面由于欧洲统一制定ISO标准，所以又有了一个ISO的名称，即<strong>ISO-8859-1</strong>。</p>
-<p><strong>实现方式</strong><br>0-127的所有位置不动，那么可以兼容ASCII，二进制位0xxx xxxx<br>128-255位置全部用完，二进制位1xxx xxxx<br>由于所有的位置全部用完，而欧元符号实在指定标准之后才出现的，所以在这个码表中连欧洲人自己的货币符号都没有办法放进去。</p>
-<hr>
-<p>计算机技术当然也传到了亚洲大地，比如中国。<br>中国砖家们坐在一起发现，美国人搞的这个东西真的有问题，预留才128-255的空间，可是我们的汉字个数远远超出了这个数目啊，怎么办？？<br>后面聪明的中国砖家们发现，只能使用2个字节了，否则真的搞不定。<br>由于必须和美国原来制定的ASCII不冲突，所以指定了如下规则</p>
-<p><strong>规则</strong><br>如果一个字节中第一位为0，那么这就是一个ASCII字符。<br>如果一个字节中第一位为1，那么这个是汉字，认定需要2个字节才表示一个编码的文字。<br>把这个码表叫<strong>GB2312</strong><br>这个码表中包含汉字6763个和非汉字图形字符682个。<br>还有很多的空间没有用到，索性全部预留了吧。</p>
-<p><strong>实现方式</strong><br>0xxxxxxx：表示为ASCII字符<br>-1xxxxxxx 1xxxxxxx：表示为汉字<br>后来，中国砖家们发现，很多的不常用汉字没有在码表中，于是添加了很多的汉字进去，这个编码叫做<strong>GBK</strong>，实现方式和GB2312是完全一样的，兼容GB2312，当然也兼容ASCII，共收入21003个汉字，从而大大满足了汉字使用的需要。</p>
-<p><strong>实现方式</strong><br>0xxxxxxx：表示为ASCII字符<br>-1xxxxxxx xxxxxxxx：表示为汉字<br>后面再次添加更多的字符进去，再次命名为GB18030，兼容GBK。由于汉字很多，2个字节并不能完全包括进去，所以GB18030采用<code>2\4</code>位混编的形式，变长编码，有单字节、双字节和四字节三种方式。</p>
-<hr>
-<p>当然计算机也传到了日本(JIS)、韩国、台湾(BIG5)等等地方，大家全部发挥自己的聪明才智，各自实现了自己的编码。这些编码都与ASCII兼容，但是相互之间不兼容。</p>
-<p><strong>使用 2 个字节来代表一个字符的各种汉字延伸编码方式</strong>，称为 <strong>ANSI</strong> 编码，又称为”MBCS（Muilti-Bytes Charecter Set，多字节字符集）”。在简体中文系统下，ANSI 编码代表 GB2312 编码，在日文操作系统下，ANSI 编码代表 JIS 编码，所以在中文 windows下要转码成GB2312,GBK只需要把文本保存为ANSI编码即可。 <strong>不同ANSI编码之间互不兼容</strong>。</p>
-<h3 id="1-3-第三阶段-Unicode"><a href="#1-3-第三阶段-Unicode" class="headerlink" title="1.3 第三阶段 Unicode"></a>1.3 第三阶段 Unicode</h3><p>随着通讯越来越多，而老美发现在自己公司需要国际化的时候，自己原来埋的这个雷真的害了自己。<br>于是乎，开始研讨把世界上几乎所有文字全部放在一个码表中，而这个包罗万象的码表就叫做Unicode，学名叫Universal Multiple-Octet Coded Character Set，即万国码。<br>Unicode是国际组织制定的可以容纳世界上所有文字和符号的字符编码方案。Unicode用数字0-0x10FFFF来映射这些字符，最多可以容纳1114112个字符，或者说有1114112个码位。码位就是可以分配给字符的数字。<br>实际上，在软件制造商的协会（unicode.org）在做这个工作时，国际标准化组织（ISO）在做同样的事情，最后大家都意识到世界上并不需要两个不同的万国码，于是大家坐在一起合并研究的成果，最后的结果就是现在的Unicode。</p>
-<h2 id="2-Unicode"><a href="#2-Unicode" class="headerlink" title="2. Unicode"></a>2. Unicode</h2><p>Unicode只是进行了编码，也就是说<strong>只是一个码表</strong>，至于具体怎么实现，并没有规定。Unicode虽是一种字符编码，但严格来说它和GB18030不能相提并论：它只定义了每一个字符对应一个整数（目前包含了十万多个字符，其中0～127和ASCII完全一样），但它没有定义这个整数如何变成字节。当你告诉我这段数据是Unicode编码，啊，不好意思，我还是不知道该怎么解码——因为变成字节流的格式不只一种，它们都叫做“Unicode转换格式”（Unicode Transformation Format，简称为UTF）。</p>
-<h3 id="2-1-UTF-8-8-bit-Unicode-Transformation-Format"><a href="#2-1-UTF-8-8-bit-Unicode-Transformation-Format" class="headerlink" title="2.1 UTF-8(8-bit Unicode Transformation Format)"></a>2.1 UTF-8(8-bit Unicode Transformation Format)</h3><p>是一种<strong>变长的编码方式</strong>，它以8位为码元,用1-6个码元对Unicode进行编码，<strong>对英文字符使用单字节编码，对中文编码用到三个字节来编码</strong></p>
-<h3 id="2-2-UTF-16-16-bit-Unicode-Transformation-Format"><a href="#2-2-UTF-16-16-bit-Unicode-Transformation-Format" class="headerlink" title="2.2 UTF-16(16-bit Unicode Transformation Format)"></a>2.2 UTF-16(16-bit Unicode Transformation Format)</h3><p>是用16位为码元，用1个或2个码元对Unicode进行编码。utf-16将字符集划分为基本多文中平面和辅助平面，基本多文中平面中的字符与Unicode是一致的，不需要转换；处在辅助平面中的码元（如一些拼音文字或者中日韩表意文字的扩充），需要2个码元进行编码。</p>
-<p>UTF-16还有讲究，一个单元中的两个字节的顺序不是唯一的。学过计算机原理的同学知道，计算机中表示一个整数分两种格式：低位在前高位在后，或者反过来。例如用两个字节表示260这个整数，可能是：</p>
-<ul>
-<li>低位在前：04 01 （260=4+256*1）</li>
-<li>高位在前：01 04 （260=256*1+4）<br>低位在前的UTF-16叫<strong>UTF-16LE</strong>，高位在前的叫<strong>UTF-16BE</strong>。目前绝大部分的计算机系统都使用低位在前的整数格式，所以如果没有声明，<strong>UTF-16默认是LE</strong>。</li>
-</ul>
-<blockquote>
-<p>Windows的记事本还有Windows其它地方所谓的Unicode，当代的Windows里其实是UTF-16LE，在Windows XP和更早的版本里是UCS-2LE。</p>
-</blockquote>
-<h3 id="2-3-UTF-32"><a href="#2-3-UTF-32" class="headerlink" title="2.3 UTF-32"></a>2.3 UTF-32</h3><p>每一个Unicode码位使用恰好32位元。可以粗暴的认为UTF-32和下面要介绍的UCS-4是等同的。</p>
-<h3 id="2-4-UCS-2-UCS-4"><a href="#2-4-UCS-2-UCS-4" class="headerlink" title="2.4 UCS-2 UCS-4"></a>2.4 UCS-2 UCS-4</h3><p><strong>UCS-2</strong><br>采用2个字节，定长的表示每一个字符，所以总计可以表示2^16个字符。</p>
-<p><strong>UCS-4</strong><br>采用4个字节，定长表示每一个字符，UCS-4根据最高位为0的最高字节分成2^7=128个group。每个group再根据次高字节分为256个plane。每个plane根据第3个字节分为256行(rows)，每行包含256个cells。当然同一行的cells只是最后一个字节不同，其余都相同。<br>group 0的plane 0被称作Basic Multilingual Plane, 即BMP。或者说UCS-4中，高两个字节为0的码位被称作BMP。<br>将UCS-4的BMP去掉前面的两个零字节就得到了UCS-2。在UCS-2的两个字节前加上两个零字节，就得到了UCS-4的BMP。而目前的UCS-4规范中还没有任何字符被分配在BMP之外。</p>
-<p>还没完，这么多字符编码，软件打开时如何知道是哪个编码？于是有了BOM</p>
-<h3 id="2-5-BOM-Byte-Order-Mark"><a href="#2-5-BOM-Byte-Order-Mark" class="headerlink" title="2.5 BOM(Byte Order Mark)"></a>2.5 BOM(Byte Order Mark)</h3><p>译为字节顺序标记，出现在文本文件头部，Unicode编码标准中用于标识文件是采用哪种格式的编码。</p>
-<ul>
-<li>EF BB BF － 我是UTF-8</li>
-<li>FF FE － 我是UTF-16LE</li>
-<li>FE FF － 我是UTF-16BE</li>
-</ul>
-<p>如果没有BOM——你猜<br>不错，没BOM只能靠猜了。软件读入文件时可以所有编码都试一下，看哪个像。另外，BOM只针对Unicode系列编码，ANSI通通不会有BOM。很显然，没有BOM难免偶然猜错。</p>
-<blockquote>
-<p>网上就流传了一个神奇的段子：打开Windows记事本，打入“联通”两个字，保存，关闭，再打开，变成了个黑块。记事本用ANSI（GB18030）保存联通这两个字，刚好这两个字的GB18030编码看起来很像UTF-16，于是就当成UTF-16来打开…</p>
-</blockquote>
-<p>如果不提BOM，究竟有BOM还是没有BOM？—— 又是一个十分纠结的问题，Windows里的软件一般都默认有BOM，而其它系统都默认没有BOM——可能是因为Windows常要兼容ANSI的原因，特别依赖BOM来防止会错意。</p>
-<h2 id="3-各种开发环境对编码的支持"><a href="#3-各种开发环境对编码的支持" class="headerlink" title="3. 各种开发环境对编码的支持"></a>3. 各种开发环境对编码的支持</h2><p>各种程序开发环境对编码支持都不一样，如果编码没搞好，你写好的程序可能在别人计算机上就运行不起来了。如果我开发跨平台的代码，而且要有中文（注释），哪用什么编码好？以下是我所知道各开发环境／编译器支持常见编码情况（所有＝ANSI、UTF-8 BOM and no BOM、UTF-16LE BOM and no BOM）：</p>
-<ul>
-<li>Visual Studio：所有，保存默认ANSI 。</li>
-<li>VC编译器：所有，除了UTF-8 without BOM（直接当成是ANSI ）</li>
-<li>Windows记事本：所有，保存默认ANSI，无法保存无BOM。</li>
-<li>XCode：只支持 UTF-8 without BOM。</li>
-<li>GCC：所有</li>
-<li>vim：所有，保存默认为系统默认编码，一般是UTF-8 without BOM。</li>
-<li>Eclipse：所有，保存默认不明，Mac下居然是ANSI （我们中出了个叛徒）</li>
-</ul>
-<p>ANSI是无法跨境的，用GB写的文档拿去韩国就果断乱码了。光是简体中文系统，ANSI 也是经常被认错的，Eclipse里经常（不总是）出现打开ANSI 文件是乱码的情况，这是因为ANSI 没有很明显的特征。XCode和Mac的文本编辑器打开ANSI 直接是乱码，因为明确不支持。ANSI 容错性普遍比较差，一个字节错了可能导致后面的字通通挂掉。为了防止Eclipse等发神经，也为免跨国带来麻烦，更为了你自己的数据安全，请远离ANSI。</p>
-<p>UTF-16不兼容ASCII，不兼容C语言的字符串处理库函数（因为字节流里有<code>\0</code>），除了Windows爱用，其它系统都痛恨它。BOM和很多协议规范冲突，很多软件都抵制，也是只有Windows常用，而且将其列为正统（作反）。</p>
-<p><strong>综上，跨平台开发请使用UTF-8 without BOM</strong>，那是最通用的编码，是很多软件系统的默认编码，你在看的网页也用它。它特征明显，除了VC编译器和微软的各种软件外暂时没发现哪个软件会有认错的情况。它还有经过精心设计的容错机制，错一个字节最多只会错一个字符。请手动设置你的开发环境，将默认保存的编码设为UTF-8 without BOM，并将其它编码的文件转换过来</p>
-<p>##<br>本笔记参考了以下文章：</p>
-<ul>
-<li><a href="https://www.cnblogs.com/jessonluo/p/4800331.html" target="_blank" rel="noopener">计算机编码总结 - jessonsh - 博客园</a></li>
-<li><a href="https://www.cnblogs.com/kex1n/p/4138427.html" target="_blank" rel="noopener">计算机字符编码详尽讲解 - 小 楼 一 夜 听 春 雨 - 博客园</a></li>
-</ul>
-
+        
+          <a class="article-more-a" href="/2019/03/25/计算机字符编码笔记/#more">more >></a>
+        
       
 
       
@@ -1336,11 +1280,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1356,15 +1300,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1408,19 +1352,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="https://kanarien.cn">
   <title>计算机字符编码笔记 | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0. 前言在项目开发中，会经常遇到不同的编码方式。不管什么编码，都是信息在计算机中的一种表现，理解常见的编码方式，有助于我们避免出现乱码等现象。  1. 字符编码发展历史1.1 第一阶段 ASCII在计算机中，所有的数据只可能是0或者1(用高电平和低电平分别表示1和0)，那么我们通常看到的字符也就只能用0和1来表示呀。于是科学家们(这里指的是美国的科学家)就想出一个办法，把一个特定的数字对应一个">
+  <meta name="description" content="0. 前言在项目开发中，会经常遇到不同的编码方式。不管什么编码，都是信息在计算机中的一种表现，理解常见的编码方式，有助于我们避免出现乱码等现象。 1. 字符编码发展历史1.1 第一阶段 ASCII在计算机中，所有的数据只可能是0或者1(用高电平和低电平分别表示1和0)，那么我们通常看到的字符也就只能用0和1来表示呀。于是科学家们(这里指的是美国的科学家)就想出一个办法，把一个特定的数字对应一个特">
 <meta name="keywords" content="编码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机字符编码笔记">
 <meta property="og:url" content="https://kanarien.cn/2019/03/25/计算机字符编码笔记/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
-<meta property="og:description" content="0. 前言在项目开发中，会经常遇到不同的编码方式。不管什么编码，都是信息在计算机中的一种表现，理解常见的编码方式，有助于我们避免出现乱码等现象。  1. 字符编码发展历史1.1 第一阶段 ASCII在计算机中，所有的数据只可能是0或者1(用高电平和低电平分别表示1和0)，那么我们通常看到的字符也就只能用0和1来表示呀。于是科学家们(这里指的是美国的科学家)就想出一个办法，把一个特定的数字对应一个">
+<meta property="og:description" content="0. 前言在项目开发中，会经常遇到不同的编码方式。不管什么编码，都是信息在计算机中的一种表现，理解常见的编码方式，有助于我们避免出现乱码等现象。 1. 字符编码发展历史1.1 第一阶段 ASCII在计算机中，所有的数据只可能是0或者1(用高电平和低电平分别表示1和0)，那么我们通常看到的字符也就只能用0和1来表示呀。于是科学家们(这里指的是美国的科学家)就想出一个办法，把一个特定的数字对应一个特">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-034.jpg">
-<meta property="og:updated_time" content="2019-03-25T15:14:28.273Z">
+<meta property="og:updated_time" content="2019-03-25T15:21:48.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机字符编码笔记">
-<meta name="twitter:description" content="0. 前言在项目开发中，会经常遇到不同的编码方式。不管什么编码，都是信息在计算机中的一种表现，理解常见的编码方式，有助于我们避免出现乱码等现象。  1. 字符编码发展历史1.1 第一阶段 ASCII在计算机中，所有的数据只可能是0或者1(用高电平和低电平分别表示1和0)，那么我们通常看到的字符也就只能用0和1来表示呀。于是科学家们(这里指的是美国的科学家)就想出一个办法，把一个特定的数字对应一个">
+<meta name="twitter:description" content="0. 前言在项目开发中，会经常遇到不同的编码方式。不管什么编码，都是信息在计算机中的一种表现，理解常见的编码方式，有助于我们避免出现乱码等现象。 1. 字符编码发展历史1.1 第一阶段 ASCII在计算机中，所有的数据只可能是0或者1(用高电平和低电平分别表示1和0)，那么我们通常看到的字符也就只能用0和1来表示呀。于是科学家们(这里指的是美国的科学家)就想出一个办法，把一个特定的数字对应一个特">
 <meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-034.jpg">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
@@ -193,8 +193,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-034.jpg" alt="动漫美图"></p>
-<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>在项目开发中，会经常遇到不同的编码方式。不管什么编码，都是信息在计算机中的一种表现，理解常见的编码方式，有助于我们避免出现乱码等现象。 </p>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>在项目开发中，会经常遇到不同的编码方式。不管什么编码，都是信息在计算机中的一种表现，理解常见的编码方式，有助于我们避免出现乱码等现象。</p>
 <h2 id="1-字符编码发展历史"><a href="#1-字符编码发展历史" class="headerlink" title="1. 字符编码发展历史"></a>1. 字符编码发展历史</h2><h3 id="1-1-第一阶段-ASCII"><a href="#1-1-第一阶段-ASCII" class="headerlink" title="1.1 第一阶段 ASCII"></a>1.1 第一阶段 ASCII</h3><p>在计算机中，所有的数据只可能是0或者1(用高电平和低电平分别表示1和0)，那么我们通常看到的字符也就只能用0和1来表示呀。于是科学家们(这里指的是美国的科学家)就想出一个办法，把一个特定的数字对应一个特定的字母进行存储和传输，比如我需要存储字母a，那么我存入一个数字97(即在计算机中存入二进制(01100001)，这个过程叫做<strong>编码</strong>(encode)，而我们在读取数据的时候，当遇到97时，我们就让计算机显示字母a，这个过程叫做<strong>解码</strong>(decode)。<br>为了大家在数据传输的时候不至于产生误会，那么我们需要让所有的人都使用数字97来代表字母a，所以需要制定一份标准(即码表)，最开始的这个标准叫做ASCII码表。</p>
+<a id="more"></a>
 <p><strong>规则</strong><br>所有的控制字符(比如CR回车、DEL删除等)编码在0-31范围以及127中。<br>把所有的标点符号，英文大小写全部放在32-126范围中。<br>防止以后出现需要补充的情况，把128-255位这么多位置留出来，应该足够用了吧！所以设置一个字节8位二进制，把这个标准叫American Standard Code for Information Interchange(美国标准信息交换代码，简写为<strong>ASCII</strong>)</p>
 <p><strong>实现方式</strong><br>第一位始终未0，后面7位表示0-127的范围，一个数字对应一个字母或者标点符号，亦或者控制符号，即所有的ASCII码的统一形式为0xxxx xxxx。</p>
 <h3 id="1-2-第二阶段-Latin1-ISO-8859-1-GB2312"><a href="#1-2-第二阶段-Latin1-ISO-8859-1-GB2312" class="headerlink" title="1.2 第二阶段 Latin1 ISO-8859-1 GB2312"></a>1.2 第二阶段 Latin1 ISO-8859-1 GB2312</h3><p>计算机技术到了欧洲，欧洲人发现怎么我们的那么多符号没有编进去啊！<br>所以欧洲”砖家”坐到了一起，开始讨论。<br>发现既然美国人把第一位流出来了，那么我们就用128-255的位置好了。</p>
@@ -534,11 +535,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,15 +555,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,19 +607,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
               </li>
              
               <li class="article-tag-list-item">
