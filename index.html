@@ -161,6 +161,99 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-G1垃圾收集器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+		
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/27/G1垃圾收集器/">G1垃圾收集器学习笔记</a>
+    </h1>
+  
+
+		
+        
+        <a href="/2019/03/27/G1垃圾收集器/" class="archive-article-date">
+  	<time datetime="2019-03-27T13:00:17.957Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-27</time>
+</a>
+        
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-036.jpg" alt="动漫美图"></p>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>G1是JDK7-u4推出商用的垃圾收集器，早在JDK 6u14就有Early Access版本的G1收集器供开发人员实验、试用，而在最近的JDK9中已经把G1设置为默认的垃圾收集器，下面总结了G1收集器的要点</p>
+<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>G1(Garbage First)垃圾收集器是当今垃圾回收技术最前沿的成果之一。同优秀的CMS垃圾回收器一样，G1也是<strong>关注最小时延</strong>的垃圾回收器，也同样<strong>适合大尺寸堆内存</strong>的垃圾收集，官方也推荐使用G1来代替选择CMS。G1最大的特点是引入分区的思路，弱化了分代的概念，合理利用垃圾收集各个周期的资源，解决了其他收集器甚至CMS的众多缺陷。<br>
+        
+          <a class="article-more-a" href="/2019/03/27/G1垃圾收集器/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/27/G1垃圾收集器/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
     <article id="post-计算机字符编码笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1078,99 +1171,6 @@
 
 
   
-    <article id="post-SQL那些值得注意的地方" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-		
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/05/SQL那些值得注意的地方/">SQL那些值得注意的地方</a>
-    </h1>
-  
-
-		
-        
-        <a href="/2018/09/05/SQL那些值得注意的地方/" class="archive-article-date">
-  	<time datetime="2018-09-05T14:05:31.156Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-05</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-024.jpg" alt="动漫美图"></p>
-<h2 id="1-WHERE子句中的”-lt-gt-”"><a href="#1-WHERE子句中的”-lt-gt-”" class="headerlink" title="1. WHERE子句中的”&lt;&gt;”"></a>1. WHERE子句中的”&lt;&gt;”</h2><p><code>&lt;&gt;</code>运算符表示不等于，是SQL的标准符号。<code>!=</code>也是表示不等于，在大部分关系型数据库中都适用。</p>
-<p>表示不等于也可以用关键字<code>NOT</code>。例如<code>WHERE id &lt;&gt; 5</code>等价于<code>WHERE NOT id = 5</code>。</p>
-        
-          <a class="article-more-a" href="/2018/09/05/SQL那些值得注意的地方/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/知识漫谈//" class="article-tag-list-link color5">知识漫谈</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/05/SQL那些值得注意的地方/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1280,6 +1280,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -1300,18 +1304,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -1328,11 +1320,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编码</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1344,11 +1336,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Lettuce</a>
+                <a href="javascript:void(0)" class="js-tag color3">编码</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
+                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1357,6 +1349,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Lettuce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
               </li>
              
               <li class="article-tag-list-item">

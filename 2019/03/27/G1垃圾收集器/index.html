@@ -6,26 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://kanarien.cn">
-  <title>Java虚拟机(七)——编译期优化 | 无悔的博客小屋</title>
+  <title>G1垃圾收集器学习笔记 | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="编译期优化Java语言的编译期是一段不确定的操作过程，因为它可能是指一个前端编译器（或叫编译器的前端）把 .java文件 转变成 .class文件 的过程；也可能是虚拟机的后端运行期编译器（JIT编译器，Just in Time Compiler）把字节码抓变成机器码的过程；还可能是指使用静态提前编译器（AOT编译器，Ahead Of Time Compiler）  直接把 *.java 文件编">
-<meta name="keywords" content="Java,JVM">
+  <meta name="description" content="0. 前言G1是JDK7-u4推出商用的垃圾收集器，早在JDK 6u14就有Early Access版本的G1收集器供开发人员实验、试用，而在最近的JDK9中已经把G1设置为默认的垃圾收集器，下面总结了G1收集器的要点 1. 概述G1(Garbage First)垃圾收集器是当今垃圾回收技术最前沿的成果之一。同优秀的CMS垃圾回收器一样，G1也是关注最小时延的垃圾回收器，也同样适合大尺寸堆内存的">
+<meta name="keywords" content="JVM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java虚拟机(七)——编译期优化">
-<meta property="og:url" content="https://kanarien.cn/2018/07/28/Java虚拟机(七)——编译期优化/index.html">
+<meta property="og:title" content="G1垃圾收集器学习笔记">
+<meta property="og:url" content="https://kanarien.cn/2019/03/27/G1垃圾收集器/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
-<meta property="og:description" content="编译期优化Java语言的编译期是一段不确定的操作过程，因为它可能是指一个前端编译器（或叫编译器的前端）把 .java文件 转变成 .class文件 的过程；也可能是虚拟机的后端运行期编译器（JIT编译器，Just in Time Compiler）把字节码抓变成机器码的过程；还可能是指使用静态提前编译器（AOT编译器，Ahead Of Time Compiler）  直接把 *.java 文件编">
+<meta property="og:description" content="0. 前言G1是JDK7-u4推出商用的垃圾收集器，早在JDK 6u14就有Early Access版本的G1收集器供开发人员实验、试用，而在最近的JDK9中已经把G1设置为默认的垃圾收集器，下面总结了G1收集器的要点 1. 概述G1(Garbage First)垃圾收集器是当今垃圾回收技术最前沿的成果之一。同优秀的CMS垃圾回收器一样，G1也是关注最小时延的垃圾回收器，也同样适合大尺寸堆内存的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-013.jpg">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Sun%20Javac%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B.JPG">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Sun%20Javac%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E4%B8%BB%E4%BD%93%E4%BB%A3%E7%A0%81.JPG">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%B1%BB%E5%9E%8B%E6%93%A6%E9%99%A4%E7%9A%84%E4%BE%8B%E5%AD%90.JPG">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%B1%BB%E5%9E%8B%E6%93%A6%E9%99%A4%E7%9A%84%E4%BE%8B%E5%AD%902.JPG">
-<meta property="og:updated_time" content="2019-01-26T13:22:59.066Z">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-036.jpg">
+<meta property="og:updated_time" content="2019-03-27T14:57:59.609Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java虚拟机(七)——编译期优化">
-<meta name="twitter:description" content="编译期优化Java语言的编译期是一段不确定的操作过程，因为它可能是指一个前端编译器（或叫编译器的前端）把 .java文件 转变成 .class文件 的过程；也可能是虚拟机的后端运行期编译器（JIT编译器，Just in Time Compiler）把字节码抓变成机器码的过程；还可能是指使用静态提前编译器（AOT编译器，Ahead Of Time Compiler）  直接把 *.java 文件编">
-<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-013.jpg">
+<meta name="twitter:title" content="G1垃圾收集器学习笔记">
+<meta name="twitter:description" content="0. 前言G1是JDK7-u4推出商用的垃圾收集器，早在JDK 6u14就有Early Access版本的G1收集器供开发人员实验、试用，而在最近的JDK9中已经把G1设置为默认的垃圾收集器，下面总结了G1收集器的要点 1. 概述G1(Garbage First)垃圾收集器是当今垃圾回收技术最前沿的成果之一。同优秀的CMS垃圾回收器一样，G1也是关注最小时延的垃圾回收器，也同样适合大尺寸堆内存的">
+<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-036.jpg">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
   
@@ -169,7 +165,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java虚拟机(七)——编译期优化" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-G1垃圾收集器" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -177,14 +173,14 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Java虚拟机(七)——编译期优化
+      G1垃圾收集器学习笔记
     </h1>
   
 
 		
         
-        <a href="/2018/07/28/Java虚拟机(七)——编译期优化/" class="archive-article-date">
-  	<time datetime="2018-07-28T13:52:19.029Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-28</time>
+        <a href="/2019/03/27/G1垃圾收集器/" class="archive-article-date">
+  	<time datetime="2019-03-27T13:00:17.957Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-27</time>
 </a>
         
 		
@@ -196,54 +192,126 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-013.jpg" alt="动漫美图"></p>
-<h2 id="编译期优化"><a href="#编译期优化" class="headerlink" title="编译期优化"></a>编译期优化</h2><p>Java语言的编译期是一段不确定的操作过程，因为它可能是指一个前端编译器（或叫编译器的前端）把 <em>.java文件 转变成 </em>.class文件 的过程；也可能是虚拟机的后端运行期编译器（JIT编译器，Just in Time Compiler）把字节码抓变成机器码的过程；还可能是指使用静态提前编译器（AOT编译器，Ahead Of Time Compiler）  直接把 *.java 文件编译成本地机器代码的过程。具体有：</p>
-<ul>
-<li>前端编译器：Sun的Javac、Eclipse JDT中的增量式编译器（ECJ）；</li>
-<li>JIT编译器：HotSpot VM的C1、C2编译器；</li>
-<li>AOT编译器：GNU Compiler for the Java（GCJ）、Excelsior JET。</li>
+        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-036.jpg" alt="动漫美图"></p>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>G1是JDK7-u4推出商用的垃圾收集器，早在JDK 6u14就有Early Access版本的G1收集器供开发人员实验、试用，而在最近的JDK9中已经把G1设置为默认的垃圾收集器，下面总结了G1收集器的要点</p>
+<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>G1(Garbage First)垃圾收集器是当今垃圾回收技术最前沿的成果之一。同优秀的CMS垃圾回收器一样，G1也是<strong>关注最小时延</strong>的垃圾回收器，也同样<strong>适合大尺寸堆内存</strong>的垃圾收集，官方也推荐使用G1来代替选择CMS。G1最大的特点是引入分区的思路，弱化了分代的概念，合理利用垃圾收集各个周期的资源，解决了其他收集器甚至CMS的众多缺陷。<br><a id="more"></a></p>
+<h2 id="2-特点"><a href="#2-特点" class="headerlink" title="2. 特点"></a>2. 特点</h2><ul>
+<li><strong>并行与并发</strong><br>能充分利用多CPU、多核环境下的硬件优势，并行来缩短”Stop The World”停顿时间,也可以并发让垃圾收集与用户程序同时进行。</li>
+<li><strong>分代收集</strong><br>收集范围包括新生代和老年代，能<strong>独立管理整个GC堆</strong>（新生代和老年代），而不需要与其他收集器搭配；能够采用不同方式处理不同时期的对象。虽然保留分代概念，但Java堆的内存布局有很大差别；将整个堆划分为多个大小相等的独立区域(<strong>Region</strong>)，新生代和老年代不再是物理隔离，它们都是一部分Region（<strong>逻辑连续</strong>）的集合。</li>
+<li><strong>空间整合</strong><br>与CMS收集器的标记-清除算法不同，结合了多种垃圾收集算法，从整体看，是基于标记-整理算法；从局部（两个Region间）看，是基于复制算法，都不会产生内存碎片，有利于长时间运行。</li>
+<li><strong>可预测的停顿</strong><br>低停顿的同时实现高吞吐量，G1除了追求低停顿处，还能建立可预测的停顿时间模型；<strong>可以明确指定M毫秒时间片内，垃圾收集消耗的时间不超过N毫秒。</strong></li>
 </ul>
-<p>该篇的重点难点在于理解Java编译期的语法糖。<br><a id="more"></a></p>
-<h3 id="1-Sun-Javac-编译过程"><a href="#1-Sun-Javac-编译过程" class="headerlink" title="1. Sun Javac 编译过程"></a>1. Sun Javac 编译过程</h3><p>虚拟机严格定义了Class文件的格式，但并没有对如何把Java源码转变为Class文件的编译过程进行严格的定义。某些情况下，会出现Javac编译器可以编译而ECJ编译器不可编译的问题。</p>
-<p>对Sun Javac而言，编译过程如图所示：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Sun%20Javac%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B.JPG" alt="Sun Javac编译过程"></p>
-<p>主体代码如下：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Sun%20Javac%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E4%B8%BB%E4%BD%93%E4%BB%A3%E7%A0%81.JPG" alt="Sun Javac编译主体代码"></p>
-<h4 id="1-1-解析和填充符号表"><a href="#1-1-解析和填充符号表" class="headerlink" title="1.1 解析和填充符号表"></a>1.1 解析和填充符号表</h4><p><strong>词法分析</strong><br>词法分析是将源代码的字符流转变为标记（Token）集合，标记是编译过程的最小元素，如：关键字、变量名、字面量、运算符。</p>
-<p><strong>语法分析</strong><br>语法分析是根据Token序列构造抽象语法树（Abstract Syntax Tree，AST）的过程，AST用来描述程序代码语法结构的树形表示方式，每一节点代表程序代码中的一个语法结构</p>
-<p><strong>填充符号表</strong><br>符号表（Symbol Table）是由一组符号地址和符号信息构成的表格，类似哈希表的K-V形式。在语义分析阶段，符号表用来语义检查和产生中间代码；在目标代码生成阶段，当对符号名进行地址分配时，符号表是地址分配的依据。</p>
-<h4 id="1-2-注解处理器"><a href="#1-2-注解处理器" class="headerlink" title="1.2 注解处理器"></a>1.2 注解处理器</h4><p>在JDK5之后，Java提供了注解（Annotation）的支持，这些注解和普通的Java代码一样，在运行期发挥作用，。在JDK6中，提供的插入时注解处理器在编译期对注解进行处理，可以把插入式注解处理器看成一组编译器的插件，能够插入、修改、读取抽象语法树的任一元素。每次处理称为一个Round，也就是Sun Javac编译过程中的回环。</p>
-<h4 id="1-3-语义分析"><a href="#1-3-语义分析" class="headerlink" title="1.3 语义分析"></a>1.3 语义分析</h4><p>语义分析的主要任务是对结构上正确的源程序进行上下文有关性质的检查，包括标注检查和数据及控制流检查。</p>
-<p><strong>标注检查</strong>：标注检查的步骤包括如变量使用前是否声明、变量与赋值类型是否匹配等，以及需要特别说明的<strong>常量折叠</strong>。如果在代码中写了<code>int _2kb = 1024 * 2;</code>，经常量折叠后，表达式的值会在语法树上标注出来（ConstantValue：2048），由于在编译期进行了常量折叠，并不会在运行期增加CPU的运算量。</p>
-<p><strong>数据及控制流分析</strong>：数据及控制流分析是对程序上下文逻辑更进一步的验证，可以检查出如程序局部变量在使用前是否赋值、方法的每条路径是否都有返回值、是否所有受查异常都被正确处理等。编译期的数据及控制流分析与类加载时的数据及控制流分析基本一致，但校检范围有所区别，有一些校检项只在编译期或运行期进行。</p>
-<p><strong>解语法糖</strong>：语法糖（Syntactic Sugar），也称糖衣语法。指计算机语言中添加的某种语法，这种语法对语言功能并没有影响，但更方便程序员的使用，增加程序可读性，在Java中有如：泛型、变长参数、自动装箱/拆箱等。在编译阶段将语法糖还原回简单的基础语法结构，称为解语法糖。</p>
-<h4 id="1-4-字节码生成"><a href="#1-4-字节码生成" class="headerlink" title="1.4 字节码生成"></a>1.4 字节码生成</h4><p>Javac编译的最后一个阶段，将生成的语法树、符号表转化成Class文件，以及少量的代码添加、转换工作，如实例构造器<code>&lt;init()&gt;</code>和类构造器<code>&lt;clinit()&gt;</code>就是在这阶段添加到语法树中。</p>
-<h3 id="2-Java语法糖——糖衣背后的真实"><a href="#2-Java语法糖——糖衣背后的真实" class="headerlink" title="2 Java语法糖——糖衣背后的真实"></a>2 Java语法糖——糖衣背后的真实</h3><p>语法糖虽然不会提供实质性的功能改进，但它们或能提高效率，或能提升语法的严谨性，或能减少编码出错的机会。但我们也要认清糖衣背后的真实，看清程序的真面目。</p>
-<h4 id="2-1-泛型与类型擦除"><a href="#2-1-泛型与类型擦除" class="headerlink" title="2.1 泛型与类型擦除"></a>2.1 泛型与类型擦除</h4><p>泛型是JDK5的一项新特性，<strong>本质是参数化类型（Parametersized Type）的应用</strong>。在Java语言<strong>还没有泛型的时候，通过Object是所有类型的父类以及强制类型转换配合使用实现泛型化</strong>。在C#和Java中的泛型有着根本性的区别，C#的泛型无论在源码中、编译后、运行时都是真实存在的，<code>List&lt;Integer&gt;</code>和<code>List&lt;String&gt;</code>是两个不同的类型，在系统运行期生成，有自己的虚方法表和类型数据，这种实现称为类型膨胀，；Java的泛型只存在于源码中，编译后的Class文件中已经变为原生类型了，并且在相应地方加入了强制类型转换，对于运行期的Java语言来说，<code>List&lt;Integer&gt;</code>和<code>List&lt;String&gt;</code>是同一个类，这种实现方法称为类型擦除，属于伪泛型。</p>
-<p>下面举一个例子说明，类型擦除前的代码：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%B1%BB%E5%9E%8B%E6%93%A6%E9%99%A4%E7%9A%84%E4%BE%8B%E5%AD%90.JPG" alt="类型擦除的例子"></p>
-<p>由编译出的Class文件，再反编译回去的代码：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%B1%BB%E5%9E%8B%E6%93%A6%E9%99%A4%E7%9A%84%E4%BE%8B%E5%AD%902.JPG" alt="类型擦除的例子"></p>
-<p>当泛型遇上重载，如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public void method(List&lt;String&gt; list) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void method(List&lt;Integer&gt; list) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>是不能通过编译的，因为类型擦除后，方法的参数都是List（对于JDK6而言，如果返回类型不一样是能够编译的，原因在于描述符不同的方法在Class文件中能够共存，之后的版本不可编译）。</p>
-<p>另外类型擦除通过Java虚拟机规范后来加入的两个属性：Signature和LocalVariableTypeTable，可以通过反射获得实际的类型参数而不是原生类型。</p>
-<h4 id="2-2-遍历循环与变长参数"><a href="#2-2-遍历循环与变长参数" class="headerlink" title="2.2 遍历循环与变长参数"></a>2.2 遍历循环与变长参数</h4><p>遍历循环（Foreach）使用关键字<code>for( : )</code>实现，变长参数指方法的参数长度不定，如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list = Arrays.asList(new Integer(1), new Integer(2), new Integer(3));</span><br><span class="line">for (Integer i : list) &#123;</span><br><span class="line">  System.out.println(i.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>由编译出的Class文件，再反编译回去的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">List list = Arrays.asList(new Integer[] &#123;</span><br><span class="line">  new Integer(1),</span><br><span class="line">  new Integer(2),</span><br><span class="line">  new Integer(3)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">for (Iterator localIterator = list.iterator(); localIterator.hasNext(); ) &#123;</span><br><span class="line">  Integer i = ((Integer)localIterator.next());</span><br><span class="line">  System.out.println(i.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>显然，遍历循环是依赖Iterable接口实现的，而变长参数语法是通过数组完成的。</p>
-<h4 id="2-3-自动装箱、自动拆箱与“-”、“equals-”"><a href="#2-3-自动装箱、自动拆箱与“-”、“equals-”" class="headerlink" title="2.3 * 自动装箱、自动拆箱与“==”、“equals()”"></a>2.3 * 自动装箱、自动拆箱与“==”、“equals()”</h4><p><strong>自动装箱</strong>指的是用基本类型的值给它的包装类赋值时，系统会自动将基本类型转换成它的包装类型。实际上，系统自动调用Integer.valueOf()方法来完成转换。JDK源码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static Integer valueOf(int i) &#123;</span><br><span class="line">    if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">        return IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">    return new Integer(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>先判断能不能冲缓存中获取，否则new一个Integer对象</strong>。</p>
-<p>关于<code>IntegerCache</code>的源码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">static final int low = -128;</span><br><span class="line">static final int high;</span><br><span class="line">static final Integer cache[];</span><br><span class="line"></span><br><span class="line">static &#123;</span><br><span class="line">    // high value may be configured by property</span><br><span class="line">    int h = 127;</span><br><span class="line">    String integerCacheHighPropValue =</span><br><span class="line">        sun.misc.VM.getSavedProperty(&quot;java.lang.Integer.IntegerCache.high&quot;);</span><br><span class="line">    if (integerCacheHighPropValue != null) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            int i = parseInt(integerCacheHighPropValue);</span><br><span class="line">            i = Math.max(i, 127);</span><br><span class="line">            // Maximum array size is Integer.MAX_VALUE</span><br><span class="line">            h = Math.min(i, Integer.MAX_VALUE - (-low) -1);</span><br><span class="line">        &#125; catch( NumberFormatException nfe) &#123;</span><br><span class="line">            // If the property cannot be parsed into an int, ignore it.</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    high = h;</span><br><span class="line"></span><br><span class="line">    cache = new Integer[(high - low) + 1];</span><br><span class="line">    int j = low;</span><br><span class="line">    for(int k = 0; k &lt; cache.length; k++)</span><br><span class="line">        cache[k] = new Integer(j++);</span><br><span class="line"></span><br><span class="line">    // range [-128, 127] must be interned (JLS7 5.1.7)</span><br><span class="line">    assert IntegerCache.high &gt;= 127;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>意思是，默认情况下创建一个Integer数组的缓存，默认情况下该缓存的内容是值为-128到127的Integer对象。</p>
-<p><strong>自动拆箱</strong>和自动装箱相反，当需要基本类型的时候，系统也会自动的将包装类转换成基本类型。实际上，系统自动调用Integer.intValueOf方法来完成转换。JDK源码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public int intValue() &#123;</span><br><span class="line">    return value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>再来看下“==”和“equals()”</p>
-<ul>
-<li><code>==</code>运算符，如果是<strong>基本数据类型，则直接对值进行比较</strong>，如果是<strong>引用数据类型，则是对他们的地址进行比较</strong>（但是<strong>只能比较相同类型的对象</strong>，或者比较父类对象和子类对象。类型不同的两个对象不能使用==）</li>
-<li><code>equals()</code>方法，继承自Object类，在具体实现时可以覆盖父类中的实现。看一下Object中qeuals的源码发现，它的实现<strong>也是对对象的地址进行比较</strong>，此时它和”==”的作用相同。而JDK类中有一些类<strong>覆盖</strong>了Object类的equals()方法，比较规则为：<strong>如果两个对象的类型一致，并且内容一致</strong>，则返回true,这些类有：<br>java.io.file,java.util.Date,java.lang.string，包装类（Integer,Double等）。</li>
-</ul>
-<p>看如下代码，思考输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String args[]) &#123;</span><br><span class="line">        Integer a = 1;</span><br><span class="line">        Integer b = 2;</span><br><span class="line">        Integer c = 3;</span><br><span class="line">        Integer d = 3;</span><br><span class="line">        Integer e = 321;</span><br><span class="line">        Integer f = 321;</span><br><span class="line">        Long g = 3L;</span><br><span class="line">        int x = 3;</span><br><span class="line">        long y = 3L;</span><br><span class="line"></span><br><span class="line">        //x,y虽然类型不同但是可以直接进行数值比较</span><br><span class="line">        System.out.println(x == y);         //true，int类型向long类型对齐，从二进制角度表示来看，显然值相等</span><br><span class="line">        //System.out.println(c == g); 提示出错，不可比较的类型。说明此时没有自动拆箱</span><br><span class="line">        System.out.println(c == d);         //true，两个在IntegerCache范围的的Integer类型进行比较，同一个引用地址进行比较</span><br><span class="line">        System.out.println(e == f);         //false，两个不在IntegerCache范围的的Integer类型进行比较，不同引用地址进行比较</span><br><span class="line">        System.out.println(c == (a+b));     //true，有“+”运算符，“a+b”自动拆箱后进行运算，变量“c”也自动拆箱，对值进行比较</span><br><span class="line">        System.out.println(c.equals(a+b));  //true，有“+”运算符，“a+b”自动拆箱后进行运算，对值进行自动装箱，对对象类型以及值进行比较</span><br><span class="line">        //此时进行了自动的拆箱</span><br><span class="line">        System.out.println(g == (a+b));     //true，有“+”运算符，“a+b”自动拆箱后进行运算，对值进行比较</span><br><span class="line">        System.out.println(g.equals(a+b));  //false，有“+”运算符，“a+b”自动拆箱后进行运算，对值进行自动装箱，对对象类型以及值进行比较</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="2-4-条件编译"><a href="#2-4-条件编译" class="headerlink" title="2.4 条件编译"></a>2.4 条件编译</h4><p>Java语言也有条件编译，方法是也只是条件为常量的if语句，具体例子如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">  if (true) &#123;</span><br><span class="line">      System.out.println(&quot;block1&quot;);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">      System.out.println(&quot;block2&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>由编译出的Class文件，再反编译回去的代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">  System.out.println(&quot;block1&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>由于使用了if语句，所以只能写在方法体内，实现语句块（Block）级别的条件编译，而没办法实现根据条件调整整个Java类的结构。</p>
-<hr>
+<p><strong>设计原则</strong><br>G1的设计原则是”首先收集尽可能多的垃圾(Garbage First)”。因此，G1并不会等内存耗尽(串行、并行)或者快耗尽(CMS)的时候开始垃圾收集，而是在内部采用了<strong>启发式算法：在老年代找出具有高收集收益的分区进行收集</strong>（回收所获得空间大小和回收所需要时间的经验值）。同时G1可以根据用户设置的暂停时间目标自动调整年轻代和总堆大小，暂停目标越短年轻代空间越小、总空间就越大；</p>
+<h2 id="3-运作步骤"><a href="#3-运作步骤" class="headerlink" title="3. 运作步骤"></a>3. 运作步骤</h2><p>不计算维护Remembered Set的操作，可以分为4个步骤（与CMS较为相似）。</p>
+<ol>
+<li><strong>初始标记（Initial Marking）</strong><br>仅标记一下GC Roots能直接关联到的对象,且修改TAMS（Next Top at Mark Start）,让下一阶段并发运行时，用户程序能在正确可用的Region中创建新对象，需要”Stop The World”，但速度很快。</li>
+<li><strong>并发标记（Concurrent Marking）</strong><br>进行GC Roots 可达性分析的过程；刚才产生的集合中标记出存活对象，耗时较长，但可以和应用程序也并发运行；并不能保证可以标记出所有的存活对象。</li>
+<li><strong>最终标记（Final Marking）</strong><br>为了修正并发标记期间因用户程序继续运作而导致标记变动的那一部分对象的标记记录，上一阶段对象的变化记录在线程的Remembered Set Log；这里把Remembered Set Log合并到Remembered Set中；需要”Stop The World”，且停顿时间比初始标记稍长，但远比并发标记短；可采用多线程并行执行来提升效率。</li>
+<li><strong>筛选回收（Live Data Counting and Evacuation）</strong><br>首先排序各个Region的回收价值和成本，然后根据用户期望的GC停顿时间来制定回收计划，最后按计划回收一些价值高的Region中垃圾对象。回收时采用”复制”算法，从一个或多个Region复制存活对象到堆上的另一个空的Region，并且在此过程中压缩和释放内存；可以和应用程序并发进行，但停顿用户线程可以大幅度提高回收效率。</li>
+</ol>
+<p>G1收集器运行示意图如下：<br><img src="" alt="G1收集器运行示意图"></p>
+<p>更加详细的示意图如下：<br><img src="" alt="G1收集器运行示意图(详)"></p>
+<h2 id="4-收集模式和收集时机"><a href="#4-收集模式和收集时机" class="headerlink" title="4. 收集模式和收集时机"></a>4. 收集模式和收集时机</h2><p>G1收集模式分为两种：每次收集既可能只收集年轻代分区(<strong>年轻代收集</strong>)，也可能在收集年轻代的同时，包含部分老年代分区(<strong>混合收集</strong>)，这样即使堆内存很大时，也可以限制收集范围，从而降低停顿。</p>
+<p><strong>年轻代收集</strong><br>应用线程不断活动后，年轻代空间会被逐渐填满。当JVM分配对象到Eden区域失败(Eden区已满)时，便会触发一次STW式的年轻代收集。在年轻代收集中，Eden分区存活的对象将被拷贝到Survivor分区；原有Survivor分区存活的对象，将根据任期阈值(tenuring threshold)分别晋升到PLAB中，新的survivor分区和老年代分区。而原有的年轻代分区将被整体回收掉。</p>
+<p><strong>混合收集</strong><br>年轻代收集不断活动后，老年代的空间也会被逐渐填充。当老年代占用空间超过整堆比IHOP阈值<code>-XX:InitiatingHeapOccupancyPercent</code>(默认45%)时，G1就会启动一次混合垃圾收集周期（发起并发标记周期，即之前详细示意图中的Concurrent Marking周期）。<strong>为了满足暂停目标</strong>，G1可能不能一口气将所有的候选分区收集掉，因此G1可能会产生连续多次的混合收集与应用线程交替执行，每次STW的混合收集与年轻代收集过程相类似。</p>
 <blockquote>
-<p>Copyright © 2018, GDUT CSCW back-end Kanarien, All Rights Reserved</p>
+<p>事实上，当达到IHOP阈值时，进行混合收集，G1开始着手准备收集老年代空间。首先经历并发标记周期，识别出高收益的老年代分区，前文已述。但随后G1并不会马上开始一次混合收集，而是让应用线程先运行一段时间，等待触发一次年轻代收集。在这次STW中，G1将保准整理混合收集周期。接着再次让应用线程运行，当接下来的几次年轻代收集时，将会有老年代分区加入到CSet中，即触发混合收集，这些连续多次的混合收集称为<strong>混合收集周期</strong>(Mixed Collection Cycle)。</p>
 </blockquote>
+<h2 id="5-重要概念"><a href="#5-重要概念" class="headerlink" title="5. 重要概念"></a>5. 重要概念</h2><p>关于G1的一些重要概念的详细讲解。</p>
+<h3 id="5-1-分区-Region"><a href="#5-1-分区-Region" class="headerlink" title="5.1 分区 Region"></a>5.1 分区 Region</h3><p>G1采用了分区(Region)的思路，<strong>将整个堆空间分成若干个大小相等的内存区域</strong>，每次分配对象空间将逐段地使用内存。因此，在堆的使用上，G1并不要求对象的存储一定是物理上连续的，只要逻辑上连续即可；每个分区也不会确定地为某个代服务，可以按需在年轻代和老年代之间切换。启动时可以通过参数<code>-XX:G1HeapRegionSize=n</code>可指定分区大小(1MB~32MB，且必须是2的幂)，默认将整堆划分为2048个分区。</p>
+<h3 id="5-2-卡片-Card"><a href="#5-2-卡片-Card" class="headerlink" title="5.2 卡片 Card"></a>5.2 卡片 Card</h3><p>在每个分区内部又被分成了若干个大小为512 Byte卡片(Card)，标识堆内存最小可用粒度所有分区的卡片将会记录在全局卡片表(Global Card Table)中，分配的对象会占用物理上连续的若干个卡片，当查找对分区内对象的引用时便可通过记录卡片来查找该引用对象(见RSet)。每次对内存的回收，都是对指定分区的卡片进行处理。</p>
+<h3 id="5-3-已记忆集合-Remember-Set-RSet"><a href="#5-3-已记忆集合-Remember-Set-RSet" class="headerlink" title="5.3 已记忆集合 Remember Set (RSet)"></a>5.3 已记忆集合 Remember Set (RSet)</h3><p>在串行和并行收集器中，GC通过整堆扫描，来确定对象是否处于可达路径中。然而G1<strong>为了避免STW式的整堆扫描</strong>，在每个分区记录了一个已记忆集合(RSet)。当要回收该分区时，通过扫描分区的RSet，来确定引用本分区内的对象是否存活，进而确定本分区内的对象存活情况。</p>
+<p>关于一个对象被不同区域引用的问题：<strong>一个Region不可能是孤立的</strong>，一个Region中的<strong>对象可能被其他任意Region中对象引用</strong>，判断对象存活时，是否需要扫描整个Java堆才能保证准确？</p>
+<p>解决方法：每次Reference类型数据写操作时，都会产生一个Write Barrier暂时中断操作，然后检查将要写入的引用指向的对象是否和该Reference类型数据在不同的Region（其他收集器：检查老年代对象是否引用了新生代对象），如果不同，通过CardTable把相关引用信息记录到引用指向对象的所在Region对应的Remembered Set中，当进行垃圾收集时，在GC根节点的枚举范围加入Remembered Set，就可以保证不进行全局扫描，也不会有遗漏。</p>
+<h3 id="5-4-收集集合-Collection-Set-CSet"><a href="#5-4-收集集合-Collection-Set-CSet" class="headerlink" title="5.4 收集集合 Collection Set (CSet)"></a>5.4 收集集合 Collection Set (CSet)</h3><p>收集集合(CSet)代表每次GC暂停时回收的一系列目标分区。在任意一次收集暂停中，CSet所有分区都会被释放，内部存活的对象都会被转移到分配的空闲分区中。因此无论是年轻代收集，还是混合收集，工作的机制都是一致的。年轻代收集CSet只容纳年轻代分区，而混合收集会通过启发式算法，在老年代候选回收分区中，筛选出回收收益最高的分区添加到CSet中。</p>
+<p>候选老年代分区的CSet准入条件，可以通过活跃度阈值<code>-XX:G1MixedGCLiveThresholdPercent</code>(默认85%)进行设置，从而拦截那些回收开销巨大的对象；同时，每次混合收集可以包含候选老年代分区，可根据CSet对堆的总大小占比<code>-XX:G1OldCSetRegionThresholdPercent</code>(默认10%)设置数量上限。</p>
+<p>由上述可知，<strong>G1的收集都是根据CSet进行操作的</strong>，年轻代收集与混合收集没有明显的不同，最大的区别在于两种收集的触发条件。</p>
+<h3 id="5-5-巨型对象-Humongous-Region"><a href="#5-5-巨型对象-Humongous-Region" class="headerlink" title="5.5 巨型对象 Humongous Region"></a>5.5 巨型对象 Humongous Region</h3><p>一个大小达到甚至超过分区大小一半的对象称为巨型对象(Humongous Object)。当线程为巨型分配空间时，不能简单在年轻代进行分配，因为巨型对象的移动成本很高，而且有可能一个分区不能容纳巨型对象。因此，<strong>巨型对象会直接在老年代分配</strong>，所占用的连续空间称为巨型分区(Humongous Region)。G1内部做了一个优化，一旦发现没有引用指向巨型对象，则可直接在年轻代收集周期中被回收。</p>
+<p>巨型对象会独占一个、或多个连续分区，其中第一个分区被标记为开始巨型(StartsHumongous)，相邻连续分区被标记为连续巨型(ContinuesHumongous)。由于无法享受Lab带来的优化，并且确定一片连续的内存空间<strong>需要扫描整堆</strong>，因此<strong>确定巨型对象开始位置的成本非常高</strong>，如果可以，应用程序应避免生成巨型对象。</p>
+<h2 id="6-转移失败的担保机制"><a href="#6-转移失败的担保机制" class="headerlink" title="6.转移失败的担保机制"></a>6.转移失败的担保机制</h2><p>转移失败(Evacuation Failure)是指当G1无法在堆空间中申请新的分区时，G1便会触发担保机制，<strong>执行一次STW式的、单线程的Full GC</strong>。Full GC会对整堆做标记清除和压缩，最后将只包含纯粹的存活对象。参数<code>-XX:G1ReservePercent</code>(默认10%)可以保留空间，来应对晋升模式下的异常情况，最大占用整堆50%，更大也无意义。</p>
+<p>G1在以下场景中会触发Full GC，同时会在日志中记录to-space-exhausted以及Evacuation Failure：</p>
+<ol>
+<li>从年轻代分区拷贝存活对象时，无法找到可用的空闲分区</li>
+<li>从老年代分区转移存活对象时，无法找到可用的空闲分区</li>
+<li>分配巨型对象时在老年代无法找到足够的连续分区</li>
+</ol>
+<p>由于G1的应用场合往往堆内存都比较大，所以Full GC的收集代价非常昂贵，应该避免Full GC的发生。</p>
+<h2 id="7-JVM相关参数"><a href="#7-JVM相关参数" class="headerlink" title="7.JVM相关参数"></a>7.JVM相关参数</h2><table>
+<thead>
+<tr>
+<th>No</th>
+<th>参数名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>-XX:UseG1GC</td>
+<td>开启G1收集器，JDK9默认开启</td>
+</tr>
+<tr>
+<td>2</td>
+<td>-XX:G1HeapRegionSize=n</td>
+<td>分区(Region)大小(1MB~32MB，且必须是2的幂)，默认将整堆划分为2048个分区。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>-XX:MaxGCPauseMills=n</td>
+<td>回收的最大时间，默认200ms</td>
+</tr>
+<tr>
+<td>4</td>
+<td>-XX:G1NewSizePercent=n</td>
+<td>年轻代最小使用的空间比率，默认为Java堆内存的5%</td>
+</tr>
+<tr>
+<td>5</td>
+<td>-XX:G1MaxNewSizePercent=n</td>
+<td>年轻代最小使用的空间比率，默认为Java堆内存的60%</td>
+</tr>
+<tr>
+<td>6</td>
+<td>-XX:ParallelGCThreads=n</td>
+<td>STW工作线程数，与CPU的数量有关</td>
+</tr>
+<tr>
+<td>7</td>
+<td>-XX:ConcGCThreads=n</td>
+<td>并行标记线程数</td>
+</tr>
+<tr>
+<td>8</td>
+<td>-XX:InitiatingHeapOccupancyPercent =n</td>
+<td>当老年代占用空间超过整堆比IHOP阈值(默认45%)时，G1就会启动一次混合垃圾收集周期</td>
+</tr>
+<tr>
+<td>9</td>
+<td>-XX:NewRatio=n</td>
+<td>年轻代与老年代比率，默认为2</td>
+</tr>
+<tr>
+<td>10</td>
+<td>-XX:SurvivorRatio=n</td>
+<td>Eden区和Survivor区比率，默认为8</td>
+</tr>
+<tr>
+<td>11</td>
+<td>-XX:MaxTenuringThreshold=n</td>
+<td>年轻代到老年代的岁数，默认是15，表示控制对象需要15次Minor GC（年轻代GC）才晋升到老年代</td>
+</tr>
+<tr>
+<td>12</td>
+<td>-XX:G1ReservePercent=n</td>
+<td>设置作为空闲空间的预留内存百分比，以降低目标空间溢出的风险，默认是10</td>
+</tr>
+</tbody>
+</table>
+<p>本笔记参考了《深入理解Java虚拟机：JVM高级特性与最佳实践（第二版）》和以下文章：</p>
+<ul>
+<li><a href="https://blog.csdn.net/wxy941011/article/details/80616868" target="_blank" rel="noopener">G1收集器 - 沉迷代码无法自拔 - CSDN博客</a></li>
+<li><a href="https://blog.csdn.net/coderlius/article/details/79272773" target="_blank" rel="noopener">详解 JVM Garbage First(G1) 垃圾收集器 - coderlius的博客 - CSDN博客</a></li>
+</ul>
 
       
 
@@ -287,10 +355,6 @@
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
         		</li>
@@ -359,7 +423,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://kanarien.cn/2018/07/28/Java虚拟机(七)——编译期优化/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://kanarien.cn/2019/03/27/G1垃圾收集器/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -373,18 +437,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/28/Java虚拟机(八)——运行期优化/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java虚拟机(八)——运行期优化
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/28/Java虚拟机(六)——字节码执行引擎/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java虚拟机(六)——字节码执行引擎</div>
+    <a href="/2019/03/25/计算机字符编码笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">计算机字符编码笔记</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -411,7 +466,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#编译期优化"><span class="toc-number">1.</span> <span class="toc-text">编译期优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Sun-Javac-编译过程"><span class="toc-number">1.1.</span> <span class="toc-text">1. Sun Javac 编译过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-解析和填充符号表"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 解析和填充符号表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-注解处理器"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 注解处理器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-语义分析"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 语义分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-字节码生成"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4 字节码生成</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Java语法糖——糖衣背后的真实"><span class="toc-number">1.2.</span> <span class="toc-text">2 Java语法糖——糖衣背后的真实</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-泛型与类型擦除"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 泛型与类型擦除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-遍历循环与变长参数"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 遍历循环与变长参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-自动装箱、自动拆箱与“-”、“equals-”"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 * 自动装箱、自动拆箱与“==”、“equals()”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-条件编译"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 条件编译</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-概述"><span class="toc-number">2.</span> <span class="toc-text">1. 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-特点"><span class="toc-number">3.</span> <span class="toc-text">2. 特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-运作步骤"><span class="toc-number">4.</span> <span class="toc-text">3. 运作步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-收集模式和收集时机"><span class="toc-number">5.</span> <span class="toc-text">4. 收集模式和收集时机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-重要概念"><span class="toc-number">6.</span> <span class="toc-text">5. 重要概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-分区-Region"><span class="toc-number">6.1.</span> <span class="toc-text">5.1 分区 Region</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-卡片-Card"><span class="toc-number">6.2.</span> <span class="toc-text">5.2 卡片 Card</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-已记忆集合-Remember-Set-RSet"><span class="toc-number">6.3.</span> <span class="toc-text">5.3 已记忆集合 Remember Set (RSet)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-收集集合-Collection-Set-CSet"><span class="toc-number">6.4.</span> <span class="toc-text">5.4 收集集合 Collection Set (CSet)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-巨型对象-Humongous-Region"><span class="toc-number">6.5.</span> <span class="toc-text">5.5 巨型对象 Humongous Region</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-转移失败的担保机制"><span class="toc-number">7.</span> <span class="toc-text">6.转移失败的担保机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-JVM相关参数"><span class="toc-number">8.</span> <span class="toc-text">7.JVM相关参数</span></a></li></ol>
                     </div>
                 </span>
             </div>

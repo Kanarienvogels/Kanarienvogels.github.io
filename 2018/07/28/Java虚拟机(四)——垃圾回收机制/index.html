@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://static.zybuluo.com/Rico123/9hswys8w1pqy0ch06vmlbqi2/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/jconsole.PNG">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/jvisualvm.PNG">
-<meta property="og:updated_time" content="2019-03-08T09:15:45.642Z">
+<meta property="og:updated_time" content="2019-03-26T05:29:25.569Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java虚拟机(四)——垃圾回收机制">
 <meta name="twitter:description" content="垃圾回收机制1. 垃圾回收概述在C++中，对象所占的内存在程序结束运行之前一直被占用，在明确释放之前不能分配给其它对象。而在Java中，当没有对象引用指向原先分配给某个对象的内存时，该内存便成为垃圾。JVM的一个系统级线程会自动释放该内存块。垃圾回收意味着程序不再需要的对象是”无用信息”，这些信息将被丢弃。当一个对象不再被引用的时候，内存回收它占领的空间，以便空间被后来的新对象使用。事实上，除了">
@@ -303,6 +303,9 @@
 <li><strong>CMS(Concurrent Mark Sweep)收集器（标记-清除算法）</strong>： 老年代并行收集器，以获取最短回收停顿时间为目标的收集器，具有高并发、低停顿的特点，追求最短GC回收停顿时间。</li>
 <li><strong>G1(Garbage First,Java9 默认收集器)收集器 (标记-整理算法)</strong>： Java堆并行收集器，G1收集器是JDK1.7提供的一个新收集器，G1收集器基于“标记-整理”算法实现，也就是说不会产生内存碎片。此外，G1收集器不同于之前的收集器的一个重要特点是：G1回收的范围是整个Java堆(包括新生代，老年代)，而前六种收集器回收的范围仅限于新生代或老年代。</li>
 </ul>
+<blockquote>
+<p>以上的默认收集器指的是JVM运行在server模式下的情况，当JVM运行在client模式下时，默认使用Serial串行收集器。</p>
+</blockquote>
 <h3 id="9-JVM常用参数"><a href="#9-JVM常用参数" class="headerlink" title="9. JVM常用参数"></a>9. JVM常用参数</h3><p><strong>信息跟踪相关参数</strong></p>
 <ul>
 <li>-XX:+printGC：打印GC的简要信息</li>
@@ -631,6 +634,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -651,18 +658,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -679,11 +674,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编码</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -695,11 +690,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Lettuce</a>
+                <a href="javascript:void(0)" class="js-tag color3">编码</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
+                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -708,6 +703,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Lettuce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
               </li>
              
               <li class="article-tag-list-item">
