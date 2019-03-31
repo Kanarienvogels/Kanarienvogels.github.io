@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/UDP%E6%95%B0%E6%8D%AE%E6%8A%A5.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/TCP%E6%95%B0%E6%8D%AE%E6%8A%A5.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/TCP%E6%8B%A5%E5%A1%9E%E7%AA%97%E5%8F%A3.jpg">
-<meta property="og:updated_time" content="2019-03-21T14:20:56.820Z">
+<meta property="og:updated_time" content="2019-03-30T12:22:02.273Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络五层协议体系">
 <meta name="twitter:description" content="0. 前言对计算机网络五层协议进行一次规范的整理，主要是一些基础的和偏向实际应用的知识。 1. 物理层1.1 作用物理层尽可能的屏蔽掉传输媒体和通信手段的差异，使物理层上面的数据链路层感觉不到这些差异，只考虑完成本层的协议和服务。 给数据链路层在一条物理的传输媒体上传送和接收比特流（实际上则是0和1的电信号），为此物理层解决物理连接的建立、维持和释放问题。">
@@ -362,7 +362,10 @@
 <li>面向字节流，TCP仅把应用程序交下来的数据看成是一连串的无结构的字节流，不保证接收双方的数据块具有对应大小关系，如发送方应用程序交给发送方的TCP共10个数据块，但接收方的TCP可能只用了4个数据块就把收到的字节流交付上层的应用程序。</li>
 </ol>
 <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/TCP%E6%95%B0%E6%8D%AE%E6%8A%A5.png" alt="TCP报文段"></p>
-<h4 id="4-3-1-可靠性机制"><a href="#4-3-1-可靠性机制" class="headerlink" title="4.3.1 可靠性机制"></a>4.3.1 可靠性机制</h4><p><strong>超时重传</strong>：<br>发送的数据有可能因为网络拥堵，没有及时到达，发送端没有收到确认，就会进行重发。<br>接收端有可能收到许多重复文件，通过序列号可以去重。<br>累计到一定次数，TCP认为网络或者接收端出现异常，强制关闭连接。</p>
+<h4 id="4-3-1-可靠性机制"><a href="#4-3-1-可靠性机制" class="headerlink" title="4.3.1 可靠性机制"></a>4.3.1 可靠性机制</h4><p><strong>超时重传</strong>：<br>超时重传是TCP协议保证数据可靠性的重要机制，其原理是在发送某一个数据以后就开启一个计时器，在一定时间内如果没有得到发送的数据报的ACK报文，TCP就认为报文段中的数据已丢失或损坏，那么就重新发送数据，直到发送成功为止。接收端有可能收到许多重复文件，通过序列号可以去重。累计到一定次数，TCP认为网络或者接收端出现异常，强制关闭连接。</p>
+<blockquote>
+<p>快重传：数据丢包的情况下给出的一种修补机制。一般来说，重传发生在超时之后，但是如果发送端接受到3个以上的重复ACK的情况下，就应该意识到，数据丢了，需要重新传递。这个机制是不需要等到重传定时器溢出的，所以叫做快速重传，它可以避免发送端因等待重传计时器的超时而空闲较长时间，以此增加网络吞吐量。而重新传递以后，因为走的不是慢启动而是拥塞避免算法，所以这又叫做快速恢复算法。</p>
+</blockquote>
 <p><strong>序列号、确认号</strong>：<br>通过序列号和确认号检验，可以去重、超时重传、数据有序到达。</p>
 <p><strong>滑动窗口</strong>：<br>当每发一个段就进行一次确认，这种方式性能太差。所以我们可以一次多发送几个，然后进行确认。当收到一个ACK后，滑动窗口向后移动，继续发送后一个段的数据。操作系统为了维护这个滑动窗口，需要开辟缓冲区（记录当前哪些数据没有应答），发送了的数据才能从缓冲区中删除。</p>
 <p>窗口大小：指无需等待确认应答而可以继续发送数据的最大值。窗口越大，网络的吞吐量越高。</p>
@@ -759,11 +762,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -799,6 +802,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -815,15 +822,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color3">编码</a>
               </li>
              
               <li class="article-tag-list-item">

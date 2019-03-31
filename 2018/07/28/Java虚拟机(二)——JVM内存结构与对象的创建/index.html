@@ -18,9 +18,10 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-011.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/JVM%20%E7%BB%93%E6%9E%84%20.jpg">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%AF%B9%E8%B1%A1%E5%A4%B4%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80.PNG">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%8F%A5%E6%9F%84%E8%AE%BF%E9%97%AE.JPG">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%9B%B4%E6%8E%A5%E6%8C%87%E9%92%88%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1.JPG">
-<meta property="og:updated_time" content="2019-01-22T07:13:59.548Z">
+<meta property="og:updated_time" content="2019-03-31T07:06:53.605Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java虚拟机(二)——JVM内存结构与对象的创建">
 <meta name="twitter:description" content="JVM内存结构与对象的创建1. 数据运行时区域虚拟机的结构都是在内存中的一块空间，称为虚拟机内存结构，也称为数据运行时区域。 虚拟机的内存结构由五部分组成:  程序计数器 Java 虚拟机栈 本地方法栈 Java 堆 方法区">
@@ -258,9 +259,10 @@
 <h4 id="2-4-对象头设置"><a href="#2-4-对象头设置" class="headerlink" title="2.4 对象头设置"></a>2.4 对象头设置</h4><p>对对象进行必要的设置，比如：该对象是哪个类的实例、如何找到这个类的元信息、对象的哈希码、GC分代信息。这些信息都放置在对象头中。</p>
 <h4 id="2-5-构造函数执行"><a href="#2-5-构造函数执行" class="headerlink" title="2.5 构造函数执行"></a>2.5 构造函数执行</h4><p>以上操作完成后，从虚拟机角度来看，对象的创建已经完成了，但从Java程序的角度来讲，对象的创建才开始（虚拟机对上屏蔽了对象内存分配的细节），程序员通过执行构造函数来进行对象的初始化。</p>
 <h3 id="3-对象的内存布局"><a href="#3-对象的内存布局" class="headerlink" title="3. 对象的内存布局"></a>3. 对象的内存布局</h3><p>对象在内存中的存储布局可分为3块：对象头（Header）、实例数据（Instance Data）、对齐填充（Padding）。</p>
-<p>对象头（Header）：对象头包括两部分信息，一是对象自身运行时的数据，如哈希码、GC分代年龄、锁状态标志、线程持有的锁、偏向线程ID、偏向时间戳等。另一部分是类型指针，即对象指向它类元数据的指针，虚拟机通过这确定对象是哪个类的实例。</p>
-<p>实例数据（Instance Data）：对象真正存储的有效信息，也是程序代码中定义的各种类型的字段内容。无论是父类的还是子类的数据都要记录。</p>
-<p>对齐填充（Padding）：仅起着占位符的作用。对象起始地址必须是8字节的整数倍，对象头肯定是8字节的整数倍，而实例数据则不一定，此时用对齐填充来补全。</p>
+<p><strong>对象头（Header）</strong>：对象头包括两部分信息，一是对象自身运行时的数据，如哈希码、GC分代年龄、锁状态标志、线程持有的锁、偏向线程ID、偏向时间戳等。另一部分是类型指针，即对象指向它类元数据的指针，虚拟机通过这确定对象是哪个类的实例。</p>
+<p>运行时自身数据的长度在32位和64位的虚拟机（暂不考虑开启压缩指针的场景）中分别为32个和64个Bits，官方称它为“MarkWord”。<br>在32位的HotSpot虚拟机 中对象未被锁定的状态下，Mark Word的32个Bits空间中的25Bits用于存储对象哈希码，4Bits用于存储对象分代年龄，2Bits用于存储锁标志 位，1Bit固定为0，在其他状态（轻量级锁定、重量级锁定、GC标记、可偏向）下对象的存储内容如下表所示。<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%AF%B9%E8%B1%A1%E5%A4%B4%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80.PNG" alt="对象头内存布局"></p>
+<p><strong>实例数据（Instance Data）</strong>：对象真正存储的有效信息，也是程序代码中定义的各种类型的字段内容。无论是父类的还是子类的数据都要记录。</p>
+<p><strong>对齐填充（Padding）</strong>：仅起着占位符的作用。对象起始地址必须是8字节的整数倍，对象头肯定是8字节的整数倍，而实例数据则不一定，此时用对齐填充来补全。</p>
 <h3 id="4-对象的访问"><a href="#4-对象的访问" class="headerlink" title="4. 对象的访问"></a>4. 对象的访问</h3><p>程序中通过操作reference（引用）来操作对象，在Java堆内存中，对象的访问分为两种方式：句柄访问和直接访问。</p>
 <p><strong>句柄访问</strong>：Java堆中划分出一块内存作为句柄池，reference（引用）中存储的是对象的句柄地址，句柄包括了对象实例数据的地址和对象类型数据的地址。<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%8F%A5%E6%9F%84%E8%AE%BF%E9%97%AE.JPG" alt="句柄访问"></p>
 <p><strong>直接指针访问</strong>：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%9B%B4%E6%8E%A5%E6%8C%87%E9%92%88%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1.JPG" alt="直接指针访问"></p>
@@ -555,11 +557,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -595,6 +597,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -611,15 +617,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color3">编码</a>
               </li>
              
               <li class="article-tag-list-item">
