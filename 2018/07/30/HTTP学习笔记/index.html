@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-021.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/URI%E3%80%81URL%E3%80%81URN.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Http%20Request.png">
-<meta property="og:updated_time" content="2019-03-13T13:14:28.501Z">
+<meta property="og:updated_time" content="2019-04-04T14:33:36.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP学习笔记">
 <meta name="twitter:description" content="0. 前言该笔记记录了HTTP相关的基本知识，包括：  HTTP定义、特点、工作方式 简单辨别URI、URL、URN 请求与响应的结构 请求方法，GET和POST的区别 常见的响应码">
@@ -290,7 +290,7 @@
 </tr>
 <tr>
 <td>CONNECT</td>
-<td>HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器</td>
+<td>HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器，如使用SSL</td>
 </tr>
 </tbody>
 </table>
@@ -359,6 +359,11 @@
 <td>已经接受请求，但处理尚未完成</td>
 </tr>
 <tr>
+<td> 203</td>
+<td>Non-Authoritative Information</td>
+<td>非权威信息，表明请求已成功，但封装的有效负载已由源服务器的200（OK）响应由变换代理修改。</td>
+</tr>
+<tr>
 <td> 204</td>
 <td>No Content</td>
 <td>没有新文档，浏览器应该继续显示原来的文档。操作已经执行成功，但是没有返回数据</td>
@@ -417,6 +422,11 @@
 <td> 408</td>
 <td>Request Timeout</td>
 <td>如果客户端完成请求时花费的时间太长， 服务器可以回送这个状态码并关闭连接</td>
+</tr>
+<tr>
+<td> 409</td>
+<td>Conflict</td>
+<td>响应状态码指示与服务器当前状态的请求冲突，如，在上传比服务器上已存在的文件更早的文件</td>
 </tr>
 <tr>
 <td> 413</td>
@@ -763,11 +773,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -791,10 +801,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -811,11 +817,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">编码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编码</a>
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -839,15 +849,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Netty</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
             
             <div class="clearfix"></div>
