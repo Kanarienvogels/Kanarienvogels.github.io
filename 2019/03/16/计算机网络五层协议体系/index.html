@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/UDP%E6%95%B0%E6%8D%AE%E6%8A%A5.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/TCP%E6%95%B0%E6%8D%AE%E6%8A%A5.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/TCP%E6%8B%A5%E5%A1%9E%E7%AA%97%E5%8F%A3.jpg">
-<meta property="og:updated_time" content="2019-04-15T05:01:16.172Z">
+<meta property="og:updated_time" content="2019-04-15T13:14:50.922Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络五层协议体系">
 <meta name="twitter:description" content="0. 前言对计算机网络五层协议进行一次规范的整理，主要是一些基础的和偏向实际应用的知识。 1. 物理层1.1 作用物理层尽可能的屏蔽掉传输媒体和通信手段的差异，使物理层上面的数据链路层感觉不到这些差异，只考虑完成本层的协议和服务。 给数据链路层在一条物理的传输媒体上传送和接收比特流（实际上则是0和1的电信号），为此物理层解决物理连接的建立、维持和释放问题。">
@@ -291,7 +291,7 @@
 <ul>
 <li>路由信息协议 RIP 是内部网关协议 IGP中最先得到广泛使用的协议。</li>
 <li>RIP 是一种分布式的基于距离向量的路由选择协议。</li>
-<li>RIP 协议要求网络中的每一个路由器都要维护从它自己到其他每一个目的网络的距离记录。</li>
+<li>RIP 协议要求网络中的每一个路由器都要维护从它自己到其他每一个目的网络的距离记录（<strong>距离向量算法</strong>）。</li>
 </ul>
 <p>3个<strong>要点</strong>：</p>
 <ol>
@@ -306,13 +306,13 @@
 <li>RIP 限制了网络的规模，它能使用的最大距离为 15（16 表示不可达）。</li>
 <li>路由器之间交换的路由信息是路由器中的完整路由表，因而随着网络规模的扩大，开销也就增加。</li>
 </ul>
-<h4 id="3-6-2-OSPF协议"><a href="#3-6-2-OSPF协议" class="headerlink" title="3.6.2 OSPF协议"></a>3.6.2 OSPF协议</h4><p>内部网关协议 OSPF (Open Shortest Path First)</p>
+<h4 id="3-6-2-OSPF协议"><a href="#3-6-2-OSPF协议" class="headerlink" title="3.6.2 OSPF协议"></a>3.6.2 OSPF协议</h4><p>开放最短路径优先 OSPF (Open Shortest Path First)</p>
 <p><strong>基本特点：</strong></p>
 <ul>
 <li>“开放”表明 OSPF 协议不是受某一家厂商控制，而是公开发表的。</li>
 <li>“最短路径优先”是因为使用了 Dijkstra 提出的最短路径算法SPF</li>
 <li>OSPF 只是一个协议的名字，它并不表示其他的路由选择协议不是“最短路径优先”。</li>
-<li>是分布式的链路状态协议。</li>
+<li>是分布式的<strong>链路状态协议</strong>。</li>
 </ul>
 <p>3个<strong>要点</strong>：</p>
 <ol>
@@ -333,7 +333,7 @@
 <li>比较合理的做法是在 AS 之间交换“可达性”信息。</li>
 </ul>
 </li>
-<li>自治系统之间的路由选择必须考虑有关策略。</li>
+<li>自治系统之间的路由选择必须<strong>考虑有关策略</strong>。</li>
 <li>因此，边界网关协议 BGP 只能是力求寻找一条能够到达目的网络且比较好的路由（不能兜圈子），而并非要寻找一条最佳路由。</li>
 </ul>
 <h3 id="3-7-虚拟专用网VPN"><a href="#3-7-虚拟专用网VPN" class="headerlink" title="3.7 虚拟专用网VPN"></a>3.7 虚拟专用网VPN</h3><p>VPN，全称为Virtual Private Network，译为虚拟专用网络，主要用于<strong>在公用网络上建立专用网络，进行加密通讯</strong>。</p>
@@ -369,9 +369,8 @@
 <p>关于检验和<br>1.TCP和UDP检验和是一个端到端的检验和，由发送端计算，然后由接收端验证。<br>2.TCP和UDP检验和覆盖首部和数据，而IP首部中的检验和只覆盖IP的首部，不覆盖IP数据报中的任何数据。<br>3.TCP的检验和是必需的，而UDP的检验和是可选的。<br>4.TCP和UDP计算检验和时，都要加上一个12字节的伪首部。</p>
 </blockquote>
 <blockquote>
-<p>TCP/UDP的报文的最大长度<br>在链路层，由以太网的物理特性决定了数据帧的长度为(46＋18)－(1500＋18)，其中的18是数据帧的头和尾，也就是说数据帧的内容最大为1500(不包括帧头和帧尾)，即MTU(Maximum Transmission Unit)为1500；UDP 包的大小就应该是 1500 - IP头(20) - UDP头(8) = 1472(Bytes)<br>TCP 包的大小就应该是 1500 - IP头(20) - TCP头(20) = 1460 (Bytes)。若大于这个长度就会导致网络层IP分片重组。如果单从传输层孤立地看（从实际应用开发的角度来看），用UDP协议发送时，用sendto函数最大能发送数据的长度为：65535- IP头(20) - UDP头(8)＝65507字节。用sendto函数发送数据时，如果发送数据长度大于该值，则函数会返回错误。用TCP协议发送时，由于TCP是数据流协议，因此不存在包大小的限制（暂不考虑缓冲区的大小），这是指在用send函数时，数据长度参数不受限制。</p>
+<p>TCP/UDP的报文的最大长度<br>在链路层，由以太网的物理特性决定了数据帧的长度为(46＋18)－(1500＋18)，其中的18是数据帧的头和尾，也就是说数据帧的内容最大为1500(不包括帧头和帧尾)，即MTU(Maximum Transmission Unit)为1500；<br>UDP 包的大小就应该是 1500 - IP头(20) - UDP头(8) = 1472(Bytes)<br>TCP 包的大小就应该是 1500 - IP头(20) - TCP头(20) = 1460 (Bytes)。<br>若大于这个长度就会导致<strong>网络层IP分片重组</strong>。<br>但在网络编程中，Internet中的路由器可能有设置成不同的值(小于默认值)，Internet上的标准MTU值为576，所以Internet的UDP编程时数据长度最好在576－20－8＝548字节以内。<br>从实际应用开发的角度来看，用UDP协议发送时，用sendto函数最大能发送数据的长度为：65535- IP头(20) - UDP头(8)＝65507字节。用sendto函数发送数据时，如果发送数据长度大于该值，则函数会返回错误。用TCP协议发送时，由于TCP是数据流协议，因此不存在包大小的限制（暂不考虑缓冲区的大小），这是指在用send函数时，数据长度参数不受限制。</p>
 </blockquote>
-<p>但在网络编程中，Internet中的路由器可能有设置成不同的值(小于默认值)，Internet上的标准MTU值为576，所以Internet的UDP编程时数据长度最好在576－20－8＝548字节以内。</p>
 <h4 id="4-3-1-可靠性机制"><a href="#4-3-1-可靠性机制" class="headerlink" title="4.3.1 可靠性机制"></a>4.3.1 可靠性机制</h4><p><strong>超时重传</strong>：<br>超时重传是TCP协议保证数据可靠性的重要机制，其原理是在发送某一个数据以后就开启一个计时器，在一定时间内如果没有得到发送的数据报的ACK报文，TCP就认为报文段中的数据已丢失或损坏，那么就重新发送数据，直到发送成功为止。接收端有可能收到许多重复文件，通过序列号可以去重。累计到一定次数，TCP认为网络或者接收端出现异常，强制关闭连接。</p>
 <blockquote>
 <p>快重传：数据丢包的情况下给出的一种修补机制。一般来说，重传发生在超时之后，但是如果发送端接受到3个以上的重复ACK的情况下，就应该意识到，数据丢了，需要重新传递。这个机制是不需要等到重传定时器溢出的，所以叫做快速重传，它可以避免发送端因等待重传计时器的超时而空闲较长时间，以此增加网络吞吐量。而重新传递以后，因为走的不是慢启动而是拥塞避免算法，所以这又叫做快速恢复算法。</p>
@@ -772,11 +771,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -788,6 +787,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
@@ -796,15 +799,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -832,10 +835,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
@@ -860,15 +859,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Netty</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
             
             <div class="clearfix"></div>
