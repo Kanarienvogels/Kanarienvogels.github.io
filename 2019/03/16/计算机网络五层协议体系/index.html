@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/UDP%E6%95%B0%E6%8D%AE%E6%8A%A5.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/TCP%E6%95%B0%E6%8D%AE%E6%8A%A5.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/TCP%E6%8B%A5%E5%A1%9E%E7%AA%97%E5%8F%A3.jpg">
-<meta property="og:updated_time" content="2019-04-01T04:39:59.385Z">
+<meta property="og:updated_time" content="2019-04-15T05:01:16.172Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络五层协议体系">
 <meta name="twitter:description" content="0. 前言对计算机网络五层协议进行一次规范的整理，主要是一些基础的和偏向实际应用的知识。 1. 物理层1.1 作用物理层尽可能的屏蔽掉传输媒体和通信手段的差异，使物理层上面的数据链路层感觉不到这些差异，只考虑完成本层的协议和服务。 给数据链路层在一条物理的传输媒体上传送和接收比特流（实际上则是0和1的电信号），为此物理层解决物理连接的建立、维持和释放问题。">
@@ -267,7 +267,10 @@
 </blockquote>
 <h2 id="3-网络层"><a href="#3-网络层" class="headerlink" title="3. 网络层"></a>3. 网络层</h2><h3 id="3-1-作用"><a href="#3-1-作用" class="headerlink" title="3.1 作用"></a>3.1 作用</h3><p>不同主机之间的逻辑通信，<strong>网络层向上只提供简单灵活的、无连接的、尽最大努力交付的数据报服务</strong>，负责将数据报独立地从信源发送到信宿，主要解决<strong>路由选择、分组转发和网络互联</strong>等问题。</p>
 <p><strong>分组转发</strong><br>当一个分组到达路由器输入链路时，需要将该分组转发到相应合适的输出链路上。每一个分组都会带有一个首部，而首部里有转发的标识。路由器根据转发标识，查询路由器内的转发表(forwarding table)，转发表会为分组指出该通往的输出链路。</p>
-<p><strong>路由选择</strong><br>当分组开始从源主机发往目的主机，网络层必须决定分组该采用的路由或路径。而路由选择，就是用来提供分组转发时所需要的转发表。</p>
+<blockquote>
+<p>分组转发分为直接转发和间接转发两类。直接转发和间接转发是路由器需要根据分组的目的IP地址与源IP地址是否属于同一个网络来判断的。当分组的源主机和目的主机在同一个网络，或者是当目的路由器向目的主机传送时，分组就是直接转发。如果目的主机与源主机不在一个网络上，分组就要间接转发。在间接转发时，路由器从路由表中找出下一个路由器的IP地址，然后把IP分组传送给下一个路由器。当IP分组到达与目的主机所在的网络连接的路由器时，分组将被直接转发。</p>
+</blockquote>
+<p><strong>路由选择</strong><br>当分组开始从源主机发往目的主机，网络层必须决定分组该采用的路由或路径。而路由选择，就是用来<strong>提供分组转发时所需要的转发表</strong>。</p>
 <blockquote>
 <p><strong>虚电路网络</strong>是借鉴电信网的成功例子的，让网络来负责可靠交付。虚电路网络要求两个计算机进行通信时，应当先建立连接，也就是虚电路。然后双方就通过该虚电路发送分组。这样分组无需头部节省开销，信号传输也十分可靠。通信结束后，就释放掉虚电路。因特网的先驱者则坚定认为无连接服务是更适合因特网的网络层的。电信网的提供可靠的传输服务，对于电话这种无智能，没有处理差错能力的设备无疑是非常奏效的。但计算机是可以有很强的差错处理能力的，于是把可靠的通信控制交给网络边缘的主机进行处理。</p>
 </blockquote>
@@ -362,6 +365,13 @@
 <li>面向字节流，TCP仅把应用程序交下来的数据看成是一连串的无结构的字节流，不保证接收双方的数据块具有对应大小关系，如发送方应用程序交给发送方的TCP共10个数据块，但接收方的TCP可能只用了4个数据块就把收到的字节流交付上层的应用程序。</li>
 </ol>
 <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/TCP%E6%95%B0%E6%8D%AE%E6%8A%A5.png" alt="TCP报文段"></p>
+<blockquote>
+<p>关于检验和<br>1.TCP和UDP检验和是一个端到端的检验和，由发送端计算，然后由接收端验证。<br>2.TCP和UDP检验和覆盖首部和数据，而IP首部中的检验和只覆盖IP的首部，不覆盖IP数据报中的任何数据。<br>3.TCP的检验和是必需的，而UDP的检验和是可选的。<br>4.TCP和UDP计算检验和时，都要加上一个12字节的伪首部。</p>
+</blockquote>
+<blockquote>
+<p>TCP/UDP的报文的最大长度<br>在链路层，由以太网的物理特性决定了数据帧的长度为(46＋18)－(1500＋18)，其中的18是数据帧的头和尾，也就是说数据帧的内容最大为1500(不包括帧头和帧尾)，即MTU(Maximum Transmission Unit)为1500；UDP 包的大小就应该是 1500 - IP头(20) - UDP头(8) = 1472(Bytes)<br>TCP 包的大小就应该是 1500 - IP头(20) - TCP头(20) = 1460 (Bytes)。若大于这个长度就会导致网络层IP分片重组。如果单从传输层孤立地看（从实际应用开发的角度来看），用UDP协议发送时，用sendto函数最大能发送数据的长度为：65535- IP头(20) - UDP头(8)＝65507字节。用sendto函数发送数据时，如果发送数据长度大于该值，则函数会返回错误。用TCP协议发送时，由于TCP是数据流协议，因此不存在包大小的限制（暂不考虑缓冲区的大小），这是指在用send函数时，数据长度参数不受限制。</p>
+</blockquote>
+<p>但在网络编程中，Internet中的路由器可能有设置成不同的值(小于默认值)，Internet上的标准MTU值为576，所以Internet的UDP编程时数据长度最好在576－20－8＝548字节以内。</p>
 <h4 id="4-3-1-可靠性机制"><a href="#4-3-1-可靠性机制" class="headerlink" title="4.3.1 可靠性机制"></a>4.3.1 可靠性机制</h4><p><strong>超时重传</strong>：<br>超时重传是TCP协议保证数据可靠性的重要机制，其原理是在发送某一个数据以后就开启一个计时器，在一定时间内如果没有得到发送的数据报的ACK报文，TCP就认为报文段中的数据已丢失或损坏，那么就重新发送数据，直到发送成功为止。接收端有可能收到许多重复文件，通过序列号可以去重。累计到一定次数，TCP认为网络或者接收端出现异常，强制关闭连接。</p>
 <blockquote>
 <p>快重传：数据丢包的情况下给出的一种修补机制。一般来说，重传发生在超时之后，但是如果发送端接受到3个以上的重复ACK的情况下，就应该意识到，数据丢了，需要重新传递。这个机制是不需要等到重传定时器溢出的，所以叫做快速重传，它可以避免发送端因等待重传计时器的超时而空闲较长时间，以此增加网络吞吐量。而重新传递以后，因为走的不是慢启动而是拥塞避免算法，所以这又叫做快速恢复算法。</p>
@@ -762,11 +772,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -778,10 +788,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
@@ -790,15 +796,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -823,6 +829,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
