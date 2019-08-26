@@ -16,23 +16,23 @@
 <meta property="og:site_name" content="无悔的博客小屋">
 <meta property="og:description" content="0. 前言对计算机网络五层协议进行一次规范的整理，主要是一些基础的和偏向实际应用的知识。 1. 物理层1.1 作用物理层尽可能的屏蔽掉传输媒体和通信手段的差异，使物理层上面的数据链路层感觉不到这些差异，只考虑完成本层的协议和服务。 给数据链路层在一条物理的传输媒体上传送和接收比特流（实际上则是0和1的电信号），为此物理层解决物理连接的建立、维持和释放问题。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-031.jpg">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-41.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%AD%97%E8%8A%82%E5%A1%AB%E5%85%85.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/PPP%E5%B8%A7.png">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%BD%91%E5%8D%A1%E9%80%9A%E4%BF%A1.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/CSMA-CD%E5%8D%8F%E8%AE%AE.png">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5859322-10180c2b3e22069c.png">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%BD%91%E5%8D%A1%E9%80%9A%E4%BF%A1.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%88%86%E7%B1%BB%E7%9A%84IP%E5%9C%B0%E5%9D%80.PNG">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%89%B9%E6%AE%8A%E7%9A%84IP%E5%9C%B0%E5%9D%80.PNG">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/IP%E6%95%B0%E6%8D%AE%E6%8A%A5.PNG">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/UDP%E6%95%B0%E6%8D%AE%E6%8A%A5.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/TCP%E6%95%B0%E6%8D%AE%E6%8A%A5.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/TCP%E6%8B%A5%E5%A1%9E%E7%AA%97%E5%8F%A3.jpg">
-<meta property="og:updated_time" content="2019-04-15T13:14:50.922Z">
+<meta property="og:updated_time" content="2019-08-26T04:14:32.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络五层协议体系">
 <meta name="twitter:description" content="0. 前言对计算机网络五层协议进行一次规范的整理，主要是一些基础的和偏向实际应用的知识。 1. 物理层1.1 作用物理层尽可能的屏蔽掉传输媒体和通信手段的差异，使物理层上面的数据链路层感觉不到这些差异，只考虑完成本层的协议和服务。 给数据链路层在一条物理的传输媒体上传送和接收比特流（实际上则是0和1的电信号），为此物理层解决物理连接的建立、维持和释放问题。">
-<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-031.jpg">
+<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-41.jpg">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
   
@@ -203,7 +203,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-031.jpg" alt="动漫美图"></p>
+        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-41.jpg" alt="动漫美图"></p>
 <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>对计算机网络五层协议进行一次规范的整理，主要是一些基础的和偏向实际应用的知识。</p>
 <h2 id="1-物理层"><a href="#1-物理层" class="headerlink" title="1. 物理层"></a>1. 物理层</h2><h3 id="1-1-作用"><a href="#1-1-作用" class="headerlink" title="1.1 作用"></a>1.1 作用</h3><p>物理层尽可能的<strong>屏蔽掉传输媒体和通信手段的差异</strong>，使物理层上面的数据链路层感觉不到这些差异，只考虑完成本层的协议和服务。</p>
 <p>给数据链路层<strong>在一条物理的传输媒体上传送和接收比特流</strong>（实际上则是0和1的电信号），为此物理层解决物理连接的建立、维持和释放问题。</p>
@@ -246,8 +246,7 @@
 <li>静态划分信道：利用频分复用、时分复用、波分复用等技术，用户被分配了信道就不会和其他用户冲突，但这种方法代价较高，不适合局域网</li>
 <li>动态媒体接入控制（又叫多点接入）：信道并非在用户通信时固定分配给用户，如随机接入，用户可随机地发送信息，但必须解决碰撞以应对多个用户同时发送信息（CSMA/CD协议）。</li>
 </ol>
-<p><strong>网络接口卡</strong>NIC（Network Interface Card）<br>又称网卡、通信适配器，计算机与外界局域网的连接是通过这个通信适配器进行的。当适配器收到有差错的帧时，就把这个帧丢弃而不必通知计算机。当适配器收到正确的帧时，它就使用中断来通知该计算机并交付协议栈中的网络层。当计算机要发送IP数据报时，就由协议栈把IP数据报向下交给适配器，组装成帧后发送到局域网。<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%BD%91%E5%8D%A1%E9%80%9A%E4%BF%A1.png" alt="网卡通信"></p>
-<h3 id="2-4-CSMA-CD协议"><a href="#2-4-CSMA-CD协议" class="headerlink" title="2.4 CSMA/CD协议"></a>2.4 CSMA/CD协议</h3><p>为了实现一对一的通信，我们可使每一台计算机的适配器拥有一个与其他适配器不同的地址。发送数据帧时，在帧首部写明接收站的地址。仅当数据帧中的目的地址和适配器ROM中存放的硬件地址一样时，该适配器才能接收到这个数据帧。适配器对不是发送给自己的数据帧就丢弃。</p>
+<h3 id="2-4-CSMA-CD协议"><a href="#2-4-CSMA-CD协议" class="headerlink" title="2.4 CSMA/CD协议"></a>2.4 CSMA/CD协议</h3><p>为解决共享传输介质的问题，设计出了CSMA/CD协议。CSMA/CD协议并不能避免冲突f发生，只能解决冲突带来的问题。</p>
 <p><strong>载波监听多点接入/碰撞检测</strong>（Carrier Sense Multiple Access with Collision Detection）</p>
 <ul>
 <li>多点接入：说明是总线型网络。</li>
@@ -255,16 +254,28 @@
 <li>碰撞检测：边发送边监听，也称冲突检测。适配器边发送数据边检测信道上的信号电压的变化情况，以便判断自己在发送数据时其他站是否也在发送数据。同时发送数据时，总线上的信号电压变化幅度大，超过一定门限值时，就认为总线上至少两个站同时在发送数据，表明有碰撞。这时总线上的信号失真，无法恢复。所以，每一个正在发送数据的站，一旦发现有碰撞，适配器就要立即停止发送，以免浪费网络资源，等待一段随机时间后再发送。</li>
 </ul>
 <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/CSMA-CD%E5%8D%8F%E8%AE%AE.png" alt="CSMA/CD协议"></p>
-<blockquote>
-<p>显然，在使用CSMA/CD协议时，一个站不可能同时进行发送和接收，因此使用CSMA/CD协议的以太网不可能进行全双工通信而只能进行双向交替通信</p>
-</blockquote>
-<h3 id="2-5-MAC层和MAC帧"><a href="#2-5-MAC层和MAC帧" class="headerlink" title="2.5 MAC层和MAC帧"></a>2.5 MAC层和MAC帧</h3><p>MAC层中的硬件地址又称为物理地址、<strong>MAC地址</strong>（因为这种地址用在MAC帧中）、链路地址。是指局域网上的每一台计算机中固化在适配器的ROM中的地址（因此也叫适配器地址或适配器标识符EUI—48），由硬件厂商决定，是不会变的。只要适配器不变，它就不变。它是每一个站的“名字”或标识符。如果连接在局域网上的主机或路由器安装有多个适配器，那么这样的主机或路由器就有多个“地址”，也就是说，这种<strong>48位地址</strong>应当是某个接口的标识符。</p>
+<p>CSMA/CD协议存在以下<strong>特点</strong>：</p>
+<ol>
+<li>共享介质，半双工，不适合重负荷应用环境</li>
+<li>帧的延迟不能确定，实时性差</li>
+<li>无优先级区分，重要的帧和不重要的帧都有相同的权力使用总线</li>
+<li>存在碰撞域，以太网内的结点和以太网的覆盖范围受到限制</li>
+</ol>
+<p>目前的快速以太网（100BASE-T、1000BASE-T标准）为了减少冲突，将能提高的网络速度和使用效率最大化，使用<strong>集线器</strong>来进行网络连接和组织。如此一来，以太网的拓扑结构就成了<strong>星型</strong>；但在<strong>逻辑上</strong>，以太网仍然使用总线型拓扑和CSMA/CD的总线技术。</p>
+<h3 id="2-5-MAC层和MAC帧"><a href="#2-5-MAC层和MAC帧" class="headerlink" title="2.5 MAC层和MAC帧"></a>2.5 MAC层和MAC帧</h3><p>数据链路层包括LLC层（逻辑链路控制）和MAC层（媒体接入控制），由于以太网在局域网中取得垄断地位，TCP/IP协议中使用的局域网只剩下DIX Ethernet V2，而不是IEEE 802.3定义的标准互联网，LLC层的作用已经消失。</p>
+<p>MAC层中的硬件地址又称为物理地址、<strong>MAC地址</strong>（因为这种地址用在MAC帧中）、链路地址。是指局域网上的每一台计算机中固化在适配器的ROM中的地址（因此也叫适配器地址或适配器标识符EUI—48），由硬件厂商决定，是不会变的。只要适配器不变，它就不变。它是每一个站的“名字”或标识符。如果连接在局域网上的主机或路由器安装有多个适配器，那么这样的主机或路由器就有多个“地址”，也就是说，这种<strong>48位地址</strong>应当是某个接口的标识符。</p>
 <p>MAC帧<br><img src="https://upload-images.jianshu.io/upload_images/5859322-10180c2b3e22069c.png" alt="MAC帧格式"></p>
-<h3 id="2-6-以太网的扩展"><a href="#2-6-以太网的扩展" class="headerlink" title="2.6 以太网的扩展"></a>2.6 以太网的扩展</h3><p>使用中继设备对以太网进行扩展</p>
-<p>集线器（多接口转发器）、转发器：共享带宽、半双工，合并碰撞域、广播域，在物理层<br>网桥、交换机（二层交换机，多接口网桥）：独享带宽、全双工，分隔碰撞域，合并广播域，在数据链路层</p>
+<h3 id="2-6-网卡"><a href="#2-6-网卡" class="headerlink" title="2.6 网卡"></a>2.6 网卡</h3><p><strong>网络接口卡</strong>NIC（Network Interface Card）</p>
+<p>又称网卡、通信适配器，计算机与外界局域网的连接是通过这个通信适配器进行的。当适配器收到有差错的帧时，就把这个帧丢弃而不必通知计算机。当适配器收到正确的帧时，它就使用中断来通知该计算机并交付协议栈中的网络层。当计算机要发送IP数据报时，就由协议栈把IP数据报向下交给适配器，组装成帧后发送到局域网。</p>
+<p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%BD%91%E5%8D%A1%E9%80%9A%E4%BF%A1.png" alt="网卡通信"></p>
+<h3 id="2-7-以太网的扩展"><a href="#2-7-以太网的扩展" class="headerlink" title="2.7 以太网的扩展"></a>2.7 以太网的扩展</h3><p>使用中继设备对以太网进行扩展</p>
+<p>集线器、转发器：共享带宽、半双工，合并碰撞域、广播域，在物理层</p>
+<p>网桥、二层交换机：独享带宽、全双工，分隔碰撞域，合并广播域，在数据链路层</p>
 <blockquote>
 <p>三层交换机、路由器：全双工，分割碰撞域、广播域，在网络层</p>
 </blockquote>
+<h3 id="2-8-局域网的发展"><a href="#2-8-局域网的发展" class="headerlink" title="2.8 局域网的发展"></a>2.8 局域网的发展</h3><p><strong>共享介质局域网与交换式局域网</strong></p>
+<p>共享介质局域网的关键是，多个结点如何共享介质，而随着局域网的发展，出现了现在广泛使用的交换式局域网，交换式局域网是以局域网交换机为中心的星型网络，区别于共享介质局域网的局域网上的多个结点不需要共享介质，可以由交换机提供多个并行连接交换式局域网的核心是局域网交换机</p>
 <h2 id="3-网络层"><a href="#3-网络层" class="headerlink" title="3. 网络层"></a>3. 网络层</h2><h3 id="3-1-作用"><a href="#3-1-作用" class="headerlink" title="3.1 作用"></a>3.1 作用</h3><p>不同主机之间的逻辑通信，<strong>网络层向上只提供简单灵活的、无连接的、尽最大努力交付的数据报服务</strong>，负责将数据报独立地从信源发送到信宿，主要解决<strong>路由选择、分组转发和网络互联</strong>等问题。</p>
 <p><strong>分组转发</strong><br>当一个分组到达路由器输入链路时，需要将该分组转发到相应合适的输出链路上。每一个分组都会带有一个首部，而首部里有转发的标识。路由器根据转发标识，查询路由器内的转发表(forwarding table)，转发表会为分组指出该通往的输出链路。</p>
 <blockquote>
@@ -278,6 +289,9 @@
 <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%88%86%E7%B1%BB%E7%9A%84IP%E5%9C%B0%E5%9D%80.PNG" alt="分类的IP地址"></p>
 <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%89%B9%E6%AE%8A%E7%9A%84IP%E5%9C%B0%E5%9D%80.PNG" alt="特殊的IP地址"></p>
 <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/IP%E6%95%B0%E6%8D%AE%E6%8A%A5.PNG" alt="IP数据报格式"></p>
+<blockquote>
+<p>报头长度字段以32比特为计数单位，总长度字段以8比特为计数单位</p>
+</blockquote>
 <h3 id="3-3-地址解析协议ARP"><a href="#3-3-地址解析协议ARP" class="headerlink" title="3.3 地址解析协议ARP"></a>3.3 地址解析协议ARP</h3><p>背景：已经知道了一个机器（主机或路由器）的IP地址，需要找出其对应的硬件地址。</p>
 <p>地址解析协议 ARP（Address Resolution Protocol）：解决同一个局域网上的主机或路由器的IP地址和硬件地址的映射问题。</p>
 <blockquote>
@@ -652,7 +666,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-物理层"><span class="toc-number">2.</span> <span class="toc-text">1. 物理层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-作用"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-传输媒体"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 传输媒体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-宽带接入技术"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 宽带接入技术</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-数据链路层"><span class="toc-number">3.</span> <span class="toc-text">2. 数据链路层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-作用"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 作用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-封装成帧"><span class="toc-number">3.1.1.</span> <span class="toc-text">2.1.1 封装成帧</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-透明传输"><span class="toc-number">3.1.2.</span> <span class="toc-text">2.1.2 透明传输</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-差错检测"><span class="toc-number">3.1.3.</span> <span class="toc-text">2.1.3 差错检测</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-点对点协议PPP"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 点对点协议PPP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-局域网和以太网"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 局域网和以太网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-CSMA-CD协议"><span class="toc-number">3.4.</span> <span class="toc-text">2.4 CSMA/CD协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-MAC层和MAC帧"><span class="toc-number">3.5.</span> <span class="toc-text">2.5 MAC层和MAC帧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-以太网的扩展"><span class="toc-number">3.6.</span> <span class="toc-text">2.6 以太网的扩展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-网络层"><span class="toc-number">4.</span> <span class="toc-text">3. 网络层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-作用"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-网际协议IP"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 网际协议IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-地址解析协议ARP"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 地址解析协议ARP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-网际控制报文协议ICMP"><span class="toc-number">4.4.</span> <span class="toc-text">3.4 网际控制报文协议ICMP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-网际组管理协议IGMP"><span class="toc-number">4.5.</span> <span class="toc-text">3.5 网际组管理协议IGMP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-路由选择协议"><span class="toc-number">4.6.</span> <span class="toc-text">3.6 路由选择协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-1-RIP协议"><span class="toc-number">4.6.1.</span> <span class="toc-text">3.6.1 RIP协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-2-OSPF协议"><span class="toc-number">4.6.2.</span> <span class="toc-text">3.6.2 OSPF协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-3-BGP协议"><span class="toc-number">4.6.3.</span> <span class="toc-text">3.6.3 BGP协议</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-虚拟专用网VPN"><span class="toc-number">4.7.</span> <span class="toc-text">3.7 虚拟专用网VPN</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-传输层"><span class="toc-number">5.</span> <span class="toc-text">4. 传输层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-作用"><span class="toc-number">5.1.</span> <span class="toc-text">4.1 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-用户数据报协议UDP"><span class="toc-number">5.2.</span> <span class="toc-text">4.2 用户数据报协议UDP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-传输控制协议TCP"><span class="toc-number">5.3.</span> <span class="toc-text">4.3 传输控制协议TCP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-可靠性机制"><span class="toc-number">5.3.1.</span> <span class="toc-text">4.3.1 可靠性机制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-TCP、UDP对应应用层协议"><span class="toc-number">5.4.</span> <span class="toc-text">4.4 TCP、UDP对应应用层协议</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-物理层"><span class="toc-number">2.</span> <span class="toc-text">1. 物理层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-作用"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-传输媒体"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 传输媒体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-宽带接入技术"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 宽带接入技术</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-数据链路层"><span class="toc-number">3.</span> <span class="toc-text">2. 数据链路层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-作用"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 作用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-封装成帧"><span class="toc-number">3.1.1.</span> <span class="toc-text">2.1.1 封装成帧</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-透明传输"><span class="toc-number">3.1.2.</span> <span class="toc-text">2.1.2 透明传输</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-差错检测"><span class="toc-number">3.1.3.</span> <span class="toc-text">2.1.3 差错检测</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-点对点协议PPP"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 点对点协议PPP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-局域网和以太网"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 局域网和以太网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-CSMA-CD协议"><span class="toc-number">3.4.</span> <span class="toc-text">2.4 CSMA/CD协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-MAC层和MAC帧"><span class="toc-number">3.5.</span> <span class="toc-text">2.5 MAC层和MAC帧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-网卡"><span class="toc-number">3.6.</span> <span class="toc-text">2.6 网卡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-以太网的扩展"><span class="toc-number">3.7.</span> <span class="toc-text">2.7 以太网的扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-局域网的发展"><span class="toc-number">3.8.</span> <span class="toc-text">2.8 局域网的发展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-网络层"><span class="toc-number">4.</span> <span class="toc-text">3. 网络层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-作用"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-网际协议IP"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 网际协议IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-地址解析协议ARP"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 地址解析协议ARP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-网际控制报文协议ICMP"><span class="toc-number">4.4.</span> <span class="toc-text">3.4 网际控制报文协议ICMP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-网际组管理协议IGMP"><span class="toc-number">4.5.</span> <span class="toc-text">3.5 网际组管理协议IGMP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-路由选择协议"><span class="toc-number">4.6.</span> <span class="toc-text">3.6 路由选择协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-1-RIP协议"><span class="toc-number">4.6.1.</span> <span class="toc-text">3.6.1 RIP协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-2-OSPF协议"><span class="toc-number">4.6.2.</span> <span class="toc-text">3.6.2 OSPF协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-3-BGP协议"><span class="toc-number">4.6.3.</span> <span class="toc-text">3.6.3 BGP协议</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-虚拟专用网VPN"><span class="toc-number">4.7.</span> <span class="toc-text">3.7 虚拟专用网VPN</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-传输层"><span class="toc-number">5.</span> <span class="toc-text">4. 传输层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-作用"><span class="toc-number">5.1.</span> <span class="toc-text">4.1 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-用户数据报协议UDP"><span class="toc-number">5.2.</span> <span class="toc-text">4.2 用户数据报协议UDP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-传输控制协议TCP"><span class="toc-number">5.3.</span> <span class="toc-text">4.3 传输控制协议TCP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-可靠性机制"><span class="toc-number">5.3.1.</span> <span class="toc-text">4.3.1 可靠性机制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-TCP、UDP对应应用层协议"><span class="toc-number">5.4.</span> <span class="toc-text">4.4 TCP、UDP对应应用层协议</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -771,6 +785,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
@@ -831,10 +849,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
@@ -851,6 +865,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
               </li>
              
@@ -864,10 +882,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1004,5 +1018,5 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":120,"height":120},"mobile":{"show":false},"log":false});</script></body>
+</body>
 </html>

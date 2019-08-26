@@ -161,6 +161,421 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Linux上优雅的搭建Redis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+		
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/29/Linux上优雅的搭建Redis/">Linux上优雅的搭建Redis</a>
+    </h1>
+  
+
+		
+        
+        <a href="/2018/07/29/Linux上优雅的搭建Redis/" class="archive-article-date">
+  	<time datetime="2018-07-29T13:03:51.701Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-29</time>
+</a>
+        
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-018.jpg" alt="动漫美图"></p>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h2><p>在Linux上搭建Redis并不是一件简单的事，官方只提供了源码，安装就首先需要事先下载gcc工具来编译，后续还包括一些安全事项，比如：绑定连接的IP、设置连接密码、设置Redis日志位置。</p>
+<p>不过，在这里安装不会详细说明，网上有很多关于安装的资料，这里<strong>主要详细的说明一下配置和连接</strong>，比如：绑定连接的IP、设置连接密码、设置Redis日志位置等一切有相当实际意义的参数都会说明；同时也会介绍<strong>使用Unix domain Socket来连接</strong>，也会说明下自己在搭建时遇到的问题。<br>
+        
+          <a class="article-more-a" href="/2018/07/29/Linux上优雅的搭建Redis/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/实践轨迹//" class="article-tag-list-link color5">实践轨迹</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/29/Linux上优雅的搭建Redis/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
+    <article id="post-Spring Boot与MySQL(Mybatis)、MongoDB、Redis的集成" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+		
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/29/Spring Boot与MySQL(Mybatis)、MongoDB、Redis的集成/">Spring Boot与MySQL(Mybatis)、MongoDB、Redis的集成</a>
+    </h1>
+  
+
+		
+        
+        <a href="/2018/07/29/Spring Boot与MySQL(Mybatis)、MongoDB、Redis的集成/" class="archive-article-date">
+  	<time datetime="2018-07-29T12:26:30.496Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-29</time>
+</a>
+        
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-016.jpg" alt="动漫美图"></p>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>实际上Spring Boot已经默认搭建了Spring和Spring MVC框架的配置（通过一个名为<code>spring-boot-starter-web</code>的maven依赖），使用起来只需简单的在代码上写好注解就好了(一般使用注解的形式)，无需配置，具体说明在代码中（配有注释）。SSM三大框架两个都配置好了，就还剩下Mybatis的配置，这个需要手动设置，也很简单，以下说明。</p>
+<p>建议：<br>  初次尝试推荐直接使用之前<a href="http://start.spring.io/" target="_blank" rel="noopener">SPRING INITIALIZR</a>生成的项目，在此基础上进行修改即可。<br>
+        
+          <a class="article-more-a" href="/2018/07/29/Spring Boot与MySQL(Mybatis)、MongoDB、Redis的集成/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MongoDB</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spring MVC</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Mybatis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/实践轨迹//" class="article-tag-list-link color5">实践轨迹</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/29/Spring Boot与MySQL(Mybatis)、MongoDB、Redis的集成/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
+    <article id="post-Spring Boot学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+		
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/29/Spring Boot学习笔记/">Spring Boot学习笔记</a>
+    </h1>
+  
+
+		
+        
+        <a href="/2018/07/29/Spring Boot学习笔记/" class="archive-article-date">
+  	<time datetime="2018-07-29T12:05:37.683Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-29</time>
+</a>
+        
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-015.jpg" alt="动漫美图"></p>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>该笔记记录了Spring Boot的相关基本知识，包括：</p>
+<ul>
+<li>Spring Boot背景、介绍、特点</li>
+<li>Spring Boot的两种配置文件</li>
+<li>Spring Boot的项目结构</li>
+<li>Spring Boot jar包导出相关</li>
+</ul>
+<h2 id="1-Spring-Boot简介"><a href="#1-Spring-Boot简介" class="headerlink" title="1. Spring Boot简介"></a>1. Spring Boot简介</h2><p>Spring Boot，<strong>Boot中文译为引导</strong>。</p>
+<p>Spring Boot是由Pivotal团队提供的全新框架，其<strong>设计目的是用来简化新Spring应用的初始搭建以及开发过程</strong>。该框架使用了<strong>特定的方式来进行配置</strong>，从而使开发人员不再需要定义样板化的配置。通过这种方式，Spring Boot致力于在蓬勃发展的快速应用开发领域(rapid application development)成为领导者。<br>
+        
+          <a class="article-more-a" href="/2018/07/29/Spring Boot学习笔记/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/29/Spring Boot学习笔记/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
+    <article id="post-Java虚拟机(八)——运行期优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+		
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/28/Java虚拟机(八)——运行期优化/">Java虚拟机(八)——运行期优化</a>
+    </h1>
+  
+
+		
+        
+        <a href="/2018/07/28/Java虚拟机(八)——运行期优化/" class="archive-article-date">
+  	<time datetime="2018-07-28T13:56:58.169Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-28</time>
+</a>
+        
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-010.jpg" alt="动漫美图"></p>
+<h2 id="运行期优化"><a href="#运行期优化" class="headerlink" title="运行期优化"></a>运行期优化</h2><p>运行期优化主要靠编译执行，虽然编译执行有“编译”两个字，但要认识到编译执行是在运行期而不是编译期进行的。</p>
+<p>该篇重点难点是JIT编译器的概念，其优化原理（编译技术）可适当了解。<br>
+        
+          <a class="article-more-a" href="/2018/07/28/Java虚拟机(八)——运行期优化/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/28/Java虚拟机(八)——运行期优化/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
     <article id="post-Java虚拟机(七)——编译期优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -758,393 +1173,6 @@
 
 
   
-    <article id="post-Java虚拟机(一)——概述" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-		
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/28/Java虚拟机(一)——概述/">Java虚拟机(一)——概述</a>
-    </h1>
-  
-
-		
-        
-        <a href="/2018/07/28/Java虚拟机(一)——概述/" class="archive-article-date">
-  	<time datetime="2018-07-28T12:10:19.604Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-28</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-003.jpg" alt="动漫美图"></p>
-<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>Java 作为一门面向对象的语言被广泛的使用，知名企业中<strong>大量使用Java</strong>的有<strong>Amazon，Linkedin，阿里，美团，搜狐</strong>；<strong>用的比较少</strong>的知名企业有<strong>百度，腾讯</strong>等，可以说凡是大企业都或多或少的有用到Java。一些被广泛使用的开源系统、框架也完全使用Java进行编写，比如<strong>Android操作系统</strong>和<strong>Hadoop分布式系统基础框架</strong>。为什么Java会收到欢迎？除了其本身<strong>面向对象的特性</strong>极大的加快了开发效率这个表面原因，另一个重要的原因就是Java 虚拟机 (Java Virtual Machine)的存在，为程序<strong>提供了一个稳定健壮的运行环境</strong>。<br>
-        
-          <a class="article-more-a" href="/2018/07/28/Java虚拟机(一)——概述/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/28/Java虚拟机(一)——概述/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
-    <article id="post-如何理解HTTP的无连接、短连接、长连接" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-		
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/25/如何理解HTTP的无连接、短连接、长连接/">如何理解HTTP的无连接、短连接、长连接？</a>
-    </h1>
-  
-
-		
-        
-        <a href="/2018/07/25/如何理解HTTP的无连接、短连接、长连接/" class="archive-article-date">
-  	<time datetime="2018-07-25T14:02:11.099Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-017.jpg" alt="动漫美图"></p>
-<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>HTTP有个特点叫“无连接”，然而为了达到可靠的传输数据，HTTP肯定是依靠可靠连接的，那什么叫“无连接”呢？</p>
-<h2 id="1-无连接？有连接？"><a href="#1-无连接？有连接？" class="headerlink" title="1. 无连接？有连接？"></a>1. 无连接？有连接？</h2><p><strong>无连接</strong>：限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。</p>
-<p>可见，<strong>HTTP不是字面意义上的没有连接</strong>，事实上，这个定义也符合HTTP短连接的定义，但<strong>无连接强调的是HTTP的特性，短连接可理解为一种实现</strong>。<br>
-        
-          <a class="article-more-a" href="/2018/07/25/如何理解HTTP的无连接、短连接、长连接/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/知识漫谈//" class="article-tag-list-link color5">知识漫谈</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/25/如何理解HTTP的无连接、短连接、长连接/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
-    <article id="post-Spring Boot2.x整合BeetlSQL的一次实践经验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-		
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/24/Spring Boot2.x整合BeetlSQL的一次实践经验/">Spring Boot2.x整合BeetlSQL2.x的一次实践经验</a>
-    </h1>
-  
-
-		
-        
-        <a href="/2018/07/24/Spring Boot2.x整合BeetlSQL的一次实践经验/" class="archive-article-date">
-  	<time datetime="2018-07-24T07:30:18.167Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-24</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-004.jpg" alt="动漫美图"></p>
-<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>看完《深入理解Java虚拟机2》后，接着看《Spring Boot2精髓》（理论向的和技术向的书交替看），之前浅涉过Spring Boot1.x，这次打算认识下Spring Boot2.x与Spring Boot1.x的区别，毕竟是当下最火的框架之一，未必会使用，但其中的思想以及对框架的整合技巧也对自己有不少好处，同时复习下Spring系列的框架。</p>
-<p>其中谈及了Beetlsql这个国人开发的面向sql为中心的数据库框架，据说其综合性能与Mybatis、Hibernate比肩甚至在其之上，开发效率也十分之高，还非常有趣的使用md文件保存sql语句。所以我打算学习BeetlSQL，来应用到以后的项目上。就在我跟着书看完后，打算动手实操之时，即使是跟着书上的来做，该说是果然也确实是果然，一系列的问题涌现出来，所以决定记录下这次的实践。<br>
-        
-          <a class="article-more-a" href="/2018/07/24/Spring Boot2.x整合BeetlSQL的一次实践经验/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">BeetlSQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/实践轨迹//" class="article-tag-list-link color5">实践轨迹</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/24/Spring Boot2.x整合BeetlSQL的一次实践经验/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
-    <article id="post-Nginx搭配Tomcat作Web服务器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-		
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/22/Nginx搭配Tomcat作Web服务器/">Nginx搭配Tomcat作Web服务器</a>
-    </h1>
-  
-
-		
-        
-        <a href="/2018/07/22/Nginx搭配Tomcat作Web服务器/" class="archive-article-date">
-  	<time datetime="2018-07-22T13:11:28.690Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-22</time>
-</a>
-        
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-007.jpg" alt="动漫美图"></p>
-<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>Nginx搭配Tomcat作Web服务器是项目部署在服务器上最常见的方式，为什么要使用Nginx呢？理由有不少，下面来分条讲讲：<br>
-        
-          <a class="article-more-a" href="/2018/07/22/Nginx搭配Tomcat作Web服务器/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tomcat</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/知识漫谈//" class="article-tag-list-link color5">知识漫谈</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/22/Nginx搭配Tomcat作Web服务器/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1246,6 +1274,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
@@ -1306,10 +1338,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
@@ -1326,6 +1354,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
               </li>
              
@@ -1339,10 +1371,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1479,5 +1507,5 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":120,"height":120},"mobile":{"show":false},"log":false});</script></body>
+</body>
 </html>

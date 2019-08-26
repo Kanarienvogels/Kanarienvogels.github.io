@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-021.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/URI%E3%80%81URL%E3%80%81URN.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Http%20Request.png">
-<meta property="og:updated_time" content="2019-04-04T14:33:36.596Z">
+<meta property="og:updated_time" content="2019-08-26T03:46:39.394Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP学习笔记">
 <meta name="twitter:description" content="0. 前言该笔记记录了HTTP相关的基本知识，包括：  HTTP定义、特点、工作方式 简单辨别URI、URL、URN 请求与响应的结构 请求方法，GET和POST的区别 常见的响应码">
@@ -419,6 +419,11 @@
 <td>客户端请求中的方法被禁止，常见如，由于DELETE、PUT请求对资源进行写操作，故大部分浏览器都不支持或者在默认配置下不允许DELETE、PUT请求</td>
 </tr>
 <tr>
+<td> 407</td>
+<td>Proxy authentication required</td>
+<td>Web 服务器认为客户端发送的 HTTP 数据流是正确的，但访问该网址资源需要事先经过一个代理服务器，而该代理服务器所需的身份验证尚未提供。 这通常意味着您必须首先登录代理服务器。</td>
+</tr>
+<tr>
 <td> 408</td>
 <td>Request Timeout</td>
 <td>如果客户端完成请求时花费的时间太长， 服务器可以回送这个状态码并关闭连接</td>
@@ -761,6 +766,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
@@ -821,10 +830,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
@@ -841,6 +846,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库索引</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
               </li>
              
@@ -854,10 +863,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
             
             <div class="clearfix"></div>
@@ -994,5 +999,5 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":120,"height":120},"mobile":{"show":false},"log":false});</script></body>
+</body>
 </html>
