@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-010.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E8%AE%A1%E6%95%B0%E5%99%A8%E8%A7%A6%E5%8F%91%E5%8D%B3%E6%97%B6%E7%BC%96%E8%AF%91.JPG">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/Client%20Compiler%E7%9A%84%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B.JPG">
-<meta property="og:updated_time" content="2019-03-26T05:27:37.910Z">
+<meta property="og:updated_time" content="2019-08-28T08:39:29.614Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java虚拟机(八)——运行期优化">
 <meta name="twitter:description" content="运行期优化运行期优化主要靠编译执行，虽然编译执行有“编译”两个字，但要认识到编译执行是在运行期而不是编译期进行的。 该篇重点难点是JIT编译器的概念，其优化原理（编译技术）可适当了解。">
@@ -198,7 +198,7 @@
 <h2 id="运行期优化"><a href="#运行期优化" class="headerlink" title="运行期优化"></a>运行期优化</h2><p>运行期优化主要靠编译执行，虽然编译执行有“编译”两个字，但要认识到编译执行是在运行期而不是编译期进行的。</p>
 <p>该篇重点难点是JIT编译器的概念，其优化原理（编译技术）可适当了解。<br><a id="more"></a></p>
 <h3 id="1-JIT编译器"><a href="#1-JIT编译器" class="headerlink" title="1. JIT编译器"></a>1. JIT编译器</h3><p>当虚拟机发现<strong>某个方法或代码块的运行特别频繁</strong>的时候，就会把这些代码认定为<strong>热点代码</strong>（Hot Spot Code）。为了提高热点代码的执行效率，运行时虚拟机会把这些代码编译成与本地平台相关的机器码，并进行各种层次的优化，完成这个任务的编译器叫做即时编译器（Just In Time Compiler，JIT编译器）。</p>
-<p>Java虚拟机规范并没有规定Java虚拟机时候一定要有JIT编译器，更没有规定具体实现的细节，但JIT编译器性能的好坏，代码优化程度的高低却是衡量一款商用虚拟机优秀与否的最关键指标之一，也是虚拟机中最核心、最能体现虚拟机技术水平的部分。</p>
+<p>Java虚拟机规范并没有规定Java虚拟机一定要有JIT编译器，更没有规定具体实现的细节，但JIT编译器性能的好坏，代码优化程度的高低却是衡量一款商用虚拟机优秀与否的最关键指标之一，也是虚拟机中最核心、最能体现虚拟机技术水平的部分。</p>
 <h3 id="2-解释器与编译器"><a href="#2-解释器与编译器" class="headerlink" title="2. 解释器与编译器"></a>2. 解释器与编译器</h3><p>主流的虚拟机很多都采用<strong>解释器与编译器并存</strong>的架构。当程序需要迅速启动和执行的时候，解释器可以首先发挥作用，省去编译时间，立即执行；程序运行后，随着时间推移，编译器逐渐发挥作用，把越来越多代码编译成本地代码，可以获取更高的执行效率。当程序运行环境中内存限制较大，可以使用解释执行节省内存，反之使用编译执行提升效率。另外，当激进优化的假设不成立时，可通过逆优化退回到解释状态继续执行。</p>
 <blockquote>
 <p>三大商用虚拟机中的JRockit内部没有解释器，它主要面向服务端的应用，这类应用一般不重点关注启动时间。</p>
@@ -540,11 +540,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -616,19 +616,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
               </li>
             
             <div class="clearfix"></div>

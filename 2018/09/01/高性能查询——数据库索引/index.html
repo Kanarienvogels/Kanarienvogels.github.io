@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/B-Tree%E7%B4%A2%E5%BC%95.JPG">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%83.JPG">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E4%B8%8E%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95.PNG">
-<meta property="og:updated_time" content="2019-02-28T12:50:26.001Z">
+<meta property="og:updated_time" content="2019-09-04T02:41:23.028Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高性能查询——数据库索引">
 <meta name="twitter:description" content="1. 概念索引（在MySQL中也叫作“键（key）”），是存储引擎用于快速找到记录的一种数据结构。这是索引的基本功能，除此之外，索引还有其他的一些方面有用的属性。 索引对于良好的性能而言非常关键，尤其是表中的数据量非常大的时候，而糟糕的索引则会导致性能的急剧下降。 索引优化是对查询优化最有效的手段。">
@@ -200,7 +200,7 @@
 <p>索引对于良好的性能而言非常关键，尤其是表中的数据量非常大的时候，而糟糕的索引则会导致性能的急剧下降。</p>
 <p><strong>索引优化是对查询优化最有效的手段</strong>。</p>
 <a id="more"></a>
-<h2 id="2-基础"><a href="#2-基础" class="headerlink" title="2. 基础"></a>2. 基础</h2><p>索引的工作方式：查询语句现在索引中找到对应值，然后根据匹配的索引记录找到对应的数据行。比如：<br><code>SELECT book_title FROM t_book WHERE book_id = 36;</code><br>若<code>book_id</code>列上建有索引，则MySQL将使用索引找到<code>book_id</code>为5的行，即，MySQL先在索引上按值查找，然后返回包含该值的数据行。</p>
+<h2 id="2-基础"><a href="#2-基础" class="headerlink" title="2. 基础"></a>2. 基础</h2><p>索引的工作方式：查询语句现在索引中找到对应值，然后根据匹配的索引记录找到对应的数据行。比如：<br><code>SELECT book_title FROM t_book WHERE book_id = 36;</code><br>若<code>book_id</code>列上建有索引，则MySQL将使用索引找到<code>book_id</code>为36的行，即，MySQL先在索引上按值查找，然后返回包含该值的数据行。</p>
 <p>索引可以包含一个或多个列的值。当包含多个列的值，此时列的顺序十分重要，MySQL只能高效的使用最左前缀列。</p>
 <h2 id="2-1-索引的存储"><a href="#2-1-索引的存储" class="headerlink" title="2.1 索引的存储"></a>2.1 索引的存储</h2><p>一般来说，索引本身也很大，不可能全部存储在内存中，因此索引往往以索引文件的形式存储的磁盘上。这样的话，索引查找过程中就要产生磁盘I/O消耗，相对于内存存取，I/O存取的消耗要高几个数量级，所以评价一个数据结构作为索引的优劣最重要的指标就是在查找过程中磁盘I/O操作次数的渐进复杂度。换句话说，索引的结构组织要尽量减少查找过程中磁盘I/O的存取次数，其中典型的例子就是树状索引使用数据结构B+Tree而不是B-Tree或红黑树。</p>
 <h2 id="3-索引的类型"><a href="#3-索引的类型" class="headerlink" title="3. 索引的类型"></a>3. 索引的类型</h2><p>索引的实现与存储引擎的类型有关，没有统一的标准，下面讲述MySQL中支持的索引类型：B+Tree索引、哈希索引、空间数据索引、全文索引，其中，详细介绍B+Tree索引。</p>
@@ -634,11 +634,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -710,19 +710,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
               </li>
             
             <div class="clearfix"></div>
