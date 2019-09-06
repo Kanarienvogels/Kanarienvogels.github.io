@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/UDP%E6%95%B0%E6%8D%AE%E6%8A%A5.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/TCP%E6%95%B0%E6%8D%AE%E6%8A%A5.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/TCP%E6%8B%A5%E5%A1%9E%E7%AA%97%E5%8F%A3.jpg">
-<meta property="og:updated_time" content="2019-09-05T14:07:11.824Z">
+<meta property="og:updated_time" content="2019-09-06T06:52:27.188Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络五层协议体系">
 <meta name="twitter:description" content="0. 前言对计算机网络五层协议进行一次规范的整理，主要是一些基础的和偏向实际应用的知识。 1. 物理层1.1 作用物理层尽可能的屏蔽掉传输媒体和通信手段的差异，使物理层上面的数据链路层感觉不到这些差异，只考虑完成本层的协议和服务。 给数据链路层在一条物理的传输媒体上传送和接收比特流（实际上则是0和1的电信号），为此物理层解决物理连接的建立、维持和释放问题。">
@@ -289,8 +289,10 @@
 <blockquote>
 <p>为什么不直接使用硬件地址进行通信？<br>由于全世界存在着各式各样的网络，它们使用不同的硬件地址。要<strong>使这些异构网络能够互相通信就必须进行非常复杂的硬件地址转换工作</strong>，因此几乎是不可能的事。</p>
 </blockquote>
+<p>IP的分类如下：</p>
 <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E5%87%A0%E7%B1%BBIP%E5%9C%B0%E5%9D%80.png" alt="分类的IP地址"></p>
 <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/%E7%89%B9%E6%AE%8A%E7%9A%84IP%E5%9C%B0%E5%9D%80.PNG" alt="特殊的IP地址"></p>
+<p>IP数据报的格式如下：</p>
 <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/IP%E6%95%B0%E6%8D%AE%E6%8A%A5%E7%BB%93%E6%9E%84.png" alt="IP数据报格式"></p>
 <blockquote>
 <p>报头长度字段以32比特为计数单位，总长度字段以8比特为计数单位</p>
@@ -343,7 +345,8 @@
 <p><strong>优点</strong>：</p>
 <ul>
 <li>由于一个路由器的链路状态只涉及到与相邻路由器的连通状态，因而与整个互联网的规模并无直接关系。因此当互联网规模很大时，OSPF 协议要比距离向量协议 RIP 好得多。</li>
-<li>OSPF 没有“坏消息传播得慢”的问题，据统计，其响应网络变化的时间小于 100 ms。</li>
+<li>OSPF 没有“坏消息传播得慢”的问题，即<strong>收敛得快</strong>，据统计，其响应网络变化的时间小于 100 ms。</li>
+<li>OSPF 所有路由器都能建立一个<strong>链路状态数据库</strong>，这个数据库实际上就是全网的拓扑结构图，而 RIP 协议到所有网络的距离和下一条的路由而不知道全网的拓扑结构。</li>
 </ul>
 <blockquote>
 <p>OSPF协议直接使用IP协议传输</p>
@@ -801,27 +804,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -833,11 +832,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -869,10 +872,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Lettuce</a>
               </li>
              
@@ -881,11 +880,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -894,6 +889,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
               </li>
             
             <div class="clearfix"></div>

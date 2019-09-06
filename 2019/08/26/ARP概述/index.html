@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-037.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ARP%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ARP%E5%B8%A7%E7%BB%93%E6%9E%84.png">
-<meta property="og:updated_time" content="2019-08-26T03:25:51.947Z">
+<meta property="og:updated_time" content="2019-09-06T07:44:20.762Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ARP概述">
 <meta name="twitter:description" content="1. ARP简介地址解析协议（英语：Address Resolution Protocol，缩写：ARP）是一个通过解析网络层地址来找寻数据链路层地址的网络传输协议，实现从 IP 地址到 MAC 地址的映射。 在以太网协议中规定，同一局域网中的一台主机要和另一台主机进行直接通信，必须要知道目标主机的MAC地址。而在TCP/IP协议中，网络层和传输层只关心目标主机的IP地址。这就导致在以太网中使用">
@@ -201,14 +201,10 @@
 <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ARP%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="ARP交互流程图"></p>
 <a id="more"></a>
 <ol>
-<li><p>主机A首先查看自己的ARP表，确定其中是否包含有主机B对应的ARP表项。如果找到了对应的MAC地址，则主机A直接利用ARP表中的MAC地址，对IP数据包进行帧封装，并将数据包发送给主机B。</p>
-</li>
-<li><p>如果主机A在ARP表中找不到对应的MAC地址，然后以广播方式发送一个ARP请求报文。由于ARP请求报文以广播方式发送，该网段上的所有主机都可以接收到该请求，但只有被请求的主机（即主机B）会对该请求进行处理。</p>
-</li>
-<li><p>主机B比较自己的IP地址和ARP请求报文中的目标IP地址，当两者相同时进行如下处理：将ARP请求报文中的发送端（即主机A）的IP地址和MAC地址存入自己的ARP表中。之后以单播方式发送ARP响应报文给主机A，其中包含了自己的MAC地址。</p>
-</li>
-<li><p>主机A收到ARP响应报文后，将主机B的MAC地址加入到自己的ARP表中以用于后续报文的转发，同时将IP数据包进行封装后发送出去。</p>
-</li>
+<li>主机A首先查看自己的ARP表，确定其中是否包含有主机B对应的ARP表项。如果找到了对应的MAC地址，则主机A直接利用ARP表中的MAC地址，对IP数据包进行帧封装，并将数据包发送给主机B。</li>
+<li>如果主机A在ARP表中找不到对应的MAC地址，然后以广播方式发送一个ARP请求报文。由于ARP请求报文以广播方式发送，该网段上的所有主机都可以接收到该请求，但只有被请求的主机（即主机B）会对该请求进行处理。</li>
+<li>主机B比较自己的IP地址和ARP请求报文中的目标IP地址，当两者相同时进行如下处理：将ARP请求报文中的发送端（即主机A）的IP地址和MAC地址存入自己的ARP表中。之后以单播方式发送ARP响应报文给主机A，其中包含了自己的MAC地址。</li>
+<li>主机A收到ARP响应报文后，将主机B的MAC地址加入到自己的ARP表中以用于后续报文的转发，同时将IP数据包进行封装后发送出去。</li>
 </ol>
 <h2 id="3-ARP帧结构"><a href="#3-ARP帧结构" class="headerlink" title="3. ARP帧结构"></a>3. ARP帧结构</h2><p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ARP%E5%B8%A7%E7%BB%93%E6%9E%84.png" alt="ARP帧结构"></p>
 <ul>
@@ -225,7 +221,8 @@
 <h2 id="4-ARP-Proxy"><a href="#4-ARP-Proxy" class="headerlink" title="4. ARP Proxy"></a>4. ARP Proxy</h2><p>对于<strong>没有配置缺省网关</strong>的计算机要和<strong>不同网段</strong>的计算机实现通信，网关收到源计算机的 ARP 请求会使用自己的 MAC 地址与目标计算机的 IP地址对源计算机进行应答。代理ARP就是将一个主机作为对另一个主机ARP进行应答。</p>
 <p>好处：不影响其他router的路由表的情况下在网络上添加一个新的router，使得子网对该主机来说变得更<strong>透明化</strong>。</p>
 <p>坏处：带来巨大的风险，除了ARP欺骗，和某个网段内的ARP增加，最重要的就是<strong>无法对网络拓扑进行网络概括</strong>。</p>
-<h3 id="4-1-ARP与ARP-Proxy"><a href="#4-1-ARP与ARP-Proxy" class="headerlink" title="4.1 ARP与ARP Proxy"></a>4.1 ARP与ARP Proxy</h3><p>当电脑没有网关（采用代理ARP）时：”跨网段访问谁，就问谁的MAC”；当电脑有网关（采用正常ARP）时：”跨网段访问谁，都问网关的MAC”。<br><strong>无论哪种ARP，跨网段通信时，发送方请求得到的目标MAC地址都是网关MAC</strong>。</p>
+<h3 id="4-1-ARP与ARP-Proxy"><a href="#4-1-ARP与ARP-Proxy" class="headerlink" title="4.1 ARP与ARP Proxy"></a>4.1 ARP与ARP Proxy</h3><p>当电脑没有网关（采用代理ARP）时：”跨网段访问谁，就问谁的MAC”；当电脑有网关（采用正常ARP）时：”跨网段访问谁，都问网关的MAC”。</p>
+<p><strong>无论哪种ARP，跨网段通信时，发送方请求得到的目标MAC地址都是网关MAC</strong>。</p>
 <p>当正常ARP第一次获取网关MAC之后，后续的通信都不再需要重新进行ARP请求；而代理ARP每次访问新的外网地址，都需要<strong>再次</strong>请求。</p>
 <h3 id="4-2-ARP-Proxy的应用"><a href="#4-2-ARP-Proxy的应用" class="headerlink" title="4.2 ARP Proxy的应用"></a>4.2 ARP Proxy的应用</h3><ul>
 <li>路由器在需要查询远程网段里的MAC地址时，与其相连接的路由器，在收到ARP Request时就会扮演代理ARP的角色。</li>
@@ -542,27 +539,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -574,11 +567,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -610,10 +607,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Lettuce</a>
               </li>
              
@@ -622,11 +615,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -635,6 +624,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
               </li>
             
             <div class="clearfix"></div>

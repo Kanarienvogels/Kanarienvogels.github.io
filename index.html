@@ -395,7 +395,7 @@
         <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-038.jpg" alt="动漫美图"></p>
 <h2 id="1-DHCP简介"><a href="#1-DHCP简介" class="headerlink" title="1. DHCP简介"></a>1. DHCP简介</h2><p>DHCP（Dynamic Host Configuration Protocol，动态主机配置协议）通常被应用在大型的局域网络环境中，<br>主要作用是集中的管理、分配IP地址，使网络环境中的主机动态的获得IP地址、Gateway地址、DNS服务器地址等信息，并能够提升地址的使用率。</p>
 <h2 id="2-DHCP整体流程"><a href="#2-DHCP整体流程" class="headerlink" title="2. DHCP整体流程"></a>2. DHCP整体流程</h2><p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/DHCP%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B.png" alt="DHCP整体流程"></p>
-<p>DHCP请求IP配置过程如上。DHCP在提供服务时，DHCP客户端是以UDP 68号端口进行数据传输的，而DHCP服务器是以UDP 67号端口进行数据传输的。<br>DHCP服务不仅体现在为DHCP客户端提供IP地址自动分配过程中，还体现在后面的IP地址续约和释放过程中。</p>
+<p>另外，当DHCP客户端主动释放（断开）IP时，会向DHCP服务器发送DHCP RELEASE报文；当DHCP客户端获得了一个IP地址以后，就可以发送一个<strong>免费ARP请求探测</strong>网络中是否还有其它主机使用IP地址，来避免由于DHCP服务器地址池重叠而引发的IP冲突，当检测到IP冲突时，会向DHCP服务器发送DHCP DECLINE报文，一段时间后，重新请求新的IP。</p>
         
           <a class="article-more-a" href="/2019/08/26/DHCP概述/#more">more >></a>
         
@@ -1226,27 +1226,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1258,11 +1254,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1294,10 +1294,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Lettuce</a>
               </li>
              
@@ -1306,11 +1302,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1319,6 +1311,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
               </li>
             
             <div class="clearfix"></div>
