@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/UDP%E6%95%B0%E6%8D%AE%E6%8A%A5.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/TCP%E6%95%B0%E6%8D%AE%E6%8A%A5.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/TCP%E6%8B%A5%E5%A1%9E%E7%AA%97%E5%8F%A3.jpg">
-<meta property="og:updated_time" content="2019-09-06T06:52:27.188Z">
+<meta property="og:updated_time" content="2019-09-16T03:53:27.918Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络五层协议体系">
 <meta name="twitter:description" content="0. 前言对计算机网络五层协议进行一次规范的整理，主要是一些基础的和偏向实际应用的知识。 1. 物理层1.1 作用物理层尽可能的屏蔽掉传输媒体和通信手段的差异，使物理层上面的数据链路层感觉不到这些差异，只考虑完成本层的协议和服务。 给数据链路层在一条物理的传输媒体上传送和接收比特流（实际上则是0和1的电信号），为此物理层解决物理连接的建立、维持和释放问题。">
@@ -282,9 +282,12 @@
 <p>分组转发分为直接转发和间接转发两类。直接转发和间接转发是路由器需要根据分组的目的IP地址与源IP地址是否属于同一个网络来判断的。当分组的源主机和目的主机在同一个网络，或者是当目的路由器向目的主机传送时，分组就是直接转发。如果目的主机与源主机不在一个网络上，分组就要间接转发。在间接转发时，路由器从路由表中找出下一个路由器的IP地址，然后把IP分组传送给下一个路由器。当IP分组到达与目的主机所在的网络连接的路由器时，分组将被直接转发。</p>
 </blockquote>
 <p><strong>路由选择</strong><br>当分组开始从源主机发往目的主机，网络层必须决定分组该采用的路由或路径。而路由选择，就是用来<strong>提供分组转发时所需要的转发表</strong>。</p>
-<blockquote>
-<p><strong>虚电路网络</strong>是借鉴电信网的成功例子的，让网络来负责可靠交付。虚电路网络要求两个计算机进行通信时，应当先建立连接，也就是虚电路。然后双方就通过该虚电路发送分组。这样分组无需头部节省开销，信号传输也十分可靠。通信结束后，就释放掉虚电路。因特网的先驱者则坚定认为无连接服务是更适合因特网的网络层的。电信网的提供可靠的传输服务，对于电话这种无智能，没有处理差错能力的设备无疑是非常奏效的。但计算机是可以有很强的差错处理能力的，于是把可靠的通信控制交给网络边缘的主机进行处理。</p>
-</blockquote>
+<p>分组转发和路由选择的<strong>区别</strong>：</p>
+<ol>
+<li>“转发”即使路由器根据转发表把收到的IP数据报从路由器合适的端口转发出去。“转发”仅仅涉及到一个路由器。“路由选择”涉及到很多路由器，路由表是许多路由器协同工作的结果。这些路由器按照复杂的路由算法，得出整个网络的拓扑变化情况，因而能够动态改变所选择的路由，并由此构造出整个的路由表。</li>
+<li>路由表一般仅包含从目的网络到下一跳的映射。转发表是从路由表得出的。转发表必须包含完成转发功能所必需的信息。也就是说，在转发表的每一行必须包含从要到达的目的网络到输出端口和某些MAC地址信息（如下一跳的以太网地址）的映射。</li>
+<li>路由表总是用软件实现的，但转发表则可以用特殊的硬件实现。</li>
+</ol>
 <h3 id="3-2-网际协议IP"><a href="#3-2-网际协议IP" class="headerlink" title="3.2 网际协议IP"></a>3.2 网际协议IP</h3><p>背景：全世界范围内的网络数以百万计，而让所有人都使用单一的网络是不可能的，因为没有一种单一的网络能够满足各种用户的需求，为使各种网络能够互相通信，网际协议IP出现了。<br>IP协议（Internet Protocol）：<strong>实现网络互连</strong>。使参与互连的性能各异的网络从用户看起来好像是一个统一的网络。网际协议IP是TCP/IP体系中两个最主要的协议之一，与IP协议配套使用的还有3个协议：ARP、ICMP、IGMP。</p>
 <blockquote>
 <p>为什么不直接使用硬件地址进行通信？<br>由于全世界存在着各式各样的网络，它们使用不同的硬件地址。要<strong>使这些异构网络能够互相通信就必须进行非常复杂的硬件地址转换工作</strong>，因此几乎是不可能的事。</p>
@@ -800,15 +803,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -832,15 +835,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -872,15 +875,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Lettuce</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
               <li class="article-tag-list-item">
