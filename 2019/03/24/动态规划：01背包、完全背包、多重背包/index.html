@@ -17,7 +17,7 @@
 <meta property="og:description" content="0. 前言经典的动态规划题目：背包问题 1. 问题描述01背包(ZeroOnePack): 有N件物品和一个承重为bear的背包。每种物品均只有一件。第i件物品的重量是weight[i]，价值是value[i]。求解将哪些物品装入背包可使价值总和最大。 完全背包(CompletePack): 有N种物品和一个承重为bear的背包，每种物品都有无限件可用。第i种物品的重量是weight[i]，价值">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-033.jpg">
-<meta property="og:updated_time" content="2019-03-24T06:57:45.106Z">
+<meta property="og:updated_time" content="2019-10-08T08:45:42.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态规划：01背包、完全背包、多重背包">
 <meta name="twitter:description" content="0. 前言经典的动态规划题目：背包问题 1. 问题描述01背包(ZeroOnePack): 有N件物品和一个承重为bear的背包。每种物品均只有一件。第i件物品的重量是weight[i]，价值是value[i]。求解将哪些物品装入背包可使价值总和最大。 完全背包(CompletePack): 有N种物品和一个承重为bear的背包，每种物品都有无限件可用。第i种物品的重量是weight[i]，价值">
@@ -314,7 +314,7 @@
 </tbody>
 </table>
 <p>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 01背包：要么放，要么不放</span><br><span class="line"> * dp[i][j]表示前i种物品且承重为j时的背包最大价值</span><br><span class="line"> * @param weight 重量数组</span><br><span class="line"> * @param value 价值数组</span><br><span class="line"> * @param bear 承重</span><br><span class="line"> * @return 最大的价值总和</span><br><span class="line"> */</span><br><span class="line">public static int zeroOnePack(int[] weight, int[] value, int bear) &#123;</span><br><span class="line">    int[][] dp = new int[weight.length + 1][bear + 1];</span><br><span class="line">    for (int i = 0; i &lt; weight.length; i++) &#123;</span><br><span class="line">        for (int j = 0; j &lt; bear; j++) &#123;</span><br><span class="line">            if (j + 1 - weight[i] &gt;= 0) &#123; // 此处判断不可少</span><br><span class="line">                dp[i + 1][j + 1] = Math.max(dp[i][j + 1], dp[i][j + 1 - weight[i]] + value[i]);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                dp[i + 1][j + 1] = dp[i][j + 1];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[weight.length][bear];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="2-1-01背包降维"><a href="#2-1-01背包降维" class="headerlink" title="2.1 01背包降维"></a>2.1 01背包降维</h2><p>可以降维到一维数组dp[i]，表示承重为i时背包的最大价值</p>
+<h3 id="2-1-01背包降维"><a href="#2-1-01背包降维" class="headerlink" title="2.1 01背包降维"></a>2.1 01背包降维</h3><p>可以降维到一维数组dp[i]，表示承重为i时背包的最大价值</p>
 <p><strong>初始状态</strong>：<br>dp[i] = 0, 0 &lt;= i &lt;= bear</p>
 <p><strong>状态转移方程</strong>：<br><code>dp[i] = max(dp[i]，dp[i - weight[i]] + value[i])  (和降维前是类似的)</code></p>
 <p>时间复杂度<code>O(bear * n)</code>，空间复杂度<code>O(bear)</code>，其中bear为承重，n为物品数。</p>
@@ -508,7 +508,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-问题描述"><span class="toc-number">2.</span> <span class="toc-text">1. 问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-01背包求解"><span class="toc-number">3.</span> <span class="toc-text">2. 01背包求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-01背包降维"><span class="toc-number">4.</span> <span class="toc-text">2.1 01背包降维</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-完全背包求解"><span class="toc-number">5.</span> <span class="toc-text">3. 完全背包求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-多重背包求解"><span class="toc-number">6.</span> <span class="toc-text">4. 多重背包求解</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-问题描述"><span class="toc-number">2.</span> <span class="toc-text">1. 问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-01背包求解"><span class="toc-number">3.</span> <span class="toc-text">2. 01背包求解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-01背包降维"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 01背包降维</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-完全背包求解"><span class="toc-number">4.</span> <span class="toc-text">3. 完全背包求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-多重背包求解"><span class="toc-number">5.</span> <span class="toc-text">4. 多重背包求解</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -627,15 +627,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -651,10 +651,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
@@ -667,15 +663,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -684,6 +676,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -699,15 +699,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Lettuce</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
               <li class="article-tag-list-item">

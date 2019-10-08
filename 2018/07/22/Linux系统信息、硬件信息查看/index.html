@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="https://kanarien.cn">
   <title>Linux下系统信息、硬件信息的查看 | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0. 前言当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。 1. CPU相关信息 查看CPU个数cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | uniq | wc -l   示例输出：1 说明:这是">
+  <meta name="description" content="0. 前言当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。 1. CPU相关信息1. 查看CPU个数cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | uniq | wc -l 示例输出：1  说明:这">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux下系统信息、硬件信息的查看">
 <meta property="og:url" content="https://kanarien.cn/2018/07/22/Linux系统信息、硬件信息查看/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
-<meta property="og:description" content="0. 前言当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。 1. CPU相关信息 查看CPU个数cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | uniq | wc -l   示例输出：1 说明:这是">
+<meta property="og:description" content="0. 前言当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。 1. CPU相关信息1. 查看CPU个数cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | uniq | wc -l 示例输出：1  说明:这">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-002.jpg">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/cpuinfo.png">
@@ -26,10 +26,10 @@
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/fdisk.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/df.png">
 <meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/du.png">
-<meta property="og:updated_time" content="2019-04-09T15:34:37.797Z">
+<meta property="og:updated_time" content="2019-09-17T03:54:44.731Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux下系统信息、硬件信息的查看">
-<meta name="twitter:description" content="0. 前言当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。 1. CPU相关信息 查看CPU个数cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | uniq | wc -l   示例输出：1 说明:这是">
+<meta name="twitter:description" content="0. 前言当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。 1. CPU相关信息1. 查看CPU个数cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | uniq | wc -l 示例输出：1  说明:这">
 <meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-002.jpg">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
@@ -203,86 +203,36 @@
       
         <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-002.jpg" alt="动漫美图"></p>
 <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。</p>
-<h2 id="1-CPU相关信息"><a href="#1-CPU相关信息" class="headerlink" title="1. CPU相关信息"></a>1. CPU相关信息</h2><ol>
-<li>查看CPU个数<br><code>cat /proc/cpuinfo | grep &quot;physical id&quot; | uniq | wc -l</code></li>
-</ol>
-<ul>
-<li>示例输出：<code>1</code><blockquote>
-<p>说明:<br>这是查看记录CPU相关的文件(/proc/cpuinfo)的详细信息。cat 命令：查看文件内容；grep 命令：字符串拼接；uniq 命令：删除重复行；wc -l 命令：统计行数。通过查看cpu信息文件，根据物理核id（重复的不计）的个数获取物理核个数。</p>
-<a id="more"></a>
+<h2 id="1-CPU相关信息"><a href="#1-CPU相关信息" class="headerlink" title="1. CPU相关信息"></a>1. CPU相关信息</h2><p><strong>1. 查看CPU个数</strong><br><code>cat /proc/cpuinfo | grep &quot;physical id&quot; | uniq | wc -l</code></p>
+<p>示例输出：<code>1</code></p>
+<blockquote>
+<p>说明:<br>这是查看记录CPU相关的文件(/proc/cpuinfo)的详细信息。cat 命令：查看文件内容；grep 命令：字符串拼接；uniq 命令：删除重复行；wc -l 命令：统计行数。通过查看cpu信息文件，根据物理核id（重复的不计）的个数获取物理核个数。<br><a id="more"></a></p>
 </blockquote>
-</li>
-</ul>
-<ol start="2">
-<li>查看每个CPU物理核数<br><code>cat /proc/cpuinfo | grep &quot;cpu cores&quot; | uniq</code></li>
-</ol>
-<ul>
-<li>示例输出：<code>cpu cores       : 1</code></li>
-</ul>
-<ol start="3">
-<li>查看每个CPU逻辑核数<br><code>cat /proc/cpuinfo | grep &quot;siblings&quot; | uniq</code></li>
-</ol>
-<ul>
-<li>示例输出：<code>siblings        : 2</code></li>
-</ul>
-<ol start="4">
-<li>查看CPU逻辑核总个数<br><code>cat /proc/cpuinfo | grep &quot;processor&quot; | uniq | wc -l</code></li>
-</ol>
-<ul>
-<li>示例输出：<code>2</code></li>
-</ul>
+<p><strong>2. 查看每个CPU物理核数</strong><br><code>cat /proc/cpuinfo | grep &quot;cpu cores&quot; | uniq</code></p>
+<p>示例输出：<code>cpu cores       : 1</code></p>
+<p><strong>3. 查看每个CPU逻辑核数</strong><br><code>cat /proc/cpuinfo | grep &quot;siblings&quot; | uniq</code><br>示例输出：<code>siblings        : 2</code></p>
+<p><strong>4. 查看CPU逻辑核总个数</strong><br><code>cat /proc/cpuinfo | grep &quot;processor&quot; | uniq | wc -l</code><br>示例输出：<code>2</code></p>
 <blockquote>
 <p>说明：<br>一般所说的CPU是几核指的是CPU逻辑核总数</p>
 </blockquote>
-<ol start="5">
-<li>查看CPU型号<br><code>cat /proc/cpuinfo | grep &quot;model name&quot; |uniq</code></li>
-</ol>
-<ul>
-<li>示例输出：<code>model name      : Intel(R) Xeon(R) CPU E5-2680 v3 @ 2.50GHz</code></li>
-</ul>
+<p><strong>5. 查看CPU型号</strong><br><code>cat /proc/cpuinfo | grep &quot;model name&quot; |uniq</code></p>
+<p>示例输出：<code>model name      : Intel(R) Xeon(R) CPU E5-2680 v3 @ 2.50GHz</code></p>
 <p><strong>举个总例子</strong><br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/cpuinfo.png" alt="cpuinfo"></p>
 <p>以上输出表示，该服务器共有1个CPU（physical id 数目），每个CPU有1个物理核（cpu cores），每个物理核模拟2个逻辑核（siblings，使用超线程技术），型号为Intel芯片 E5-2680型，主频为2.50GHz。</p>
-<ol start="6">
-<li>查看CPU使用情况<br><code>mpstat -P ALL</code></li>
-</ol>
-<ul>
-<li>示例输出：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Linux 3.10.0-693.2.2.el7.x86_64 (izwz94dg1rsooqkjwxzwfxx)       03/08/2019     _x86_64_ (1 CPU)</span><br><span class="line"></span><br><span class="line">04:42:05 PM  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle</span><br><span class="line">04:42:05 PM  all    0.42    0.00    0.23    0.01    0.00    0.00    0.00    0.00    0.00   99.34</span><br><span class="line">04:42:05 PM    0    0.42    0.00    0.23    0.01    0.00    0.00    0.00    0.00    0.00   99.34</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">%user      在internal时间段里，用户态的CPU时间(%)，不包含nice值为负进程  (usr/total)*100</span><br><span class="line">%nice      在internal时间段里，nice值为负进程的CPU时间(%)   (nice/total)*100</span><br><span class="line">%sys       在internal时间段里，内核时间(%)       (system/total)*100</span><br><span class="line">%iowait    在internal时间段里，硬盘IO等待时间(%) (iowait/total)*100</span><br><span class="line">%irq       在internal时间段里，硬中断时间(%)     (irq/total)*100</span><br><span class="line">%soft      在internal时间段里，软中断时间(%)     (softirq/total)*100</span><br><span class="line">%idle      在internal时间段里，CPU除去等待磁盘IO操作外的因为任何原因而空闲的时间闲置时间(%) (idle/total)*100</span><br></pre></td></tr></table></figure>
-<h2 id="2-内存相关信息"><a href="#2-内存相关信息" class="headerlink" title="2. 内存相关信息"></a>2. 内存相关信息</h2><ol>
-<li>查看内存大小、条数数量<br><code>dmidecode | grep -P -A5 &quot;Memory Device&quot; | grep Size</code></li>
-</ol>
-<ul>
-<li>示例输出：    <code>Size: 4096 MB</code></li>
-</ul>
+<p><strong>6. 查看CPU使用情况</strong><br><code>mpstat -P ALL</code></p>
+<p>示例输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 分别显示每个核的使用情况</span><br><span class="line">Linux 3.10.0-693.2.2.el7.x86_64 (izwz94dg1rsooqkjwxzwfxx)       03/08/2019     _x86_64_ (1 CPU)</span><br><span class="line"></span><br><span class="line">04:42:05 PM  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle</span><br><span class="line">04:42:05 PM  all    0.42    0.00    0.23    0.01    0.00    0.00    0.00    0.00    0.00   99.34</span><br><span class="line">04:42:05 PM    0    0.42    0.00    0.23    0.01    0.00    0.00    0.00    0.00    0.00   99.34</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">%usr      在internal时间段里，用户态的CPU时间(%)，不包含nice值为负进程  (usr/total)*100</span><br><span class="line">%nice      在internal时间段里，nice值为负进程的CPU时间(%)   (nice/total)*100</span><br><span class="line">%sys       在internal时间段里，内核时间(%)       (system/total)*100</span><br><span class="line">%iowait    在internal时间段里，硬盘IO等待时间(%) (iowait/total)*100</span><br><span class="line">%irq       在internal时间段里，硬中断时间(%)     (irq/total)*100</span><br><span class="line">%soft      在internal时间段里，软中断时间(%)     (softirq/total)*100</span><br><span class="line">%idle      在internal时间段里，CPU除去等待磁盘IO操作外的因为任何原因而空闲的时间闲置时间(%) (idle/total)*100</span><br></pre></td></tr></table></figure>
+<h2 id="2-内存相关信息"><a href="#2-内存相关信息" class="headerlink" title="2. 内存相关信息"></a>2. 内存相关信息</h2><p><strong>1. 查看内存大小、条数数量</strong><br><code>dmidecode | grep -P -A5 &quot;Memory Device&quot; | grep Size</code><br>示例输出：    <code>Size: 4096 MB</code></p>
 <blockquote>
 <p>说明：<br>dmidecode 命令是用来查看服务器硬件信息的，显示的都是结构化数据，但信息量相比其他命令较小，适合用于简单了解服务器基本硬件信息。</p>
 </blockquote>
-<ol start="2">
-<li>查看内存相关硬件信息<br><code>dmidecode | grep -A16 &quot;Memory Device$&quot;</code></li>
-</ol>
-<ul>
-<li>示例输出：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/dmidecode%20Memory%20Device.png" alt="dmidecode | grep -A16 &quot;Memory Device$&quot;"></li>
-</ul>
-<ol start="3">
-<li>查看内存详细使用信息——1<br><code>cat /proc/meminfo</code></li>
-</ol>
-<ul>
-<li>示例输出(部分)：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/meminfo.png" alt="/proc/meminfo"></li>
-</ul>
+<p><strong>2. 查看内存相关硬件信息</strong><br><code>dmidecode | grep -A16 &quot;Memory Device$&quot;</code><br>示例输出：<br>  <img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/dmidecode%20Memory%20Device.png" alt="dmidecode | grep -A16 &quot;Memory Device$&quot;"></p>
+<p><strong>3. 查看内存详细使用信息——1</strong><br><code>cat /proc/meminfo</code><br>示例输出(部分)：<br>  <img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/meminfo.png" alt="/proc/meminfo"></p>
 <blockquote>
 <p>说明：<br>这是查看记录内存使用相关的文件(/proc/meminfo)的详细信息，由于信息过多，而且数据格式不易阅读，这里不赘述。值得一提的是，很多监控内存使用的命令都与此文件有关，如free 命令，使用这些命令可以跟和谐的查看内存使用情况。</p>
 </blockquote>
-<ol start="4">
-<li>查看内存详细使用信息——2<br><code>free -m</code></li>
-</ol>
-<ul>
-<li><p>示例输出：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/free.png" alt="free -m"></p>
-</li>
-<li><p>Mem参数说明</p>
-</li>
-</ul>
+<p><strong>4. 查看内存详细使用信息——2</strong><br><code>free</code><br>示例输出：<br>  <img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/free.png" alt="free -m"></p>
+<p>Mem参数说明</p>
 <table>
 <thead>
 <tr>
@@ -300,7 +250,7 @@
 <tr>
 <td>2</td>
 <td>used</td>
-<td>表示总计分配给缓存（包含buffers 与cache ）使用的数量，但其中可能部分缓存并未实际使用。</td>
+<td>已经被使用的物理内存</td>
 </tr>
 <tr>
 <td>3</td>
@@ -310,7 +260,7 @@
 <tr>
 <td>4</td>
 <td>shared</td>
-<td>共享内存，一般系统不会用到</td>
+<td>共享内存，一般比较小</td>
 </tr>
 <tr>
 <td>5</td>
@@ -325,56 +275,23 @@
 </tbody>
 </table>
 <blockquote>
+<p>buff：缓冲区，以块为单位存储在内存中的缓冲区。cache：页面高速缓存，以页为单位存储在内存，一页包含若干块。二者都是以减少磁盘IO为目的。在Linux内核2.4后才将二者的实现统一。</p>
+</blockquote>
+<blockquote>
 <p>available 代表的是一个新的应用程序可以使用内存的估计值，它不等于 free +  buff/cache(在centos6 中是等于的),因为在centos 7.2与Ubuntu 16.04以上(包含)的系统使用了新的Linux内核，所以并不是所有的buffer/cache空间都可以被回收。</p>
 </blockquote>
-<h2 id="3-系统相关信息"><a href="#3-系统相关信息" class="headerlink" title="3. 系统相关信息"></a>3. 系统相关信息</h2><ol>
-<li>查看Linux内核版本<br><code>cat /proc/version</code></li>
-</ol>
-<ul>
-<li>示例输出：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/linux%20verson.png" alt="cat /proc/version"></li>
-</ul>
-<ol start="2">
-<li>查看发行版信息——1<br><code>cat /etc/issue</code></li>
-</ol>
-<ul>
-<li>示例输出：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CentOS release 6.7 (Final)</span><br><span class="line">Kernel \r on an \m</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ol start="3">
-<li>查看发行版信息——2<br><code>cat /etc/redhat-release</code></li>
-</ol>
-<ul>
-<li>示例输出：<code>CentOS Linux release 7.2.1511 (Core)</code></li>
-</ul>
+<h2 id="3-系统相关信息"><a href="#3-系统相关信息" class="headerlink" title="3. 系统相关信息"></a>3. 系统相关信息</h2><p><strong>1. 查看Linux内核版本</strong><br><code>cat /proc/version</code><br>示例输出：<br>  <img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/linux%20verson.png" alt="cat /proc/version"></p>
+<p><strong>2. 查看发行版信息——1</strong><br><code>cat /etc/issue</code><br>示例输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CentOS release 6.7 (Final)</span><br><span class="line">Kernel \r on an \m</span><br></pre></td></tr></table></figure></p>
+<p><strong>3. 查看发行版信息——2</strong><br><code>cat /etc/redhat-release</code><br>示例输出：<code>CentOS Linux release 7.2.1511 (Core)</code></p>
 <blockquote>
 <p>说明：<br>该命令只适合Redhat系的Linux</p>
 </blockquote>
-<ol start="4">
-<li>查看发行版信息——3<br><code>cat /etc/os-release |grep VERSION</code></li>
-</ol>
-<ul>
-<li>示例输出：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/os-release.png" alt="cat /etc/os-release |grep VERSION"></li>
-</ul>
-<h2 id="4-硬盘相关信息"><a href="#4-硬盘相关信息" class="headerlink" title="4. 硬盘相关信息"></a>4. 硬盘相关信息</h2><ol>
-<li>查看硬盘及分区信息<br><code>fdisk -l</code></li>
-</ol>
-<ul>
-<li>示例输出：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/fdisk.png" alt="fdisk -l"></li>
-</ul>
-<ol start="2">
-<li>查看磁盘空间占用情况<br><code>df -h</code></li>
-</ol>
-<ul>
-<li>示例输出：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/df.png" alt="df -h"></li>
-</ul>
-<ol start="3">
-<li>递归查看某路径下文件夹的磁盘空间占用情况<br><code>du -h /usr/local/</code></li>
-</ol>
-<ul>
-<li>示例输出：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/du.png" alt="du -h"></li>
-</ul>
+<p><strong>4. 查看发行版信息——3</strong><br><code>cat /etc/os-release |grep VERSION</code><br>示例输出：<br>  <img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/os-release.png" alt="cat /etc/os-release |grep VERSION"></p>
+<h2 id="4-硬盘相关信息"><a href="#4-硬盘相关信息" class="headerlink" title="4. 硬盘相关信息"></a>4. 硬盘相关信息</h2><p><strong>1. 查看硬盘及分区信息</strong><br><code>fdisk -l</code><br>示例输出：<br>  <img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/fdisk.png" alt="fdisk -l"></p>
+<p><strong>2. 查看磁盘空间占用情况</strong><br><code>df -h</code><br>示例输出：<br>  <img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/df.png" alt="df -h"></p>
+<p><strong>3. 递归查看某路径下文件夹的磁盘空间占用情况</strong><br><code>du -h /usr/local/</code><br>示例输出：<br>  <img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/du.png" alt="du -h"></p>
 <blockquote>
-<p>说明：<br>该命令最后的参数是文件夹路径，显示出的路径是文件夹，不包括文件。再添加参数s，即<code>du -sh /usr/local</code>可以查看改路径下的总大小</p>
+<p>说明：<br>该命令最后的参数是文件夹路径，显示出的路径是文件夹，不包括文件。再添加参数s，如<code>du -sh /usr/local</code>可以查看该路径下的总大小</p>
 </blockquote>
 <hr>
 <blockquote>
@@ -662,15 +579,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -686,10 +603,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
@@ -702,15 +615,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -719,6 +628,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -734,15 +651,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Lettuce</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
               <li class="article-tag-list-item">

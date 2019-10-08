@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://kanarien.cn">
-  <title>八大排序算法比较 | 无悔的博客小屋</title>
+  <title>动态规划：LeetCode 877 - Stone Game | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 排序算法比较表格   排序算法 平均时间复杂度 最坏时间复杂度 空间复杂度 是否稳定     冒泡排序(BubbleSort) O(N^2) O(N^2) O(1) 是   选择排序(SelectionSort) O(N^2) O(N^2) O(1) 不是   插入排序(InsertionSort) O(N^2) O(N^2) O(1) 是   希尔排序(ShellSort) O(N^(3">
+  <meta name="description" content="0. 前言秋招字节笔试题有一类似该题的算法题，正解应该使用动态规划。 1. 题目Alex and Lee play a game with piles of stones.  There are an even number of piles arranged in a row, and each pile has a positive integer number of stones pile">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="八大排序算法比较">
-<meta property="og:url" content="https://kanarien.cn/2018/09/10/八大排序算法比较/index.html">
+<meta property="og:title" content="动态规划：LeetCode 877 - Stone Game">
+<meta property="og:url" content="https://kanarien.cn/2019/10/08/动态规划：LeetCode 877 - Stone Game/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
-<meta property="og:description" content="1. 排序算法比较表格   排序算法 平均时间复杂度 最坏时间复杂度 空间复杂度 是否稳定     冒泡排序(BubbleSort) O(N^2) O(N^2) O(1) 是   选择排序(SelectionSort) O(N^2) O(N^2) O(1) 不是   插入排序(InsertionSort) O(N^2) O(N^2) O(1) 是   希尔排序(ShellSort) O(N^(3">
+<meta property="og:description" content="0. 前言秋招字节笔试题有一类似该题的算法题，正解应该使用动态规划。 1. 题目Alex and Lee play a game with piles of stones.  There are an even number of piles arranged in a row, and each pile has a positive integer number of stones pile">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-025.jpg">
-<meta property="og:updated_time" content="2019-03-31T03:51:13.955Z">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-004.jpg">
+<meta property="og:updated_time" content="2019-10-08T08:58:34.282Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="八大排序算法比较">
-<meta name="twitter:description" content="1. 排序算法比较表格   排序算法 平均时间复杂度 最坏时间复杂度 空间复杂度 是否稳定     冒泡排序(BubbleSort) O(N^2) O(N^2) O(1) 是   选择排序(SelectionSort) O(N^2) O(N^2) O(1) 不是   插入排序(InsertionSort) O(N^2) O(N^2) O(1) 是   希尔排序(ShellSort) O(N^(3">
-<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-025.jpg">
+<meta name="twitter:title" content="动态规划：LeetCode 877 - Stone Game">
+<meta name="twitter:description" content="0. 前言秋招字节笔试题有一类似该题的算法题，正解应该使用动态规划。 1. 题目Alex and Lee play a game with piles of stones.  There are an even number of piles arranged in a row, and each pile has a positive integer number of stones pile">
+<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-004.jpg">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
   
@@ -165,7 +165,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-八大排序算法比较" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-动态规划：LeetCode 877 - Stone Game" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -173,14 +173,14 @@
         
   
     <h1 class="article-title" itemprop="name">
-      八大排序算法比较
+      动态规划：LeetCode 877 - Stone Game
     </h1>
   
 
 		
         
-        <a href="/2018/09/10/八大排序算法比较/" class="archive-article-date">
-  	<time datetime="2018-09-10T12:58:15.845Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-10</time>
+        <a href="/2019/10/08/动态规划：LeetCode 877 - Stone Game/" class="archive-article-date">
+  	<time datetime="2019-10-08T07:52:37.079Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-08</time>
 </a>
         
 		
@@ -192,95 +192,34 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-025.jpg" alt="动漫美图"></p>
-<h2 id="1-排序算法比较表格"><a href="#1-排序算法比较表格" class="headerlink" title="1. 排序算法比较表格"></a>1. 排序算法比较表格</h2><table>
-<thead>
-<tr>
-<th>排序算法</th>
-<th>平均时间复杂度</th>
-<th>最坏时间复杂度</th>
-<th>空间复杂度</th>
-<th>是否稳定</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>冒泡排序(BubbleSort)</td>
-<td>O(N^2)</td>
-<td>O(N^2)</td>
-<td>O(1)</td>
-<td>是</td>
-</tr>
-<tr>
-<td>选择排序(SelectionSort)</td>
-<td>O(N^2)</td>
-<td>O(N^2)</td>
-<td>O(1)</td>
-<td>不是</td>
-</tr>
-<tr>
-<td>插入排序(InsertionSort)</td>
-<td>O(N^2)</td>
-<td>O(N^2)</td>
-<td>O(1)</td>
-<td>是</td>
-</tr>
-<tr>
-<td>希尔排序(ShellSort)</td>
-<td>O(N^(3/2))</td>
-<td>O(N^2)</td>
-<td>O(1)</td>
-<td>不是</td>
-</tr>
-<tr>
-<td>归并排序(MergeSort)</td>
-<td>O(NlogN)</td>
-<td>O(NlogN)</td>
-<td>O(N)</td>
-<td>是</td>
-</tr>
-<tr>
-<td>快速排序(QuickSort)</td>
-<td>O(NlogN)</td>
-<td>O(N^2)</td>
-<td>O(logN)</td>
-<td>不是</td>
-</tr>
-<tr>
-<td>堆排序(HeapSort)</td>
-<td>O(NlogN)</td>
-<td>O(NlogN)</td>
-<td>O(1)</td>
-<td>不是</td>
-</tr>
-<tr>
-<td>基数排序(RadixSort)</td>
-<td>O (mN)</td>
-<td>O (mN)</td>
-<td>O(N)</td>
-<td>是</td>
-</tr>
-</tbody>
-</table>
+        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-004.jpg" alt="动漫美图"></p>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>秋招字节笔试题有一类似该题的算法题，正解应该使用动态规划。</p>
+<h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1. 题目"></a>1. 题目</h2><p>Alex and Lee play a game with piles of stones.  There are an even number of piles arranged in a row, and each pile has a positive integer number of stones piles[i].</p>
+<p>The objective of the game is to end with the most stones.  The total number of stones is odd, so there are no ties.</p>
+<p>Alex and Lee take turns, with Alex starting first.  Each turn, a player takes the entire pile of stones from either the beginning or the end of the row.  This continues until there are no more piles left, at which point the person with the most stones wins.</p>
+<p>Assuming Alex and Lee play optimally, return True if and only if Alex wins the game.</p>
+<p>简单来说：有一排偶数堆石头，石头的总数为奇数，Alex和Lee每次取走头或尾的一堆，如果Alex和Lee都采用最佳方法，问先手的Alex是否能赢？</p>
 <a id="more"></a>
-<p><strong>注意点</strong></p>
+<h2 id="2-解一：递归"><a href="#2-解一：递归" class="headerlink" title="2. 解一：递归"></a>2. 解一：递归</h2><p>依题意分情况递归，使用一个变量player记录当前是谁拿石头堆，使用cur0和cur1记录Alex和Lee当前的石头总数，同时使用头尾指针记录当前取到拿</p>
+<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">stoneGame</span><span class="params">(<span class="keyword">int</span>[] piles, <span class="keyword">int</span> cur0, <span class="keyword">int</span> cur1, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> player)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (left &gt; right) &#123;</span><br><span class="line">            <span class="keyword">return</span> cur0 &gt; cur1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (player == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> stoneGame(piles, cur0 + piles[left], cur1, left + <span class="number">1</span>, right, <span class="number">1</span>)</span><br><span class="line">                    || stoneGame(piles, cur0 + piles[right], cur1, left, right - <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> stoneGame(piles, cur0, cur1 + piles[left], left + <span class="number">1</span>, right, <span class="number">0</span>)</span><br><span class="line">                    || stoneGame(piles, cur0, cur1 + piles[right], left, right - <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是，上述代码存在漏洞，<strong>没有考虑到双方都采用最佳方法</strong>，只是对所有情况进行递归判断，只要有存在一种情况能让Alex赢就算是Alex赢。<br>简单的对头尾大小进行判断而选取的局部最优策略是不对的，要双方都使用最佳策略，则应该使用动态规划从小到大计算dp数组。</p>
+<p>除去时间复杂度的影响，上述代码能通过LeetCode，是有原因的，具体可以参考解三。</p>
+<h2 id="3-解二：动态规划"><a href="#3-解二：动态规划" class="headerlink" title="3. 解二：动态规划"></a>3. 解二：动态规划</h2><p>本文的重点就是动态规划的解法，因为当时的笔试题要求算的是Alex最多能拿多少个石头，而不是能否赢Lee。</p>
+<p><strong>dp数组</strong><br>把一排的石头堆看成一维数轴，设dp[i][j]表示在区间 [i, j] 内 Alex 比 Lee 多拿的石子数，<br>若为正数，说明 Alex 拿得多，若为负数，则表示 Lee 拿得多。</p>
+<p>事实上所使用到的空间只有整个二维数组的一半（左对角线的右侧），最终结果就是<code>dp[0][n - 1] &gt; 0</code></p>
+<blockquote>
+<p>由于双方都采用最佳策略，dp[i][j]是双向的，应该理解到，若dp[i][j]表示在区间 [i, j] 内 Alex 比 Lee 多拿的石子数<br>那么dp[i + 1][j]表示在区间 [i + 1, j] 内 Lee 比 Alex 多拿的石子数，<br>dp[i][j - 1]表示在区间 [i, j - 1] 内 Lee 比 Alex 多拿的石子数</p>
+</blockquote>
+<p><strong>初始状态</strong><br>dp[i][i] = piles[i], 0 &lt;= i &lt; n</p>
+<p><strong>状态转移方程</strong><br>因为可以从头尾选取一堆，理解了dp数组的含义后，可以得出，<br>若取头，dp[i][j] = piles[i] - dp[i + 1][j]；若取尾，dp[i][j] = piles[j] - dp[i][j - 1]<br>因此，<code>dp[i][j] = max(piles[i] - dp[i + 1][j], piles[j] - dp[i][j - 1])</code></p>
+<p>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static boolean stoneGame_DP(int[] piles) &#123;</span><br><span class="line">        int n = piles.length;</span><br><span class="line">        int[][] dp = new int[n][n];</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            dp[i][i] = piles[i];</span><br><span class="line">        &#125;</span><br><span class="line">        for (int len = 1; len &lt; n; len++) &#123;</span><br><span class="line">            for (int i = 0; i + len &lt; n; i++) &#123;</span><br><span class="line">                int j = i + len;</span><br><span class="line">                dp[i][j] = Math.max(piles[i] - dp[i + 1][j], piles[j] - dp[i][j - 1]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[0][n - 1] &gt; 0;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-解三：题设利用"><a href="#4-解三：题设利用" class="headerlink" title="4. 解三：题设利用"></a>4. 解三：题设利用</h2><p>根据已知条件，可以知道没有平局。对每一堆石头进行编号，从1开始到n。如果按奇偶分成两部分，一定其中一部分石头总数大，另一部分小。<br>这么就好办了，如果奇数堆总数大，因为Alex先手，那么Alex可以每次都取奇数序号的石头堆；同理，如果偶数堆总数大，因为Alex先手，那么Alex可以每次都取偶数序号的石头堆。最终Alex一定能赢。</p>
+<p>结论：先手必胜。</p>
+<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h2><p>本文关键是动态规划，但也应该懂得，有时候正确理解、利用题设条件是解题的快捷途径。</p>
+<p>本文参考了以下文章：</p>
 <ul>
-<li>空间复杂度O(1)表示数组排序时，仅采用了一个额外的辅助单元进行数组元素的交换；O(N)一般表示采用了长度为N的辅助数组；</li>
-<li><strong>希尔排序的平均时间复杂度主要受到增量序列与数组长度的影响</strong>，当使用<code>h = h * 3 + 1</code>，如：1、4、13、40、121……时，平均时间复杂度为O(N^(3/2))；当增量序列为1时，退化成插入排序，时间复杂度为O(N^2)；</li>
-<li>当排序数组为降序而按升序排序时，快速排序退化成冒泡排序，时间复杂度为O(N^2)；</li>
-<li>快速排序使用原地排序的算法时，空间复杂度是O(1)，真正<strong>耗空间的是递归调用</strong>。最优的情况下空间复杂度为O(logN)，即每次切分都平分数组；最坏的情况下空间复杂度为O(N)，即退化成冒泡排序的情况；</li>
-<li><strong>希尔排序是改进的插入排序</strong>，<strong>堆排序属于另一种形式的选择排序</strong>；</li>
-<li><strong>基数排序（radix sort）</strong>：将记录的关键字看成是由m个关键字复合而成，每个关键字可能取r个值，则只要从最低位起，按关键字的不同值将记录“分配”到r个子序列，再按从小到大的顺序将各子序列依次首尾相接“收集”在一起，如此重复m趟，最终完成整个排序。这里的实现指的是<strong>计数基数排序</strong>，分为“<strong>分配</strong>”和“<strong>收集</strong>”两个过程：“分配”是对相应关键字的每种取值计数（即统计r个子序列的长度），确定每个子序列的起始位置；“收集”是根据各子序列的起始位置将记录复制到合适的位置。</li>
+<li><a href="https://www.cnblogs.com/grandyang/p/10828725.html" target="_blank" rel="noopener">877. Stone Game 石子游戏 - Grandyang - 博客园</a></li>
 </ul>
-<h2 id="2-速度测试"><a href="#2-速度测试" class="headerlink" title="2. 速度测试"></a>2. 速度测试</h2><p>以下为对100个长度为10000的整型数组进行排序的测试，数据由0到100000中随机选取：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BubbleSort 耗费 17833 ms  经检查，测试数组全部有序</span><br><span class="line">SelectionSort 耗费 3904 ms  经检查，测试数组全部有序</span><br><span class="line">InsertionSort 耗费 4726 ms  经检查，测试数组全部有序</span><br><span class="line">InsertionSortEX 耗费 2223 ms  经检查，测试数组全部有序</span><br><span class="line">ShellSort 耗费 131 ms  经检查，测试数组全部有序</span><br><span class="line">TopDownMergeSort 耗费 130 ms  经检查，测试数组全部有序</span><br><span class="line">BottomUpMergeSort 耗费 112 ms  经检查，测试数组全部有序</span><br><span class="line">QuickSort 耗费 107 ms  经检查，测试数组全部有序</span><br><span class="line">HeapSort 耗费 115 ms  经检查，测试数组全部有序</span><br></pre></td></tr></table></figure></p>
-<p>说明：</p>
-<ul>
-<li>测试使用的排序算法都是最原始的实现，希尔排序使用增量序列<code>h = h * 3 + 1</code>；</li>
-<li>原始的插入排序使用一一交换的方式把元素往后移动，为体现出与选择排序的差别，补充了现在一般的插入排序实现(InsertionSortEX)，元素直接后移而不是一一交换；</li>
-<li>归并排序有两种实现：自顶向下归并排序(TopDownMergeSort)和自底向上归并排序(BottomUpMergeSort)。自顶向下使用递归（化整为零），自底向上使用迭代（循序渐进）。显然，循环比递归快；</li>
-<li>测试速度因环境不同而异。</li>
-</ul>
-<h2 id="3-补充"><a href="#3-补充" class="headerlink" title="3. 补充"></a>3. 补充</h2><p>最后附上其中七大排序算法(除了基数排序)的Java源码实现：<a href="https://github.com/Kanarienvogels/sort-test" target="_blank" rel="noopener">Kanarien - Git Hub</a></p>
 <hr>
 <blockquote>
 <p>Copyright © 2018, GDUT CSCW back-end Kanarien, All Rights Reserved</p>
@@ -341,7 +280,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/知识漫谈//" class="article-tag-list-link color5">知识漫谈</a>
+        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
         		</li>
       		
 		</ul>
@@ -396,7 +335,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://kanarien.cn/2018/09/10/八大排序算法比较/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://kanarien.cn/2019/10/08/动态规划：LeetCode 877 - Stone Game/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -410,18 +349,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/11/27/动态规划：正则匹配字符串/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          regular-expression-matching算法讲解
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/09/05/SQL那些值得注意的地方/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">SQL那些值得注意的地方</div>
+    <a href="/2019/09/07/八大排序算法比较/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">八大排序算法比较</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -448,7 +378,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-排序算法比较表格"><span class="toc-number">1.</span> <span class="toc-text">1. 排序算法比较表格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-速度测试"><span class="toc-number">2.</span> <span class="toc-text">2. 速度测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-补充"><span class="toc-number">3.</span> <span class="toc-text">3. 补充</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-题目"><span class="toc-number">2.</span> <span class="toc-text">1. 题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-解一：递归"><span class="toc-number">3.</span> <span class="toc-text">2. 解一：递归</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-解二：动态规划"><span class="toc-number">4.</span> <span class="toc-text">3. 解二：动态规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-解三：题设利用"><span class="toc-number">5.</span> <span class="toc-text">4. 解三：题设利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-总结"><span class="toc-number">6.</span> <span class="toc-text">5. 总结</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -583,19 +513,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color3">MongoDB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -607,15 +533,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -624,6 +546,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -651,19 +581,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spring MVC</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
               </li>
             
             <div class="clearfix"></div>

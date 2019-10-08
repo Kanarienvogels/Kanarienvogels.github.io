@@ -161,6 +161,110 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java虚拟机(二)——JVM内存结构与对象的创建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+		
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/28/Java虚拟机(二)——JVM内存结构与对象的创建/">Java虚拟机(二)——JVM内存结构与对象的创建</a>
+    </h1>
+  
+
+		
+        
+        <a href="/2018/07/28/Java虚拟机(二)——JVM内存结构与对象的创建/" class="archive-article-date">
+  	<time datetime="2018-07-28T12:40:30.370Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-28</time>
+</a>
+        
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-011.jpg" alt="动漫美图"></p>
+<h2 id="JVM内存结构与对象的创建"><a href="#JVM内存结构与对象的创建" class="headerlink" title="JVM内存结构与对象的创建"></a>JVM内存结构与对象的创建</h2><h3 id="1-数据运行时区域"><a href="#1-数据运行时区域" class="headerlink" title="1. 数据运行时区域"></a>1. 数据运行时区域</h3><p>虚拟机的结构都是在内存中的一块空间，称为<strong>虚拟机内存结构</strong>，也称为<strong>数据运行时区域</strong>。</p>
+<p>虚拟机的内存结构由<strong>五部分</strong>组成:</p>
+<ol>
+<li>程序计数器</li>
+<li>Java 虚拟机栈</li>
+<li>本地方法栈</li>
+<li>Java 堆</li>
+<li>方法区</li>
+</ol>
+        
+          <a class="article-more-a" href="/2018/07/28/Java虚拟机(二)——JVM内存结构与对象的创建/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/28/Java虚拟机(二)——JVM内存结构与对象的创建/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
     <article id="post-Java虚拟机(一)——概述" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -670,12 +774,10 @@
       
         <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-002.jpg" alt="动漫美图"></p>
 <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>当刚接手一台新的服务器时，先认识下这台服务器的性能是很有必要的，特别是项目管理相关的事，对系统软硬件性能的不了解很可能导致出现差错，下面来简单介绍下Linux系统下系统信息、硬件信息的查看命令。</p>
-<h2 id="1-CPU相关信息"><a href="#1-CPU相关信息" class="headerlink" title="1. CPU相关信息"></a>1. CPU相关信息</h2><ol>
-<li>查看CPU个数<br><code>cat /proc/cpuinfo | grep &quot;physical id&quot; | uniq | wc -l</code></li>
-</ol>
-<ul>
-<li>示例输出：<code>1</code><blockquote>
-<p>说明:<br>这是查看记录CPU相关的文件(/proc/cpuinfo)的详细信息。cat 命令：查看文件内容；grep 命令：字符串拼接；uniq 命令：删除重复行；wc -l 命令：统计行数。通过查看cpu信息文件，根据物理核id（重复的不计）的个数获取物理核个数。</p>
+<h2 id="1-CPU相关信息"><a href="#1-CPU相关信息" class="headerlink" title="1. CPU相关信息"></a>1. CPU相关信息</h2><p><strong>1. 查看CPU个数</strong><br><code>cat /proc/cpuinfo | grep &quot;physical id&quot; | uniq | wc -l</code></p>
+<p>示例输出：<code>1</code></p>
+<blockquote>
+<p>说明:<br>这是查看记录CPU相关的文件(/proc/cpuinfo)的详细信息。cat 命令：查看文件内容；grep 命令：字符串拼接；uniq 命令：删除重复行；wc -l 命令：统计行数。通过查看cpu信息文件，根据物理核id（重复的不计）的个数获取物理核个数。<br>
         
           <a class="article-more-a" href="/2018/07/22/Linux系统信息、硬件信息查看/#more">more >></a>
         
@@ -1051,15 +1153,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1075,10 +1177,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
@@ -1091,15 +1189,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1108,6 +1202,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">mysqlslap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1123,15 +1225,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Lettuce</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BeetlSQL</a>
               </li>
              
               <li class="article-tag-list-item">
