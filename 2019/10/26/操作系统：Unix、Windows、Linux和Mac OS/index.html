@@ -6,23 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://kanarien.cn">
-  <title>如何理解HTTP的无连接、短连接、长连接？ | 无悔的博客小屋</title>
+  <title>操作系统：Unix、Windows、Linux和Mac OS X | 无悔的博客小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0. 前言HTTP有个特点叫“无连接”，然而为了达到可靠的传输数据，HTTP肯定是依靠可靠连接的，那什么叫“无连接”呢？ 1. 无连接？有连接？无连接：限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。 可见，HTTP不是字面意义上的没有连接，事实上，这个定义也符合HTTP短连接的定义，但无连接强调的是HTTP的特性，短连接可理解为">
-<meta name="keywords" content="HTTP">
+  <meta name="description" content="1. 概述常见的4大操作系统的诞生、发展、现状、代表型号及其之间的关系，见下图：">
+<meta name="keywords" content="操作系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何理解HTTP的无连接、短连接、长连接？">
-<meta property="og:url" content="https://kanarien.cn/2018/07/25/如何理解HTTP的无连接、短连接、长连接/index.html">
+<meta property="og:title" content="操作系统：Unix、Windows、Linux和Mac OS X">
+<meta property="og:url" content="https://kanarien.cn/2019/10/26/操作系统：Unix、Windows、Linux和Mac OS/index.html">
 <meta property="og:site_name" content="无悔的博客小屋">
-<meta property="og:description" content="0. 前言HTTP有个特点叫“无连接”，然而为了达到可靠的传输数据，HTTP肯定是依靠可靠连接的，那什么叫“无连接”呢？ 1. 无连接？有连接？无连接：限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。 可见，HTTP不是字面意义上的没有连接，事实上，这个定义也符合HTTP短连接的定义，但无连接强调的是HTTP的特性，短连接可理解为">
+<meta property="og:description" content="1. 概述常见的4大操作系统的诞生、发展、现状、代表型号及其之间的关系，见下图：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-017.jpg">
-<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/pipelining%E5%92%8Cmultiplexing.png">
-<meta property="og:updated_time" content="2018-12-04T13:46:40.661Z">
+<meta property="og:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-043.jpg">
+<meta property="og:image" content="https://kanarien-1254133416.cos.ap-guangzhou.myqcloud.com/Image%20Bed/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%9AUnix%E3%80%81Windows%E3%80%81Linux%E5%92%8CMac%20OS.jpg">
+<meta property="og:updated_time" content="2019-10-26T05:03:13.387Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何理解HTTP的无连接、短连接、长连接？">
-<meta name="twitter:description" content="0. 前言HTTP有个特点叫“无连接”，然而为了达到可靠的传输数据，HTTP肯定是依靠可靠连接的，那什么叫“无连接”呢？ 1. 无连接？有连接？无连接：限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。 可见，HTTP不是字面意义上的没有连接，事实上，这个定义也符合HTTP短连接的定义，但无连接强调的是HTTP的特性，短连接可理解为">
-<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-017.jpg">
+<meta name="twitter:title" content="操作系统：Unix、Windows、Linux和Mac OS X">
+<meta name="twitter:description" content="1. 概述常见的4大操作系统的诞生、发展、现状、代表型号及其之间的关系，见下图：">
+<meta name="twitter:image" content="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-043.jpg">
   
     <link rel="alternative" href="/atom.xml" title="无悔的博客小屋" type="application/atom+xml">
   
@@ -166,7 +166,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-如何理解HTTP的无连接、短连接、长连接" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-操作系统：Unix、Windows、Linux和Mac OS" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -174,14 +174,14 @@
         
   
     <h1 class="article-title" itemprop="name">
-      如何理解HTTP的无连接、短连接、长连接？
+      操作系统：Unix、Windows、Linux和Mac OS X
     </h1>
   
 
 		
         
-        <a href="/2018/07/25/如何理解HTTP的无连接、短连接、长连接/" class="archive-article-date">
-  	<time datetime="2018-07-25T14:02:11.099Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
+        <a href="/2019/10/26/操作系统：Unix、Windows、Linux和Mac OS/" class="archive-article-date">
+  	<time datetime="2019-10-26T04:44:32.985Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-26</time>
 </a>
         
 		
@@ -193,47 +193,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-017.jpg" alt="动漫美图"></p>
-<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>HTTP有个特点叫“无连接”，然而为了达到可靠的传输数据，HTTP肯定是依靠可靠连接的，那什么叫“无连接”呢？</p>
-<h2 id="1-无连接？有连接？"><a href="#1-无连接？有连接？" class="headerlink" title="1. 无连接？有连接？"></a>1. 无连接？有连接？</h2><p><strong>无连接</strong>：限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。</p>
-<p>可见，<strong>HTTP不是字面意义上的没有连接</strong>，事实上，这个定义也符合HTTP短连接的定义，但<strong>无连接强调的是HTTP的特性，短连接可理解为一种实现</strong>。<br><a id="more"></a></p>
-<p>无连接的含义也可以<strong>结合HTTP无状态的含义在应用层面上去理解</strong>：每一个请求都拥有自己的请求体，期望接收到唯一的对应的响应体，而每一次的请求都相互独立，与上一次或下一次的请求毫无关系，哪怕是在同一条连接中（后面说的长连接）。也正因为这个特性，我们在考虑业务代码实现的时候，无需考虑请求之间的关系，只需考虑业务是如何在当前请求完成的。</p>
-<p>而HTTP真正的连接，根据计算机网络体系的协议栈可知，是通过运输层的TCP协议实现的，下层向上层提供了可靠的连接，上层屏蔽了下层的具体实现，所有的操作均在可靠的连接基础之上。HTTP使用TCP的目的是为了保证数据传输的可靠性和完整性。</p>
-<p>简单来说就是：</p>
-<ul>
-<li>TCP的面向连接是基于网络底层的数据传输。</li>
-<li>HTTP的无连接是基于应用层面的沟通交互。</li>
-</ul>
-<h2 id="2-从短连接到长连接"><a href="#2-从短连接到长连接" class="headerlink" title="2. 从短连接到长连接"></a>2. 从短连接到长连接</h2><ul>
-<li><strong>HTTP/0.9</strong>：最早发布的1991年0.9版，该时期的HTTP协议十分简单，只支持Get请求，采用短连接的方式，也就是说，客户端和服务器每进行一次HTTP操作，就建立一次连接，任务结束就中断连接。当客户端浏览器访问的某个HTML或其他类型的Web页中包含有其他的Web资源（如JavaScript文件、图像文件、CSS文件等），每遇到这样一个Web资源，浏览器就会重新建立一个HTTP会话。</li>
-<li><strong>HTTP/1.0</strong>：1996年发布，默认使用短连接，提出长连接（也叫持久连接）的概念，但当时仅提供初步的支持。</li>
-<li><strong>HTTP/1.1</strong>：1999年发布，默认使用长连接，用以保持连接特性。使用长连接的HTTP协议，会在响应头加入这行代码：<br><code>Connection:keep-alive</code><br>在使用长连接的情况下，当一个网页打开完成后，客户端和服务器之间用于传输HTTP数据的TCP连接不会关闭，客户端再次访问这个服务器时，会继续使用这一条已经建立的连接。Keep-Alive不会永久保持连接，它有一个保持时间，可以在不同的服务器软件（如Apache）中设定这个时间。实现长连接需要客户端和服务端都支持长连接。</li>
-</ul>
-<p><strong>HTTP协议的长连接和短连接，实质上是TCP协议的长连接和短连接。</strong></p>
-<p>TCP短连接长连接都由客户端发起，而TCP长连接的保活功能主要为服务器应用提供。如果客户端已经消失而连接未断开，则会使得服务器上保留一个半开放的连接，而服务器又在等待来自客户端的数据，此时服务器将永远等待客户端的数据。保活功能就是试图在服务端器端检测到这种半开放的连接。也<strong>因为短连接、长连接的实现在HTTP之外，与HTTP无关，从HTTP自身来看，HTTP依然是无连接的。</strong></p>
-<h2 id="3-HTTP的长连接和WebSocket的长连接"><a href="#3-HTTP的长连接和WebSocket的长连接" class="headerlink" title="3. HTTP的长连接和WebSocket的长连接"></a>3. HTTP的长连接和WebSocket的长连接</h2><ul>
-<li><p><strong>HTTP的长连接</strong>：HTTP/1.1通过使用<code>Connection:keep-alive</code>进行长连接。在一次 TCP 连接中可以完成多个 HTTP 请求，但是对每个请求仍然要单独发 header，Keep-Alive不会永久保持连接，它有一个保持时间，可以在不同的服务器软件（如Apache）中设定这个时间。这种长连接是一种“伪链接”，而且只能由客户端发送请求，服务端响应。</p>
-</li>
-<li><p><strong>WebSocket的长连接</strong>，是一个全双工的连接，可由服务端主动发起信息。长连接第一次TCP链路建立之后，后续数据可以双方都进行发送，不需要发送请求头。</p>
-</li>
-</ul>
-<p>HTTP/1.1中双方并没有建立正真的连接会话，服务端可以在任何一次请求完成后关闭。WebSocket 它本身就规定了是正真的、双工的长连接，两边都必须要维持住连接的状态。</p>
-<h2 id="4-从HTTP-1-1到HTTP-2"><a href="#4-从HTTP-1-1到HTTP-2" class="headerlink" title="4. 从HTTP/1.1到HTTP/2"></a>4. 从HTTP/1.1到HTTP/2</h2><p><strong>HTTP/1.1：pipelining</strong><br>HTTP/1.1时期，持久连接（长连接）的弊端被提出 —— HOLB（Head of Line Blocking）即持久连接下一个连接中的请求仍然是<strong>串行</strong>的，如果某个请求出现网络阻塞等问题，会导致同一条连接上的后续请求被阻塞。</p>
-<p>因此，HTTP/1.1中提出了pipelining概念，即客户端可以在一个请求发送完成后不等待响应便直接发起第二个请求，服务端在返回响应时会按请求到达的顺序依次返回，这样就极大地降低了延迟。然而pipelining并没有解决HOLB的问题，因为响应依然是串行返回的，pipelining也因此没有被广泛接受。</p>
-<p><strong>SPDY和HTTP/2：multiplexing</strong><br>multiplexing即多路复用，连接共享，在SPDY中提出，同时也在HTTP/2中实现。multiplexing技术能够让多个请求和响应的传输完全混杂在一起进行，通过streamId来互相区别。这彻底解决了HOLB问题，同时还允许给每个请求设置优先级，服务端会先响应优先级高的请求。</p>
-<p>pipelining和multiplexing的对比，如图：<br><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/pipelining%E5%92%8Cmultiplexing.png" alt="pipelining和multiplexing"></p>
-<blockquote>
-<p>SPDY是由Google推出的协议，HTTP工作组采用了SPDY v2草案作为制定HTTP 2.0标准的起点。HTTP/2标准于2015年5月以RFC 7540正式发表。至此，SPDY完成了历史的使命，退出历史的舞台。</p>
-</blockquote>
-<h2 id="5-结语"><a href="#5-结语" class="headerlink" title="5. 结语"></a>5. 结语</h2><p>该文参考了以下文章：</p>
-<ul>
-<li><a href="https://www.cnblogs.com/gotodsp/p/6366163.html" target="_blank" rel="noopener">HTTP长连接、短连接究竟是什么？ - dai.sp - 博客园</a></li>
-<li><a href="https://www.cnblogs.com/Catherine001/p/8359153.html" target="_blank" rel="noopener">http中长连接和websocket的长连接的区别 - 艾亚495 - 博客园</a></li>
-<li><a href="https://www.zhihu.com/question/51996213" target="_blank" rel="noopener">怎么理解TCP是面向连接的，HTTP基于TCP却是无连接的？ - 知乎</a></li>
-</ul>
+        <p><img src="http://kanarien-1254133416.cosgz.myqcloud.com/Image%20Bed/ACG-043.jpg" alt="动漫美图"></p>
+<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>常见的4大操作系统的诞生、发展、现状、代表型号及其之间的关系，见下图：<br><img src="https://kanarien-1254133416.cos.ap-guangzhou.myqcloud.com/Image%20Bed/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%9AUnix%E3%80%81Windows%E3%80%81Linux%E5%92%8CMac%20OS.jpg" alt="操作系统：Unix、Windows、Linux和Mac OS X"></p>
+<a id="more"></a>
 <hr>
 <blockquote>
-<p>Copyright © 2018, CSCW back-end Kanarien, All Rights Reserved</p>
+<p>Copyright © 2018, GDUT CSCW back-end Kanarien, All Rights Reserved</p>
 </blockquote>
 
       
@@ -279,7 +244,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">操作系统</a>
         		</li>
       		
 		</ul>
@@ -291,7 +256,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/知识漫谈//" class="article-tag-list-link color5">知识漫谈</a>
+        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
         		</li>
       		
 		</ul>
@@ -346,7 +311,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://kanarien.cn/2018/07/25/如何理解HTTP的无连接、短连接、长连接/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://kanarien.cn/2019/10/26/操作系统：Unix、Windows、Linux和Mac OS/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -360,18 +325,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/28/Java虚拟机(一)——概述/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java虚拟机(一)——概述
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/24/Spring Boot2.x整合BeetlSQL的一次实践经验/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Spring Boot2.x整合BeetlSQL2.x的一次实践经验</div>
+    <a href="/2019/10/08/动态规划：LeetCode 877 - Stone Game/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">动态规划：LeetCode 877 - Stone Game</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -398,7 +354,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-无连接？有连接？"><span class="toc-number">2.</span> <span class="toc-text">1. 无连接？有连接？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-从短连接到长连接"><span class="toc-number">3.</span> <span class="toc-text">2. 从短连接到长连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-HTTP的长连接和WebSocket的长连接"><span class="toc-number">4.</span> <span class="toc-text">3. HTTP的长连接和WebSocket的长连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-从HTTP-1-1到HTTP-2"><span class="toc-number">5.</span> <span class="toc-text">4. 从HTTP/1.1到HTTP/2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-结语"><span class="toc-number">6.</span> <span class="toc-text">5. 结语</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-概述"><span class="toc-number">1.</span> <span class="toc-text">1. 概述</span></a></li></ol>
                     </div>
                 </span>
             </div>
